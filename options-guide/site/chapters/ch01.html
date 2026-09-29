@@ -62,7 +62,7 @@
   <text x="120" y="192" text-anchor="middle" font-size="12" fill="var(--fg)">最大損失＝支払ったプレミアム</text>
   <text x="520" y="172" text-anchor="middle" font-size="12" fill="var(--fg)">買い手が使えば必ず応じる</text>
   <text x="520" y="192" text-anchor="middle" font-size="12" fill="var(--fg)">最大利益＝受け取ったプレミアム</text>
-  <text x="320" y="232" text-anchor="middle" font-size="12" fill="var(--muted)">取引所取引では、清算機関が間に入って決済を保証します</text>
+  <text x="320" y="232" text-anchor="middle" font-size="12" fill="var(--fg)">取引所取引では、清算機関が間に入って決済を保証します</text>
 </svg></div><figcaption>図1-1　オプションの買い手と売り手。お金（プレミアム）は買い手から売り手へ、権利は売り手から買い手へ移ります。</figcaption></figure>
 
 <div class="box key"><span class="box-label">ここが重要</span>
@@ -114,7 +114,7 @@
   <text x="86" y="146" text-anchor="middle" font-size="12" fill="var(--fg)">プレミアムを支払う</text>
   <line x1="160" y1="130" x2="220" y2="130" stroke="var(--fg)" stroke-width="2" fill="none"/>
   <polygon points="230,130 218,124 218,136" fill="var(--fg)"/>
-  <polygon points="300,90 370,130 300,170 230,130" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <polygon points="300,90 370,130 300,170 230,130" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
   <text x="300" y="126" text-anchor="middle" font-size="14" font-weight="700" fill="var(--fg)">満期日</text>
   <text x="300" y="144" text-anchor="middle" font-size="11" fill="var(--fg)">得か損か</text>
   <line x1="370" y1="130" x2="400" y2="60" stroke="var(--gain)" stroke-width="2" fill="none"/>
@@ -259,36 +259,36 @@
 <h3>4つのポジションを並べてみる</h3>
 <figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 400" role="img" aria-label="4つの基本ポジションの損益の形">
   <rect x="10" y="10" width="305" height="185" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
-  <text x="24" y="34" font-size="14" font-weight="700" fill="var(--gain)">コールの買い</text>
-  <text x="24" y="54" font-size="11" fill="var(--muted)">上昇で利益・損失はプレミアムまで</text>
+  <text x="24" y="34" font-size="14" font-weight="700" fill="var(--fg)">コールの買い</text>
+  <text x="24" y="54" font-size="11" fill="var(--fg)">上昇で利益・損失はプレミアムまで</text>
   <line x1="30" y1="120" x2="295" y2="120" stroke="var(--fg)" stroke-width="1" fill="none"/>
   <line x1="162" y1="64" x2="162" y2="180" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
   <polyline points="30,140 162,140 295,66" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-  <text x="166" y="178" font-size="11" fill="var(--muted)">K</text>
+  <text x="166" y="178" font-size="11" fill="var(--fg)">K</text>
 
   <rect x="325" y="10" width="305" height="185" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
-  <text x="339" y="34" font-size="14" font-weight="700" fill="var(--loss)">コールの売り</text>
-  <text x="339" y="54" font-size="11" fill="var(--muted)">上がらなければ利益・上昇で損失無制限</text>
+  <text x="339" y="34" font-size="14" font-weight="700" fill="var(--fg)">コールの売り</text>
+  <text x="339" y="54" font-size="11" fill="var(--fg)">上がらなければ利益・上昇で損失無制限</text>
   <line x1="345" y1="120" x2="610" y2="120" stroke="var(--fg)" stroke-width="1" fill="none"/>
   <line x1="477" y1="64" x2="477" y2="180" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
   <polyline points="345,100 477,100 610,174" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-  <text x="481" y="178" font-size="11" fill="var(--muted)">K</text>
+  <text x="481" y="178" font-size="11" fill="var(--fg)">K</text>
 
   <rect x="10" y="205" width="305" height="185" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
-  <text x="24" y="229" font-size="14" font-weight="700" fill="var(--gain)">プットの買い</text>
-  <text x="24" y="249" font-size="11" fill="var(--muted)">下落で利益・損失はプレミアムまで</text>
+  <text x="24" y="229" font-size="14" font-weight="700" fill="var(--fg)">プットの買い</text>
+  <text x="24" y="249" font-size="11" fill="var(--fg)">下落で利益・損失はプレミアムまで</text>
   <line x1="30" y1="315" x2="295" y2="315" stroke="var(--fg)" stroke-width="1" fill="none"/>
   <line x1="162" y1="259" x2="162" y2="375" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
   <polyline points="30,261 162,335 295,335" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-  <text x="166" y="373" font-size="11" fill="var(--muted)">K</text>
+  <text x="166" y="373" font-size="11" fill="var(--fg)">K</text>
 
   <rect x="325" y="205" width="305" height="185" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
-  <text x="339" y="229" font-size="14" font-weight="700" fill="var(--loss)">プットの売り</text>
-  <text x="339" y="249" font-size="11" fill="var(--muted)">下がらなければ利益・下落で損失大</text>
+  <text x="339" y="229" font-size="14" font-weight="700" fill="var(--fg)">プットの売り</text>
+  <text x="339" y="249" font-size="11" fill="var(--fg)">下がらなければ利益・下落で損失大</text>
   <line x1="345" y1="315" x2="610" y2="315" stroke="var(--fg)" stroke-width="1" fill="none"/>
   <line x1="477" y1="259" x2="477" y2="375" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
   <polyline points="345,369 477,295 610,295" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-  <text x="481" y="373" font-size="11" fill="var(--muted)">K</text>
+  <text x="481" y="373" font-size="11" fill="var(--fg)">K</text>
 </svg></div><figcaption>図1-3　4つの基本ポジションの損益の形（横軸：満期時の原資産価格、縦軸：損益、横線：損益ゼロ、K：権利行使価格）。上下に並んだ買いと売りは、横線を境に上下を反転した形です。</figcaption></figure>
 
 <div class="tbl"><table>
@@ -324,7 +324,7 @@
 </ul>
 
 <figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 300" role="img" aria-label="オプション市場の主な参加者">
-  <rect x="235" y="115" width="170" height="70" rx="6" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <rect x="235" y="115" width="170" height="70" rx="6" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
   <text x="320" y="145" text-anchor="middle" font-size="14" font-weight="700" fill="var(--fg)">オプション市場</text>
   <text x="320" y="165" text-anchor="middle" font-size="12" fill="var(--fg)">（取引所・清算機関）</text>
 
