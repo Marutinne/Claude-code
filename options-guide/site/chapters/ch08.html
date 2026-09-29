@@ -30,10 +30,6 @@
 
 <p>内訳は、個別株オプションが半分強、ETFオプションが4割弱、指数オプションが1割弱です。個別株・ETF・指数のどの分野でも前年より増えています。日本の日経225オプションは日本では中心的な商品ですが、米国ではひとつのETF（SPY）のオプションだけで、それを大きく上回る枚数が毎日取引されています。</p>
 
-<div class="box example"><span class="box-label">数値例</span>
-<p>「1日平均6,000万枚」の大きさを実感するために計算してみます。米国株オプションは1枚＝100株分なので、仮に全部が株式オプションだとすると、<strong>1日に60億株分</strong>の権利が売買されている計算です。1年の取引日を約250日とすると、6,000万枚×250日＝150億枚となり、年間の数字とも合います。</p>
-</div>
-
 <h3>取引所はひとつではない</h3>
 <p>日本のオプションは大阪取引所に集まっています（<a href="#ch07">第7章</a>）。これに対し米国には<strong>オプション取引所が十数か所（執筆時点で18前後）</strong>あり、その多くはいくつかの取引所グループに属しています。</p>
 
@@ -120,9 +116,9 @@
 
 <p>例として、株価100ドルの米国株Aで、権利行使価格105ドルのコール（残り30日）を1枚買う場合を見ます。IV20%で計算した理論価格は約0.65ドルです。支払うのは<strong>0.65×100＝65ドル</strong>（手数料別）です。</p>
 
-<div class="payoff" data-title="米国株A：105コールを1枚買う（金額はドル）" data-spot="100" data-range="90,115" data-mult="100" data-curves="20,7"
+<div class="payoff" data-title="米国株A：105コールを1枚買う（金額はドル）" data-spot="100" data-range="90,115" data-mult="100" data-unit="ドル" data-curves="20,7"
      data-legs='[{"type":"call","k":105,"qty":1,"prem":0.65}]'
-     data-caption="1枚＝100株なので、損益は価格差×100ドル。最大損失は支払った65ドル、損益分岐点は105＋0.65＝105.65ドル。満期に110ドルなら（110−105.65）×100＝435ドルの利益。縦軸の金額はドル。"></div>
+     data-caption="1枚＝100株なので、損益は価格差×100ドル。最大損失は支払った65ドル、損益分岐点は105＋0.65＝105.65ドル（図では約105.7と表示）。満期に110ドルなら（110−105.65）×100＝435ドルの利益。縦軸の金額はドル。"></div>
 
 <p>日経225オプションは1枚＝価格×1,000円でした（<a href="#ch02-4">2-4</a>）。米国株オプションは「×100」です。<strong>表示価格が小さく見えても、実際の金額は100倍</strong>であることを最初に体に覚えさせてください。</p>
 
@@ -131,7 +127,7 @@
 </div>
 
 <h3>株式分割などで「1枚の中身」が変わることがある</h3>
-<p>株式分割・合併・特別配当などが起きると、OCCがオプションの条件を調整することがあります。たとえば1株を3株に分ける分割では、権利行使価格が3分の1になり、枚数が3倍になるのが一般的です。分割の比率によっては「1枚＝150株」のような<strong>変則的な（調整後の）オプション</strong>になり、銘柄コードも変わります。調整後のオプションは流動性が低くなりやすいので、初心者は避けるのが無難です。</p>
+<p>株式分割・合併などが起きると、OCCがオプションの条件を調整することがあります。1株を3株に分ける分割なら、権利行使価格が3分の1、枚数が3倍になるのが一般的です。比率によっては「1枚＝150株」のような<strong>調整後のオプション</strong>になり、流動性も低くなりやすいので、初心者は避けるのが無難です。</p>
 
 <h3>ETFオプション ― 指数を「株のように」取引する</h3>
 <p><strong>ETF（上場投資信託）</strong>は株と同じように売買できる投資信託です。ETFのオプションも、個別株と同じく<strong>1枚＝100口・アメリカン・タイプ・現物受渡し</strong>です。米国では、次のようなETFのオプションが非常に活発に取引されています。</p>
@@ -186,9 +182,8 @@
   <text x="620" y="58" font-size="13" text-anchor="middle" fill="var(--muted)">金 16:00</text>
   <text x="300" y="112" font-size="12" text-anchor="middle" fill="var(--fg)">売買できないが、清算値は未定</text>
   <text x="300" y="128" font-size="12" text-anchor="middle" fill="var(--fg)">（夜間のニュースや金曜の寄り付きで変わる）</text>
-  <text x="450" y="128" font-size="12" text-anchor="start" fill="var(--fg)"></text>
   <text x="560" y="112" font-size="12" text-anchor="middle" fill="var(--fg)">構成銘柄の始値から計算</text>
-  <text x="12" y="176" font-size="14" font-weight="700" fill="var(--fg)">PM決済（例：SPXの週次・毎営業日満期、XSP、SPY以外の指数PM系列）</text>
+  <text x="12" y="176" font-size="14" font-weight="700" fill="var(--fg)">PM決済（例：SPXの週次・毎営業日満期、XSP、NDXP、RUTW）</text>
   <line x1="30" y1="226" x2="700" y2="226" stroke="var(--muted)" stroke-width="1.5"/>
   <circle cx="150" cy="226" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
   <circle cx="450" cy="226" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
@@ -212,10 +207,10 @@
 <p>SPXは乗数100ドルで、指数そのものが数千ポイントあるため、<strong>1枚の想定元本（原資産の価値）が非常に大きい</strong>商品です。S&amp;P500が6,000なら1枚は6,000×100＝60万ドル分です。</p>
 <p>例として、S&amp;P500が6,000のとき（IV15%、残り30日）、6,000コールを102.90で買い、6,050コールを80.30で売る<strong>ブル・コール・スプレッド</strong>（<a href="#ch13">第13章</a>）を1組作ると、支払いは（102.90−80.30）×100＝<strong>2,260ドル</strong>です。</p>
 
-<div class="payoff" data-title="SPX：6000コール買い＋6050コール売り（金額はドル）" data-spot="6000" data-range="5900,6150" data-mult="100"
+<div class="payoff" data-title="SPX：6000コール買い＋6050コール売り（金額はドル）" data-spot="6000" data-range="5900,6150" data-mult="100" data-unit="ドル"
      data-iv="0.15" data-curves="15"
      data-legs='[{"type":"call","k":6000,"qty":1,"prem":102.9},{"type":"call","k":6050,"qty":-1,"prem":80.3}]'
-     data-caption="差金決済のスプレッド。最大損失は支払った2,260ドル、最大利益は（50−22.60）×100＝2,740ドル、損益分岐点は6,022.60。ヨーロピアン・タイプなので満期前に売り側だけ割り当てられることはない。縦軸の金額はドル。"></div>
+     data-caption="差金決済のスプレッド。最大損失は支払った2,260ドル、最大利益は（50−22.60）×100＝2,740ドル、損益分岐点は6,000＋22.60＝約6,023。ヨーロピアン・タイプなので満期前に売り側だけ割り当てられることはない。縦軸の金額はドル。"></div>
 
 <p>同じ形をSPY（約10分の1の価格）で作れば金額はおよそ10分の1、XSPでもおよそ10分の1です。<strong>最初はSPYやXSPのような小さい単位で練習し、慣れてからSPXを検討する</strong>のが自然な順番です。</p>
 
@@ -304,13 +299,13 @@
     <rect x="545" y="256" width="110" height="44" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="555" y="274" fill="var(--fg)">30</text>
   </g>
   <g fill="var(--muted)">
-    <circle cx="160" cy="88" r="4"/><circle cx="280" cy="88" r="4"/><circle cx="400" cy="88" r="4"/><circle cx="520" cy="88" r="4"/><circle cx="640" cy="88" r="4"/>
-    <circle cx="160" cy="138" r="4"/><circle cx="280" cy="138" r="4"/><circle cx="400" cy="138" r="4"/><circle cx="520" cy="138" r="4"/><circle cx="640" cy="138" r="4"/>
-    <circle cx="160" cy="188" r="4"/><circle cx="280" cy="188" r="4"/><circle cx="400" cy="188" r="4"/><circle cx="520" cy="188" r="4"/><circle cx="640" cy="188" r="4"/>
-    <circle cx="160" cy="238" r="4"/><circle cx="280" cy="238" r="4"/><circle cx="400" cy="238" r="4"/><circle cx="520" cy="238" r="4"/><circle cx="640" cy="238" r="4"/>
-    <circle cx="160" cy="288" r="4"/><circle cx="280" cy="288" r="4"/><circle cx="400" cy="288" r="4"/><circle cx="520" cy="288" r="4"/><circle cx="640" cy="288" r="4"/>
+    <circle cx="160" cy="88" r="4" fill="var(--muted)"/><circle cx="280" cy="88" r="4" fill="var(--muted)"/><circle cx="400" cy="88" r="4" fill="var(--muted)"/><circle cx="520" cy="88" r="4" fill="var(--muted)"/><circle cx="640" cy="88" r="4" fill="var(--muted)"/>
+    <circle cx="160" cy="138" r="4" fill="var(--muted)"/><circle cx="280" cy="138" r="4" fill="var(--muted)"/><circle cx="400" cy="138" r="4" fill="var(--muted)"/><circle cx="520" cy="138" r="4" fill="var(--muted)"/><circle cx="640" cy="138" r="4" fill="var(--muted)"/>
+    <circle cx="160" cy="188" r="4" fill="var(--muted)"/><circle cx="280" cy="188" r="4" fill="var(--muted)"/><circle cx="400" cy="188" r="4" fill="var(--muted)"/><circle cx="520" cy="188" r="4" fill="var(--muted)"/><circle cx="640" cy="188" r="4" fill="var(--muted)"/>
+    <circle cx="160" cy="238" r="4" fill="var(--muted)"/><circle cx="280" cy="238" r="4" fill="var(--muted)"/><circle cx="400" cy="238" r="4" fill="var(--muted)"/><circle cx="520" cy="238" r="4" fill="var(--muted)"/><circle cx="640" cy="238" r="4" fill="var(--muted)"/>
+    <circle cx="160" cy="288" r="4" fill="var(--muted)"/><circle cx="280" cy="288" r="4" fill="var(--muted)"/><circle cx="400" cy="288" r="4" fill="var(--muted)"/><circle cx="520" cy="288" r="4" fill="var(--muted)"/><circle cx="640" cy="288" r="4" fill="var(--muted)"/>
   </g>
-  <text x="600" y="194" font-size="12" text-anchor="middle" fill="var(--fg)">月次（第3金曜）</text>
+  <text x="592" y="194" font-size="11" text-anchor="middle" fill="var(--fg)">月次（第3金曜）</text>
   <circle cx="80" cy="318" r="4" fill="var(--muted)"/><text x="90" y="322" font-size="12" fill="var(--fg)">毎営業日の満期（SPX・SPYなど）</text>
   <rect x="300" y="311" width="14" height="14" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="320" y="322" font-size="12" fill="var(--fg)">週次（金曜）</text>
   <rect x="430" y="311" width="14" height="14" fill="var(--gold)" fill-opacity="0.3" stroke="var(--gold)"/><text x="450" y="322" font-size="12" fill="var(--fg)">月次（標準限月）</text>
@@ -414,16 +409,7 @@
   </tbody>
 </table></div>
 
-<p>ETFも配当（分配金）を出します。たとえばSPYは分配金を四半期ごとに出すので、<strong>SPYのITMコールを売っている場合も、配当落ち日の前は早期割当に注意</strong>が必要です。「SPYはETFだから配当の話は関係ない」と考えるのは誤りです。</p>
-
-<div class="box example"><span class="box-label">数値例</span>
-<p>株価が110ドルで、権利行使価格100ドルのコールを1枚売っています。コールの価格は10.10ドルで、時間的価値は0.10ドルです。翌日が配当落ち日で、配当は1株0.60ドルです。</p>
-<ul>
-  <li>コールの保有者は、今日行使すれば時間的価値0.10ドルを捨てて、配当0.60ドルを得られます。行使した方が得なので、割り当てられる可能性が高い状況です。</li>
-  <li>株を持っていなければ空売りの状態になり、配当相当額0.60×100＝<strong>60ドル</strong>を支払うことになります。</li>
-</ul>
-<p>時間的価値（0.10）＜配当（0.60）なので、今日のうちに買い戻すかロールするのが基本の対応です。</p>
-</div>
+<p>ETFも配当（分配金）を出します。SPYは分配金を四半期ごとに出すので、<strong>SPYのITMコールを売っている場合も、配当落ち日の前は早期割当に注意</strong>が必要です。目安は、ITMコールの時間的価値が次の配当額より小さくなったときです（<a href="#ch06-8">6-8</a>の数値例）。</p>
 
 <h2 id="ch08-8">8-8　流動性の見方と銘柄選び</h2>
 
@@ -467,7 +453,6 @@
 <ul>
   <li>初心者のうちは、<strong>SPY・QQQ・IWMなどの主要ETF</strong>と、誰もが知る大型株に絞ると、スプレッドのコストをほとんど気にせずに済みます。</li>
   <li>同じ銘柄でも、<strong>ATM付近・期近・月次の満期</strong>に取引が集まります。深いOTMや遠い満期は、スプレッドが広がりやすくなります。</li>
-  <li>米国の取引開始直後（日本時間の深夜）はスプレッドが広がりやすいので、指値は取引開始から少し時間をおいてから出すのが無難です。</li>
 </ul>
 </div>
 
@@ -510,7 +495,7 @@
     <tr><td>為替</td><td>プレミアム・証拠金・損益はすべて米ドル。円からドルへの両替コストと、為替レートの変動の影響を受ける。オプションで利益が出ても、円高で円換算の利益が減ることがある</td></tr>
     <tr><td>時差</td><td>取引時間は日本の深夜〜明け方（<a href="#ch08-1">8-1</a>）。満期日や急変時に起きて対応できるかを考えておく</td></tr>
     <tr><td>権利行使・割当</td><td>現物受渡しの銘柄では、割当で数千〜数万ドルの株の売買が起きる。ドルの資金と証拠金に余裕を持たせる</td></tr>
-    <tr><td>税金</td><td>国内の証券会社経由でも、米国オプションは<strong>特定口座の対象外</strong>で、日経225オプションとは課税の区分が異なると案内されている。原則として自分で確定申告が必要になる。詳しくは<a href="#ch24">第24章</a></td></tr>
+    <tr><td>税金</td><td>オプションの損益は（日経225オプションと同じく）<strong>特定口座の対象外</strong>で、利益が出れば原則として自分で確定申告が必要になる。課税の区分（申告分離課税か総合課税か）について、執筆時点では<strong>証券会社や商品によって案内が異なる</strong>ので、利用する証券会社の説明を確認し、判断に迷う場合は税務署・税理士に相談する。海外の証券会社経由の場合は扱いがさらに変わりうる。詳しくは<a href="#ch24">第24章</a></td></tr>
     <tr><td>言語・情報</td><td>商品仕様、取引所の通知、企業の開示などの一次情報は英語が中心</td></tr>
   </tbody>
 </table></div>
@@ -533,14 +518,13 @@
       <li><strong>満期の数</strong>：毎営業日・週次・月次・LEAPSまで、目的に合った期間を選べる</li>
       <li><strong>戦略の自由度</strong>：個別株でカバード・コールやオプション・ホイール（<a href="#ch12">第12章</a>）など、日本では流動性の面で難しい戦略が現実的にできる</li>
       <li><strong>取引単位の選択肢</strong>：SPYやXSPのように比較的小さい単位の商品がある</li>
-      <li><strong>情報の多さ</strong>：教材・データ・分析ツールが豊富</li>
     </ul>
   </div>
   <div><h4>弱み</h4>
     <ul>
       <li><strong>為替</strong>：ドル建てなので、為替の変動と両替コストがかかる</li>
       <li><strong>時差</strong>：取引時間が日本の深夜〜明け方。満期日や急変時の対応が難しい</li>
-      <li><strong>税</strong>：国内の取引所のオプションと課税の区分が異なり、特定口座も使えない（<a href="#ch24">第24章</a>）</li>
+      <li><strong>税</strong>：利用する証券会社（国内か海外か）や商品で課税の扱いの案内が異なり、損益の集計と確定申告の手間が増える（<a href="#ch24">第24章</a>）</li>
       <li><strong>言語</strong>：一次情報は英語が中心</li>
       <li><strong>取扱会社が少ない</strong>：国内で使える証券会社や、使える戦略が限られる</li>
       <li><strong>現物受渡し・早期割当</strong>：個別株・ETFでは、割当で大きな金額の株の売買が起きうる</li>
@@ -549,10 +533,6 @@
 </div>
 
 <p>日本の市場と比べた詳しい使い分けは、次の<a href="#ch09">第9章</a>でまとめます。</p>
-
-<div class="box key"><span class="box-label">ここが重要</span>
-<p>米国市場の最大の魅力は「選択肢の多さ」です。しかし選択肢が多いほど、<strong>銘柄ごとの仕様（乗数・タイプ・決済方法・満期）</strong>を確認する手間も増えます。「分からない仕様の銘柄は取引しない」を原則にしてください。</p>
-</div>
 
 <h2 id="ch08-11">まとめ</h2>
 <ul class="summary-list">
@@ -635,11 +615,11 @@
       <li>取扱いのある国内の証券会社は一部に限られ、取引できる銘柄や戦略も会社ごとに異なるので、事前に確認が必要である</li>
       <li>米国オプションは円建てなので、為替の影響は受けない</li>
     </ol>
-    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　執筆時点で確認できた範囲では、米国オプションを扱う国内の証券会社は一部に限られ、売りやスプレッドの可否なども会社ごとに異なります。米国オプションは特定口座の対象外と案内されており、原則として確定申告が必要です（<a href="#ch24">第24章</a>）。プレミアムも損益も米ドル建てなので、為替の影響を受けます。</p></div></details>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　執筆時点で確認できた範囲では、米国オプションを扱う国内の証券会社は一部に限られ、売りやスプレッドの可否なども会社ごとに異なります。オプションの損益は特定口座の対象外で、利益が出れば原則として確定申告が必要です（<a href="#ch24">第24章</a>）。プレミアムも損益も米ドル建てなので、為替の影響を受けます。</p></div></details>
   </div>
 
   <div class="q"><p>次の損益図は、株価100ドルの米国株Dで、あるオプションを1枚だけ取引した場合の満期時の損益（ドル、1枚＝100株）です。この取引の説明として正しいものはどれですか。</p>
-    <div class="payoff" data-title="ある取引の損益（1枚、金額はドル）" data-spot="100" data-range="80,110" data-mult="100"
+    <div class="payoff" data-title="ある取引の損益（1枚、金額はドル）" data-spot="100" data-range="80,110" data-mult="100" data-unit="ドル"
          data-hide="legs,stats,be"
          data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57}]'></div>
     <ol class="choices">
