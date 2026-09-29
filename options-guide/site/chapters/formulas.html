@@ -1,0 +1,255 @@
+<header class="chapter-head">
+  <p class="eyebrow">付録</p>
+  <h1>付録C　公式集</h1>
+  <p class="lead">本文で使った式を、数値例と一緒に1か所にまとめました。どの式も「なぜそうなるか」は各章で説明しているので、分からなくなったら式の横のリンクから本文に戻ってください。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この付録の使い方</span><ul>
+  <li>数値例は、特に断りのない限り本書の基準「株価100、IV20%、残り30日、金利0%、配当なし」で、ブラック・ショールズ式で計算した理論値です（例：K100のコール＝2.29）。</li>
+  <li>プレミアムや損益は「1単位（1株・指数1ポイント）あたり」で書いています。実際のお金は <a href="#formulas-4">C-4</a> の乗数を掛けて計算します。</li>
+  <li>式は教育用の標準的なものです。実際の価格は市場で決まり、手数料・スプレッド・税は含んでいません。</li>
+</ul></div>
+
+<p><b>ジャンプ：</b><a href="#formulas-1">記号</a> ｜ <a href="#formulas-2">本質的価値と時間的価値</a> ｜ <a href="#formulas-3">損益分岐点・最大損益</a> ｜ <a href="#formulas-4">実額（乗数）</a> ｜ <a href="#formulas-5">プット・コール・パリティ</a> ｜ <a href="#formulas-6">ブラック・ショールズ式</a> ｜ <a href="#formulas-7">グリークス</a> ｜ <a href="#formulas-8">期待変動幅</a> ｜ <a href="#formulas-9">年率換算と複利</a> ｜ <a href="#formulas-10">期待値・ケリー基準</a></p>
+
+<h2 id="formulas-1">C-1　記号の約束</h2>
+<p>この付録では、次の記号を使います。</p>
+<div class="tbl"><table>
+<thead><tr><th>記号</th><th>意味</th><th>単位・注意</th></tr></thead>
+<tbody>
+<tr><td><code>S</code></td><td>原資産価格（株価・指数）</td><td>満期時の価格は <code>S<sub>T</sub></code></td></tr>
+<tr><td><code>K</code></td><td>権利行使価格</td><td>複数あるときは低い順に <code>K<sub>1</sub>, K<sub>2</sub>, …</code></td></tr>
+<tr><td><code>T</code></td><td>残存期間</td><td>年単位。30日なら <code>30÷365≒0.0822</code></td></tr>
+<tr><td><code>σ</code></td><td>ボラティリティ（IV）</td><td>年率。20%なら <code>0.20</code></td></tr>
+<tr><td><code>r</code></td><td>金利</td><td>年率・連続複利</td></tr>
+<tr><td><code>q</code></td><td>配当利回り</td><td>年率・連続複利</td></tr>
+<tr><td><code>C</code>、<code>P</code></td><td>コールの価格、プットの価格</td><td>1単位あたり</td></tr>
+<tr><td><code>D</code>、<code>R</code></td><td>支払った額（デビット）、受け取った額（クレジット）</td><td>戦略全体の差し引き</td></tr>
+<tr><td><code>W</code></td><td>スプレッドの幅（権利行使価格の差）</td><td>例 95と100なら <code>W＝5</code></td></tr>
+<tr><td><code>M</code></td><td>乗数（取引単位）</td><td>日経225は1,000、ミニは100、米国株は100</td></tr>
+<tr><td><code>N(x)</code></td><td>標準正規分布の累積分布関数</td><td>「x以下になる確率」。<code>N(0)＝0.5</code></td></tr>
+<tr><td><code>n(x)</code></td><td>標準正規分布の密度関数</td><td><code>n(x)＝e<sup>−x²/2</sup>÷√(2π)</code>。<code>n(0)≒0.399</code></td></tr>
+</tbody></table></div>
+
+<h2 id="formulas-2">C-2　本質的価値と時間的価値</h2>
+<div class="box key"><span class="box-label">ここが重要</span>
+<p><code>コールの本質的価値 ＝ max(S − K, 0)</code><br><code>プットの本質的価値 ＝ max(K − S, 0)</code><br><code>時間的価値 ＝ プレミアム − 本質的価値</code></p>
+<p>max(a, b) は「aとbの大きい方」です。本質的価値は0より小さくなりません。満期には時間的価値が0になり、プレミアム＝本質的価値になります。</p></div>
+<div class="tbl"><table>
+<thead><tr><th>判定</th><th>コール</th><th>プット</th></tr></thead>
+<tbody>
+<tr><td>ITM（本質的価値あり）</td><td><code>S ＞ K</code></td><td><code>S ＜ K</code></td></tr>
+<tr><td>ATM</td><td><code>S ≒ K</code></td><td><code>S ≒ K</code></td></tr>
+<tr><td>OTM（時間的価値だけ）</td><td><code>S ＜ K</code></td><td><code>S ＞ K</code></td></tr>
+</tbody></table></div>
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価100、残り30日、IV20%のとき：</p>
+<ul>
+<li>K95のコール（ITM）＝5.57 → 本質的価値 <code>100−95＝5</code>、時間的価値 <code>5.57−5＝0.57</code></li>
+<li>K100のコール（ATM）＝2.29 → 本質的価値0、時間的価値2.29（すべて時間的価値）</li>
+<li>K105のプット（ITM）＝5.64 → 本質的価値 <code>105−100＝5</code>、時間的価値0.64</li>
+</ul>
+<p>時間的価値はATMで最も大きく、ITM・OTMに離れるほど小さくなります。</p></div>
+<p>詳しくは <a href="#ch02-6">2-6</a>（本質的価値と時間的価値）、<a href="#ch02-5">2-5</a>（ITM・ATM・OTM）、<a href="#ch04-4">4-4</a>（時間の経過による減価）。</p>
+
+<h2 id="formulas-3">C-3　損益分岐点・最大利益・最大損失（主要戦略）</h2>
+<p>満期時の損益は、各レッグの「満期の本質的価値 − 建てたときの価格」（売りは符号が逆）を足し合わせたものです。これを整理すると、次の表の式になります。数値例は本文と同じ値です（株価100、IV20%、残り30日の理論値、1単位あたり）。</p>
+<div class="tbl"><table>
+<thead><tr><th>戦略</th><th>最大利益</th><th>最大損失</th><th>損益分岐点</th><th>数値例</th><th>本文</th></tr></thead>
+<tbody>
+<tr><td>ロング・コール</td><td>無制限</td><td><code>D</code></td><td><code>K ＋ D</code></td><td>K100を2.29で買い：分岐点102.29、最大損失2.29</td><td><a href="#ch11-2">11-2</a></td></tr>
+<tr><td>ロング・プット</td><td><code>K − D</code>（S＝0）</td><td><code>D</code></td><td><code>K − D</code></td><td>K100を2.29で買い：分岐点97.71、最大利益97.71</td><td><a href="#ch11-4">11-4</a></td></tr>
+<tr><td>ネイキッド・ショート・コール</td><td><code>R</code></td><td>無制限</td><td><code>K ＋ R</code></td><td>K105を0.65で売り：分岐点105.65</td><td><a href="#ch11-5">11-5</a></td></tr>
+<tr><td>ショート・プット（キャッシュ・セキュアード含む）</td><td><code>R</code></td><td><code>K − R</code>（S＝0）</td><td><code>K − R</code></td><td>K95を0.57で売り：分岐点94.43、最大損失94.43</td><td><a href="#ch11-6">11-6</a>・<a href="#ch11-7">11-7</a></td></tr>
+<tr><td>カバード・コール（取得価格 <code>S<sub>0</sub></code>）</td><td><code>(K − S<sub>0</sub>) ＋ R</code></td><td><code>S<sub>0</sub> − R</code>（S＝0）</td><td><code>S<sub>0</sub> − R</code></td><td>株100＋K103を1.12で売り：最大利益4.12、分岐点98.88</td><td><a href="#ch12-1">12-1</a></td></tr>
+<tr><td>プロテクティブ・プット</td><td>無制限</td><td><code>(S<sub>0</sub> − K) ＋ D</code></td><td><code>S<sub>0</sub> ＋ D</code></td><td>株100＋K95を0.57で買い：最大損失5.57、分岐点100.57</td><td><a href="#ch12-2">12-2</a></td></tr>
+<tr><td>カラー（純受取 <code>R</code>）</td><td><code>(K<sub>コール</sub> − S<sub>0</sub>) ＋ R</code></td><td><code>(S<sub>0</sub> − K<sub>プット</sub>) − R</code></td><td><code>S<sub>0</sub> − R</code></td><td>株100＋P95買い＋C105売り（純受取0.07）：最大利益5.07、最大損失4.93</td><td><a href="#ch12-3">12-3</a></td></tr>
+<tr><td>ブル・コール・スプレッド</td><td><code>W − D</code></td><td><code>D</code></td><td><code>K<sub>1</sub> ＋ D</code></td><td>100/105、支払1.65：最大利益3.35、分岐点101.65</td><td><a href="#ch13-2">13-2</a></td></tr>
+<tr><td>ベア・プット・スプレッド</td><td><code>W − D</code></td><td><code>D</code></td><td><code>K<sub>2</sub> − D</code></td><td>100/95、支払1.72：最大利益3.28、分岐点98.28</td><td><a href="#ch13-3">13-3</a></td></tr>
+<tr><td>ブル・プット・スプレッド</td><td><code>R</code></td><td><code>W − R</code></td><td><code>K<sub>2</sub> − R</code>（売ったK−R）</td><td>95/90、受取0.50：最大損失4.50、分岐点94.50</td><td><a href="#ch13-4">13-4</a></td></tr>
+<tr><td>ベア・コール・スプレッド</td><td><code>R</code></td><td><code>W − R</code></td><td><code>K<sub>1</sub> ＋ R</code>（売ったK＋R）</td><td>105/110、受取0.52：最大損失4.48、分岐点105.52</td><td><a href="#ch13-5">13-5</a></td></tr>
+<tr><td>ロング・ストラドル</td><td>無制限</td><td><code>D</code></td><td><code>K ± D</code></td><td>K100、支払4.58：分岐点95.42と104.58</td><td><a href="#ch14-2">14-2</a></td></tr>
+<tr><td>ショート・ストラドル</td><td><code>R</code></td><td>無制限（下側は <code>K − R</code>）</td><td><code>K ± R</code></td><td>K100、受取4.58：分岐点95.42と104.58</td><td><a href="#ch14-3">14-3</a></td></tr>
+<tr><td>ロング・ストラングル</td><td>無制限</td><td><code>D</code></td><td><code>K<sub>1</sub> − D</code>、<code>K<sub>2</sub> ＋ D</code></td><td>95/105、支払1.21：分岐点93.79と106.21</td><td><a href="#ch14-4">14-4</a></td></tr>
+<tr><td>ショート・ストラングル</td><td><code>R</code></td><td>無制限（下側は <code>K<sub>1</sub> − R</code>）</td><td><code>K<sub>1</sub> − R</code>、<code>K<sub>2</sub> ＋ R</code></td><td>95/105、受取1.21：分岐点93.79と106.21</td><td><a href="#ch14-5">14-5</a></td></tr>
+<tr><td>ロング・バタフライ（間隔 <code>W</code>）</td><td><code>W − D</code></td><td><code>D</code></td><td><code>K<sub>1</sub> ＋ D</code>、<code>K<sub>3</sub> − D</code></td><td>95/100/105、支払1.64：最大利益3.36、分岐点96.64と103.36</td><td><a href="#ch15-2">15-2</a></td></tr>
+<tr><td>アイアン・バタフライ</td><td><code>R</code></td><td><code>W − R</code></td><td><code>K<sub>中央</sub> ± R</code></td><td>95/100/100/105、受取3.36：最大損失1.64</td><td><a href="#ch15-4">15-4</a></td></tr>
+<tr><td>ロング・コンドル</td><td><code>(K<sub>2</sub> − K<sub>1</sub>) − D</code></td><td><code>D</code></td><td><code>K<sub>1</sub> ＋ D</code>、<code>K<sub>4</sub> − D</code></td><td>94/98/102/106、支払2.03：最大利益1.97</td><td><a href="#ch15-5">15-5</a></td></tr>
+<tr><td>アイアン・コンドル</td><td><code>R</code></td><td><code>W − R</code>（片側の幅）</td><td><code>K<sub>2</sub> − R</code>、<code>K<sub>3</sub> ＋ R</code></td><td>89/94/106/111、受取0.76：最大損失4.24、分岐点93.24と106.76</td><td><a href="#ch15-6">15-6</a></td></tr>
+<tr><td>ジェイド・リザード</td><td><code>R</code></td><td>下側 <code>K<sub>プット</sub> − R</code>。上側 <code>W<sub>コール</sub> − R</code>（R≧Wなら上側の損失なし）</td><td><code>K<sub>プット</sub> − R</code></td><td>P96売り＋C103売り＋C104買い、受取1.05：分岐点94.95</td><td><a href="#ch18-1">18-1</a></td></tr>
+<tr><td>合成ロング</td><td>無制限</td><td><code>K ＋ C − P</code>（S＝0）</td><td><code>K ＋ C − P</code></td><td>K100、C2.29−P2.29：分岐点100</td><td><a href="#ch17-2">17-2</a></td></tr>
+<tr><td>ボックス・スプレッド（買い）</td><td colspan="2">一定：<code>W − D</code>（原資産によらない）</td><td>なし</td><td>90/110、支払19.22：満期に20を受け取り＋0.78</td><td><a href="#ch17-5">17-5</a></td></tr>
+</tbody></table></div>
+<p>カレンダー、ダイアゴナル、プアマンズ・カバード・コールのように満期が異なる戦略は、期先のオプションに残る価値がIVで変わるため、簡単な式では決まりません（<a href="#ch16-2">16-2</a>）。レシオ・スプレッドなど売りが多い戦略は <a href="#ch13-8">13-8</a> を参照してください。</p>
+
+<div class="payoff" data-title="アイアン・コンドル（89/94/106/111）の満期損益" data-spot="100" data-range="84,116"
+     data-legs='[{"type":"put","k":89,"qty":1,"prem":0.04},{"type":"put","k":94,"qty":-1,"prem":0.40},{"type":"call","k":106,"qty":-1,"prem":0.48},{"type":"call","k":111,"qty":1,"prem":0.08}]'
+     data-caption="表の式どおり、最大利益＝受取0.76、最大損失＝片側の幅5−0.76＝4.24、損益分岐点＝94−0.76＝93.24と106＋0.76＝106.76です。"></div>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>式を覚えるより、「満期に原資産が0のとき」「各権利行使価格ちょうどのとき」「十分に高いとき」の3〜5点で損益を計算して線で結ぶ方が確実です。損益図は折れ線なので、折れ曲がる点（権利行使価格）と両端さえ分かれば形が決まります（<a href="#ch03-6">3-6</a>）。</p></div>
+
+<h2 id="formulas-4">C-4　実額の計算 ― 証拠金ではなく乗数で測る</h2>
+<div class="box key"><span class="box-label">ここが重要</span>
+<p><code>受け払いする金額 ＝ プレミアム × M × 枚数</code><br><code>損益の実額 ＝ 1単位あたりの損益 × M × 枚数</code><br><code>想定元本 ＝ S × M × 枚数</code></p></div>
+<div class="tbl"><table>
+<thead><tr><th>商品</th><th>乗数 M</th><th>表示100のときの1枚の金額</th><th>本文</th></tr></thead>
+<tbody>
+<tr><td>日経225オプション</td><td class="r">1,000</td><td class="r">100,000円</td><td><a href="#ch07-2">7-2</a></td></tr>
+<tr><td>日経225ミニオプション</td><td class="r">100</td><td class="r">10,000円</td><td><a href="#ch07-4">7-4</a></td></tr>
+<tr><td>米国株・ETFオプション</td><td class="r">100</td><td class="r">10,000ドル</td><td><a href="#ch08-2">8-2</a></td></tr>
+<tr><td>SPX（指数）／XSP</td><td class="r">100</td><td class="r">10,000ドル</td><td><a href="#ch08-3">8-3</a></td></tr>
+</tbody></table></div>
+<p>乗数は執筆時点（2026年）の標準です。株式分割などで調整されたオプションは1枚の中身が変わるため、取引所の商品概要で確認してください（<a href="#ch02-4">2-4</a>）。</p>
+<div class="box example"><span class="box-label">数値例</span>
+<ul>
+<li>日本：日経平均40,000円、K41,000のコールが510円。ラージ1枚 <code>510×1,000＝510,000円</code>、ミニ1枚 <code>510×100＝51,000円</code>。想定元本はラージ1枚で <code>40,000×1,000＝4,000万円</code>。</li>
+<li>米国：K155のコールが3.10ドル。1枚 <code>3.10×100＝310ドル</code>。株価150ドルなら想定元本は <code>150×100＝15,000ドル</code>。</li>
+</ul></div>
+
+<h3>グリークスを実額・株数に直す</h3>
+<p><code>ポジションのデルタ（株数換算） ＝ Δ × M × 枚数</code>（売りはマイナス）<br>
+<code>1日のセータの実額 ＝ Θ（1日あたり） × M × 枚数</code><br>
+<code>IV 1ポイントあたりのベガの実額 ＝ ν × M × 枚数</code></p>
+<div class="box example"><span class="box-label">数値例</span>
+<p>米国株のATMコール（Δ0.51、Θ−0.038、ν0.114）を2枚買うと、デルタは <code>0.51×100×2＝102株分</code>、1日のセータは <code>−0.038×100×2≒−7.6ドル</code>、IVが1ポイント上がると <code>0.114×100×2≒＋22.8ドル</code>。日経225ラージでデルタ0.5のコール1枚なら <code>0.5×1,000＝500</code>、日経平均が100円動くと約5万円動きます（<a href="#ch05-2">5-2</a>、<a href="#ch05-8">5-8</a>）。</p></div>
+
+<h3>最大損失から枚数を逆算する</h3>
+<p><code>枚数 ＝ （資金 × 許容率） ÷ （1単位あたりの最大損失 × M）</code>（小数点以下切り捨て）</p>
+<div class="box example"><span class="box-label">数値例</span><p>資金50,000ドル、許容率2%（1,000ドル）。受取1.02、幅5のアイアン・コンドルなら1枚の最大損失は <code>(5−1.02)×100＝398ドル</code>。<code>1,000÷398≒2.5</code> なので2枚まで（<a href="#ch21-2">21-2</a>）。</p></div>
+
+<div class="box warn"><span class="box-label">注意</span><p>証拠金は「損失の上限」ではありません。株価100ドルでK95のプットを0.57で1枚売る例では、米国で一般的な計算式の目安の証拠金は <code>(20−5＋0.57)×100＝1,557ドル</code> ですが、株価が0になったときの損失は <code>(95−0.57)×100＝9,443ドル</code> で、6倍以上です（<a href="#ch23-1">23-1</a>、<a href="#ch06-4">6-4</a>）。リスクは、証拠金ではなく「最大損失」または「ストレス時の損失」の実額で測ってください。証拠金の実際の額は証券会社ごとに異なり、変わりえます。</p></div>
+
+<h2 id="formulas-5">C-5　プット・コール・パリティ</h2>
+<p>同じ原資産・同じ権利行使価格・同じ満期のヨーロピアン・タイプのコールとプットの間には、次の関係が成り立ちます。コール買い＋プット売りが「満期にKで買う予約」と同じ損益になるからです（<a href="#ch04-7">4-7</a>、<a href="#ch17-1">17-1</a>）。</p>
+<div class="tbl"><table>
+<thead><tr><th>条件</th><th>式</th></tr></thead>
+<tbody>
+<tr><td>配当なし</td><td><code>C − P ＝ S − K·e<sup>−rT</sup></code></td></tr>
+<tr><td>満期までに配当 D<sub>i</sub>（金額）</td><td><code>C − P ＝ S − PV(配当) − K·e<sup>−rT</sup></code>、<code>PV(配当)＝Σ D<sub>i</sub>·e<sup>−r t<sub>i</sub></sup></code></td></tr>
+<tr><td>配当利回り q（指数など）</td><td><code>C − P ＝ S·e<sup>−qT</sup> − K·e<sup>−rT</sup></code></td></tr>
+<tr><td>先物価格 F を使う</td><td><code>C − P ＝ (F − K)·e<sup>−rT</sup></code></td></tr>
+<tr><td>金利0%・配当なし</td><td><code>C − P ＝ S − K</code>（ATMならコール＝プット）</td></tr>
+</tbody></table></div>
+<p>簡便には <code>e<sup>−rT</sup> ≒ 1÷(1＋r×T)</code> で割り引いても、短い期間ならほぼ同じ値になります。</p>
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価100ドル、K100、残り6か月（T＝0.5）、金利4%、IV25%：コール8.01、プット6.03、差1.98。右辺は <code>100 − 100×e<sup>−0.04×0.5</sup> ＝ 100 − 98.02 ＝ 1.98</code> で一致します。3か月後に1ドルの配当があれば、右辺は <code>100 − 0.99 − 98.02 ≒ 0.99</code> に縮みます。</p></div>
+<details class="deep"><summary>深掘り：アメリカン・タイプでは不等式になる</summary><div>
+<p>期限前の権利行使がありうるアメリカン・タイプ（米国の個別株・ETF）では、等式ではなく範囲になります。配当がない場合は <code>S − K ≦ C − P ≦ S − K·e<sup>−rT</sup></code>、配当がある場合は <code>S − PV(配当) − K ≦ C − P ≦ S − K·e<sup>−rT</sup></code> です。コンバージョンやボックス・スプレッドを「無リスク」と考えるときに、この幅と早期割当が落とし穴になります（<a href="#ch17-7">17-7</a>）。</p>
+</div></details>
+
+<h2 id="formulas-6">C-6　ブラック・ショールズ式</h2>
+<div class="box key"><span class="box-label">ここが重要</span>
+<p><code>C ＝ S·N(d<sub>1</sub>) − K·e<sup>−rT</sup>·N(d<sub>2</sub>)</code><br>
+<code>P ＝ K·e<sup>−rT</sup>·N(−d<sub>2</sub>) − S·N(−d<sub>1</sub>)</code><br>
+<code>d<sub>1</sub> ＝ [ ln(S÷K) ＋ (r ＋ σ²÷2)·T ] ÷ (σ√T)</code><br>
+<code>d<sub>2</sub> ＝ d<sub>1</sub> − σ√T</code></p>
+<p>配当利回り q がある場合（マートンの拡張）は、式の中の S をすべて <code>S·e<sup>−qT</sup></code> に置き換え、d<sub>1</sub> の中の r を <code>r − q</code> にします。</p></div>
+<p>前提は、ヨーロピアン・タイプ、ボラティリティと金利が一定、価格の変化率が正規分布（価格は対数正規分布）に従う、取引コストなし、などです。現実とのずれ（スマイル・スキュー、ファットテール）は <a href="#ch04-6">4-6</a>・<a href="#ch04-9">4-9</a> で扱っています。</p>
+<div class="box example"><span class="box-label">数値例（本書の基準）</span>
+<p>S＝100、K＝100、T＝30÷365＝0.0822、σ＝0.20、r＝0：</p>
+<ul>
+<li><code>σ√T ＝ 0.20 × 0.2867 ＝ 0.0573</code></li>
+<li><code>d<sub>1</sub> ＝ (0 ＋ 0.02×0.0822) ÷ 0.0573 ＝ 0.0287</code>、<code>d<sub>2</sub> ＝ −0.0287</code></li>
+<li><code>N(d<sub>1</sub>) ＝ 0.5114</code>、<code>N(d<sub>2</sub>) ＝ 0.4886</code></li>
+<li><code>C ＝ 100×0.5114 − 100×0.4886 ＝ 2.29</code>。金利0%でATMなのでプットも2.29</li>
+</ul>
+<p>金利がある例：S＝100、K＝100、T＝0.5、σ＝0.25、r＝0.04 では d<sub>1</sub>＝0.2015、d<sub>2</sub>＝0.0247、コール8.01、プット6.03（C-5の数値例と同じ）。</p></div>
+<div class="box tip"><span class="box-label">実践テクニック</span><p>ATMの暗算式：<code>ATMのコール ≒ ATMのプット ≒ 0.4 × S × σ√T</code>（金利0%）。上の例では <code>0.4×100×0.0573≒2.29</code>。ATMストラドルはその2倍で <code>≒ 0.8 × S × σ√T</code> です（<a href="#ch04-6">4-6</a>、<a href="#ch14-1">14-1</a>）。0.4は <code>1÷√(2π)≒0.399</code> から来ています。</p></div>
+<details class="deep"><summary>深掘り：二項モデルとリスク中立確率</summary><div>
+<p>1期間の二項モデルでは、上昇倍率 u、下落倍率 d、1期間の金利 r として、リスク中立確率 <code>p ＝ (1＋r−d)÷(u−d)</code> を使い、<code>価格 ＝ [p×(上昇時の価値)＋(1−p)×(下落時の価値)] ÷ (1＋r)</code> と計算します。u＝1.2、d＝0.8、r＝0、K＝100 なら p＝0.5、コール＝0.5×20＝10。段数を増やすとブラック・ショールズ式の値に近づきます（<a href="#ch04-5">4-5</a>）。</p>
+</div></details>
+
+<h2 id="formulas-7">C-7　グリークスの式</h2>
+<p>ブラック・ショールズ式（配当なし）を各要素で微分したものがグリークスです。本書の図と表は、セータを「1日あたり（÷365）」、ベガとローを「1ポイント（1%）あたり（÷100）」で表示しています（<a href="#ch05-1">5-1</a>）。</p>
+<div class="tbl"><table>
+<thead><tr><th>グリーク</th><th>コール</th><th>プット</th><th>数値例（S＝K＝100、30日、IV20%、r＝0）</th><th>本文</th></tr></thead>
+<tbody>
+<tr><td>デルタ Δ</td><td><code>N(d<sub>1</sub>)</code></td><td><code>N(d<sub>1</sub>) − 1</code></td><td class="r">コール 0.511／プット −0.489</td><td><a href="#ch05-2">5-2</a></td></tr>
+<tr><td>ガンマ Γ</td><td colspan="2"><code>n(d<sub>1</sub>) ÷ (S·σ√T)</code>（コールとプットで同じ）</td><td class="r">0.0695</td><td><a href="#ch05-3">5-3</a></td></tr>
+<tr><td>セータ Θ（年）</td><td><code>−S·n(d<sub>1</sub>)·σ÷(2√T) − rK·e<sup>−rT</sup>·N(d<sub>2</sub>)</code></td><td><code>−S·n(d<sub>1</sub>)·σ÷(2√T) ＋ rK·e<sup>−rT</sup>·N(−d<sub>2</sub>)</code></td><td class="r">1日あたり −0.038（÷365）</td><td><a href="#ch05-4">5-4</a></td></tr>
+<tr><td>ベガ ν</td><td colspan="2"><code>S·n(d<sub>1</sub>)·√T</code>（コールとプットで同じ）</td><td class="r">IV1ポイントあたり 0.114（÷100）</td><td><a href="#ch05-5">5-5</a></td></tr>
+<tr><td>ロー ρ</td><td><code>K·T·e<sup>−rT</sup>·N(d<sub>2</sub>)</code></td><td><code>−K·T·e<sup>−rT</sup>·N(−d<sub>2</sub>)</code></td><td class="r">金利1%あたり コール 0.040／プット −0.042（÷100）</td><td><a href="#ch05-6">5-6</a></td></tr>
+<tr><td>満期ITM確率（目安）</td><td><code>N(d<sub>2</sub>)</code></td><td><code>N(−d<sub>2</sub>)</code></td><td class="r">コール 0.489／プット 0.511</td><td><a href="#ch05-2">5-2</a></td></tr>
+</tbody></table></div>
+<p>ローは長期で効いてきます。株価100、ATM、IV25%、残り1年、金利4%なら、式のローは約0.49で、金利を4%→5%にしたときのコールの実際の変化（11.84→12.34、＋0.50）とほぼ一致します（<a href="#ch05-6">5-6</a>）。</p>
+
+<h3>ガンマとセータの関係</h3>
+<p>金利0%では <code>Θ（1日） ＝ −½ × Γ × S² × σ² ÷ 365</code> が成り立ちます。上の例では <code>−0.5×0.0695×100²×0.20²÷365 ≒ −0.038</code> で、表のセータと一致します。</p>
+<p>1日の損益の近似は <code>½ × Γ × (値動き)² ＋ Θ</code> です。これが0になる値動きは <code>S × σ ÷ √365</code>（例 <code>100×0.20÷19.1≒1.05</code>）で、ATMストラドルの買い手は1日に±1.05以上動けば勝ち、その内側なら売り手の勝ちになります（<a href="#ch05-7">5-7</a>）。</p>
+
+<h3>ポジション全体のグリークス</h3>
+<p><code>ポジションのグリーク ＝ Σ（各レッグのグリーク × 枚数 × 売買の符号 × M）</code>。原資産そのものはデルタ1（1株あたり）、他のグリークスは0です（<a href="#ch05-8">5-8</a>）。二次的グリークス（バンナ、ボマ、チャームなど）は <a href="#ch05-9">5-9</a> を参照してください。</p>
+
+<h3>主要グリークスの形（一覧）</h3>
+<p>K＝100、IV20%、金利0%のコール（プットは明記したもののみ）。線の色は残り日数の違いです。</p>
+<div class="compare">
+<div class="greek" data-greek="value" data-type="call" data-k="100" data-days="90,30,0" data-range="80,120" data-intrinsic data-title="価格（コール）" data-caption="満期に近いほど本質的価値の折れ線に近づく。"></div>
+<div class="greek" data-greek="delta" data-type="call" data-k="100" data-days="60,30,7" data-range="80,120" data-title="デルタ（コール）" data-caption="0〜1。満期が近いほどATMで急な段差になる。"></div>
+<div class="greek" data-greek="delta" data-type="put" data-k="100" data-days="60,30,7" data-range="80,120" data-title="デルタ（プット）" data-caption="−1〜0。コールのデルタから1を引いた形。"></div>
+<div class="greek" data-greek="gamma" data-type="call" data-k="100" data-days="60,30,7" data-range="80,120" data-title="ガンマ" data-caption="ATMで最大。満期が近いほど高く尖る。"></div>
+<div class="greek" data-greek="theta" data-type="call" data-k="100" data-days="60,30,7" data-range="80,120" data-title="セータ（1日あたり）" data-caption="ATMで最もマイナス。満期が近いほど深くなる。"></div>
+<div class="greek" data-greek="vega" data-type="call" data-k="100" data-days="60,30,7" data-range="80,120" data-title="ベガ（IV 1%あたり）" data-caption="ATMで最大。残り日数が長いほど大きい。"></div>
+<div class="greek" data-greek="prob" data-type="call" data-k="100" data-days="60,30,7" data-range="80,120" data-title="満期ITM確率の目安（コール）" data-caption="N(d2)。デルタとほぼ同じ形。"></div>
+<div class="greek" data-greek="decay" data-type="call" data-spot="100" data-ks="100,105" data-maxdays="90" data-title="時間による価格の減少" data-caption="ATM（K100）は満期直前に減少が加速する。"></div>
+</div>
+
+<h2 id="formulas-8">C-8　IVから期待変動幅を出す</h2>
+<div class="box key"><span class="box-label">ここが重要</span>
+<p><code>期間の1σ（変化率） ＝ σ × √T</code>　　<code>1σの値幅 ＝ S × σ × √T</code></p>
+<p>値動きの幅は時間に比例せず、時間の平方根に比例します。</p></div>
+<div class="tbl"><table>
+<thead><tr><th>期間</th><th>式（取引日ベース、1年＝252日）</th><th>IV20%のとき</th><th>日経平均60,000円・IV20%</th><th>SPY 600ドル・IV15%</th></tr></thead>
+<tbody>
+<tr><td>1日</td><td><code>σ ÷ √252 ≒ σ ÷ 15.9</code></td><td class="r">1.26%</td><td class="r">約756円</td><td class="r">約5.7ドル</td></tr>
+<tr><td>1週（5取引日）</td><td><code>σ × √(5÷252) ≒ σ ÷ 7.1</code></td><td class="r">2.82%</td><td class="r">約1,690円</td><td class="r">約12.7ドル</td></tr>
+<tr><td>1か月（21取引日）</td><td><code>σ × √(21÷252) ＝ σ ÷ √12 ≒ σ ÷ 3.46</code></td><td class="r">5.77%</td><td class="r">約3,460円</td><td class="r">約26.0ドル</td></tr>
+</tbody></table></div>
+<p>暦日で数える場合は <code>σ × √(日数÷365)</code> です（30暦日・IV20%なら5.73%）。ブラック・ショールズ式の T は暦日÷365で入れるのが本書の約束です。日経平均60,000円・SPY600ドルは説明用の仮の値です。</p>
+<div class="tbl"><table>
+<thead><tr><th>範囲（正規分布を仮定）</th><th>収まる確率の目安</th></tr></thead>
+<tbody>
+<tr><td>±1σ</td><td class="r">約68%</td></tr>
+<tr><td>±2σ</td><td class="r">約95%</td></tr>
+<tr><td>±3σ</td><td class="r">約99.7%</td></tr>
+</tbody></table></div>
+<div class="box example"><span class="box-label">数値例</span>
+<ul>
+<li>株価100、IV20%、1か月：1σ＝5.8 → 約68%の確率で94.2〜105.8、約95%で88.5〜111.5（<a href="#ch04-8">4-8</a>）。</li>
+<li>ATMストラドルの価格からの逆算：<code>ストラドル ≒ 0.8 × S × σ√T</code> なので、30日のATMストラドルが4.58なら、市場が織り込む1σの値幅はおよそ <code>4.58 ÷ 0.8 ≒ 5.7</code>（<a href="#ch14-1">14-1</a>）。</li>
+<li>HV：日々の変化率の標準偏差が1.0%なら <code>1.0% × √252 ≒ 15.9%</code>（<a href="#ch04-8">4-8</a>）。</li>
+</ul></div>
+<div class="box tip"><span class="box-label">実践テクニック</span><p>「IV÷16で1日の動きの目安」という暗算がよく使われます（√252≒15.9、16²＝256）。VIXが16なら、S&amp;P500の1日の1σは約1%です（<a href="#ch04-10">4-10</a>）。</p></div>
+<div class="box warn"><span class="box-label">注意</span><p>これは正規分布を仮定した目安で、実際の相場は端が厚い（ファットテール）ため、±3σを超える動きも理論より多く起こります（<a href="#ch21-4">21-4</a>）。IVは市場の予想で、保証ではありません。</p></div>
+
+<h2 id="formulas-9">C-9　年率換算と複利</h2>
+<div class="tbl"><table>
+<thead><tr><th>用途</th><th>式</th><th>数値例</th></tr></thead>
+<tbody>
+<tr><td>期間の利回り</td><td><code>r ＝ 利益 ÷ 分母（元手）</code></td><td>受取57ドル÷必要資金9,500ドル＝0.60%（<a href="#ch23-1">23-1</a>）</td></tr>
+<tr><td>単純年率</td><td><code>r × 365 ÷ d</code>（d＝日数）</td><td>30日で3.66% → 約44.5%</td></tr>
+<tr><td>複利の年率</td><td><code>(1 ＋ r)<sup>365÷d</sup> − 1</code></td><td>30日で3.66% → 約54.9%</td></tr>
+<tr><td>毎月の複利</td><td><code>(1 ＋ 月利)<sup>12</sup> − 1</code></td><td>月3% → <code>1.03<sup>12</sup>−1≒42.6%</code>（単純なら36%）</td></tr>
+<tr><td>年平均成長率（CAGR）</td><td><code>(最終資金 ÷ 当初資金)<sup>1÷年数</sup> − 1</code></td><td>＋50%と−50%を1回ずつ → <code>(1.5×0.5)<sup>1/2</sup>−1≒−13.4%</code></td></tr>
+<tr><td>連続複利の利回り</td><td><code>ln(1 ＋ r)</code>（期間で割って年率）</td><td>ボックス：0.78÷19.22＝4.06%、連続複利で <code>ln(20÷19.22)≒3.98%</code>（<a href="#ch17-5">17-5</a>）</td></tr>
+<tr><td>保険料の年率</td><td><code>プレミアム ÷ S × 365 ÷ d</code></td><td>30日ATMプット2.29 → <code>2.29×365÷30≒27.9%</code>（<a href="#ch12-2">12-2</a>）</td></tr>
+<tr><td>ドローダウンからの回復</td><td><code>必要な上昇率 ＝ 1 ÷ (1 − DD) − 1</code></td><td>−20% → ＋25%、−50% → ＋100%（<a href="#ch23-3">23-3</a>）</td></tr>
+</tbody></table></div>
+<div class="box warn"><span class="box-label">注意</span><p>年利は分母しだいで何倍にも変わります。同じK95のプット売り（受取57ドル、30日）でも、単純年率は証拠金ベースで約44.5%、必要資金ベースで約7.3%、想定元本ベースで約6.9%です（<a href="#ch23-1">23-1</a>）。また、うまくいった期間を年率に直しても1年の成績にはなりません。11か月＋3%、1か月−25%なら <code>1.03<sup>11</sup>×0.75≒1.038</code>、年3.8%です（<a href="#ch23-2">23-2</a>）。</p></div>
+
+<h2 id="formulas-10">C-10　期待値・勝率・ケリー基準</h2>
+<div class="tbl"><table>
+<thead><tr><th>用途</th><th>式</th><th>数値例</th></tr></thead>
+<tbody>
+<tr><td>期待値</td><td><code>E ＝ p × 平均利益 − (1 − p) × 平均損失</code>（p＝勝率）</td><td>90%で100勝ち、10%で1,000負け → <code>90−100＝−10</code></td></tr>
+<tr><td>損益比</td><td><code>b ＝ 平均利益 ÷ 平均損失</code></td><td><code>100÷1,000＝0.1</code></td></tr>
+<tr><td>損益ゼロに必要な勝率</td><td><code>p* ＝ 1 ÷ (1 ＋ b)</code></td><td>b＝0.1 → 約90.9%、b＝1 → 50%</td></tr>
+<tr><td>ケリー基準（最適な賭け率）</td><td><code>f* ＝ p − (1 − p) ÷ b</code></td><td>p＝60%、b＝1 → 20%。p＝90%、b＝0.1 → −10%（賭けるべきでない）。p＝92%、b＝0.1 → 12%</td></tr>
+<tr><td>ケリーの対数成長率</td><td><code>g(f) ＝ p·ln(1 ＋ b·f) ＋ (1 − p)·ln(1 − f)</code></td><td>p＝60%、b＝1：g(20%)≒0.0201、g(10%)≒0.0150（約75%）</td></tr>
+<tr><td>シャープ・レシオ</td><td><code>(年率リターン − 無リスク金利) ÷ 年率の標準偏差</code></td><td>(8%−4%)÷10%＝0.40</td></tr>
+<tr><td>カルマー・レシオ</td><td><code>年率リターン ÷ 最大ドローダウン</code></td><td>8%÷20%＝0.40</td></tr>
+<tr><td>最大ドローダウン</td><td><code>(最高値 − その後の最安値) ÷ 最高値</code></td><td>130→91 なら 30%</td></tr>
+</tbody></table></div>
+<p>ケリー基準の「賭け率」は、負けたときに失う額が資金の何%か（オプションなら「最大損失またはストレス時損失 ÷ 資金」）です。勝率と損益比は推定値にすぎないため、実務では計算値の半分（ハーフ・ケリー）以下を上限にするのが一般的です（<a href="#ch21-3">21-3</a>、<a href="#ch21-5">21-5</a>、<a href="#ch23-7">23-7</a>）。</p>
+<div class="box warn"><span class="box-label">注意</span><p>売り戦略は勝率が高く損益比が小さいため、勝率が1〜2%違うだけで期待値の符号が入れ替わります。「勝率90%」だけを見て安全と判断しないでください。20〜30回の連勝も、本当の勝率が90%なら珍しくありません（<a href="#ch21-3">21-3</a>）。</p></div>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>式はどれも「前提が正しければ」成り立つものです。ブラック・ショールズ式はボラティリティ一定と正規分布を、ケリー基準は勝率と損益比を正しく知っていることを前提にしています。現実はその前提から外れるため、式の答えは「ものさし」として使い、最後は最大損失の実額とストレス時の損失で判断してください（<a href="#ch04-1">4-1</a>、<a href="#ch21-6">21-6</a>）。</p></div>
