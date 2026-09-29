@@ -1,0 +1,654 @@
+<header class="chapter-head">
+  <p class="eyebrow">第2部　日本と米国のオプション市場</p>
+  <h1>第8章　米国のオプション市場 <span class="lv">Lv.1〜2</span></h1>
+  <p class="lead">米国は世界で最も大きく、最も銘柄の多いオプション市場です。この章では、米国市場の仕組み、商品の種類と満期、口座の「取引レベル」、そして日本に住む人が米国オプションを取引する方法を、日本との違いに注目しながら説明します。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>米国オプション市場の規模と、複数の取引所・清算機関OCCの役割</li>
+  <li>個別株・ETF・指数オプションの違い（取引単位、アメリカン／ヨーロピアン、現物受渡し／差金決済）</li>
+  <li>SPYとSPXの違い、AM決済とPM決済の違い</li>
+  <li>月次・週次・0DTE・LEAPSという満期の種類</li>
+  <li>口座の「オプション取引レベル」と、なぜその順番なのか</li>
+  <li>流動性の見方と銘柄の選び方</li>
+  <li>日本居住者が米国オプションを取引する方法と、米国市場の強み・弱み</li>
+</ul></div>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>この章の数値・制度・証券会社のサービス内容は、執筆時点（2026年）に確認できた範囲の情報です。満期の設定、取引時間、取扱銘柄、証券会社のサービスは頻繁に変わります。取引前に次の一次情報で最新の内容を確認してください。</p>
+<ul>
+  <li>商品仕様・満期・取引時間：Cboe、Nasdaqなど各取引所のウェブサイト</li>
+  <li>権利行使・割当・統計：OCC（The Options Clearing Corporation）のウェブサイト、説明書「Characteristics and Risks of Standardized Options」</li>
+  <li>取扱銘柄・取引できる戦略・手数料・口座区分：利用する各証券会社の取引説明書・契約締結前交付書面</li>
+  <li>税金：国税庁、税務署、税理士（<a href="#ch24">第24章</a>）</li>
+</ul>
+</div>
+
+<h2 id="ch08-1">8-1　世界最大のオプション市場 ― 規模と仕組み</h2>
+
+<p>米国の上場オプション市場は、取引量・銘柄数のどちらで見ても世界最大級です。米国の上場オプションを一手に清算しているOCC（後述）やCboeの集計では、2025年の年間取引量は<strong>約152億枚</strong>、1日平均で<strong>約6,000万枚</strong>でした。年間の過去最高は6年連続で更新されています（執筆時点で確認できた数値。最新の統計はOCCのウェブサイトで確認してください）。</p>
+
+<p>内訳は、個別株オプションが半分強、ETFオプションが4割弱、指数オプションが1割弱です。個別株・ETF・指数のどの分野でも前年より増えています。日本の日経225オプションは日本では中心的な商品ですが、米国ではひとつのETF（SPY）のオプションだけで、それを大きく上回る枚数が毎日取引されています。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>「1日平均6,000万枚」の大きさを実感するために計算してみます。米国株オプションは1枚＝100株分なので、仮に全部が株式オプションだとすると、<strong>1日に60億株分</strong>の権利が売買されている計算です。1年の取引日を約250日とすると、6,000万枚×250日＝150億枚となり、年間の数字とも合います。</p>
+</div>
+
+<h3>取引所はひとつではない</h3>
+<p>日本のオプションは大阪取引所に集まっています（<a href="#ch07">第7章</a>）。これに対し米国には<strong>オプション取引所が十数か所（執筆時点で18前後）</strong>あり、その多くはいくつかの取引所グループに属しています。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>グループ</th><th>主な取引所（オプション市場）</th><th>特徴</th></tr></thead>
+  <tbody>
+    <tr><td>Cboe系</td><td>Cboe Options、C2、BZX Options、EDGX Options</td><td>1973年に上場オプションの取引を始めた老舗。SPXやVIXのオプションはCboeの独自商品</td></tr>
+    <tr><td>Nasdaq系</td><td>Nasdaq PHLX、Nasdaq ISE、GEMX、MRX、Nasdaq Options Market、BX Options</td><td>6つのオプション市場を運営。Nasdaq-100指数（NDX）のオプションなど</td></tr>
+    <tr><td>NYSE系</td><td>NYSE Arca Options、NYSE American Options</td><td>ニューヨーク証券取引所のグループ</td></tr>
+    <tr><td>その他</td><td>MIAX系（MIAX、Pearl、Emerald、Sapphire）、BOX、MEMXなど</td><td>新しい取引所も参入し、手数料や約定ルールで競争している</td></tr>
+  </tbody>
+</table></div>
+
+<p>取引所が多いと「どこで買ったか」で困りそうですが、心配はいりません。SPYや個別株のオプションの多くは<strong>複数の取引所に同じ条件で上場</strong>しています（マルチ・リスティング）。A取引所で買ったオプションをB取引所で売って決済できます。これが可能なのは、すべての取引が最終的に<strong>OCC</strong>という1つの清算機関に集まるからです。証券会社は、各取引所の気配値を比べて最も有利な価格の取引所へ注文を回します。</p>
+
+<h3>OCC ― すべての取引の「相手方」</h3>
+<p><strong>OCC（The Options Clearing Corporation、オプション清算機関）</strong>は、米国の上場株式オプション（個別株・ETF・指数）の清算を一手に引き受ける機関です。取引が成立すると、OCCが買い手に対しては売り手に、売り手に対しては買い手になります。これを<strong>中央清算機関（CCP）</strong>といいます。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 330" role="img" aria-label="米国オプション市場の構造：投資家、証券会社、複数の取引所、OCC">
+  <rect x="10" y="40" width="130" height="60" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="75" y="66" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">あなた</text>
+  <text x="75" y="86" font-size="12" text-anchor="middle" fill="var(--muted)">（買い手）</text>
+  <rect x="10" y="230" width="130" height="60" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="75" y="256" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">誰か</text>
+  <text x="75" y="276" font-size="12" text-anchor="middle" fill="var(--muted)">（売り手）</text>
+  <rect x="170" y="40" width="120" height="60" rx="8" fill="var(--surface)" stroke="var(--accent)"/>
+  <text x="230" y="75" font-size="14" text-anchor="middle" fill="var(--fg)">証券会社</text>
+  <rect x="170" y="230" width="120" height="60" rx="8" fill="var(--surface)" stroke="var(--accent)"/>
+  <text x="230" y="265" font-size="14" text-anchor="middle" fill="var(--fg)">証券会社</text>
+  <line x1="140" y1="70" x2="170" y2="70" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="140" y1="260" x2="170" y2="260" stroke="var(--muted)" stroke-width="1.5"/>
+  <rect x="320" y="20" width="180" height="290" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="410" y="42" font-size="13" text-anchor="middle" fill="var(--muted)">取引所（十数か所）</text>
+  <rect x="335" y="55" width="150" height="40" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="410" y="80" font-size="13" text-anchor="middle" fill="var(--fg)">Cboe系</text>
+  <rect x="335" y="105" width="150" height="40" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="410" y="130" font-size="13" text-anchor="middle" fill="var(--fg)">Nasdaq系</text>
+  <rect x="335" y="155" width="150" height="40" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="410" y="180" font-size="13" text-anchor="middle" fill="var(--fg)">NYSE系</text>
+  <rect x="335" y="205" width="150" height="40" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="410" y="230" font-size="13" text-anchor="middle" fill="var(--fg)">MIAX系・BOXなど</text>
+  <text x="410" y="275" font-size="12" text-anchor="middle" fill="var(--muted)">最良の気配を出す</text>
+  <text x="410" y="292" font-size="12" text-anchor="middle" fill="var(--muted)">取引所で約定</text>
+  <line x1="290" y1="70" x2="320" y2="120" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="290" y1="260" x2="320" y2="200" stroke="var(--muted)" stroke-width="1.5"/>
+  <line x1="500" y1="165" x2="540" y2="165" stroke="var(--fg)" stroke-width="2"/>
+  <path d="M540,158 l10,7 l-10,7 z" fill="var(--fg)"/>
+  <rect x="555" y="105" width="155" height="120" rx="10" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="632" y="140" font-size="16" text-anchor="middle" fill="var(--fg)" font-weight="700">OCC</text>
+  <text x="632" y="162" font-size="12" text-anchor="middle" fill="var(--fg)">すべての取引を清算</text>
+  <text x="632" y="180" font-size="12" text-anchor="middle" fill="var(--fg)">買い手の相手・売り手の相手</text>
+  <text x="632" y="198" font-size="12" text-anchor="middle" fill="var(--fg)">権利行使・割当を処理</text>
+</svg></div><figcaption>図8-1　米国オプション市場の構造（概略）。取引所がいくつあっても、清算はOCCに一本化されている。だから、どの取引所で建てた建玉も、別の取引所で決済できる。</figcaption></figure>
+
+<p>OCCがあるおかげで、買い手は「売り手が約束を守らなかったらどうしよう」と心配する必要がありません。売り手が義務を果たせなくても、その売り手の証券会社やOCCの仕組み（証拠金や清算基金）で支払いが守られます。権利行使と割当もOCCが処理します。満期時の自動権利行使のルールや割当の流れは<a href="#ch06-7">6-7</a>で説明しました。</p>
+
+<h3>取引時間 ― 日本では夜から明け方</h3>
+<p>米国の通常の取引時間は、米国東部時間の<strong>9:30〜16:00</strong>です。日本時間に直すと次のとおりです。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>期間</th><th>日本時間</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>米国の夏時間（3月第2日曜〜11月第1日曜）</td><td>22:30〜翌5:00</td><td>2026年の夏時間の終了は11月1日</td></tr>
+    <tr><td>米国の冬時間（上記以外）</td><td>23:30〜翌6:00</td><td>日本より14時間遅い</td></tr>
+  </tbody>
+</table></div>
+
+<p>一部の指数・ETFのオプションは通常時間より少し長く取引でき、SPXなど一部の指数オプションには夜間（米国時間）の取引時間帯もあります。ただし夜間は参加者が少なく、ビッド・アスク・スプレッドが広がりやすい点に注意が必要です。正確な時間は取引所の資料で確認してください。</p>
+
+<h2 id="ch08-2">8-2　個別株オプションとETFオプション</h2>
+
+<h3>個別株オプション ― 1枚＝100株、アメリカン、現物受渡し</h3>
+<p>米国では、アップルやマイクロソフトのような大型株から中小型株まで、<strong>数千銘柄</strong>の個別株にオプションが上場しています。基本の仕様は次の3点です（<a href="#ch02">第2章</a>）。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>項目</th><th>内容</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td>取引単位（乗数）</td><td>1枚＝100株</td><td>表示価格×100がお金のやり取り。価格2.30ドルなら1枚230ドル</td></tr>
+    <tr><td>権利行使のタイプ</td><td>アメリカン・タイプ</td><td>満期前でもいつでも権利行使できる。売り手には早期割当がありうる</td></tr>
+    <tr><td>決済の方法</td><td>現物受渡し</td><td>権利行使・割当で株100株の受渡しが起きる</td></tr>
+    <tr><td>権利行使価格の間隔</td><td>株価の水準や銘柄で異なる</td><td>人気銘柄ほど細かい間隔で多く設定される</td></tr>
+  </tbody>
+</table></div>
+
+<p>例として、株価100ドルの米国株Aで、権利行使価格105ドルのコール（残り30日）を1枚買う場合を見ます。IV20%で計算した理論価格は約0.65ドルです。支払うのは<strong>0.65×100＝65ドル</strong>（手数料別）です。</p>
+
+<div class="payoff" data-title="米国株A：105コールを1枚買う（金額はドル）" data-spot="100" data-range="90,115" data-mult="100" data-curves="20,7"
+     data-legs='[{"type":"call","k":105,"qty":1,"prem":0.65}]'
+     data-caption="1枚＝100株なので、損益は価格差×100ドル。最大損失は支払った65ドル、損益分岐点は105＋0.65＝105.65ドル。満期に110ドルなら（110−105.65）×100＝435ドルの利益。縦軸の金額はドル。"></div>
+
+<p>日経225オプションは1枚＝価格×1,000円でした（<a href="#ch02-4">2-4</a>）。米国株オプションは「×100」です。<strong>表示価格が小さく見えても、実際の金額は100倍</strong>であることを最初に体に覚えさせてください。</p>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>現物受渡しなので、ITMのまま満期を迎えると<strong>株の売買</strong>に変わります。65ドルで買ったコールでも、自動権利行使されれば105×100＝<strong>10,500ドル</strong>で株を買うことになります。株を持つつもりがなければ満期前に売却します（<a href="#ch06-7">6-7</a>）。</p>
+</div>
+
+<h3>株式分割などで「1枚の中身」が変わることがある</h3>
+<p>株式分割・合併・特別配当などが起きると、OCCがオプションの条件を調整することがあります。たとえば1株を3株に分ける分割では、権利行使価格が3分の1になり、枚数が3倍になるのが一般的です。分割の比率によっては「1枚＝150株」のような<strong>変則的な（調整後の）オプション</strong>になり、銘柄コードも変わります。調整後のオプションは流動性が低くなりやすいので、初心者は避けるのが無難です。</p>
+
+<h3>ETFオプション ― 指数を「株のように」取引する</h3>
+<p><strong>ETF（上場投資信託）</strong>は株と同じように売買できる投資信託です。ETFのオプションも、個別株と同じく<strong>1枚＝100口・アメリカン・タイプ・現物受渡し</strong>です。米国では、次のようなETFのオプションが非常に活発に取引されています。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>ETF</th><th>連動する対象</th><th>特徴</th></tr></thead>
+  <tbody>
+    <tr><td>SPY</td><td>S&amp;P500（米国の大型株500銘柄）</td><td>世界で最も取引の多いオプションのひとつ。価格は指数のおよそ10分の1</td></tr>
+    <tr><td>QQQ</td><td>Nasdaq-100（ナスダック上場の大型株100銘柄）</td><td>ハイテク株の比重が高い</td></tr>
+    <tr><td>IWM</td><td>Russell 2000（米国の小型株約2,000銘柄）</td><td>小型株全体の値動き</td></tr>
+    <tr><td>その他</td><td>セクター別、金、長期国債、新興国株など</td><td>商品・債券などにも間接的に投資できる</td></tr>
+  </tbody>
+</table></div>
+
+<p>ETFオプションを使うと、「米国株全体が上がる（下がる）」という相場観を、個別企業の決算などに振り回されずに表現できます。日本でいえば、日経平均に連動するETFのオプションを取引するようなイメージです。</p>
+
+<h2 id="ch08-3">8-3　指数オプション ― 差金決済・ヨーロピアン</h2>
+
+<p><strong>指数オプション（index option）</strong>は、株価指数そのものを原資産とするオプションです。指数は株のように受け渡せないので、<strong>差金決済（現金で差額だけを受け払い）</strong>になります。主な指数オプションは<strong>ヨーロピアン・タイプ</strong>で、満期日にしか権利行使できません。この2点は日経225オプションと同じです。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>銘柄</th><th>原資産</th><th>乗数</th><th>タイプ・決済</th><th>主な満期と決済時点</th></tr></thead>
+  <tbody>
+    <tr><td>SPX</td><td>S&amp;P500指数</td><td class="r">100ドル</td><td>ヨーロピアン・差金決済</td><td>標準の月次（第3金曜日）はAM決済。週次・毎営業日の満期（SPXW）はPM決済</td></tr>
+    <tr><td>XSP（ミニSPX）</td><td>S&amp;P500指数の10分の1</td><td class="r">100ドル</td><td>ヨーロピアン・差金決済</td><td>主にPM決済。SPXの10分の1の大きさで、少額で指数オプションを使える</td></tr>
+    <tr><td>NDX</td><td>Nasdaq-100指数</td><td class="r">100ドル</td><td>ヨーロピアン・差金決済</td><td>標準の月次はAM決済。PM決済の系列（NDXP）もある</td></tr>
+    <tr><td>RUT</td><td>Russell 2000指数</td><td class="r">100ドル</td><td>ヨーロピアン・差金決済</td><td>標準の月次はAM決済。週次などはPM決済の系列（RUTW）</td></tr>
+  </tbody>
+</table></div>
+
+<p>ほかにも、恐怖指数VIX（<a href="#ch04">第4章</a>）のオプションなど、特殊な指数オプションがあります。なお、指数オプションの中にもアメリカン・タイプの例外があるので、取引前に銘柄ごとの仕様を確認してください。</p>
+
+<h3>AM決済とPM決済 ― 同じ「金曜満期」でも決まり方が違う</h3>
+<p>差金決済では、満期に「いくらで清算するか」を決める値（清算値）が必要です。その決め方に2種類あります。</p>
+
+<ul>
+  <li><strong>PM決済（PM-settled）</strong>：満期日の<strong>取引終了時の指数の値</strong>で清算します。満期日の引けまで取引できます。</li>
+  <li><strong>AM決済（AM-settled）</strong>：満期日の<strong>朝、構成銘柄それぞれの始値から計算した特別な値</strong>で清算します。SPXではこの値をSET（Special Opening Quotation）と呼びます。<strong>最終取引日は満期日の前営業日</strong>（通常は木曜日）です。</li>
+</ul>
+
+<p>AM決済は、日経225オプションのSQ（<a href="#ch06-6">6-6</a>）とよく似た仕組みです。木曜の引けで取引が終わり、金曜の朝に決まる値で清算されます。つまり<strong>木曜の引けから金曜の朝まで、自分では手を打てないのに損益が変わる</strong>時間帯があります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 280" role="img" aria-label="AM決済とPM決済のタイムラインの比較">
+  <text x="12" y="24" font-size="14" font-weight="700" fill="var(--fg)">AM決済（例：SPXの標準月次）</text>
+  <rect x="150" y="68" width="300" height="24" fill="var(--gold)" fill-opacity="0.2" stroke="none"/>
+  <line x1="30" y1="80" x2="700" y2="80" stroke="var(--muted)" stroke-width="1.5"/>
+  <circle cx="150" cy="80" r="7" fill="var(--loss)"/>
+  <circle cx="450" cy="80" r="7" fill="var(--accent)"/>
+  <circle cx="620" cy="80" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
+  <text x="150" y="58" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">木 16:00 取引終了</text>
+  <text x="450" y="58" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">金 朝：清算値が決まる</text>
+  <text x="620" y="58" font-size="13" text-anchor="middle" fill="var(--muted)">金 16:00</text>
+  <text x="300" y="112" font-size="12" text-anchor="middle" fill="var(--fg)">売買できないが、清算値は未定</text>
+  <text x="300" y="128" font-size="12" text-anchor="middle" fill="var(--fg)">（夜間のニュースや金曜の寄り付きで変わる）</text>
+  <text x="450" y="128" font-size="12" text-anchor="start" fill="var(--fg)"></text>
+  <text x="560" y="112" font-size="12" text-anchor="middle" fill="var(--fg)">構成銘柄の始値から計算</text>
+  <text x="12" y="176" font-size="14" font-weight="700" fill="var(--fg)">PM決済（例：SPXの週次・毎営業日満期、XSP、SPY以外の指数PM系列）</text>
+  <line x1="30" y1="226" x2="700" y2="226" stroke="var(--muted)" stroke-width="1.5"/>
+  <circle cx="150" cy="226" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
+  <circle cx="450" cy="226" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="1.5"/>
+  <circle cx="620" cy="226" r="7" fill="var(--accent)"/>
+  <text x="150" y="204" font-size="13" text-anchor="middle" fill="var(--muted)">木 16:00</text>
+  <text x="450" y="204" font-size="13" text-anchor="middle" fill="var(--muted)">金 朝</text>
+  <text x="620" y="204" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">金 引け：清算値</text>
+  <text x="385" y="254" font-size="12" text-anchor="middle" fill="var(--fg)">満期日の引けまで売買でき、引けの指数の値で清算</text>
+</svg></div><figcaption>図8-2　AM決済とPM決済（米国東部時間、満期日が金曜の場合の概略）。網掛けは「自分では売買できないのに結果が変わりうる時間帯」。日経225オプションのSQと同じ種類のリスクがある。</figcaption></figure>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>SPXの標準月次（AM決済）で、権利行使価格6,000のコールを持って木曜の引けを迎え、そのときの指数は6,010だったとします（説明用の丸めた数字）。</p>
+<ul>
+  <li>金曜の朝の清算値が6,030なら、受け取りは（6,030−6,000）×100＝<strong>3,000ドル</strong>。</li>
+  <li>夜間に悪いニュースが出て清算値が5,990なら、OTMなので<strong>受け取りは0ドル</strong>。</li>
+</ul>
+<p>木曜の引けには「10ポイントITM」でも、結果はまったく違います。AM決済の満期をまたいで持つかどうかは、木曜の引けまでに決めておきます。</p>
+</div>
+
+<h3>指数オプションの実額 ― 1枚が大きい</h3>
+<p>SPXは乗数100ドルで、指数そのものが数千ポイントあるため、<strong>1枚の想定元本（原資産の価値）が非常に大きい</strong>商品です。S&amp;P500が6,000なら1枚は6,000×100＝60万ドル分です。</p>
+<p>例として、S&amp;P500が6,000のとき（IV15%、残り30日）、6,000コールを102.90で買い、6,050コールを80.30で売る<strong>ブル・コール・スプレッド</strong>（<a href="#ch13">第13章</a>）を1組作ると、支払いは（102.90−80.30）×100＝<strong>2,260ドル</strong>です。</p>
+
+<div class="payoff" data-title="SPX：6000コール買い＋6050コール売り（金額はドル）" data-spot="6000" data-range="5900,6150" data-mult="100"
+     data-iv="0.15" data-curves="15"
+     data-legs='[{"type":"call","k":6000,"qty":1,"prem":102.9},{"type":"call","k":6050,"qty":-1,"prem":80.3}]'
+     data-caption="差金決済のスプレッド。最大損失は支払った2,260ドル、最大利益は（50−22.60）×100＝2,740ドル、損益分岐点は6,022.60。ヨーロピアン・タイプなので満期前に売り側だけ割り当てられることはない。縦軸の金額はドル。"></div>
+
+<p>同じ形をSPY（約10分の1の価格）で作れば金額はおよそ10分の1、XSPでもおよそ10分の1です。<strong>最初はSPYやXSPのような小さい単位で練習し、慣れてからSPXを検討する</strong>のが自然な順番です。</p>
+
+<h2 id="ch08-4">8-4　SPYとSPXの比較 ― 同じS&amp;P500でも中身が違う</h2>
+
+<p>SPY（ETF）とSPX（指数）は、どちらもS&amp;P500の値動きに連動します。しかし、オプションとしての仕組みは大きく違います。この違いは<a href="#ch02-8">2-8</a>でも触れましたが、ここで一覧にします。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>項目</th><th>SPY（ETFオプション）</th><th>SPX（指数オプション）</th><th>XSP（ミニSPX）</th></tr></thead>
+  <tbody>
+    <tr><td>原資産</td><td>S&amp;P500に連動するETF</td><td>S&amp;P500指数</td><td>S&amp;P500指数の10分の1</td></tr>
+    <tr><td>1枚の大きさ（S&amp;P500＝6,000の場合の目安）</td><td>約600ドル×100＝約6万ドル</td><td>6,000×100＝60万ドル</td><td>600×100＝6万ドル</td></tr>
+    <tr><td>権利行使のタイプ</td><td>アメリカン</td><td>ヨーロピアン</td><td>ヨーロピアン</td></tr>
+    <tr><td>決済方法</td><td>現物受渡し（ETF100口）</td><td>差金決済（現金）</td><td>差金決済（現金）</td></tr>
+    <tr><td>早期割当</td><td>ありうる（特に配当落ち前）</td><td>なし</td><td>なし</td></tr>
+    <tr><td>配当の影響</td><td>ETFの分配金（四半期ごと）で早期行使が起きうる</td><td>価格には織り込まれるが、割当は起きない</td><td>同左</td></tr>
+    <tr><td>満期後の持ち越し</td><td>ITMならETFのポジションが残る</td><td>現金で清算されて終わり</td><td>同左</td></tr>
+    <tr><td>流動性</td><td>非常に高い</td><td>非常に高い（1枚が大きい）</td><td>SPY・SPXより低め</td></tr>
+    <tr><td>取扱い</td><td>多くの証券会社</td><td>証券会社によって異なる</td><td>証券会社によって異なる</td></tr>
+    <tr><td>税（参考）</td><td colspan="3">米国居住者向けには、SPXのような指数オプションとSPYで税の扱いが異なるルールがある。日本居住者の扱いはこれとは別で、<a href="#ch24">第24章</a>で説明する</td></tr>
+  </tbody>
+</table></div>
+
+<div class="compare">
+  <div><h4>SPYが向いている場面</h4>
+    <p>1枚の金額を小さくしたい。取扱いのある証券会社が多い。<strong>ETFを保有してカバード・コール</strong>（<a href="#ch12">第12章</a>）をしたい、または割当でETFを受け取ってもよい。</p>
+  </div>
+  <div><h4>SPX・XSPが向いている場面</h4>
+    <p>早期割当や満期後の現物ポジションを<strong>避けたい</strong>。スプレッドやアイアン・コンドル（<a href="#ch15">第15章</a>）のような売りを含む戦略で、割当の手間を減らしたい。</p>
+  </div>
+</div>
+
+<div class="box key"><span class="box-label">ここが重要</span>
+<p>「同じS&amp;P500だから同じ」ではありません。<strong>アメリカンか・ヨーロピアンか</strong>、<strong>現物受渡しか・差金決済か</strong>、<strong>AM決済か・PM決済か</strong>の3点を、銘柄ごとに必ず確認してください。この3点で、満期前後に何が起きうるかが決まります。</p>
+</div>
+
+<h2 id="ch08-5">8-5　満期の種類 ― 月次・週次・0DTE・LEAPS</h2>
+
+<p>米国オプションの大きな特徴は、<strong>満期の選択肢の多さ</strong>です。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>種類</th><th>満期日</th><th>主な対象</th><th>特徴</th></tr></thead>
+  <tbody>
+    <tr><td>月次（マンスリー、標準限月）</td><td>原則として毎月<strong>第3金曜日</strong></td><td>オプションのあるほぼ全銘柄</td><td>最も基本的な満期。建玉が集まりやすい</td></tr>
+    <tr><td>週次（ウィークリー）</td><td>原則として毎週金曜日</td><td>人気の個別株・ETF・指数</td><td>短期の相場観やイベントに合わせやすい</td></tr>
+    <tr><td>毎営業日の満期（デイリー）</td><td>月曜〜金曜の毎日</td><td>SPX、XSP、SPY、QQQ、IWMなど（執筆時点）</td><td>満期日当日の取引＝<strong>0DTE</strong>が可能</td></tr>
+    <tr><td>四半期（クォータリー）</td><td>四半期末</td><td>一部の指数・ETF</td><td>機関投資家のヘッジ向け</td></tr>
+    <tr><td>LEAPS（長期）</td><td>1年超、最長でおよそ3年先</td><td>大型株・主要ETF・指数</td><td>長期の相場観、株の代わり（<a href="#ch16">第16章</a>）</td></tr>
+  </tbody>
+</table></div>
+
+<p>満期日が祝日で取引所が休みの場合は、原則として前の営業日に繰り上がります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 330" role="img" aria-label="2026年10月の米国オプションの満期カレンダーの例">
+  <text x="360" y="22" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">2026年10月（平日のみ表示）</text>
+  <text x="120" y="48" font-size="13" text-anchor="middle" fill="var(--muted)">月</text>
+  <text x="240" y="48" font-size="13" text-anchor="middle" fill="var(--muted)">火</text>
+  <text x="360" y="48" font-size="13" text-anchor="middle" fill="var(--muted)">水</text>
+  <text x="480" y="48" font-size="13" text-anchor="middle" fill="var(--muted)">木</text>
+  <text x="600" y="48" font-size="13" text-anchor="middle" fill="var(--muted)">金</text>
+  <g font-size="13" fill="var(--fg)">
+    <rect x="65" y="56" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="75" y="74" fill="var(--muted)">9/28</text>
+    <rect x="185" y="56" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="195" y="74" fill="var(--muted)">9/29</text>
+    <rect x="305" y="56" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="315" y="74" fill="var(--muted)">9/30</text>
+    <rect x="425" y="56" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="435" y="74" fill="var(--fg)">1</text>
+    <rect x="545" y="56" width="110" height="44" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="555" y="74" fill="var(--fg)">2</text>
+    <rect x="65" y="106" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="75" y="124" fill="var(--fg)">5</text>
+    <rect x="185" y="106" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="195" y="124" fill="var(--fg)">6</text>
+    <rect x="305" y="106" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="315" y="124" fill="var(--fg)">7</text>
+    <rect x="425" y="106" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="435" y="124" fill="var(--fg)">8</text>
+    <rect x="545" y="106" width="110" height="44" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="555" y="124" fill="var(--fg)">9</text>
+    <rect x="65" y="156" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="75" y="174" fill="var(--fg)">12</text>
+    <rect x="185" y="156" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="195" y="174" fill="var(--fg)">13</text>
+    <rect x="305" y="156" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="315" y="174" fill="var(--fg)">14</text>
+    <rect x="425" y="156" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="435" y="174" fill="var(--fg)">15</text>
+    <rect x="545" y="156" width="110" height="44" fill="var(--gold)" fill-opacity="0.3" stroke="var(--gold)" stroke-width="2"/><text x="555" y="174" fill="var(--fg)" font-weight="700">16</text>
+    <rect x="65" y="206" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="75" y="224" fill="var(--fg)">19</text>
+    <rect x="185" y="206" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="195" y="224" fill="var(--fg)">20</text>
+    <rect x="305" y="206" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="315" y="224" fill="var(--fg)">21</text>
+    <rect x="425" y="206" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="435" y="224" fill="var(--fg)">22</text>
+    <rect x="545" y="206" width="110" height="44" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="555" y="224" fill="var(--fg)">23</text>
+    <rect x="65" y="256" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="75" y="274" fill="var(--fg)">26</text>
+    <rect x="185" y="256" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="195" y="274" fill="var(--fg)">27</text>
+    <rect x="305" y="256" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="315" y="274" fill="var(--fg)">28</text>
+    <rect x="425" y="256" width="110" height="44" fill="var(--surface)" stroke="var(--line)"/><text x="435" y="274" fill="var(--fg)">29</text>
+    <rect x="545" y="256" width="110" height="44" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="555" y="274" fill="var(--fg)">30</text>
+  </g>
+  <g fill="var(--muted)">
+    <circle cx="160" cy="88" r="4"/><circle cx="280" cy="88" r="4"/><circle cx="400" cy="88" r="4"/><circle cx="520" cy="88" r="4"/><circle cx="640" cy="88" r="4"/>
+    <circle cx="160" cy="138" r="4"/><circle cx="280" cy="138" r="4"/><circle cx="400" cy="138" r="4"/><circle cx="520" cy="138" r="4"/><circle cx="640" cy="138" r="4"/>
+    <circle cx="160" cy="188" r="4"/><circle cx="280" cy="188" r="4"/><circle cx="400" cy="188" r="4"/><circle cx="520" cy="188" r="4"/><circle cx="640" cy="188" r="4"/>
+    <circle cx="160" cy="238" r="4"/><circle cx="280" cy="238" r="4"/><circle cx="400" cy="238" r="4"/><circle cx="520" cy="238" r="4"/><circle cx="640" cy="238" r="4"/>
+    <circle cx="160" cy="288" r="4"/><circle cx="280" cy="288" r="4"/><circle cx="400" cy="288" r="4"/><circle cx="520" cy="288" r="4"/><circle cx="640" cy="288" r="4"/>
+  </g>
+  <text x="600" y="194" font-size="12" text-anchor="middle" fill="var(--fg)">月次（第3金曜）</text>
+  <circle cx="80" cy="318" r="4" fill="var(--muted)"/><text x="90" y="322" font-size="12" fill="var(--fg)">毎営業日の満期（SPX・SPYなど）</text>
+  <rect x="300" y="311" width="14" height="14" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/><text x="320" y="322" font-size="12" fill="var(--fg)">週次（金曜）</text>
+  <rect x="430" y="311" width="14" height="14" fill="var(--gold)" fill-opacity="0.3" stroke="var(--gold)"/><text x="450" y="322" font-size="12" fill="var(--fg)">月次（標準限月）</text>
+</svg></div><figcaption>図8-3　2026年10月の満期の並び方の例。10月1日が木曜なので、第3金曜日は16日。SPXやSPYには毎営業日に満期があり、金曜には週次、第3金曜には月次の満期が重なる。実際の満期の一覧は取引所・証券会社の画面で確認する。</figcaption></figure>
+
+<h3>第3金曜日の数え方</h3>
+<p>「第3金曜日」は、その月に最初に来る金曜日から数えて3回目の金曜日です。月の1日が土曜日なら、第1金曜日は7日、第3金曜日は21日になります。第3金曜日は必ず<strong>15日〜21日のどこか</strong>に来ます。なお、日経225オプションの標準限月のSQ日は原則として<strong>第2金曜日</strong>なので、日米で1週間ずれています（<a href="#ch07">第7章</a>）。</p>
+
+<h3>0DTE ― 当日に満期を迎えるオプション</h3>
+<p><strong>0DTE（Zero Days to Expiration、ゼロ・デイ・トゥ・エクスピレーション）</strong>は、満期日当日に取引されるオプションのことです。毎営業日に満期があるSPXやSPYでは、どの日も「その日に満期を迎える系列」を売買できます。Cboeの発表では、2025年のSPXオプションの取引量のうち<strong>6割近く</strong>を0DTEが占めました。</p>
+
+<p>残り時間がほとんどないので、時間的価値は非常に小さく、原資産がわずかに動いただけで価格が何倍にも、あるいはゼロにもなります。ガンマ（<a href="#ch05">第5章</a>）が極端に大きい状態です。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>S&amp;P500が6,000のとき、残り1日のATMコール（IV15%）の理論価格は約18.80です。1枚1,880ドルです。</p>
+<ul>
+  <li>その日のうちに指数が0.5%（30ポイント）上がって6,030で終われば、価値は30、つまり3,000ドル（約1.6倍）。</li>
+  <li>指数が動かずに6,000で終われば、価値は0。<strong>1,880ドルがすべて消えます</strong>。</li>
+</ul>
+<p>わずか数時間で結果が大きく分かれます。0DTEを<strong>売る</strong>側は、少額のプレミアムと引き換えに、短時間で大きな損失を負いうる立場です。0DTEの戦略は<a href="#ch18">第18章</a>で詳しく扱います。</p>
+</div>
+
+<h3>個別株の満期も増えている</h3>
+<p>個別株の満期は長く金曜日が中心でした。しかし近年は、人気銘柄に月曜・水曜の満期を加える動きがあります。2026年1月には、Nasdaqが一部の大型株（いわゆる「マグニフィセント・セブン」など）に月曜・水曜満期のオプションを設定することを、米国証券取引委員会（SEC）が承認したと報じられました。対象銘柄や開始時期は変わりうるので、取引所の案内で確認してください。</p>
+
+<h3>LEAPS ― 数年先までの長期オプション</h3>
+<p><strong>LEAPS（Long-term Equity AnticiPation Securities、リープス）</strong>は、満期まで1年を超える長期のオプションです。最長でおよそ3年先の満期があります。仕組みは普通のオプションと同じで、満期までの期間が長いだけです。</p>
+<p>残り期間が長いので時間的価値が大きく、1日あたりの減り方（セータ）は小さくなります。たとえば株価100ドル、IV25%で残り2年のATMコールは、理論価格が約14.00ドル（1枚1,400ドル）です。株100株（1万ドル）を買うより少ない資金で、2年間の値上がりに参加できます。その代わり、満期に株価が100ドル以下なら1,400ドルを失います。金利の影響（ロー）も大きくなります（<a href="#ch05">第5章</a>）。LEAPSを株の代わりに使う戦略は<a href="#ch16">第16章</a>で扱います。</p>
+
+<h2 id="ch08-6">8-6　口座の「オプション取引レベル」制度</h2>
+
+<p>米国の証券会社では、オプション口座を申し込むと、顧客ごとに<strong>オプション取引レベル（承認レベル、option approval level）</strong>が決まります。米国の自主規制機関FINRAのルールで、証券会社はオプション取引を認める前に、顧客の投資経験・資産・投資目的などを確認し、どんな取引を認めるかを決めることが求められているからです。顧客は事前に、OCCなどが作成した説明書「Characteristics and Risks of Standardized Options」（標準化されたオプションの特徴とリスク）を受け取ります。</p>
+
+<p>レベルの数や名前は証券会社ごとに違いますが、おおむね次のような順番です。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 280" role="img" aria-label="オプション取引レベルの階段図">
+  <rect x="20" y="200" width="160" height="60" fill="var(--gain)" fill-opacity="0.18" stroke="var(--gain)"/>
+  <text x="100" y="224" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">レベル1</text>
+  <text x="100" y="246" font-size="12" text-anchor="middle" fill="var(--fg)">カバード・コールなど</text>
+  <rect x="190" y="150" width="160" height="110" fill="var(--accent)" fill-opacity="0.14" stroke="var(--accent)"/>
+  <text x="270" y="174" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">レベル2</text>
+  <text x="270" y="196" font-size="12" text-anchor="middle" fill="var(--fg)">コール・プットの買い</text>
+  <rect x="360" y="100" width="160" height="160" fill="var(--gold)" fill-opacity="0.2" stroke="var(--gold)"/>
+  <text x="440" y="124" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">レベル3</text>
+  <text x="440" y="146" font-size="12" text-anchor="middle" fill="var(--fg)">スプレッド</text>
+  <rect x="530" y="50" width="170" height="210" fill="var(--loss)" fill-opacity="0.16" stroke="var(--loss)"/>
+  <text x="615" y="74" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">レベル4</text>
+  <text x="615" y="96" font-size="12" text-anchor="middle" fill="var(--fg)">ネイキッドの売り</text>
+  <line x1="20" y1="30" x2="690" y2="30" stroke="var(--muted)" stroke-width="1.5"/>
+  <path d="M690,24 l10,6 l-10,6 z" fill="var(--muted)"/>
+  <text x="20" y="22" font-size="12" fill="var(--muted)">右へ行くほど、審査が厳しく、損失が大きくなりうる取引が加わる</text>
+</svg></div><figcaption>図8-4　オプション取引レベルの一般的なイメージ。上のレベルは下のレベルの取引をすべて含む。レベルの数や区切り方は証券会社によって異なる。</figcaption></figure>
+
+<div class="tbl"><table>
+  <thead><tr><th>レベル（例）</th><th>認められる主な取引</th><th>損失の大きさ</th><th>一般的な審査の目安</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>カバード・コール、キャッシュ・セキュアード・プット（証券会社による）</td><td>株を持っているのと同程度、または現金で全額カバー</td><td>株式の口座があれば比較的承認されやすい</td></tr>
+    <tr><td>2</td><td>コール・プットの買い（ロング）、プロテクティブ・プット</td><td>支払ったプレミアムまで</td><td>一定の投資経験</td></tr>
+    <tr><td>3</td><td>スプレッド（垂直、カレンダー、アイアン・コンドルなど）</td><td>多くは事前に限定される</td><td>マージン口座が必要なことが多い</td></tr>
+    <tr><td>4（5）</td><td>ネイキッド（裸）のコール売り・プット売り</td><td>非常に大きく、コール売りは理論上無限</td><td>十分な資産・経験・マージン口座。最も厳しい</td></tr>
+  </tbody>
+</table></div>
+
+<h3>なぜ「売り」のカバード・コールが一番下なのか</h3>
+<p>初心者が驚くのは、「売り」であるカバード・コールが、「買い」よりも下のレベルにあることです。理由は、<strong>カバード・コールで増えるリスクがほとんどない</strong>からです。</p>
+<ul>
+  <li>カバード・コールは、すでに持っている株100株に対してコールを1枚売る取引です（<a href="#ch12">第12章</a>）。割り当てられても手持ちの株を渡すだけで、株を持っているだけの状態より損失が大きくなることはありません（上昇時の利益を手放すことはあります）。</li>
+  <li>一方、オプションの買いは、損失こそプレミアムまでですが、<strong>短期間で支払った全額を失う</strong>ことがよくあります。値動きの読みと時間の両方が合わないと利益にならないからです。</li>
+  <li>ネイキッドの売りは、手元に株も反対のオプションもないため、損失を止めるものがありません。だから最も上のレベルです。</li>
+</ul>
+
+<p>日本の証券会社でも「買いのみ」と「売りも可」で審査を分けるのが一般的でした（<a href="#ch06-1">6-1</a>）。米国の取引レベルは、これをさらに細かく段階にしたものと考えると分かりやすいでしょう。</p>
+
+<ol class="flow">
+  <li><b>口座を開く</b><br>本人確認。米国の証券会社の場合は税務関係の書類（米国非居住者であることの届出など）も提出する</li>
+  <li><b>オプション取引を申し込む</b><br>投資経験・年収・資産・投資目的を申告し、希望するレベルを選ぶ。説明書（ODD）を受け取る</li>
+  <li><b>審査・レベルの決定</b><br>希望より低いレベルで承認されることもある</li>
+  <li><b>マージン口座（必要な場合）</b><br>スプレッドやネイキッドの売りには、キャッシュ口座ではなくマージン口座が求められることが多い</li>
+  <li><b>経験を積んでレベルを上げる</b><br>取引実績や資産の変化に応じて、上のレベルを再申請できる</li>
+</ol>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>高いレベルが承認されても、それは「その取引をしてよい」という許可であって、「安全だ」という意味ではありません。ネイキッドの売りは、急変時に<strong>預けた証拠金を大きく超える損失</strong>が出ることがあります（<a href="#ch06-4">6-4</a>、<a href="#ch21">第21章</a>）。</p>
+</div>
+
+<div class="box tip"><span class="box-label">実践テクニック</span>
+<p>最初からレベル4を目指す必要はありません。レベル3（スプレッド）があれば、<strong>損失が限定された形で売りの戦略</strong>（ブル・プット・スプレッド、アイアン・コンドルなど）を使えます。多くの戦略はレベル3の範囲で組み立てられます（<a href="#ch13">第13章</a>、<a href="#ch15">第15章</a>）。</p>
+</div>
+
+<h2 id="ch08-7">8-7　早期割当と配当 ― アメリカン・タイプ特有の注意点</h2>
+
+<p>個別株とETFのオプションはアメリカン・タイプなので、売り手はいつでも割り当てられる可能性があります。仕組みと対策は<a href="#ch06-8">6-8</a>で説明しました。ここでは、米国市場で特に意識しておきたい要点だけを整理します。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>状況</th><th>起きやすいこと</th><th>主な対策</th></tr></thead>
+  <tbody>
+    <tr><td>ITMのコールを売っていて、翌日が配当落ち日</td><td>配当目当ての早期行使で割り当てられ、株を渡す（株がなければ空売りの状態で配当相当額を支払う）</td><td>配当落ち日を事前に確認し、時間的価値が配当額を下回ったら買い戻す・ロールする</td></tr>
+    <tr><td>深いITMのプットを売っていて、満期が近い</td><td>早期行使で割り当てられ、株を買い取る</td><td>時間的価値がほぼなくなったら決済を検討する</td></tr>
+    <tr><td>スプレッドの売り側だけが割り当てられた</td><td>一時的に株のポジションと証拠金が発生する</td><td>慌てずに、株を売買するか買い側を行使して解消する</td></tr>
+    <tr><td>SPX・XSPなどヨーロピアンの指数オプション</td><td>早期割当は起きない</td><td>満期時の清算値（AM／PM）に注意する</td></tr>
+  </tbody>
+</table></div>
+
+<p>ETFも配当（分配金）を出します。たとえばSPYは分配金を四半期ごとに出すので、<strong>SPYのITMコールを売っている場合も、配当落ち日の前は早期割当に注意</strong>が必要です。「SPYはETFだから配当の話は関係ない」と考えるのは誤りです。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価が110ドルで、権利行使価格100ドルのコールを1枚売っています。コールの価格は10.10ドルで、時間的価値は0.10ドルです。翌日が配当落ち日で、配当は1株0.60ドルです。</p>
+<ul>
+  <li>コールの保有者は、今日行使すれば時間的価値0.10ドルを捨てて、配当0.60ドルを得られます。行使した方が得なので、割り当てられる可能性が高い状況です。</li>
+  <li>株を持っていなければ空売りの状態になり、配当相当額0.60×100＝<strong>60ドル</strong>を支払うことになります。</li>
+</ul>
+<p>時間的価値（0.10）＜配当（0.60）なので、今日のうちに買い戻すかロールするのが基本の対応です。</p>
+</div>
+
+<h2 id="ch08-8">8-8　流動性の見方と銘柄選び</h2>
+
+<p>米国には数千の銘柄と、それぞれに数十〜数百の権利行使価格・満期があります。しかし、<strong>その多くは取引が少なく</strong>、実際に使いやすいのは一部です。流動性が低いオプションは、ビッド・アスク・スプレッド（<a href="#ch06-3">6-3</a>）が広く、売買のたびに大きなコストを払うことになります。</p>
+
+<h3>見るべき3つの数字</h3>
+<div class="tbl"><table>
+  <thead><tr><th>指標</th><th>意味</th><th>見方</th></tr></thead>
+  <tbody>
+    <tr><td>出来高（volume）</td><td>その日に売買された枚数</td><td>その日の取引の活発さ。日によって大きく変わる</td></tr>
+    <tr><td>建玉（open interest）</td><td>決済されずに残っている枚数（<a href="#ch02-9">2-9</a>）</td><td>その系列に参加者がどれだけいるか。決済時の相手の見つけやすさの目安</td></tr>
+    <tr><td>ビッド・アスク・スプレッド</td><td>今すぐ売れる価格と今すぐ買える価格の差</td><td>仲値に対する割合で比べる。狭いほどコストが小さい</td></tr>
+  </tbody>
+</table></div>
+
+<p>3つのうち最も直接的なのは<strong>スプレッド</strong>です。スプレッドは金額ではなく<strong>仲値に対する割合</strong>で比べます。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>どれも「残り30日、ATM付近」のコールだとします（説明用の仮の数字）。</p>
+<div class="tbl"><table>
+  <thead><tr><th>銘柄</th><th class="r">ビッド</th><th class="r">アスク</th><th class="r">仲値</th><th class="r">スプレッドの割合</th><th class="r">出来高</th><th class="r">建玉</th></tr></thead>
+  <tbody>
+    <tr><td>主要ETF（SPYなど）</td><td class="r">6.10</td><td class="r">6.12</td><td class="r">6.11</td><td class="r">約0.3%</td><td class="r">20,000</td><td class="r">60,000</td></tr>
+    <tr><td>大型株X</td><td class="r">4.20</td><td class="r">4.30</td><td class="r">4.25</td><td class="r">約2.4%</td><td class="r">3,000</td><td class="r">15,000</td></tr>
+    <tr><td>小型株Y</td><td class="r">1.00</td><td class="r">1.40</td><td class="r">1.20</td><td class="r">約33%</td><td class="r">5</td><td class="r">40</td></tr>
+  </tbody>
+</table></div>
+<p>スプレッドの割合＝（アスク−ビッド）÷仲値です。小型株Yでは、アスク1.40で買ってすぐビッド1.00で売ると、1枚あたり（1.40−1.00）×100＝<strong>40ドル</strong>を失います。支払った140ドルの約29%です。値動きの予想が当たっても、このコストを取り返すのは簡単ではありません。</p>
+</div>
+
+<h3>銘柄を選ぶときの手順</h3>
+<ol class="flow">
+  <li><b>原資産そのものの取引が多いか</b><br>原資産（株・ETF）の売買が少ないと、オプションの流動性も低くなりやすい</li>
+  <li><b>使いたい満期・権利行使価格の建玉と出来高</b><br>銘柄全体ではなく、実際に使う「系列」の数字を見る</li>
+  <li><b>ビッド・アスク・スプレッドの割合</b><br>仲値に対して数%以内なら使いやすい、というのが本書の目安。戦略の期待利益と比べて判断する</li>
+  <li><b>権利行使価格の間隔と満期の数</b><br>細かく選べるほど、戦略を思いどおりに組みやすい</li>
+  <li><b>イベントの確認</b><br>決算発表・配当落ち日・株式分割の予定。IVや割当リスクが変わる</li>
+</ol>
+
+<div class="box tip"><span class="box-label">実践テクニック</span>
+<ul>
+  <li>初心者のうちは、<strong>SPY・QQQ・IWMなどの主要ETF</strong>と、誰もが知る大型株に絞ると、スプレッドのコストをほとんど気にせずに済みます。</li>
+  <li>同じ銘柄でも、<strong>ATM付近・期近・月次の満期</strong>に取引が集まります。深いOTMや遠い満期は、スプレッドが広がりやすくなります。</li>
+  <li>米国の取引開始直後（日本時間の深夜）はスプレッドが広がりやすいので、指値は取引開始から少し時間をおいてから出すのが無難です。</li>
+</ul>
+</div>
+
+<h2 id="ch08-9">8-9　日本居住者が米国オプションを取引する方法</h2>
+
+<p>日本に住む人が米国のオプションを取引する方法は、大きく2つです。</p>
+<ol>
+  <li><strong>国内の証券会社</strong>で、米国オプションの取扱いがある会社を使う</li>
+  <li><strong>海外の証券会社</strong>の口座を使う</li>
+</ol>
+
+<h3>国内の証券会社</h3>
+<p>執筆時点（2026年）に確認できた範囲では、SBI証券・楽天証券・マネックス証券など大手ネット証券の多くは、米国株の現物は取り扱っていても、<strong>米国オプションは取り扱っていません</strong>。米国オプションを取り扱う国内の証券会社は、次のような一部の会社に限られます。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>証券会社</th><th>確認できた内容（執筆時点、要確認）</th></tr></thead>
+  <tbody>
+    <tr><td>ウィブル証券</td><td>2023年7月に米国の個別株オプションと指数オプション（SPX、XSP、VIXなど）の取扱いを開始したと発表</td></tr>
+    <tr><td>moomoo証券</td><td>2025年4月に米国株オプションの取扱いを開始。売りはカバード・コールとキャッシュ・セキュアード・プットに限られると紹介されている（2025年時点）</td></tr>
+    <tr><td>サクソバンク証券</td><td>外国株式オプションを取り扱い、2024年1月に米国上場の指数を原資産とするオプションを追加したと発表。ネイキッドの売りにも対応すると紹介されている</td></tr>
+    <tr><td>インタラクティブ・ブローカーズ証券</td><td>米国を含む海外のオプションを取り扱う。日本居住者の場合、国内上場商品と海外上場商品で口座の区分が分かれる仕組みと説明されている</td></tr>
+  </tbody>
+</table></div>
+
+<p>取扱銘柄（個別株だけか、ETF・指数もあるか）、取引できる戦略（買いだけか、売り・スプレッドもできるか）、手数料、為替の手数料は各社で大きく違い、変更も頻繁です。<strong>口座を開く前に、各社の取引説明書・契約締結前交付書面で必ず確認</strong>してください。</p>
+
+<h3>海外の証券会社</h3>
+<p>米国などの証券会社に直接口座を開く方法もあります。ただし、次の点に注意が必要です。</p>
+<ul>
+  <li>日本居住者の口座開設を受け付けない、または日本の関連会社の口座へ案内する証券会社が少なくありません。</li>
+  <li>日本の金融商品取引業の登録を受けていない海外業者が日本居住者に勧誘を行うことについて、金融庁は注意を呼びかけています。利用する前に、その業者が日本でどのような立場で営業しているかを確認してください。</li>
+  <li>トラブルが起きたときの相談窓口や、日本の投資者保護の仕組みが使えない場合があります。</li>
+  <li>取引報告書などの書類は英語のことが多く、確定申告のための損益の集計は自分で行う必要があります。</li>
+</ul>
+
+<h3>お金と時間と税金の注意点</h3>
+<div class="tbl"><table>
+  <thead><tr><th>項目</th><th>内容</th></tr></thead>
+  <tbody>
+    <tr><td>為替</td><td>プレミアム・証拠金・損益はすべて米ドル。円からドルへの両替コストと、為替レートの変動の影響を受ける。オプションで利益が出ても、円高で円換算の利益が減ることがある</td></tr>
+    <tr><td>時差</td><td>取引時間は日本の深夜〜明け方（<a href="#ch08-1">8-1</a>）。満期日や急変時に起きて対応できるかを考えておく</td></tr>
+    <tr><td>権利行使・割当</td><td>現物受渡しの銘柄では、割当で数千〜数万ドルの株の売買が起きる。ドルの資金と証拠金に余裕を持たせる</td></tr>
+    <tr><td>税金</td><td>国内の証券会社経由でも、米国オプションは<strong>特定口座の対象外</strong>で、日経225オプションとは課税の区分が異なると案内されている。原則として自分で確定申告が必要になる。詳しくは<a href="#ch24">第24章</a></td></tr>
+    <tr><td>言語・情報</td><td>商品仕様、取引所の通知、企業の開示などの一次情報は英語が中心</td></tr>
+  </tbody>
+</table></div>
+
+<ol class="flow">
+  <li><b>取扱会社を比べる</b><br>取扱銘柄（個別株・ETF・指数）、取引できる戦略、手数料、為替コスト、取引ツールを比較する</li>
+  <li><b>口座開設とオプション取引の申込み</b><br>審査で、買いのみか、売り・スプレッドも可能かが決まる</li>
+  <li><b>ドルを用意する</b><br>円から両替するか、ドルのまま入金する</li>
+  <li><b>少額の買いか、損失が限定されたスプレッドから始める</b><br>SPY・XSPのような流動性の高い銘柄で、注文から満期処理まで一通り経験する</li>
+  <li><b>記録を残す</b><br>取引ごとの日付・金額・為替レートを記録し、確定申告に備える（<a href="#ch24">第24章</a>）</li>
+</ol>
+
+<h2 id="ch08-10">8-10　米国市場の強みと弱み</h2>
+
+<div class="compare">
+  <div><h4>強み</h4>
+    <ul>
+      <li><strong>流動性</strong>：主要ETF・指数・大型株は、ビッド・アスク・スプレッドが非常に狭い</li>
+      <li><strong>銘柄の数</strong>：数千の個別株、ETF、指数から選べる</li>
+      <li><strong>満期の数</strong>：毎営業日・週次・月次・LEAPSまで、目的に合った期間を選べる</li>
+      <li><strong>戦略の自由度</strong>：個別株でカバード・コールやオプション・ホイール（<a href="#ch12">第12章</a>）など、日本では流動性の面で難しい戦略が現実的にできる</li>
+      <li><strong>取引単位の選択肢</strong>：SPYやXSPのように比較的小さい単位の商品がある</li>
+      <li><strong>情報の多さ</strong>：教材・データ・分析ツールが豊富</li>
+    </ul>
+  </div>
+  <div><h4>弱み</h4>
+    <ul>
+      <li><strong>為替</strong>：ドル建てなので、為替の変動と両替コストがかかる</li>
+      <li><strong>時差</strong>：取引時間が日本の深夜〜明け方。満期日や急変時の対応が難しい</li>
+      <li><strong>税</strong>：国内の取引所のオプションと課税の区分が異なり、特定口座も使えない（<a href="#ch24">第24章</a>）</li>
+      <li><strong>言語</strong>：一次情報は英語が中心</li>
+      <li><strong>取扱会社が少ない</strong>：国内で使える証券会社や、使える戦略が限られる</li>
+      <li><strong>現物受渡し・早期割当</strong>：個別株・ETFでは、割当で大きな金額の株の売買が起きうる</li>
+    </ul>
+  </div>
+</div>
+
+<p>日本の市場と比べた詳しい使い分けは、次の<a href="#ch09">第9章</a>でまとめます。</p>
+
+<div class="box key"><span class="box-label">ここが重要</span>
+<p>米国市場の最大の魅力は「選択肢の多さ」です。しかし選択肢が多いほど、<strong>銘柄ごとの仕様（乗数・タイプ・決済方法・満期）</strong>を確認する手間も増えます。「分からない仕様の銘柄は取引しない」を原則にしてください。</p>
+</div>
+
+<h2 id="ch08-11">まとめ</h2>
+<ul class="summary-list">
+  <li>米国は世界最大のオプション市場で、2025年の年間取引量は約152億枚（執筆時点で確認できた数値）。取引所は十数か所あるが、清算はOCCに一本化されているので、どの取引所で建てても決済できる。</li>
+  <li>個別株・ETFオプションは1枚＝100株（口）、アメリカン・タイプ、現物受渡し。表示価格×100が実際の金額。</li>
+  <li>SPX・XSP・NDX・RUTなどの指数オプションはヨーロピアン・タイプの差金決済。早期割当はないが、AM決済（満期日の朝の特別な値、最終取引日は前営業日）とPM決済（満期日の引け）の違いに注意する。</li>
+  <li>SPYとSPXは同じS&amp;P500に連動するが、1枚の大きさ、タイプ、決済方法、早期割当の有無が違う。</li>
+  <li>満期は月次（第3金曜日）、週次、毎営業日（0DTEが可能）、LEAPS（最長およそ3年）など。0DTEは短時間で結果が大きく分かれる。</li>
+  <li>米国の証券会社はオプション取引レベルを設けており、一般にカバード・コール→買い→スプレッド→ネイキッドの売りの順に審査が厳しくなる。</li>
+  <li>ITMのコールの売りは配当落ち日の前に早期割当が起きやすい。SPYのようなETFも例外ではない。</li>
+  <li>流動性は出来高・建玉・ビッド・アスク・スプレッド（仲値に対する割合）で判断する。</li>
+  <li>日本居住者は、米国オプションを扱う一部の国内証券会社か、海外の証券会社を使う。為替・時差・税・言語の負担があり、税は<a href="#ch24">第24章</a>で扱う。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+
+  <div class="q"><p>米国株Bのプットの気配が「ビッド2.25、アスク2.35」です。アスクで1枚買うと、支払う金額はいくらですか（手数料別）。</p>
+    <ol class="choices">
+      <li>2.35ドル</li>
+      <li>23.5ドル</li>
+      <li>235ドル</li>
+      <li>2,350ドル</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　米国の個別株オプションは1枚＝100株なので、2.35×100＝235ドルです。画面の価格は「1株あたり」の値段であることに注意してください。日経225オプションなら価格×1,000円、米国株オプションなら価格×100ドルです。</p></div></details>
+  </div>
+
+  <div class="q"><p>SPY（ETF）のオプションとSPX（指数）のオプションの違いとして、正しいものはどれですか。</p>
+    <ol class="choices">
+      <li>SPYもSPXも、ヨーロピアン・タイプで差金決済である</li>
+      <li>SPYはアメリカン・タイプで現物受渡し、SPXはヨーロピアン・タイプで差金決済である</li>
+      <li>SPYはヨーロピアン・タイプ、SPXはアメリカン・タイプである</li>
+      <li>SPXのオプションは、配当落ち日の前に早期割当が起きやすい</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　SPYはETFなので、個別株と同じくアメリカン・タイプで、権利行使するとETF100口の受渡しが起きます。SPXは指数そのものが原資産なので受け渡せず、ヨーロピアン・タイプの差金決済です。SPXは満期日にしか権利行使できないため、Dのような早期割当は起きません。早期割当に注意が必要なのはSPYの方です。</p></div></details>
+  </div>
+
+  <div class="q"><p>SPXの標準月次限月（第3金曜日満期、AM決済）について、正しいものはどれですか。</p>
+    <ol class="choices">
+      <li>満期日の金曜日の引けまで取引でき、引けの指数で清算される</li>
+      <li>最終取引日は通常その前日の木曜日で、金曜の朝に構成銘柄の始値から計算される値で清算される</li>
+      <li>満期日の前に、いつでも権利行使できる</li>
+      <li>満期にITMなら、S&amp;P500の構成銘柄の株が受け渡される</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　AM決済では、最終取引日は満期日の前営業日（通常は木曜日）で、清算値は満期日の朝、構成銘柄それぞれの始値から計算されます。日経225オプションのSQとよく似た仕組みです。Aは週次などのPM決済の説明です。SPXはヨーロピアン・タイプなのでCは誤り、差金決済なのでDも誤りです。</p></div></details>
+  </div>
+
+  <div class="q"><p>米国の証券会社の一般的な「オプション取引レベル」で、最も高い（審査が厳しい）レベルでなければ認められないことが多い取引はどれですか。</p>
+    <ol class="choices">
+      <li>保有株100株に対するカバード・コール</li>
+      <li>コールの買い</li>
+      <li>ブル・コール・スプレッド</li>
+      <li>株を持たずにコールを売る（ネイキッド・コール）</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：D</b>　ネイキッド・コールは、株価が上がり続けると損失が理論上無限になり、損失を止めるものが手元にありません。だから最も厳しいレベルに置かれます。カバード・コールは株を持っているのとほぼ同じリスクなので、一般に最も下のレベルです。レベルの数や区切り方は証券会社によって異なります。</p></div></details>
+  </div>
+
+  <div class="q"><p>「残り30日・ATM付近」のコールで、次の3銘柄のうち、売買のコスト（スプレッドの割合）が最も小さいのはどれですか。</p>
+    <ol class="choices">
+      <li>ビッド0.95、アスク1.05、建玉120</li>
+      <li>ビッド4.90、アスク5.00、建玉8,000</li>
+      <li>ビッド9.60、アスク10.40、建玉3,000</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　スプレッドの割合＝（アスク−ビッド）÷仲値で比べます。Aは0.10÷1.00＝10%、Bは0.10÷4.95＝約2.0%、Cは0.80÷10.00＝8%です。AとBはスプレッドの金額（0.10）は同じですが、割合では大きく違います。Bは建玉も多く、決済の相手も見つけやすいと考えられます。</p></div></details>
+  </div>
+
+  <div class="q"><p>株価が52ドルの米国株Cで、権利行使価格45ドルのコールを1枚売っています。コールの価格は7.05ドル、翌日が配当落ち日で、配当は1株0.40ドルです。最も注意すべきことはどれですか。</p>
+    <ol class="choices">
+      <li>コールの時間的価値（0.05ドル）が配当より小さいので、今日のうちに早期割当を受ける可能性が高い</li>
+      <li>米国株オプションはヨーロピアン・タイプなので、満期まで割当は起きない</li>
+      <li>配当落ちで株価が下がるので、コールの売り手には有利なことしか起きない</li>
+      <li>配当はオプションとは無関係である</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：A</b>　本質的価値は52−45＝7.00ドルなので、時間的価値は7.05−7.00＝0.05ドルです。保有者は今日行使すれば、0.05ドルを捨てて0.40ドルの配当を得られます。そのため早期割当の可能性が高い状況です。株を持っていなければ空売りの状態で配当落ち日を迎え、配当相当額40ドルを支払うことになります。米国の個別株オプションはアメリカン・タイプなのでBは誤りです（<a href="#ch06-8">6-8</a>）。</p></div></details>
+  </div>
+
+  <div class="q"><p>日本居住者が米国オプションを取引することについて、執筆時点（2026年）の説明として最も適切なものはどれですか。</p>
+    <ol class="choices">
+      <li>日本の大手ネット証券であれば、どこでも米国オプションを取引できる</li>
+      <li>米国オプションの取引は、国内の証券会社経由なら特定口座で源泉徴収され、確定申告は不要である</li>
+      <li>取扱いのある国内の証券会社は一部に限られ、取引できる銘柄や戦略も会社ごとに異なるので、事前に確認が必要である</li>
+      <li>米国オプションは円建てなので、為替の影響は受けない</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　執筆時点で確認できた範囲では、米国オプションを扱う国内の証券会社は一部に限られ、売りやスプレッドの可否なども会社ごとに異なります。米国オプションは特定口座の対象外と案内されており、原則として確定申告が必要です（<a href="#ch24">第24章</a>）。プレミアムも損益も米ドル建てなので、為替の影響を受けます。</p></div></details>
+  </div>
+
+  <div class="q"><p>次の損益図は、株価100ドルの米国株Dで、あるオプションを1枚だけ取引した場合の満期時の損益（ドル、1枚＝100株）です。この取引の説明として正しいものはどれですか。</p>
+    <div class="payoff" data-title="ある取引の損益（1枚、金額はドル）" data-spot="100" data-range="80,110" data-mult="100"
+         data-hide="legs,stats,be"
+         data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57}]'></div>
+    <ol class="choices">
+      <li>権利行使価格95ドルのプットを0.57ドルで買った。最大損失は57ドル</li>
+      <li>権利行使価格95ドルのプットを0.57ドルで売った。最大利益は57ドルで、株価が下がると損失が膨らむ</li>
+      <li>権利行使価格95ドルのコールを0.57ドルで売った。株価が上がると損失が膨らむ</li>
+      <li>株を100株買った</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　株価が95ドル以上なら一定の利益（0.57×100＝57ドル）で、95ドルを下回ると損失が増える形は「プットの売り」です。損益分岐点は95−0.57＝94.43ドルで、株価が0になると最大で（94.43）×100＝9,443ドルの損失になります。割り当てられると95×100＝9,500ドルで株を買うことになるので、その代金を現金で用意しておく形が<b>キャッシュ・セキュアード・プット</b>です（<a href="#ch11">第11章</a>）。57ドルを受け取るために、約9,500ドルの損失の可能性を引き受ける取引であることに注意してください。</p></div></details>
+  </div>
+
+</div>

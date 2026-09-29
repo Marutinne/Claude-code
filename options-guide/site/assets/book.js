@@ -18,8 +18,8 @@
       { id: "ch06", n: "6", t: "取引の実務", ready: true }
     ]},
     { part: "第2部", title: "日本と米国の市場", lv: "Lv.1〜2", ch: [
-      { id: "ch07", n: "7", t: "日本のオプション市場", plan: ["大阪取引所の概要", "日経225オプション／日経225ミニオプション（週次）", "TOPIXオプション、有価証券オプションと流動性", "取引時間・SQ・取扱証券会社", "日本市場の強みと弱み"] },
-      { id: "ch08", n: "8", t: "米国のオプション市場", plan: ["主要取引所とOCC", "個別株・ETF・指数オプション", "月次・週次・0DTE・LEAPS", "オプション取引レベル制度、早期割当と配当", "日本居住者が米国オプションを取引する方法"] },
+      { id: "ch07", n: "7", t: "日本のオプション市場", ready: true },
+      { id: "ch08", n: "8", t: "米国のオプション市場", ready: true },
       { id: "ch09", n: "9", t: "日米比較と使い分け", plan: ["比較表（銘柄・流動性・単位・満期・決済・証拠金・時間・手数料・税制）", "日本の投資家にとっての使い分け"] }
     ]},
     { part: "第3部", title: "オプション戦略", lv: "Lv.2〜3", ch: [
@@ -350,6 +350,8 @@
     if (!mixed) {
       var hiScan = Math.max(xhi, kmax * 3, spot * 3), mx = -Infinity, mn = Infinity;
       for (var j = 0; j <= 3000; j++) { var S = hiScan * j / 3000, v = pl(S, 0); if (v > mx) mx = v; if (v < mn) mn = v; }
+      // the expiry line only bends at strikes, so check them exactly (a peak between scan points would be missed)
+      strikes.forEach(function (k) { var vk = pl(k, 0); if (vk > mx) mx = vk; if (vk < mn) mn = vk; });
       var slope = legs.reduce(function (s, l) { return s + (l.type === "put" ? 0 : l.qty); }, 0);
       var allBe = [];
       var prev = pl(0, 0);
