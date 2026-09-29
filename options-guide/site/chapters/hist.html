@@ -1,0 +1,449 @@
+<header class="chapter-head">
+  <p class="eyebrow">第8部　オプション取引にまつわる色々な小話</p>
+  <h1>オプションの歴史</h1>
+  <p class="lead">「少しのお金を払って、将来の選択権を押さえる」という発想は、2,500年以上前の記録にすでに登場します。その発想が、取引所・価格理論・指数・超短期満期へと形を変えてきた道のりを、年表とともにたどります。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span>
+  <ul>
+    <li>古代ギリシャから0DTEまで、オプションの歴史の大きな流れ</li>
+    <li>各時代で「何が新しくなったか」を1行で言えるようになる</li>
+    <li>日本の先物・オプション市場の歩み（堂島米会所から日経225ミニオプションまで）</li>
+    <li>いま私たちが使っている仕組み（標準化・清算機関・理論価格・指数・週次満期）が、いつ、なぜ生まれたか</li>
+  </ul>
+</div>
+
+<h2 id="hist-1">年表で見るオプションの歴史</h2>
+<p>最初に全体像を見ておきましょう。下の年表は、時代ごとに目盛りの幅を変えています（古代と近世は大きく縮め、1973年以降を広げています）。等間隔ではない点に注意してください。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 300" role="img" aria-label="紀元前6世紀から2023年までのオプションの歴史の年表">
+  <rect x="20" y="134" width="50" height="32" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="45" y="155" font-size="11" text-anchor="middle" fill="var(--muted)">古代</text>
+  <rect x="90" y="134" width="160" height="32" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="170" y="155" font-size="11" text-anchor="middle" fill="var(--muted)">17〜18世紀</text>
+  <rect x="262" y="134" width="108" height="32" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="316" y="155" font-size="11" text-anchor="middle" fill="var(--muted)">19世紀〜1972</text>
+  <rect x="382" y="134" width="186" height="32" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="475" y="155" font-size="11" text-anchor="middle" fill="var(--muted)">1973〜1999</text>
+  <rect x="580" y="134" width="130" height="32" rx="4" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="645" y="155" font-size="11" text-anchor="middle" fill="var(--muted)">2000年以降</text>
+  <text x="80" y="155" font-size="12" text-anchor="middle" fill="var(--muted)">≈</text>
+  <text x="256" y="155" font-size="12" text-anchor="middle" fill="var(--muted)">≈</text>
+  <text x="376" y="155" font-size="12" text-anchor="middle" fill="var(--muted)">≈</text>
+  <text x="574" y="155" font-size="12" text-anchor="middle" fill="var(--muted)">≈</text>
+  <line x1="40" y1="134" x2="40" y2="54" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="40" cy="134" r="4" fill="var(--accent)"/>
+  <text x="40" y="38" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">前6世紀</text>
+  <text x="40" y="50" font-size="10.5" text-anchor="middle" fill="var(--fg)">タレスの搾り機</text>
+  <line x1="112" y1="166" x2="112" y2="198" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="112" cy="166" r="4" fill="var(--accent)"/>
+  <text x="112" y="212" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1637</text>
+  <text x="112" y="225" font-size="10.5" text-anchor="middle" fill="var(--fg)">チューリップ</text>
+  <line x1="150" y1="134" x2="150" y2="112" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="150" cy="134" r="4" fill="var(--accent)"/>
+  <text x="150" y="96" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1688</text>
+  <text x="150" y="108" font-size="10.5" text-anchor="middle" fill="var(--fg)">ラ・ベガの著作</text>
+  <line x1="188" y1="166" x2="188" y2="248" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="188" cy="166" r="4" fill="var(--accent)"/>
+  <text x="188" y="262" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1730</text>
+  <text x="188" y="275" font-size="10.5" text-anchor="middle" fill="var(--fg)">堂島米会所</text>
+  <line x1="226" y1="134" x2="226" y2="54" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="226" cy="134" r="4" fill="var(--accent)"/>
+  <text x="226" y="38" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1734</text>
+  <text x="226" y="50" font-size="10.5" text-anchor="middle" fill="var(--fg)">バーナード法</text>
+  <line x1="282" y1="166" x2="282" y2="198" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="282" cy="166" r="4" fill="var(--accent)"/>
+  <text x="282" y="212" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1869</text>
+  <text x="282" y="225" font-size="10.5" text-anchor="middle" fill="var(--fg)">ラッセル・セージ</text>
+  <line x1="338" y1="134" x2="338" y2="112" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="338" cy="134" r="4" fill="var(--accent)"/>
+  <text x="338" y="96" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1934</text>
+  <text x="338" y="108" font-size="10.5" text-anchor="middle" fill="var(--fg)">証券取引所法</text>
+  <line x1="398" y1="166" x2="398" y2="248" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="398" cy="166" r="4" fill="var(--accent)"/>
+  <text x="398" y="262" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1973</text>
+  <text x="398" y="275" font-size="10.5" text-anchor="middle" fill="var(--fg)">CBOE・BS式</text>
+  <line x1="432" y1="134" x2="432" y2="54" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="432" cy="134" r="4" fill="var(--accent)"/>
+  <text x="432" y="38" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1983</text>
+  <text x="432" y="50" font-size="10.5" text-anchor="middle" fill="var(--fg)">指数オプション</text>
+  <line x1="462" y1="166" x2="462" y2="198" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="462" cy="166" r="4" fill="var(--accent)"/>
+  <text x="462" y="212" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1987</text>
+  <text x="462" y="225" font-size="10.5" text-anchor="middle" fill="var(--fg)">ブラックマンデー</text>
+  <line x1="492" y1="134" x2="492" y2="112" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="492" cy="134" r="4" fill="var(--accent)"/>
+  <text x="492" y="96" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1989</text>
+  <text x="492" y="108" font-size="10.5" text-anchor="middle" fill="var(--fg)">日経225OP</text>
+  <line x1="522" y1="166" x2="522" y2="248" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="522" cy="166" r="4" fill="var(--accent)"/>
+  <text x="522" y="262" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1993</text>
+  <text x="522" y="275" font-size="10.5" text-anchor="middle" fill="var(--fg)">VIX</text>
+  <line x1="552" y1="134" x2="552" y2="54" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="552" cy="134" r="4" fill="var(--accent)"/>
+  <text x="552" y="38" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">1997</text>
+  <text x="552" y="50" font-size="10.5" text-anchor="middle" fill="var(--fg)">ノーベル賞</text>
+  <line x1="596" y1="166" x2="596" y2="198" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="596" cy="166" r="4" fill="var(--accent)"/>
+  <text x="596" y="212" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">2005</text>
+  <text x="596" y="225" font-size="10.5" text-anchor="middle" fill="var(--fg)">週次オプション</text>
+  <line x1="628" y1="134" x2="628" y2="112" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="628" cy="134" r="4" fill="var(--accent)"/>
+  <text x="628" y="96" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">2014</text>
+  <text x="628" y="108" font-size="10.5" text-anchor="middle" fill="var(--fg)">大阪取引所統合</text>
+  <line x1="660" y1="166" x2="660" y2="248" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="660" cy="166" r="4" fill="var(--accent)"/>
+  <text x="660" y="262" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">2022</text>
+  <text x="660" y="275" font-size="10.5" text-anchor="middle" fill="var(--fg)">SPX毎日満期</text>
+  <line x1="692" y1="134" x2="692" y2="54" stroke="var(--line)" stroke-width="1"/>
+  <circle cx="692" cy="134" r="4" fill="var(--accent)"/>
+  <text x="692" y="38" font-size="11" text-anchor="middle" fill="var(--accent)" font-weight="700">2023</text>
+  <text x="692" y="50" font-size="10.5" text-anchor="middle" fill="var(--fg)">ミニOP</text>
+</svg></div><figcaption>図H-1　オプションの歴史の年表（目盛りは等間隔ではありません。「≈」は時間を省略した箇所）。OPはオプション、BS式はブラック・ショールズ式の略です。</figcaption></figure>
+
+<p>この年表を1行ずつに縮めると、次の表になります。本章の各節は、この表の1行を詳しく説明したものです。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>時代</th><th>主な出来事</th><th>何が新しくなったか（1行で）</th></tr></thead>
+  <tbody>
+    <tr><td>古代</td><td>タレスのオリーブ搾り機</td><td>少額の手付けで「将来使う権利」を押さえる発想が記録された</td></tr>
+    <tr><td>17世紀オランダ</td><td>チューリップ取引、アムステルダムの株式取引</td><td>先の受け渡しを約束する契約と、株のオプションが文献に残った</td></tr>
+    <tr><td>17〜18世紀ロンドン</td><td>「プリビレッジ」取引、バーナード法</td><td>オプションに名前が付き、法律で規制される対象になった</td></tr>
+    <tr><td>1730年 大坂</td><td>堂島米会所の公認、帳合米取引</td><td>標準化・証拠金・差金決済という「取引所の仕組み」がそろった</td></tr>
+    <tr><td>19世紀〜1930年代 米国</td><td>ラッセル・セージ、プット・コール・ブローカー、1934年証券取引所法</td><td>仲介業者が相対で売買する店頭市場が育ち、公的な規制の枠に入った</td></tr>
+    <tr><td>1973年</td><td>CBOE開設、ブラック・ショールズ論文</td><td>条件を標準化した上場オプションと、理論価格の「ものさし」が同時に生まれた</td></tr>
+    <tr><td>1980年代</td><td>OEX・SPX、ブラックマンデー</td><td>株価指数そのものを差金決済で売買できるようになった</td></tr>
+    <tr><td>1989年〜 日本</td><td>日経225オプション、有価証券オプション、JPX、ミニオプション</td><td>日本でも指数オプションが上場し、大阪に市場が一本化された</td></tr>
+    <tr><td>1993年</td><td>VIXの算出開始</td><td>ボラティリティそのものが「指数」になり、のちに売買の対象になった</td></tr>
+    <tr><td>2000年代以降</td><td>電子取引、週次オプション、個人の急増、0DTE</td><td>満期が週単位・日単位まで細かくなり、個人が主役の一角になった</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="hist-2">古代：タレスのオリーブ搾り機</h2>
+<p>オプションの歴史の話は、たいてい古代ギリシャの哲学者タレス（紀元前6世紀ごろ、ミレトスの人）から始まります。出典は、アリストテレスの『政治学』第1巻です。</p>
+<p>アリストテレスが伝える話はこうです。タレスは貧乏だったので「哲学なんて役に立たない」とからかわれていました。そこでタレスは、天文の知識から翌年のオリーブが豊作になると冬のうちに見込みました。そして、少しのお金を集めて、ミレトスとキオスにあるオリーブ搾り機を<strong>すべて手付金で借り押さえ</strong>ました。冬のうちは誰も競わなかったので、安く押さえられました。収穫期に搾り機の需要が一気に高まると、タレスは好きな条件で貸し出して大金を得た、というのです。</p>
+<p>この話をオプションの言葉に置き換えると、次のようになります。</p>
+<ul>
+  <li><strong>手付金</strong>＝プレミアム（権利の代金）</li>
+  <li><strong>搾り機を決まった条件で使う権利</strong>＝コール・オプション（買う権利）に近いもの</li>
+  <li><strong>豊作にならなかった場合</strong>＝権利を使わず、損失は手付金だけで済む</li>
+</ul>
+
+<div class="payoff" data-title="図H-2　タレスの取引をコール買いに見立てた模式図（仮の数値）" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3}]'
+     data-caption="横軸を「収穫期の搾り機の使用料の相場」、権利行使価格100を「押さえた使用料」と見立てた模式図です。相場が上がるほど利益が増え、上がらなければ損失は手付金3に限られます。"></div>
+
+<p>ただし、アリストテレス自身がこの話で強調しているのは「独占（すべてを押さえること）で儲ける方法」です。タレスが買ったのが厳密な意味でのオプションだったかどうかは、史料からは分かりません。<strong>「オプション的な発想の最古の記録の一つ」</strong>と受け止めるのが正確でしょう。古代ローマやフェニキアの商人も似た契約を使ったと紹介されることがありますが、具体的な史料は乏しいので、本書では深入りしません。</p>
+
+<h2 id="hist-3">17世紀オランダ：チューリップとアムステルダム</h2>
+<p>17世紀のオランダは、世界で最も進んだ商業国でした。1630年代には、珍しい品種のチューリップの球根が高値で取引されました。いわゆる「チューリップ・バブル（チューリップ・マニア）」です。</p>
+<p>球根は冬のあいだ土の中にあるので、取引は「春に掘り出したら受け渡す」という<strong>先の受け渡しを約束する契約（先渡し契約）</strong>の形になりました。現物がないまま紙の上で売り買いが繰り返されたため、当時は「風の取引（windhandel）」と呼ばれたといわれます。価格は1637年2月に崩れました。</p>
+<p>ここでオプションとの関係が出てきます。経済学者のアール・トンプソンは、1637年2月24日に球根業者たちが「1636年11月30日以降に結ばれた先渡し契約を、オプション契約として扱う」と取り決めた点に注目しました。買い手は、契約価格の一定割合を払えば購入の義務から逃れられるようになった、というのです。<strong>「必ず買う義務」が「お金を払えばやめられる権利」に変わった</strong>わけで、先渡しとオプションの違いがよく分かる事例です。</p>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>「球根1個が家1軒分の値段になった」「破産者が続出し、運河に身を投げた人もいた」といった有名な話は、19世紀にチャールズ・マッケイが広めた物語に多くを負っています。歴史家アン・ゴールドガーの研究（2007年）などは、取引に関わった人は限られ、オランダ経済全体を揺るがすような破綻は確認できないとして、<strong>バブルの規模や悲劇は誇張されている</strong>と論じています。高値の取引があったこと自体は確かですが、「史上最悪のバブル」という紹介はうのみにしないほうがよいでしょう。</p>
+</div>
+
+<p>同じ時代のアムステルダムでは、オランダ東インド会社の株式を対象に、コールやプットが実際に取引されていました。1688年に商人ジョセフ・デ・ラ・ベガが書いた『混乱の中の混乱（Confusión de Confusiones）』は、取引所のようすを描いた最初期の本とされ、オプションや先物、信用取引のような手法が登場します。</p>
+<p><strong>この時代に新しくなったこと：</strong>先の受け渡しを約束する契約と、株のオプションが、記録に残る形で広く取引されるようになりました。</p>
+
+<h2 id="hist-4">17〜18世紀ロンドン：「プリビレッジ」取引</h2>
+<p>オランダの金融技術は、やがてロンドンに渡ります。17世紀末から18世紀のロンドンでは、株式の売買とともに、オプションが<strong>「プリビレッジ（privilege＝特権）」</strong>と呼ばれて取引されました。お金を払って「買ってもよい・売ってもよい特権」を手に入れる、という意味の呼び名です。「プット」「リフューザル（refusal）」といった言葉も使われました。</p>
+<p>ところが、こうした取引は投機的だと批判されます。1734年、ジョン・バーナード卿が推進した法律（のちに「バーナード法」と呼ばれる）が成立し、「株式の投機的売買（ストック・ジョビング）」を防ぐことを目的に、オプションなどの取引を抑えようとしました。この法律は1737年に恒久化され、廃止されたのは1860年です。ただ、法律があっても取引は完全にはなくならなかったといわれます。</p>
+<p>「プリビレッジ」という呼び名は大西洋を渡り、19世紀の米国でも短期のオプションを指す言葉として使われました。</p>
+<p><strong>この時代に新しくなったこと：</strong>オプションに名前が付き、国家が法律で規制する対象になりました。「便利だが投機にも使える道具を、どう扱うか」という議論は、ここから現代まで続いています。</p>
+
+<h2 id="hist-5">大坂・堂島米会所：世界初の組織的な先物市場</h2>
+<p>日本にも、世界に誇れる歴史があります。江戸時代の大坂・堂島の米市場です。</p>
+<p>江戸時代、大名は年貢として集めた米を大坂の蔵屋敷に送り、売ってお金に換えていました。その米の取引の場が堂島です。1730年（享保15年）、8代将軍徳川吉宗の時代に、幕府は大岡越前守忠相の名で堂島米会所を公認しました。これが<strong>世界初の組織的な先物取引所</strong>とされています。</p>
+<p>堂島では2種類の取引が行われました。</p>
+<div class="compare">
+  <div><h4>正米（しょうまい）取引</h4><p>米の現物（正確には米と引き換えられる「米切手」）を売買する取引。いまでいう現物取引です。</p></div>
+  <div><h4>帳合米（ちょうあいまい）取引</h4><p>帳簿の上だけで米を売買し、期限までに反対売買をして<strong>差額だけを精算する</strong>取引。いまでいう先物取引です。</p></div>
+</div>
+<p>帳合米取引が画期的だったのは、現代の先物取引所の基本的な部品がそろっていたことです。取引の対象や期限を決めた<strong>標準化</strong>、敷銀（しきぎん）と呼ばれる<strong>証拠金</strong>、現物を受け渡さない<strong>差金決済</strong>、そして取引を記録して精算する仕組みです。</p>
+<p>堂島で取引されたのは先物で、オプションではありません。それでも、オプションの歴史で堂島が欠かせないのは、<strong>「見知らぬ人同士が、決まった条件で、証拠金を預けて安心して取引できる場」</strong>という取引所の仕組みを早くから形にしたからです。第7章で学んだ大阪取引所の日経225オプションは、同じ大阪の地で、この仕組みを受け継いでいるともいえます（<a href="#ch07-1">第7章 7-1</a>）。</p>
+<p><strong>この時代に新しくなったこと：</strong>標準化・証拠金・差金決済という「取引所の仕組み」が一つにまとまりました。</p>
+
+<h2 id="hist-6">19世紀〜20世紀前半の米国：店頭市場の時代</h2>
+<p>19世紀の米国では、オプションは取引所ではなく、仲介業者を通じた<strong>相対（あいたい）取引</strong>で売買されていました。買いたい人と売りたい人を「プット・コール・ブローカー」と呼ばれる業者が見つけて結びつけ、権利行使価格や期限をその都度決める方式です。こうした取引所を通さない市場を<strong>店頭市場（OTC）</strong>と呼びます。</p>
+
+<h3>「プットとコールの父」ラッセル・セージ</h3>
+<p>この時代の有名人が、実業家のラッセル・セージ（1816〜1906年）です。ニューヨークでプットやコール、短期の「プリビレッジ」を売る商売を大きく育て、米国のオプション市場を作った人物の一人とされます。ストラドル（コールとプットの組み合わせ）などを多用したことから、「オールド・ストラドル」「プットとコールの父」とあだ名されました。</p>
+<p>セージの有名な工夫が、オプションを使って<strong>実質的な貸し付け</strong>を作る方法です。お金を借りたい客から株を買い取り、同時に客とのあいだでプットを買ってコールを売ります。こうすると、株価がどう動いてもセージの受け取る金額はあらかじめ決まり、実質的に「利息付きの貸し付け」と同じになります。これは<a href="#ch04-7">第4章 4-7</a>で学んだプット・コール・パリティ（「株の買い＋プットの買い＋コールの売り」は安全資産と同じになる関係）そのものです。セージはこの方法で、当時の利息制限法を上回る利回りを得たとして、1869年に有罪判決を受けています。</p>
+
+<h3>1929年の大暴落と規制</h3>
+<p>1920年代の米国は株式ブームに沸き、1929年10月の大暴落で終わりました。当時は、仲間で資金を出し合って特定の株価をつり上げる「プール」と呼ばれる相場操縦が横行しており、オプションが操縦の報酬として使われたこともあったといわれます。1930年代初めの議会の調査では、オプションは厳しく批判され、禁止も議論されたと伝えられます。</p>
+<p>結論として、オプションは禁止されませんでした。1934年に<strong>証券取引所法（Securities Exchange Act of 1934）</strong>が成立し、証券取引委員会（SEC）が設立されます。オプション取引は存続を認められる一方、SECの規制の下に置かれました。その後もオプションは、新聞広告などで客を集めるプット・コール・ブローカーの店頭市場で、細々と取引され続けます。</p>
+<p>店頭市場には弱点がありました。条件が1件ごとにばらばらなので、<strong>途中で転売しにくい</strong>こと。相手が約束を守らない<strong>信用リスク</strong>があること。価格が見えにくく、手数料も高くなりがちなこと。これらの弱点を一気に解決したのが、次の1973年です。</p>
+<p><strong>この時代に新しくなったこと：</strong>仲介業者が相対で売買する店頭市場が育ち、1934年の法律で公的な規制の枠組みに入りました。</p>
+
+<h2 id="hist-7">1973年：上場オプションと理論価格の誕生</h2>
+<p>1973年は、オプションの歴史で最も重要な年です。二つの出来事が、わずか数週間の差で起きました。</p>
+
+<h3>CBOEの開設（1973年4月26日）</h3>
+<p>シカゴ商品取引所（CBOT）の会員たちが作った<strong>シカゴ・オプション取引所（CBOE）</strong>が、1973年4月26日に取引を始めました。世界初の、株式オプションを専門に扱う取引所です。初日の対象は16銘柄の<strong>コールだけ</strong>で、出来高は911枚でした。プットの上場が認められたのは4年後の1977年です。</p>
+<p>CBOEの革新は、店頭市場の弱点を仕組みで解決したことです。</p>
+<ol class="flow">
+  <li><b>条件の標準化</b><br>権利行使価格・満期・1枚あたりの株数を取引所が決める。同じ条件の契約が大勢のあいだで売り買いされるので、途中で転売（反対売買）できる</li>
+  <li><b>清算機関</b><br>取引所の清算機関（のちのOCC）が売り手と買い手の間に入り、決済を保証する。相手の信用を個別に調べなくてよい</li>
+  <li><b>価格の公開</b><br>取引所で成立した価格が公表され、誰でも同じ価格を見られる</li>
+</ol>
+<p>これは、<a href="#ch07-1">第7章</a>や<a href="#ch08-1">第8章</a>で学んだ現代の上場オプションの仕組みそのものです。</p>
+
+<h3>ブラック・ショールズ論文とマートン</h3>
+<p>同じ1973年、フィッシャー・ブラックとマイロン・ショールズの論文「オプションと企業負債の価格付け」が、学術誌『ジャーナル・オブ・ポリティカル・エコノミー』の5・6月号に掲載されました。同じ年、ロバート・マートンも別の学術誌に論文を発表し、この理論をより一般的な形に発展させました。</p>
+<p>この理論の核心は、<strong>原資産とお金の貸し借りを組み合わせればオプションと同じ損益を作れる（複製できる）ので、オプションの価格は理論的に決まる</strong>という考え方です（<a href="#ch04-6">第4章 4-6</a>）。それまでのオプション価格は経験と勘に頼っていましたが、ここで初めて誰もが共有できる「ものさし」ができました。取引所ができたのと同じ年に理論価格が登場したことで、上場オプションは急速に広がりました。</p>
+<p>1997年、ショールズとマートンはこの業績でノーベル経済学賞を受賞しました。ブラックは1995年に亡くなっていたため、受賞者には含まれていません（ノーベル賞は存命の人にしか贈られないためです）。</p>
+<p><strong>この時代に新しくなったこと：</strong>条件を標準化した上場オプションと、理論価格の「ものさし」が同時に生まれました。</p>
+
+<h2 id="hist-8">1980年代：指数オプションとブラックマンデー</h2>
+<p>1983年3月11日、CBOEはS&amp;P100指数を対象とするオプション（<strong>OEX</strong>）の取引を始めました。現金で差額を精算する（差金決済の）指数オプションとして、世界初とされます。同じ年の7月1日には、S&amp;P500指数オプション（<strong>SPX</strong>）も始まりました。SPXの初日の出来高はわずか350枚でしたが、のちに米国で最も取引される指数オプションに育ちます（<a href="#ch08-3">第8章 8-3</a>）。</p>
+<p>指数オプションの新しさは、<strong>「市場全体」をまとめて1枚で売買できる</strong>ことです。個別株の現物を受け渡す必要がないので、差額を現金で精算します。数百銘柄の株を持つ投資家が、指数プットを買うだけで保険をかけられるようになりました。</p>
+<p>その保険の考え方を、オプションを使わずに先物の売買で再現しようとしたのが「ポートフォリオ・インシュアランス」です。株価が下がるほど先物を売り増すことで、プットを買ったのと似た効果を作ります。ところが1987年10月19日の<strong>ブラックマンデー</strong>では、ダウ平均が508ドル（22.6%）、S&amp;P500が20.5%下落しました。下げるほど売りが出る仕組みが、下落を加速させた一因と指摘されています。翌20日には日経平均も3,836円（約14.9%）下落しました。</p>
+<p>この暴落のあと、指数オプションの価格には大きな変化が起きます。下落に備えるOTMプットのインプライド・ボラティリティが、恒常的に高くなったのです。これが<strong>ボラティリティ・スキュー（スマイル）</strong>です（<a href="#ch04-9">第4章 4-9</a>）。この話は<a href="#stories-4">小話集</a>で詳しく扱います。</p>
+<p><strong>この時代に新しくなったこと：</strong>株価指数そのものを差金決済で売買できるようになり、市場全体への保険が手軽になりました。</p>
+
+<h2 id="hist-9">日本のオプション市場の歩み</h2>
+<p>堂島米会所から約250年後、日本でも現代的な株価指数の先物・オプション市場が生まれました。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 400" role="img" aria-label="日本の先物・オプション市場の年表">
+  <line x1="120" y1="30" x2="120" y2="380" stroke="var(--line)" stroke-width="2"/>
+  <circle cx="120" cy="36" r="6" fill="var(--gold)"/>
+  <text x="100" y="41" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">1730</text>
+  <text x="140" y="41" font-size="13" fill="var(--fg)">堂島米会所が幕府に公認される（帳合米＝先物）</text>
+  <text x="140" y="68" font-size="11" fill="var(--muted)">…… 約250年 ……</text>
+  <circle cx="120" cy="96" r="6" fill="var(--accent)"/>
+  <text x="100" y="101" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">1987</text>
+  <text x="140" y="101" font-size="13" fill="var(--fg)">大阪証券取引所で「株先50」（株式先物）</text>
+  <circle cx="120" cy="132" r="6" fill="var(--accent)"/>
+  <text x="100" y="137" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">1988</text>
+  <text x="140" y="137" font-size="13" fill="var(--fg)">日経225先物の取引開始（大阪）</text>
+  <circle cx="120" cy="168" r="8" fill="var(--accent)"/>
+  <text x="100" y="173" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">1989</text>
+  <text x="140" y="173" font-size="13" fill="var(--fg)" font-weight="700">日経225オプション上場（6月12日、大阪証券取引所）</text>
+  <circle cx="120" cy="204" r="6" fill="var(--accent)"/>
+  <text x="100" y="209" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">1997</text>
+  <text x="140" y="209" font-size="13" fill="var(--fg)">有価証券オプション（個別株）上場（7月、東京・大阪）</text>
+  <circle cx="120" cy="240" r="6" fill="var(--accent)"/>
+  <text x="100" y="245" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">2013</text>
+  <text x="140" y="245" font-size="13" fill="var(--fg)">東証と大証が経営統合し、日本取引所グループ（JPX）発足</text>
+  <circle cx="120" cy="276" r="6" fill="var(--accent)"/>
+  <text x="100" y="281" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">2014</text>
+  <text x="140" y="281" font-size="13" fill="var(--fg)">デリバティブ市場を統合、「大阪取引所」に商号変更</text>
+  <circle cx="120" cy="312" r="6" fill="var(--accent)"/>
+  <text x="100" y="317" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">2015</text>
+  <text x="140" y="317" font-size="13" fill="var(--fg)">日経225 Weeklyオプション（週次満期）開始</text>
+  <circle cx="120" cy="348" r="8" fill="var(--accent)"/>
+  <text x="100" y="353" font-size="13" text-anchor="end" fill="var(--fg)" font-weight="700">2023</text>
+  <text x="140" y="353" font-size="13" fill="var(--fg)" font-weight="700">日経225ミニオプション開始（5月29日、水・金満期）</text>
+  <text x="140" y="382" font-size="11" fill="var(--muted)">金色＝江戸時代の先物市場、青＝現代の先物・オプション市場</text>
+</svg></div><figcaption>図H-3　日本の先物・オプション市場の歩み。大阪は、江戸時代から現在まで日本のデリバティブ取引の中心地です。</figcaption></figure>
+
+<p>ポイントを順に見ていきます。</p>
+<ul>
+  <li><strong>1989年6月12日　日経225オプション上場</strong>：大阪証券取引所で始まりました。日本の株価指数オプションの代表で、現在も日本のオプション取引の中心です（<a href="#ch07-2">第7章 7-2</a>）。上場の年の暮れ、日経平均は史上最高値（当時）をつけ、その後バブル崩壊の長い下落が始まりました。</li>
+  <li><strong>1997年7月　有価証券オプション上場</strong>：個別株を対象とするオプションが東京と大阪の証券取引所に上場しました。ただし執筆時点でも取引は限られ、流動性の乏しさが課題です（<a href="#ch07-6">第7章 7-6</a>）。</li>
+  <li><strong>2013年1月1日　日本取引所グループ（JPX）発足</strong>：東京証券取引所グループと大阪証券取引所が経営統合しました。</li>
+  <li><strong>2014年3月24日　デリバティブ市場の統合</strong>：東京証券取引所のデリバティブ市場が大阪に統合され、大阪証券取引所は「大阪取引所」に名前を変えました。TOPIX先物なども含め、日本の上場デリバティブは大阪に一本化されました。</li>
+  <li><strong>2015年5月　Weeklyオプション</strong>：日経225オプションに、月次以外の週の金曜日に満期が来る限月が加わりました。</li>
+  <li><strong>2023年5月29日　日経225ミニオプション</strong>：取引単位が日経225オプションの10分の1で、毎週水曜日と金曜日に満期が来ます。少ない資金で試せるようになり、個人投資家の入り口が広がりました（<a href="#ch07-4">第7章 7-4</a>）。</li>
+</ul>
+<p>1995年には、シンガポールで日経225の先物・オプションを取引していた英国ベアリングズ銀行の社員が巨額の損失を出し、銀行が破綻する事件も起きました。この話は<a href="#stories-6">小話集</a>で扱います。</p>
+<p><strong>日本の歩みで新しくなったこと：</strong>日本でも指数オプションが上場し、市場が大阪に一本化され、週次・ミニで個人が使いやすくなりました。</p>
+
+<h2 id="hist-10">1993年：VIX ― ボラティリティが「指数」になった</h2>
+<p>1993年1月、CBOEはボラティリティ指数<strong>VIX</strong>の算出を発表しました。デューク大学のロバート・ホエーリー教授が開発した方法で、当初はS&amp;P100（OEX）のオプション価格から、市場が見込む今後の変動の大きさ（インプライド・ボラティリティ）を計算するものでした。</p>
+<p>2003年には計算方法が改められ、S&amp;P500のオプション価格を使うようになりました（旧方式の指数はVXOとして残りました）。さらに2004年3月にVIX先物、2006年2月にVIXオプションが上場し、<strong>ボラティリティそのものを売買できる</strong>時代が来ます。</p>
+<p>VIXは株価が急落するときに急上昇するため、「恐怖指数」と呼ばれるようになりました。日本にも、日経225オプションの価格から計算する日経平均VI（ボラティリティー・インデックス）があります（<a href="#ch04-10">第4章 4-10</a>）。</p>
+<p><strong>この時代に新しくなったこと：</strong>オプション価格に含まれる「市場の不安の大きさ」が一つの数字として公表され、のちにそれ自体が取引の対象になりました。</p>
+
+<h2 id="hist-11">2000年代以降：電子化、週次、個人、そして0DTE</h2>
+
+<h3>電子取引化</h3>
+<p>1973年のCBOEは、トレーダーが立会場（ピット）に集まって声と手振りで売買する世界でした。2000年、米国で完全電子取引のオプション取引所ISEが取引を始め、ほかの取引所も電子取引を広げていきました。注文は画面から出すものになり、売買コストは下がり、個人もネット証券から直接オプションを発注できるようになりました。</p>
+
+<h3>満期はどんどん短く</h3>
+<p>2005年10月、CBOEは満期まで1週間程度の<strong>週次オプション（Weeklys）</strong>を導入しました。その後、S&amp;P500指数オプションでは満期日が週に複数回設定されるようになり、2022年4〜5月に火曜日・木曜日の満期が加わったことで、<strong>月曜日から金曜日まで毎営業日に満期が来る</strong>ようになりました。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 250" role="img" aria-label="満期の刻みの変化。月次のみ、週次、毎営業日">
+  <text x="20" y="24" font-size="12" fill="var(--muted)">1か月（4週×月〜金）の中で、満期が来る日を塗りつぶして表示</text>
+  <text x="20" y="72" font-size="13" fill="var(--fg)" font-weight="700">月次のみ</text>
+  <text x="20" y="90" font-size="11" fill="var(--muted)">上場オプションの出発点</text>
+  <text x="20" y="142" font-size="13" fill="var(--fg)" font-weight="700">週次</text>
+  <text x="20" y="160" font-size="11" fill="var(--muted)">米2005年〜／日2015年〜</text>
+  <text x="20" y="212" font-size="13" fill="var(--fg)" font-weight="700">毎営業日</text>
+  <text x="20" y="230" font-size="11" fill="var(--muted)">SPXは2022年〜</text>
+  <text x="255" y="46" font-size="11" text-anchor="middle" fill="var(--muted)">第1週</text>
+  <text x="360" y="46" font-size="11" text-anchor="middle" fill="var(--muted)">第2週</text>
+  <text x="465" y="46" font-size="11" text-anchor="middle" fill="var(--muted)">第3週</text>
+  <text x="570" y="46" font-size="11" text-anchor="middle" fill="var(--muted)">第4週</text>
+  <rect x="210" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="218" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="229" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="237" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="248" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="256" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="267" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="275" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="286" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="294" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">金</text>
+  <rect x="315" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="323" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="334" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="342" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="353" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="361" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="372" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="380" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="391" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="399" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">金</text>
+  <rect x="420" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="428" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="439" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="447" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="458" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="466" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="477" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="485" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="496" y="58" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="504" y="77" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="525" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="533" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="544" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="552" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="563" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="571" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="582" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="590" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="601" y="58" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="609" y="77" font-size="9" text-anchor="middle" fill="var(--muted)">金</text>
+  <rect x="210" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="218" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="229" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="237" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="248" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="256" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="267" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="275" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="286" y="128" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="294" y="147" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="315" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="323" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="334" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="342" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="353" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="361" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="372" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="380" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="391" y="128" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="399" y="147" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="420" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="428" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="439" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="447" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="458" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="466" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="477" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="485" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="496" y="128" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="504" y="147" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="525" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="533" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">月</text>
+  <rect x="544" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="552" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">火</text>
+  <rect x="563" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="571" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">水</text>
+  <rect x="582" y="128" width="16" height="30" rx="3" fill="var(--surface)" stroke="var(--line)" stroke-width="1"/>
+  <text x="590" y="147" font-size="9" text-anchor="middle" fill="var(--muted)">木</text>
+  <rect x="601" y="128" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="609" y="147" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="210" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="218" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">月</text>
+  <rect x="229" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="237" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">火</text>
+  <rect x="248" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="256" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">水</text>
+  <rect x="267" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="275" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">木</text>
+  <rect x="286" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="294" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="315" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="323" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">月</text>
+  <rect x="334" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="342" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">火</text>
+  <rect x="353" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="361" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">水</text>
+  <rect x="372" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="380" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">木</text>
+  <rect x="391" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="399" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="420" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="428" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">月</text>
+  <rect x="439" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="447" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">火</text>
+  <rect x="458" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="466" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">水</text>
+  <rect x="477" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="485" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">木</text>
+  <rect x="496" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="504" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+  <rect x="525" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="533" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">月</text>
+  <rect x="544" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="552" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">火</text>
+  <rect x="563" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="571" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">水</text>
+  <rect x="582" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="590" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">木</text>
+  <rect x="601" y="198" width="16" height="30" rx="3" fill="var(--accent)" stroke="var(--line)" stroke-width="1"/>
+  <text x="609" y="217" font-size="9" text-anchor="middle" fill="var(--surface)">金</text>
+</svg></div><figcaption>図H-4　満期の刻みが細かくなってきた流れ（模式図）。満期が毎日あれば、どの日にも「その日に満期を迎えるオプション」＝0DTEが存在することになります。</figcaption></figure>
+
+<h3>個人投資家の急増と2020〜21年のブーム</h3>
+<p>2019年ごろから米国のネット証券で売買手数料の引き下げ・無料化が進み、スマートフォンのアプリで手軽にオプションを売買できるようになりました。2020年のコロナ・ショック後、在宅の個人投資家が大量に市場に参加します。米国の清算機関OCCが清算したオプションの枚数は、2020年に約74.7億枚、2021年に約98.7億枚と、年々記録を更新しました。2021年1月のゲームストップ騒動は、その象徴的な出来事です（<a href="#stories-11">小話集</a>）。</p>
+
+<h3>0DTEの時代</h3>
+<p>毎営業日に満期が来るようになると、<strong>取引するその日に満期を迎えるオプション（0DTE：Zero Days To Expiration）</strong>の売買が急増しました。SPXオプションでは、2024年ごろには出来高の4〜5割前後を0DTEが占める日が珍しくなくなったと報告されています（<a href="#ch18-5">第18章 18-5</a>）。</p>
+<p>日本でも、週次の限月やミニオプションによって満期の短い取引が身近になりました。ただし日本の日経225オプションは、満期日（SQ日）の前営業日が最終取引日で、決済の値（SQ値）は満期日の朝の始値から決まります。米国のSPXのように「満期当日の引けまで売買して、その日の終値で決まる」形とは違う点に注意してください（<a href="#ch07-3">第7章 7-3</a>）。ミニオプションの満期を毎営業日にする予定については、<a href="#ch07-4">第7章 7-4</a>を参照してください。</p>
+<p><strong>この時代に新しくなったこと：</strong>取引が電子化され、満期が週単位・日単位まで細かくなり、個人投資家が市場の主役の一角になりました。</p>
+
+<div class="box key"><span class="box-label">ここが重要</span>
+<p>オプションの歴史は、<strong>「権利を少額で押さえる」という同じ発想を、より安全に・より安く・より細かく使えるようにしてきた歴史</strong>です。取引所と清算機関が信用リスクを減らし、理論価格が値段の目安を与え、指数やVIXが対象を広げ、週次・0DTEが時間の単位を細かくしました。一方で、道具が便利になるたびに、使い方を誤った大きな事故も起きています。その具体例は<a href="#stories">小話集</a>で読んでください。</p>
+</div>
+
+<h2 id="hist-12">まとめ</h2>
+<ul class="summary-list">
+  <li>最古の「オプション的な発想」の記録は、アリストテレス『政治学』に出てくるタレスのオリーブ搾り機の逸話です。少額の手付けで将来使う権利を押さえました。</li>
+  <li>17世紀オランダではチューリップの先渡し契約や株のオプションが取引されました。チューリップ・バブルの規模や悲劇は、近年の研究で誇張が指摘されています。</li>
+  <li>ロンドンではオプションが「プリビレッジ」と呼ばれ、1734年のバーナード法で規制の対象になりました。</li>
+  <li>1730年に公認された大坂・堂島米会所の帳合米取引は、世界初の組織的な先物市場とされ、標準化・証拠金・差金決済の仕組みを備えていました。</li>
+  <li>19世紀の米国ではプット・コール・ブローカーによる店頭市場が育ち、ラッセル・セージはプット・コール・パリティを使って実質的な貸し付けを作りました。1934年証券取引所法でオプションはSECの規制下に入りました。</li>
+  <li>1973年にCBOEが開設され、同じ年にブラック・ショールズ論文とマートン論文が発表されました。ショールズとマートンは1997年にノーベル経済学賞を受けました。</li>
+  <li>1983年にOEXとSPXの指数オプションが始まり、1987年のブラックマンデーのあと、ボラティリティ・スキューが定着しました。</li>
+  <li>日本では1989年に日経225オプション、1997年に有価証券オプションが上場し、2014年に市場が大阪取引所に統合され、2023年にミニオプションが始まりました。</li>
+  <li>1993年にVIXの算出が始まり、2000年代以降は電子化・週次オプション・個人投資家の急増・0DTEの拡大が進みました。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+  <div class="q"><p>タレスのオリーブ搾り機の逸話を伝えている古代の書物はどれですか。</p>
+    <ol class="choices"><li>ホメロス『イリアス』</li><li>アリストテレス『政治学』</li><li>プラトン『国家』</li><li>ヘロドトス『歴史』</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　アリストテレスの『政治学』第1巻に、タレスが冬のうちに搾り機を手付金で押さえ、豊作の収穫期に高く貸し出した話が出てきます。手付金がプレミアム、搾り機を使う権利がコールに当たると考えると、オプションの発想がよく分かります。</p></div></details>
+  </div>
+  <div class="q"><p>1730年に幕府に公認された堂島米会所の「帳合米取引」は、現代の何に当たりますか。</p>
+    <ol class="choices"><li>現物取引</li><li>先物取引</li><li>オプション取引</li><li>信用取引</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　帳合米取引は、帳簿上で米を売買し、期限までに反対売買をして差額だけを精算する取引で、現代の先物取引に当たります。米切手を売買する「正米取引」が現物取引です。堂島は世界初の組織的な先物取引所とされます。</p></div></details>
+  </div>
+  <div class="q"><p>1973年に起きた出来事の組み合わせとして正しいものはどれですか。</p>
+    <ol class="choices"><li>CBOE開設とVIXの算出開始</li><li>CBOE開設とブラック・ショールズ論文の発表</li><li>ブラック・ショールズ論文の発表とノーベル経済学賞の受賞</li><li>S&amp;P500指数オプションの上場と日経225オプションの上場</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　1973年4月26日にCBOEが開設され、同じ年にブラック・ショールズ論文が発表されました。VIXは1993年、ノーベル賞は1997年、SPXは1983年、日経225オプションは1989年です。取引所（標準化と清算）と理論価格（ものさし）が同じ年にそろったことが、上場オプションが急速に広がった理由の一つです。</p></div></details>
+  </div>
+  <div class="q"><p>日経225オプションが上場した年と取引所の組み合わせはどれですか。</p>
+    <ol class="choices"><li>1987年・東京証券取引所</li><li>1989年・大阪証券取引所</li><li>1997年・大阪証券取引所</li><li>2014年・大阪取引所</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　日経225オプションは1989年6月12日に大阪証券取引所で取引が始まりました。1997年は有価証券オプション（個別株）の上場、2014年は東証のデリバティブ市場が大阪に統合され「大阪取引所」に名前が変わった年です。</p></div></details>
+  </div>
+  <div class="q"><p>ラッセル・セージは、「株の買い＋プットの買い＋コールの売り」を組み合わせて何を作りましたか。</p>
+    <ol class="choices"><li>株価が上がるほど儲かるポジション</li><li>株価がどう動いても受け取りが決まる、実質的な貸し付け</li><li>株価が大きく動くほど儲かるポジション</li><li>損失が無限大になりうるポジション</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　同じ権利行使価格のプット買いとコール売りを株の買いに組み合わせると、満期の受け取りは株価に関係なく権利行使価格で一定になります（プット・コール・パリティ、<a href="#ch04-7">第4章 4-7</a>）。セージはこの価格を調整して、利息制限法を上回る利回りの貸し付けを実質的に作り、1869年に有罪判決を受けました。</p></div></details>
+  </div>
+</div>

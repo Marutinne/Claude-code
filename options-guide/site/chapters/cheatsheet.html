@@ -1,0 +1,765 @@
+<header class="chapter-head">
+  <p class="eyebrow">付録</p>
+  <h1>付録B　全戦略早見表</h1>
+  <p class="lead">第11〜18章の75の戦略を、相場観ごとに1枚ずつのカードに並べた「図鑑」です。形を見比べて候補を絞り、詳しくは各章の節で確認してください。</p>
+</header>
+
+<h2 id="cheatsheet-1">B-1　使い方</h2>
+<p>各カードには、戦略名（クリックすると解説している章の節へ移動します）、英語名、損益図、1行の説明、難易度、日本と米国での実行しやすさを載せています。損益図の下の「最大利益」「最大損失」「損益分岐点」「建てた時の受取／支払」は、図の組み方から自動で計算されたものです。</p>
+<ul>
+  <li><b>数値の条件</b>：原則として株価100、IV 20%、残り30日、金利0で、プレミアムはブラック・ショールズ式で計算した値です（1株あたり、手数料は含みません）。各章の数値例と同じ組み方・同じ値にそろえています。第18章の場面別の戦略（決算・0DTE）、第17章の金利を含む裁定、スキューを入れたリスク・リバーサルなどは、その章の例の条件で描いています（カード内に注記）。</li>
+  <li><b>太線</b>は満期時の損益、▲は現在の株価です。時間差（カレンダー系）の戦略だけは、太線が「期近の満期日」時点の損益で、最大利益・最大損失はカードの下に第16章の値を添えています。</li>
+  <li><b>難易度</b>は各章の表のとおり、★☆☆（入門）〜★★★（上級）です。</li>
+  <li><b>日本・米国</b>の記号は<a href="#ch19">第19章</a>の判定に合わせています。◎実用的、○条件付きで可能（売建ての承認・大きな証拠金・先物での代用など）、△制度上は可能だが現実的でない、×不可です。日本は日経225オプション（ラージ・ミニのうち良い方）、米国は個別株・ETF・指数のうち最も組みやすいものの判定です。日本の個別株オプションは、ほぼすべての戦略で△です。第19章に行がない戦略（記号に＊）は、同じリスクの形をした戦略の判定に準じています。</li>
+</ul>
+<div class="box warn"><span class="box-label">注意</span><p>最大損失が「無制限」や大きな値の戦略（裸の売りを含むもの）は、証拠金の急増や追加の入金（追証）が起こりえます。「限定」の戦略でも、早期割当・流動性・急な値動きで想定外の損失が出ることがあります。このページは形を見比べるためのもので、特定の戦略を勧めるものではありません。制度・口座の条件は執筆時点（2026年）のもので、JPXや各証券会社で確認してください。</p></div>
+
+<p><b>相場観から探す：</b><a href="#cheatsheet-3">強気</a>（7）／<a href="#cheatsheet-4">弱気</a>（6）／<a href="#cheatsheet-5">中立（レンジ）</a>（13）／<a href="#cheatsheet-6">大きく動く</a>（12）／<a href="#cheatsheet-7">原資産と組み合わせる</a>（12）／<a href="#cheatsheet-8">時間差（カレンダー系）</a>（6）／<a href="#cheatsheet-9">合成・裁定</a>（7）／<a href="#cheatsheet-10">特殊・上級</a>（12）／<a href="#cheatsheet-2">全戦略一覧表</a></p>
+
+<h2 id="cheatsheet-2">B-2　全戦略一覧表</h2>
+<p>全75戦略を1つの表にまとめました。最大利益・最大損失の数値は、カードの損益図と同じ例（1株あたり）の値です。名前をクリックするとカードへ、章の番号をクリックすると解説へ移動します。</p>
+<div class="tbl"><table>
+  <thead><tr><th>戦略名</th><th>相場観</th><th>デビット／クレジット</th><th class="r">最大利益</th><th class="r">最大損失</th><th>難易度</th><th>日本</th><th>米国</th><th>章</th></tr></thead>
+  <tbody>
+    <tr><th colspan="9"><a href="#cheatsheet-3">強気</a></th></tr>
+    <tr><td><a href="#cheatsheet-c01">ロング・コール</a></td><td>強気</td><td>デビット 2.29</td><td class="r">無制限</td><td class="r">2.29</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch11-2">11</a></td></tr>
+    <tr><td><a href="#cheatsheet-c02">ネイキッド・ショート・プット</a></td><td>強気〜中立</td><td>クレジット 0.57</td><td class="r">0.57</td><td class="r">94.43</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch11-6">11</a></td></tr>
+    <tr><td><a href="#cheatsheet-c03">キャッシュ・セキュアード・プット</a></td><td>強気〜中立</td><td>クレジット 1.06</td><td class="r">1.06</td><td class="r">95.94</td><td>★☆☆</td><td>○</td><td>◎</td><td><a href="#ch11-7">11</a></td></tr>
+    <tr><td><a href="#cheatsheet-c04">ブル・コール・スプレッド</a></td><td>やや強気</td><td>デビット 1.65</td><td class="r">3.35</td><td class="r">1.65</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch13-2">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c05">ブル・プット・スプレッド</a></td><td>やや強気〜中立</td><td>クレジット 0.50</td><td class="r">0.50</td><td class="r">4.50</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch13-4">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c06">コール・レシオ・スプレッド</a></td><td>やや強気（上がりすぎない）</td><td>デビット 1.01</td><td class="r">3.99</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch13-8">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c07">ブル・コール・ラダー</a></td><td>やや強気（上がりすぎない）</td><td>デビット 1.53</td><td class="r">3.47</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-4">弱気</a></th></tr>
+    <tr><td><a href="#cheatsheet-c08">ロング・プット</a></td><td>弱気／保険</td><td>デビット 2.29</td><td class="r">97.71</td><td class="r">2.29</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch11-4">11</a></td></tr>
+    <tr><td><a href="#cheatsheet-c09">ネイキッド・ショート・コール</a></td><td>弱気〜中立（上がらない）</td><td>クレジット 0.65</td><td class="r">0.65</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch11-5">11</a></td></tr>
+    <tr><td><a href="#cheatsheet-c10">ベア・プット・スプレッド</a></td><td>やや弱気</td><td>デビット 1.72</td><td class="r">3.28</td><td class="r">1.72</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch13-3">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c11">ベア・コール・スプレッド</a></td><td>やや弱気〜中立</td><td>クレジット 0.52</td><td class="r">0.52</td><td class="r">4.48</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch13-5">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c12">プット・レシオ・スプレッド</a></td><td>やや弱気（下がりすぎない）</td><td>デビット 1.15</td><td class="r">3.85</td><td class="r">91.15</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch13-8">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c13">ベア・プット・ラダー</a></td><td>やや弱気（下がりすぎない）</td><td>デビット 1.65</td><td class="r">3.35</td><td class="r">86.65</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-5">中立（レンジ）</a></th></tr>
+    <tr><td><a href="#cheatsheet-c14">ショート・ストラドル</a></td><td>動かない</td><td>クレジット 4.58</td><td class="r">4.58</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch14-3">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c15">ショート・ストラングル</a></td><td>中立（範囲内）</td><td>クレジット 1.21</td><td class="r">1.21</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch14-5">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c16">ショート・ガッツ</a></td><td>中立（範囲内）</td><td>クレジット 11.21</td><td class="r">1.21</td><td class="r">無制限</td><td>★★★</td><td>△</td><td>○</td><td><a href="#ch14-6">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c17">ロング・コール・バタフライ</a></td><td>動かない（1点）</td><td>デビット 1.64</td><td class="r">3.36</td><td class="r">1.64</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-2">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c18">ロング・プット・バタフライ</a></td><td>動かない（1点）</td><td>デビット 1.64</td><td class="r">3.36</td><td class="r">1.64</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-2">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c19">アイアン・バタフライ</a></td><td>動かない（1点）</td><td>クレジット 3.36</td><td class="r">3.36</td><td class="r">1.64</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-4">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c20">ロング・コール・コンドル</a></td><td>中立（範囲内）</td><td>デビット 2.03</td><td class="r">1.97</td><td class="r">2.03</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-5">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c21">ロング・プット・コンドル</a></td><td>中立（範囲内）</td><td>デビット 2.03</td><td class="r">1.97</td><td class="r">2.03</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-5">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c22">アイアン・コンドル</a></td><td>中立（範囲内）</td><td>クレジット 0.76</td><td class="r">0.76</td><td class="r">4.24</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-6">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c23">コリドー（通称）</a></td><td>中立（範囲内）</td><td>クレジット 0.88</td><td class="r">0.88</td><td class="r">無制限</td><td>★★☆〜★★★</td><td>○</td><td>○</td><td><a href="#ch15-7">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c24">ブロークン・ウィング・バタフライ</a></td><td>中立〜片方向</td><td>クレジット 0.56</td><td class="r">2.56</td><td class="r">2.44</td><td>★★★</td><td>◎</td><td>◎</td><td><a href="#ch15-8">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c25">スキップ・ストライク・バタフライ</a></td><td>緩やかな方向性</td><td>デビット 1.01</td><td class="r">3.99</td><td class="r">6.01</td><td>★★★</td><td>◎</td><td>◎</td><td><a href="#ch15-9">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c26">クリスマス・ツリー</a></td><td>中立〜やや強気</td><td>デビット 1.19</td><td class="r">4.81</td><td class="r">1.19</td><td>★★★</td><td>△</td><td>○</td><td><a href="#ch15-10">15</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-6">大きく動く</a></th></tr>
+    <tr><td><a href="#cheatsheet-c27">ロング・ストラドル</a></td><td>大きく動く</td><td>デビット 4.58</td><td class="r">無制限</td><td class="r">4.58</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch14-2">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c28">ロング・ストラングル</a></td><td>非常に大きく動く</td><td>デビット 1.21</td><td class="r">無制限</td><td class="r">1.21</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch14-4">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c29">ロング・ガッツ</a></td><td>大きく動く</td><td>デビット 11.21</td><td class="r">無制限</td><td class="r">1.21</td><td>★★☆</td><td>△</td><td>○</td><td><a href="#ch14-6">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c30">ストリップ</a></td><td>大きく動く（下寄り）</td><td>デビット 6.87</td><td class="r">無制限</td><td class="r">6.87</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch14-7">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c31">ストラップ</a></td><td>大きく動く（上寄り）</td><td>デビット 6.87</td><td class="r">無制限</td><td class="r">6.87</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch14-8">14</a></td></tr>
+    <tr><td><a href="#cheatsheet-c32">コール・バックスプレッド</a></td><td>大きく上昇</td><td>クレジット 1.01</td><td class="r">無制限</td><td class="r">3.99</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch13-9">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c33">プット・バックスプレッド</a></td><td>大きく下落</td><td>クレジット 1.15</td><td class="r">91.15</td><td class="r">3.85</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch13-9">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c34">ベア・コール・ラダー</a></td><td>大きく上昇（名前と逆）</td><td>クレジット 1.53</td><td class="r">無制限</td><td class="r">3.47</td><td>★★★</td><td>◎＊</td><td>◎＊</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c35">ブル・プット・ラダー</a></td><td>大きく下落（名前と逆）</td><td>クレジット 1.65</td><td class="r">86.65</td><td class="r">3.35</td><td>★★★</td><td>◎＊</td><td>◎＊</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><td><a href="#cheatsheet-c36">ショート・バタフライ</a></td><td>動く</td><td>クレジット 1.64</td><td class="r">1.64</td><td class="r">3.36</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch15-3">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c37">リバース・アイアン・バタフライ</a></td><td>大きく動く</td><td>デビット 3.36</td><td class="r">1.64</td><td class="r">3.36</td><td>★★☆</td><td>◎＊</td><td>◎＊</td><td><a href="#ch15-4">15</a></td></tr>
+    <tr><td><a href="#cheatsheet-c38">リバース・アイアン・コンドル</a></td><td>大きく動く</td><td>デビット 0.76</td><td class="r">4.24</td><td class="r">0.76</td><td>★★☆</td><td>◎</td><td>◎</td><td><a href="#ch18-8">18</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-7">原資産と組み合わせる</a></th></tr>
+    <tr><td><a href="#cheatsheet-c39">カバード・コール</a></td><td>中立〜やや強気</td><td>クレジット 1.12</td><td class="r">4.12</td><td class="r">98.88</td><td>★☆☆</td><td>○</td><td>◎</td><td><a href="#ch12-1">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c40">プロテクティブ・プット</a></td><td>強気（下落に備える）</td><td>デビット 0.57</td><td class="r">無制限</td><td class="r">5.57</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch12-2">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c41">マリード・プット</a></td><td>強気（下落に備える）</td><td>デビット 2.29</td><td class="r">無制限</td><td class="r">2.29</td><td>★☆☆</td><td>◎</td><td>◎</td><td><a href="#ch12-2">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c42">ゼロコスト・カラー</a></td><td>中立〜やや強気（保有資産を守る）</td><td>ほぼゼロ（受取 0.07）</td><td class="r">5.07</td><td class="r">4.93</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch12-3">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c43">クレジット・カラー</a></td><td>中立〜やや強気（保有資産を守る）</td><td>クレジット 0.88</td><td class="r">2.88</td><td class="r">4.12</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch12-3">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c44">デビット・カラー</a></td><td>中立〜やや強気（保有資産を守る）</td><td>デビット 0.32</td><td class="r">7.68</td><td class="r">5.32</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch12-3">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c45">3本足のフェンス</a></td><td>中立〜やや強気（暴落なし）</td><td>ほぼゼロ（支払 0.01）</td><td class="r">2.99</td><td class="r">95.01</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch12-4">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c46">ブル・フェンス（定義A）</a></td><td>強気</td><td>ほぼゼロ（支払 0.07）</td><td class="r">無制限</td><td class="r">95.07</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch12-4">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c47">ベア・フェンス（定義A）</a></td><td>弱気</td><td>ほぼゼロ（受取 0.07）</td><td class="r">95.07</td><td class="r">無制限</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch12-4">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c48">短期ローテーション・カラー</a></td><td>中立（静かな相場）</td><td>クレジット 0.41</td><td class="r">1.41</td><td class="r">2.09</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch12-5">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c49">オプション・ホイール</a></td><td>中立〜やや強気</td><td>クレジット 1.02</td><td class="r">1周で3.08（第12章の例）</td><td class="r">95.94（プット段階、株価0）</td><td>★★☆</td><td>×</td><td>◎</td><td><a href="#ch12-6">12</a></td></tr>
+    <tr><td><a href="#cheatsheet-c50">カバード・ストラングル</a></td><td>中立〜やや強気</td><td>クレジット 1.69</td><td class="r">4.69</td><td class="r">193.31</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch12-7">12</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-8">時間差（カレンダー系）</a></th></tr>
+    <tr><td><a href="#cheatsheet-c51">ロング・カレンダー</a></td><td>中立（IV上昇は追い風）</td><td>デビット 0.94</td><td class="r">約1.35（100付近）</td><td class="r">0.94（支払額）</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch16-2">16</a></td></tr>
+    <tr><td><a href="#cheatsheet-c52">ショート・カレンダー</a></td><td>大きく動く（IV低下も追い風）</td><td>クレジット 0.94</td><td class="r">0.94（受取額）</td><td class="r">約1.35（IV上昇で拡大）</td><td>★★★</td><td>△</td><td>○</td><td><a href="#ch16-3">16</a></td></tr>
+    <tr><td><a href="#cheatsheet-c53">ダイアゴナル・スプレッド</a></td><td>やや強気（プットならやや弱気）</td><td>デビット 2.58</td><td class="r">約3.06（105付近）</td><td class="r">2.58（支払額）</td><td>★★☆</td><td>○</td><td>◎</td><td><a href="#ch16-4">16</a></td></tr>
+    <tr><td><a href="#cheatsheet-c54">ダブル・カレンダー</a></td><td>中立（範囲内・IV上昇）</td><td>デビット 1.77</td><td class="r">約1.18</td><td class="r">1.77（支払額）</td><td>★★★</td><td>△</td><td>◎</td><td><a href="#ch16-5">16</a></td></tr>
+    <tr><td><a href="#cheatsheet-c55">ダブル・ダイアゴナル</a></td><td>中立（範囲内）</td><td>デビット 0.15</td><td class="r">約1.42</td><td class="r">2.65（Kの差＋支払額）</td><td>★★★</td><td>△</td><td>◎</td><td><a href="#ch16-5">16</a></td></tr>
+    <tr><td><a href="#cheatsheet-c56">プアマンズ・カバード・コール</a></td><td>やや強気</td><td>デビット 20.54</td><td class="r">約5.08（105付近）</td><td class="r">20.54（支払額）</td><td>★★☆</td><td>△</td><td>◎</td><td><a href="#ch16-6">16</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-9">合成・裁定</a></th></tr>
+    <tr><td><a href="#cheatsheet-c57">合成ロング</a></td><td>強気</td><td>ゼロ</td><td class="r">無制限</td><td class="r">100</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch17-2">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c58">合成ショート</a></td><td>弱気</td><td>ゼロ</td><td class="r">100</td><td class="r">無制限</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch17-2">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c59">リスク・リバーサル</a></td><td>強気（逆向きなら弱気）</td><td>クレジット 0.31</td><td class="r">無制限</td><td class="r">94.69</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch17-3">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c60">コンバージョン</a></td><td>裁定（方向なし）</td><td>クレジット 0.33（現物は別）</td><td class="r">一定（0.33）</td><td class="r">なし（最低でも＋0.33）</td><td>★★★</td><td>△</td><td>△</td><td><a href="#ch17-4">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c61">リバーサル</a></td><td>裁定（方向なし）</td><td>デビット 0.33（現物は別）</td><td class="r">なし（どこでも−0.33）</td><td class="r">一定（0.33）</td><td>★★★</td><td>△</td><td>△</td><td><a href="#ch17-4">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c62">ボックス・スプレッド</a></td><td>裁定・資金調達</td><td>デビット 19.22</td><td class="r">一定（0.78）</td><td class="r">なし（最低でも＋0.78）</td><td>★★★</td><td>△</td><td>○</td><td><a href="#ch17-5">17</a></td></tr>
+    <tr><td><a href="#cheatsheet-c63">ジェリー・ロール</a></td><td>裁定・満期の乗り換え</td><td>デビット 0.90</td><td class="r">ほぼ一定</td><td class="r">ほぼ一定（配当・割当で変動）</td><td>★★★</td><td>△</td><td>○</td><td><a href="#ch17-6">17</a></td></tr>
+    <tr><th colspan="9"><a href="#cheatsheet-10">特殊・上級</a></th></tr>
+    <tr><td><a href="#cheatsheet-c64">ジェイド・リザード</a></td><td>中立〜やや強気</td><td>クレジット 1.05</td><td class="r">1.05</td><td class="r">94.95</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch18-1">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c65">ビッグ・リザード</a></td><td>中立</td><td>クレジット 3.46</td><td class="r">3.46</td><td class="r">96.54</td><td>★★★</td><td>○</td><td>○</td><td><a href="#ch18-2">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c66">ツイステッド・シスター</a></td><td>中立〜やや弱気</td><td>クレジット 1.13</td><td class="r">1.13</td><td class="r">無制限</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch18-8">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c67">ブル・シーガル</a></td><td>強気</td><td>デビット 1.08</td><td class="r">3.92</td><td class="r">96.08</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch18-3">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c68">ベア・シーガル</a></td><td>弱気／ヘッジ</td><td>デビット 1.08</td><td class="r">3.92</td><td class="r">無制限</td><td>★★☆</td><td>○</td><td>○</td><td><a href="#ch18-3">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c69">ゼブラ</a></td><td>強気（株に近い動き）</td><td>デビット 5.83</td><td class="r">無制限</td><td class="r">5.83</td><td>★★★</td><td>△</td><td>◎</td><td><a href="#ch18-8">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c70">イベント前のストラドル買い</a></td><td>大きく動く</td><td>デビット 5.52</td><td class="r">無制限</td><td class="r">5.52</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch18-4">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c71">イベント前のアイアン・コンドル売り</a></td><td>動かない（IVクラッシュ狙い）</td><td>クレジット 1.45</td><td class="r">1.45</td><td class="r">3.55</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch18-4">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c72">イベント前のカレンダー</a></td><td>小動き＋期近IV低下</td><td>デビット 1.19</td><td class="r">限定（100付近）</td><td class="r">1.19（支払額）</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch18-4">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c73">0DTEアイアン・コンドル</a></td><td>当日は小動き</td><td>クレジット 5.84</td><td class="r">5.84</td><td class="r">14.16</td><td>★★★</td><td>×</td><td>◎</td><td><a href="#ch18-5">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c74">配当取りカバード・コール</a></td><td>中立（配当狙い）</td><td>クレジット 9.11</td><td class="r">−0.89＋配当（配当1.00なら0.11）</td><td class="r">90.89（株価0、配当を含まず）</td><td>★★★</td><td>×</td><td>○</td><td><a href="#ch18-6">18</a></td></tr>
+    <tr><td><a href="#cheatsheet-c75">デルタ・ヘッジ付きオプション買い</a></td><td>方向なし（RV＞IVに賭ける）</td><td>デビット 2.29</td><td class="r">RVとIVの差による</td><td class="r">支払額2.29＋コスト程度</td><td>★★★</td><td>○</td><td>◎</td><td><a href="#ch18-7">18</a></td></tr>
+  </tbody>
+</table></div>
+<p>「デビット／クレジット」はオプション部分の差し引きで、株や先物の代金は含みません（コンバージョン・リバーサルは現物の売買が別にあります）。「ほぼゼロ」は差し引きの受け払いが0.1未満のものです。最大損失の「なし」は、満期にどこで終わっても損益がプラスで一定になる裁定の形（ただし資金の金利を含まない）を表します。</p>
+
+<h2 id="cheatsheet-3">B-3　強気（7戦略）</h2>
+<p>上がると見るときの戦略です。買い（デビット）で建てるものは損失が限定され、売り（クレジット）で建てるものは「下がらなければよい」代わりに急落に弱くなります。レシオとラダーは「上がりすぎない」ことも条件です。</p>
+<div class="compare">
+<div id="cheatsheet-c01">
+  <h4><a href="#ch11-2">ロング・コール</a><br><small>Long Call</small></h4>
+  <div class="payoff" data-title="100コール買い" data-spot="100" data-range="85,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29}]'
+       data-caption="損失は2.29まで。102.29より上で利益。"></div>
+  <p>上昇に賭ける基本形。損失は払ったプレミアムまで。</p>
+  <p><small>相場観：強気　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c02">
+  <h4><a href="#ch11-6">ネイキッド・ショート・プット</a><br><small>Naked Short Put</small></h4>
+  <div class="payoff" data-title="95プット売り" data-spot="100" data-range="75,110"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57}]'
+       data-caption="95以上なら0.57が利益。急落で損失が大きい。"></div>
+  <p>下がらないと見てプレミアムを受け取る。急落すると大損。</p>
+  <p><small>相場観：強気〜中立　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c03">
+  <h4><a href="#ch11-7">キャッシュ・セキュアード・プット</a><br><small>Cash-Secured Put</small></h4>
+  <div class="payoff" data-title="97プット売り（代金は現金で用意）" data-spot="100" data-range="85,110"
+       data-legs='[{"type":"put","k":97,"qty":-1,"prem":1.06}]'
+       data-caption="形はネイキッド・プットと同じ。違いは現金の準備。"></div>
+  <p>買いたい価格でプットを売り、割当に備えて代金を現金で用意する。</p>
+  <p><small>相場観：強気〜中立　難易度 ★☆☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c04">
+  <h4><a href="#ch13-2">ブル・コール・スプレッド</a><br><small>Bull Call Spread</small></h4>
+  <div class="payoff" data-title="100買い／105売り" data-spot="100" data-range="90,115"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.64}]'
+       data-caption="105以上で最大利益。"></div>
+  <p>コール買いの費用を上のコール売りで下げる。利益も損失も限定。</p>
+  <p><small>相場観：やや強気　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c05">
+  <h4><a href="#ch13-4">ブル・プット・スプレッド</a><br><small>Bull Put Spread</small></h4>
+  <div class="payoff" data-title="95売り／90買い" data-spot="100" data-range="85,105"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"put","k":90,"qty":1,"prem":0.07}]'
+       data-caption="95以上で受取0.50が利益。"></div>
+  <p>下がらなければ受取が利益。下に保険を付けたプット売り。</p>
+  <p><small>相場観：やや強気〜中立　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c06">
+  <h4><a href="#ch13-8">コール・レシオ・スプレッド</a><br><small>Call Ratio Spread</small></h4>
+  <div class="payoff" data-title="100買い1枚／105売り2枚" data-spot="100" data-range="90,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-2,"prem":0.64}]'
+       data-caption="105ちょうどで最大。急騰で損失無制限。"></div>
+  <p>上の権利行使価格で止まれば最大利益。売りが1枚多い。</p>
+  <p><small>相場観：やや強気（上がりすぎない）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c07">
+  <h4><a href="#ch13-10">ブル・コール・ラダー</a><br><small>Bull Call Ladder</small></h4>
+  <div class="payoff" data-title="100買い／105売り／110売り" data-spot="100" data-range="90,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.64},{"type":"call","k":110,"qty":-1,"prem":0.12}]'
+       data-caption="105〜110で最大の台地。113.47より上で損失。"></div>
+  <p>ブル・コール・スプレッドにさらに上のコール売りを足す。急騰に弱い。</p>
+  <p><small>相場観：やや強気（上がりすぎない）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-4">B-4　弱気（6戦略）</h2>
+<p>下がると見るときの戦略です。強気の戦略をちょうど左右反転させた形になっています。コールの売りを含むものは、急騰で損失が無制限になりうる点に注意してください。</p>
+<div class="compare">
+<div id="cheatsheet-c08">
+  <h4><a href="#ch11-4">ロング・プット</a><br><small>Long Put</small></h4>
+  <div class="payoff" data-title="100プット買い" data-spot="100" data-range="80,115"
+       data-legs='[{"type":"put","k":100,"qty":1,"prem":2.29}]'
+       data-caption="損失は2.29まで。97.71より下で利益。"></div>
+  <p>下落に賭ける、または保有株の保険。損失はプレミアムまで。</p>
+  <p><small>相場観：弱気／保険　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c09">
+  <h4><a href="#ch11-5">ネイキッド・ショート・コール</a><br><small>Naked Short Call</small></h4>
+  <div class="payoff" data-title="105コール売り" data-spot="100" data-range="85,135"
+       data-legs='[{"type":"call","k":105,"qty":-1,"prem":0.65}]'
+       data-caption="105以下なら0.65が利益。急騰で損失無制限。"></div>
+  <p>上がらないと見て売る。急騰すると損失に上限がない。</p>
+  <p><small>相場観：弱気〜中立（上がらない）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c10">
+  <h4><a href="#ch13-3">ベア・プット・スプレッド</a><br><small>Bear Put Spread</small></h4>
+  <div class="payoff" data-title="100買い／95売り" data-spot="100" data-range="85,110"
+       data-legs='[{"type":"put","k":100,"qty":1,"prem":2.29},{"type":"put","k":95,"qty":-1,"prem":0.57}]'
+       data-caption="95以下で最大利益。"></div>
+  <p>プット買いの費用を下のプット売りで下げる。利益も損失も限定。</p>
+  <p><small>相場観：やや弱気　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c11">
+  <h4><a href="#ch13-5">ベア・コール・スプレッド</a><br><small>Bear Call Spread</small></h4>
+  <div class="payoff" data-title="105売り／110買い" data-spot="100" data-range="95,115"
+       data-legs='[{"type":"call","k":105,"qty":-1,"prem":0.64},{"type":"call","k":110,"qty":1,"prem":0.12}]'
+       data-caption="105以下で受取0.52が利益。"></div>
+  <p>上がらなければ受取が利益。上に保険を付けたコール売り。</p>
+  <p><small>相場観：やや弱気〜中立　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c12">
+  <h4><a href="#ch13-8">プット・レシオ・スプレッド</a><br><small>Put Ratio Spread</small></h4>
+  <div class="payoff" data-title="100買い1枚／95売り2枚" data-spot="100" data-range="80,110"
+       data-legs='[{"type":"put","k":100,"qty":1,"prem":2.29},{"type":"put","k":95,"qty":-2,"prem":0.57}]'
+       data-caption="95ちょうどで最大。暴落で損失が大きい。"></div>
+  <p>下の権利行使価格で止まれば最大利益。売りが1枚多い。</p>
+  <p><small>相場観：やや弱気（下がりすぎない）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c13">
+  <h4><a href="#ch13-10">ベア・プット・ラダー</a><br><small>Bear Put Ladder</small></h4>
+  <div class="payoff" data-title="100買い／95売り／90売り" data-spot="100" data-range="80,110"
+       data-legs='[{"type":"put","k":100,"qty":1,"prem":2.29},{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"put","k":90,"qty":-1,"prem":0.07}]'
+       data-caption="90〜95で最大の台地。86.65より下で損失。"></div>
+  <p>ベア・プット・スプレッドにさらに下のプット売りを足す。暴落に弱い。</p>
+  <p><small>相場観：やや弱気（下がりすぎない）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-5">B-5　中立（レンジ）（13戦略）</h2>
+<p>あまり動かないと見るときの戦略です。どれも時間の経過（セータ）を味方にします。外側に買い（保険）があるかどうかで、損失が限定か無制限かが分かれます。</p>
+<div class="compare">
+<div id="cheatsheet-c14">
+  <h4><a href="#ch14-3">ショート・ストラドル</a><br><small>Short Straddle</small></h4>
+  <div class="payoff" data-title="100コール売り＋100プット売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"put","k":100,"qty":-1,"prem":2.29}]'
+       data-caption="100ちょうどで受取4.58が最大。"></div>
+  <p>ATMを両方売る。どちらに急変しても大きな損失。</p>
+  <p><small>相場観：動かない　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c15">
+  <h4><a href="#ch14-5">ショート・ストラングル</a><br><small>Short Strangle</small></h4>
+  <div class="payoff" data-title="95プット売り＋105コール売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"call","k":105,"qty":-1,"prem":0.64}]'
+       data-caption="95〜105で受取1.21が利益。"></div>
+  <p>OTMを両方売り、範囲内に収まれば受取が利益。損失は無制限。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c16">
+  <h4><a href="#ch14-6">ショート・ガッツ</a><br><small>Short Guts</small></h4>
+  <div class="payoff" data-title="95コール売り＋105プット売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":95,"qty":-1,"prem":5.57},{"type":"put","k":105,"qty":-1,"prem":5.64}]'
+       data-caption="受取11.21のうち利益は最大1.21。"></div>
+  <p>ITMを両方売る。形はストラングル売りと同じで、早期割当の危険が加わる。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★★　日本 △　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c17">
+  <h4><a href="#ch15-2">ロング・コール・バタフライ</a><br><small>Long Call Butterfly</small></h4>
+  <div class="payoff" data-title="95／100×2／105（コール）" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"call","k":95,"qty":1,"prem":5.57},{"type":"call","k":100,"qty":-2,"prem":2.29},{"type":"call","k":105,"qty":1,"prem":0.65}]'
+       data-caption="100ちょうどで最大3.36。"></div>
+  <p>中央の権利行使価格ちょうどで最大利益。損失は支払額まで。</p>
+  <p><small>相場観：動かない（1点）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c18">
+  <h4><a href="#ch15-2">ロング・プット・バタフライ</a><br><small>Long Put Butterfly</small></h4>
+  <div class="payoff" data-title="95／100×2／105（プット）" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"put","k":100,"qty":-2,"prem":2.29},{"type":"put","k":105,"qty":1,"prem":5.65}]'
+       data-caption="コール版と同じ形。"></div>
+  <p>プットで作るバタフライ。同じ権利行使価格ならコール版と同じ損益。</p>
+  <p><small>相場観：動かない（1点）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c19">
+  <h4><a href="#ch15-4">アイアン・バタフライ</a><br><small>Iron Butterfly</small></h4>
+  <div class="payoff" data-title="95P買い／100P・100C売り／105C買い" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"put","k":100,"qty":-1,"prem":2.29},{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"call","k":105,"qty":1,"prem":0.65}]'
+       data-caption="受取3.36。形はロング・バタフライと同じ。"></div>
+  <p>ストラドル売りに外側の保険を付けた形。受取で建てる。</p>
+  <p><small>相場観：動かない（1点）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c20">
+  <h4><a href="#ch15-5">ロング・コール・コンドル</a><br><small>Long Call Condor</small></h4>
+  <div class="payoff" data-title="94／98／102／106（コール）" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"call","k":94,"qty":1,"prem":6.4},{"type":"call","k":98,"qty":-1,"prem":3.4},{"type":"call","k":102,"qty":-1,"prem":1.45},{"type":"call","k":106,"qty":1,"prem":0.48}]'
+       data-caption="98〜102で最大1.97。"></div>
+  <p>バタフライの頂上を平らにした形。当たりの範囲が広い。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c21">
+  <h4><a href="#ch15-5">ロング・プット・コンドル</a><br><small>Long Put Condor</small></h4>
+  <div class="payoff" data-title="94／98／102／106（プット）" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"put","k":94,"qty":1,"prem":0.4},{"type":"put","k":98,"qty":-1,"prem":1.4},{"type":"put","k":102,"qty":-1,"prem":3.45},{"type":"put","k":106,"qty":1,"prem":6.48}]'
+       data-caption="支払い2.03。コール版と同じ形。"></div>
+  <p>プットで作るコンドル。同じ権利行使価格ならコール版と同じ損益。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c22">
+  <h4><a href="#ch15-6">アイアン・コンドル</a><br><small>Iron Condor</small></h4>
+  <div class="payoff" data-title="89／94／106／111" data-spot="100" data-range="84,116"
+       data-legs='[{"type":"put","k":89,"qty":1,"prem":0.04},{"type":"put","k":94,"qty":-1,"prem":0.4},{"type":"call","k":106,"qty":-1,"prem":0.48},{"type":"call","k":111,"qty":1,"prem":0.08}]'
+       data-caption="94〜106で受取0.76が利益。"></div>
+  <p>ストラングル売りに外側の保険を付けた形。レンジ戦略の定番。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c23">
+  <h4><a href="#ch15-7">コリドー（通称）</a><br><small>Corridor</small></h4>
+  <div class="payoff" data-title="ストラングル型：94プット売り＋106コール売り" data-spot="100" data-range="82,118"
+       data-legs='[{"type":"put","k":94,"qty":-1,"prem":0.4},{"type":"call","k":106,"qty":-1,"prem":0.48}]'
+       data-caption="IC型ならアイアン・コンドルと同じ（日米◎）。"></div>
+  <p>正式名ではない通称。主にストラングル売り、ときにアイアン・コンドルを指す。</p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★☆〜★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c24">
+  <h4><a href="#ch15-8">ブロークン・ウィング・バタフライ</a><br><small>Broken Wing Butterfly</small></h4>
+  <div class="payoff" data-title="102／100×2／95（プット）" data-spot="100" data-range="88,110"
+       data-legs='[{"type":"put","k":102,"qty":1,"prem":3.45},{"type":"put","k":100,"qty":-2,"prem":2.29},{"type":"put","k":95,"qty":1,"prem":0.57}]'
+       data-caption="受取で建ち、上昇側は損失なし。下は広げた羽で限定。"></div>
+  <p>片方の羽を広げ、その側のリスクと引き換えに安く（受取で）建てる。</p>
+  <p><small>相場観：中立〜片方向　難易度 ★★★　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c25">
+  <h4><a href="#ch15-9">スキップ・ストライク・バタフライ</a><br><small>Skip-Strike Butterfly</small></h4>
+  <div class="payoff" data-title="100／105×2／115（コール）" data-spot="100" data-range="94,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-2,"prem":0.65},{"type":"call","k":115,"qty":1,"prem":0.02}]'
+       data-caption="105ちょうどで最大。飛ばした上側の損失が大きめ。"></div>
+  <p>羽を1本飛ばして安く建てるバタフライ。当たりをやや上に置く。</p>
+  <p><small>相場観：緩やかな方向性　難易度 ★★★　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c26">
+  <h4><a href="#ch15-10">クリスマス・ツリー</a><br><small>Call Christmas Tree</small></h4>
+  <div class="payoff" data-title="100×1／106×3売り／109×2" data-spot="100" data-range="94,116"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":106,"qty":-3,"prem":0.48},{"type":"call","k":109,"qty":2,"prem":0.17}]'
+       data-caption="106ちょうどで最大。6枚で手数料がかさむ。"></div>
+  <p>やや上に当たりを作るバタフライの変形。損失は支払額まで。</p>
+  <p><small>相場観：中立〜やや強気　難易度 ★★★　日本 △　米国 ○</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-6">B-6　大きく動く（12戦略）</h2>
+<p>方向は分からないが大きく動くと見るときの戦略です。動かないまま時間がたつと損をします。名前と相場観が逆に見えるもの（ベア・コール・ラダーなど）もあるので、図で確認してください。</p>
+<div class="compare">
+<div id="cheatsheet-c27">
+  <h4><a href="#ch14-2">ロング・ストラドル</a><br><small>Long Straddle</small></h4>
+  <div class="payoff" data-title="100コール買い＋100プット買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"put","k":100,"qty":1,"prem":2.29}]'
+       data-caption="95.42より下か104.58より上で利益。"></div>
+  <p>どちらかに大きく動けば利益。動かないと時間とともに損。</p>
+  <p><small>相場観：大きく動く　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c28">
+  <h4><a href="#ch14-4">ロング・ストラングル</a><br><small>Long Strangle</small></h4>
+  <div class="payoff" data-title="95プット買い＋105コール買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"call","k":105,"qty":1,"prem":0.64}]'
+       data-caption="支払1.21。ストラドルより安いが谷が広い。"></div>
+  <p>ストラドルより安い代わりに、もっと大きく動く必要がある。</p>
+  <p><small>相場観：非常に大きく動く　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c29">
+  <h4><a href="#ch14-6">ロング・ガッツ</a><br><small>Long Guts</small></h4>
+  <div class="payoff" data-title="95コール買い＋105プット買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":95,"qty":1,"prem":5.57},{"type":"put","k":105,"qty":1,"prem":5.64}]'
+       data-caption="支払11.21のうち10は必ず戻る。"></div>
+  <p>ITMを両方買う。形はストラングル買いと同じで、資金が多く要る。</p>
+  <p><small>相場観：大きく動く　難易度 ★★☆　日本 △　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c30">
+  <h4><a href="#ch14-7">ストリップ</a><br><small>Strip</small></h4>
+  <div class="payoff" data-title="100プット買い×2＋100コール買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"put","k":100,"qty":2,"prem":2.29},{"type":"call","k":100,"qty":1,"prem":2.29}]'
+       data-caption="下落側は傾き2で利益が増える。"></div>
+  <p>ストラドルのプットを2枚にして、下落側を厚くする。</p>
+  <p><small>相場観：大きく動く（下寄り）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c31">
+  <h4><a href="#ch14-8">ストラップ</a><br><small>Strap</small></h4>
+  <div class="payoff" data-title="100コール買い×2＋100プット買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":100,"qty":2,"prem":2.29},{"type":"put","k":100,"qty":1,"prem":2.29}]'
+       data-caption="上昇側は傾き2で利益が増える。"></div>
+  <p>ストラドルのコールを2枚にして、上昇側を厚くする。</p>
+  <p><small>相場観：大きく動く（上寄り）　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c32">
+  <h4><a href="#ch13-9">コール・バックスプレッド</a><br><small>Call Backspread</small></h4>
+  <div class="payoff" data-title="100売り1枚／105買い2枚" data-spot="100" data-range="90,120"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"call","k":105,"qty":2,"prem":0.64}]'
+       data-caption="105ちょうどで最大損失。下落しても受取1.01が残る。"></div>
+  <p>急騰で利益無制限。コール・レシオの売買を逆にした形。</p>
+  <p><small>相場観：大きく上昇　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c33">
+  <h4><a href="#ch13-9">プット・バックスプレッド</a><br><small>Put Backspread</small></h4>
+  <div class="payoff" data-title="100売り1枚／95買い2枚" data-spot="100" data-range="80,110"
+       data-legs='[{"type":"put","k":100,"qty":-1,"prem":2.29},{"type":"put","k":95,"qty":2,"prem":0.57}]'
+       data-caption="95ちょうどで最大損失。上昇しても受取1.15が残る。"></div>
+  <p>急落で大きな利益。プット・レシオの売買を逆にした形。</p>
+  <p><small>相場観：大きく下落　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c34">
+  <h4><a href="#ch13-10">ベア・コール・ラダー</a><br><small>Bear Call Ladder</small></h4>
+  <div class="payoff" data-title="100売り／105買い／110買い" data-spot="100" data-range="90,120"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"call","k":105,"qty":1,"prem":0.64},{"type":"call","k":110,"qty":1,"prem":0.12}]'
+       data-caption="113.47より上で利益無制限。"></div>
+  <p>ブル・コール・ラダーの売買を逆にした形。名前と逆に急騰で利益。</p>
+  <p><small>相場観：大きく上昇（名前と逆）　難易度 ★★★　日本 ◎＊　米国 ◎＊</small></p>
+</div>
+<div id="cheatsheet-c35">
+  <h4><a href="#ch13-10">ブル・プット・ラダー</a><br><small>Bull Put Ladder</small></h4>
+  <div class="payoff" data-title="100売り／95買い／90買い" data-spot="100" data-range="80,110"
+       data-legs='[{"type":"put","k":100,"qty":-1,"prem":2.29},{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"put","k":90,"qty":1,"prem":0.07}]'
+       data-caption="86.65より下で利益が増える。"></div>
+  <p>ベア・プット・ラダーの売買を逆にした形。名前と逆に急落で利益。</p>
+  <p><small>相場観：大きく下落（名前と逆）　難易度 ★★★　日本 ◎＊　米国 ◎＊</small></p>
+</div>
+<div id="cheatsheet-c36">
+  <h4><a href="#ch15-3">ショート・バタフライ</a><br><small>Short Butterfly</small></h4>
+  <div class="payoff" data-title="95／100×2／105（コール売り）" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"call","k":95,"qty":-1,"prem":5.57},{"type":"call","k":100,"qty":2,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.65}]'
+       data-caption="95以下か105以上で受取1.64。"></div>
+  <p>バタフライの売り。どちらかに動けば受取が利益（小さい）。</p>
+  <p><small>相場観：動く　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c37">
+  <h4><a href="#ch15-4">リバース・アイアン・バタフライ</a><br><small>Reverse Iron Butterfly</small></h4>
+  <div class="payoff" data-title="95P売り／100P・100C買い／105C売り" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"put","k":100,"qty":1,"prem":2.29},{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.65}]'
+       data-caption="支払3.36。利益は1.64で頭打ち。"></div>
+  <p>アイアン・バタフライの売買を逆にした形。上限付きのストラドル買い。</p>
+  <p><small>相場観：大きく動く　難易度 ★★☆　日本 ◎＊　米国 ◎＊</small></p>
+</div>
+<div id="cheatsheet-c38">
+  <h4><a href="#ch18-8">リバース・アイアン・コンドル</a><br><small>Reverse Iron Condor</small></h4>
+  <div class="payoff" data-title="89P売り／94P買い／106C買い／111C売り" data-spot="100" data-range="84,116"
+       data-legs='[{"type":"put","k":89,"qty":-1,"prem":0.04},{"type":"put","k":94,"qty":1,"prem":0.4},{"type":"call","k":106,"qty":1,"prem":0.48},{"type":"call","k":111,"qty":-1,"prem":0.08}]'
+       data-caption="支払0.76。利益は4.24で頭打ち。"></div>
+  <p>アイアン・コンドルの売買を逆にした形。上限付きのストラングル買い。</p>
+  <p><small>相場観：大きく動く　難易度 ★★☆　日本 ◎　米国 ◎</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-7">B-7　原資産と組み合わせる（12戦略）</h2>
+<p>株・ETF・先物を持ったまま（または持たずに）オプションを組み合わせる戦略です。損益図は株（原資産）100株分を1株あたりで示し、原資産の損益を含みます。日本では日経225先物で原資産を代用します。</p>
+<div class="compare">
+<div id="cheatsheet-c39">
+  <h4><a href="#ch12-1">カバード・コール</a><br><small>Covered Call</small></h4>
+  <div class="payoff" data-title="株100＋103コール売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"call","k":103,"qty":-1,"prem":1.12}]'
+       data-caption="上値は103まで。下落の損失はほぼ株と同じ。"></div>
+  <p>保有株にコールを売って収入を得る。上値は売った権利行使価格まで。</p>
+  <p><small>相場観：中立〜やや強気　難易度 ★☆☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c40">
+  <h4><a href="#ch12-2">プロテクティブ・プット</a><br><small>Protective Put</small></h4>
+  <div class="payoff" data-title="株100＋95プット買い" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":95,"qty":1,"prem":0.57}]'
+       data-caption="どこまで下がっても損失は5.57まで。"></div>
+  <p>保有株にプットの保険を掛ける。上昇の利益は残る。</p>
+  <p><small>相場観：強気（下落に備える）　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c41">
+  <h4><a href="#ch12-2">マリード・プット</a><br><small>Married Put</small></h4>
+  <div class="payoff" data-title="株100＋100プット買い（同時に）" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":100,"qty":1,"prem":2.29}]'
+       data-caption="ATMの保険なので損失は2.29まで（形はコール買い）。"></div>
+  <p>株とプットを同時に買う。形はプロテクティブ・プットと同じ。</p>
+  <p><small>相場観：強気（下落に備える）　難易度 ★☆☆　日本 ◎　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c42">
+  <h4><a href="#ch12-3">ゼロコスト・カラー</a><br><small>Zero-Cost Collar</small></h4>
+  <div class="payoff" data-title="株100＋95P買い＋105C売り" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"call","k":105,"qty":-1,"prem":0.64}]'
+       data-caption="95〜105の外側で損益が止まる。"></div>
+  <p>プット買いの費用をコール売りでほぼ相殺する保険。</p>
+  <p><small>相場観：中立〜やや強気（保有資産を守る）　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c43">
+  <h4><a href="#ch12-3">クレジット・カラー</a><br><small>Credit Collar</small></h4>
+  <div class="payoff" data-title="株100＋95P買い＋102C売り" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"call","k":102,"qty":-1,"prem":1.45}]'
+       data-caption="受取が残る代わりに上値は102まで。"></div>
+  <p>コールを近くで売り、保険を掛けても受取が残る。上値は狭い。</p>
+  <p><small>相場観：中立〜やや強気（保有資産を守る）　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c44">
+  <h4><a href="#ch12-3">デビット・カラー</a><br><small>Debit Collar</small></h4>
+  <div class="payoff" data-title="株100＋95P買い＋108C売り" data-spot="100" data-range="88,112"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"call","k":108,"qty":-1,"prem":0.25}]'
+       data-caption="上値を108まで残し、費用0.32を払う。"></div>
+  <p>コールを遠くで売って上値を残す代わりに、費用を払う。</p>
+  <p><small>相場観：中立〜やや強気（保有資産を守る）　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c45">
+  <h4><a href="#ch12-4">3本足のフェンス</a><br><small>Three-Way Collar</small></h4>
+  <div class="payoff" data-title="株100＋98P買い＋93P売り＋103C売り" data-spot="100" data-range="80,115"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":98,"qty":1,"prem":1.4},{"type":"put","k":93,"qty":-1,"prem":0.27},{"type":"call","k":103,"qty":-1,"prem":1.12}]'
+       data-caption="93〜98だけ守られ、93より下は無防備。"></div>
+  <p>カラーのさらに下でプットを売り費用を下げる。スリーウェイ・カラーとも。</p>
+  <p><small>相場観：中立〜やや強気（暴落なし）　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c46">
+  <h4><a href="#ch12-4">ブル・フェンス（定義A）</a><br><small>Bull Fence</small></h4>
+  <div class="payoff" data-title="原資産なし：95P売り＋105C買い" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"call","k":105,"qty":1,"prem":0.64}]'
+       data-caption="急落で損失が大きい。"></div>
+  <p>原資産を持たないコール買い＋プット売り。リスク・リバーサルと同じ形。</p>
+  <p><small>相場観：強気　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c47">
+  <h4><a href="#ch12-4">ベア・フェンス（定義A）</a><br><small>Bear Fence</small></h4>
+  <div class="payoff" data-title="原資産なし：95P買い＋105C売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"put","k":95,"qty":1,"prem":0.57},{"type":"call","k":105,"qty":-1,"prem":0.64}]'
+       data-caption="急騰で損失無制限。"></div>
+  <p>原資産を持たないプット買い＋コール売り。定義は資料で異なる。</p>
+  <p><small>相場観：弱気　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c48">
+  <h4><a href="#ch12-5">短期ローテーション・カラー</a><br><small>Daily Collar（通称）</small></h4>
+  <div class="payoff" data-title="株100＋97.5P買い＋101C売り（残り7日）" data-spot="100" data-range="94,106" data-dte="7"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":97.5,"qty":1,"prem":0.27},{"type":"call","k":101,"qty":-1,"prem":0.68}]'
+       data-caption="1週の損益。これを毎週組み直す。"></div>
+  <p>ごく短い満期のカラーを毎週ロールする（通称デイリー・カラー）。</p>
+  <p><small>相場観：中立（静かな相場）　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c49">
+  <h4><a href="#ch12-6">オプション・ホイール</a><br><small>The Wheel</small></h4>
+  <div class="payoff" data-title="段階③：取得株97＋98C売り" data-spot="95" data-range="85,110"
+       data-legs='[{"type":"stock","qty":1,"price":97},{"type":"call","k":98,"qty":-1,"prem":1.02}]'
+       data-caption="①97P売り（1.06）→割当→③。1周で3.08。"></div>
+  <p>プット売り→割当で株を取得→コール売り→売却、を繰り返す。</p>
+  <p><small>相場観：中立〜やや強気　難易度 ★★☆　日本 ×　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c50">
+  <h4><a href="#ch12-7">カバード・ストラングル</a><br><small>Covered Strangle</small></h4>
+  <div class="payoff" data-title="株100＋103C売り＋95P売り" data-spot="100" data-range="80,115"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"call","k":103,"qty":-1,"prem":1.12},{"type":"put","k":95,"qty":-1,"prem":0.57}]'
+       data-caption="95より下では株の約2倍の速さで損失。"></div>
+  <p>カバード・コールにプット売りを足す。下落時の損失は約2倍。</p>
+  <p><small>相場観：中立〜やや強気　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-8">B-8　時間差（カレンダー系）（6戦略）</h2>
+<p>満期の異なるオプションを組み合わせる戦略です。太線は期近の満期日時点の損益で、期先は理論価格（IV 20%）で評価しています。そのため最大利益・最大損失は自動表示されず、第16章の例の値を下に添えています。</p>
+<div class="compare">
+<div id="cheatsheet-c51">
+  <h4><a href="#ch16-2">ロング・カレンダー</a><br><small>Long Calendar Spread</small></h4>
+  <div class="payoff" data-title="100C 30日売り／60日買い" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29,"dte":30},{"type":"call","k":100,"qty":1,"prem":3.23,"dte":60}]'
+       data-caption="期近の満期に100付近で最大。"></div>
+  <p>期近を売り期先を買う。権利行使価格の近くにとどまると利益。</p>
+  <p><small>最大利益 約1.35（100付近）　／　最大損失 0.94（支払額）（第16章の例）</small></p>
+  <p><small>相場観：中立（IV上昇は追い風）　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c52">
+  <h4><a href="#ch16-3">ショート・カレンダー</a><br><small>Short Calendar Spread</small></h4>
+  <div class="payoff" data-title="100C 30日買い／60日売り" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29,"dte":30},{"type":"call","k":100,"qty":-1,"prem":3.23,"dte":60}]'
+       data-caption="大きく動けば受取0.94に近づく。"></div>
+  <p>カレンダーの逆。大きく動くか、IVが下がると有利。</p>
+  <p><small>最大利益 0.94（受取額）　／　最大損失 約1.35（IV上昇で拡大）（第16章の例）</small></p>
+  <p><small>相場観：大きく動く（IV低下も追い風）　難易度 ★★★　日本 △　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c53">
+  <h4><a href="#ch16-4">ダイアゴナル・スプレッド</a><br><small>Diagonal Spread</small></h4>
+  <div class="payoff" data-title="60日100C買い／30日105C売り" data-spot="100" data-range="80,125"
+       data-legs='[{"type":"call","k":105,"qty":-1,"prem":0.65,"dte":30},{"type":"call","k":100,"qty":1,"prem":3.23,"dte":60}]'
+       data-caption="期近の満期に105付近で最大。"></div>
+  <p>権利行使価格と満期の両方をずらす。方向性を持つカレンダー。</p>
+  <p><small>最大利益 約3.06（105付近）　／　最大損失 2.58（支払額）（第16章の例）</small></p>
+  <p><small>相場観：やや強気（プットならやや弱気）　難易度 ★★☆　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c54">
+  <h4><a href="#ch16-5">ダブル・カレンダー</a><br><small>Double Calendar</small></h4>
+  <div class="payoff" data-title="97.5Pと102.5Cのカレンダー" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"put","k":97.5,"qty":-1,"prem":1.23,"dte":30},{"type":"put","k":97.5,"qty":1,"prem":2.1,"dte":60},{"type":"call","k":102.5,"qty":-1,"prem":1.28,"dte":30},{"type":"call","k":102.5,"qty":1,"prem":2.18,"dte":60}]'
+       data-caption="山が2つになり利益の範囲が広い。"></div>
+  <p>プットとコールのカレンダーを並べ、利益の範囲を広げる。</p>
+  <p><small>最大利益 約1.18　／　最大損失 1.77（支払額）（第16章の例）</small></p>
+  <p><small>相場観：中立（範囲内・IV上昇）　難易度 ★★★　日本 △　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c55">
+  <h4><a href="#ch16-5">ダブル・ダイアゴナル</a><br><small>Double Diagonal</small></h4>
+  <div class="payoff" data-title="30日97.5P・102.5C売り／60日95P・105C買い" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"put","k":97.5,"qty":-1,"prem":1.23,"dte":30},{"type":"put","k":95,"qty":1,"prem":1.26,"dte":60},{"type":"call","k":102.5,"qty":-1,"prem":1.28,"dte":30},{"type":"call","k":105,"qty":1,"prem":1.4,"dte":60}]'
+       data-caption="時間差のアイアン・コンドル。"></div>
+  <p>期近を内側で売り、期先を外側で買う。</p>
+  <p><small>最大利益 約1.42　／　最大損失 2.65（Kの差＋支払額）（第16章の例）</small></p>
+  <p><small>相場観：中立（範囲内）　難易度 ★★★　日本 △　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c56">
+  <h4><a href="#ch16-6">プアマンズ・カバード・コール</a><br><small>Poor Man's Covered Call</small></h4>
+  <div class="payoff" data-title="365日80C買い／30日105C売り" data-spot="100" data-range="70,140"
+       data-legs='[{"type":"call","k":80,"qty":1,"prem":21.19,"dte":365},{"type":"call","k":105,"qty":-1,"prem":0.65,"dte":30}]'
+       data-caption="株100の代わりにLEAPSを持つ。"></div>
+  <p>株の代わりにディープITMの長期コールを持つカバード・コール。</p>
+  <p><small>最大利益 約5.08（105付近）　／　最大損失 20.54（支払額）（第16章の例）</small></p>
+  <p><small>相場観：やや強気　難易度 ★★☆　日本 △　米国 ◎</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-9">B-9　合成・裁定（7戦略）</h2>
+<p>コールとプットを組み合わせて原資産と同じ損益を作ったり、そのずれを取ったりする戦略です。裁定の損益図は「どこでもほぼ一定」になるのが特徴です。金利を含む例は第17章と同じく金利4%で計算しています。</p>
+<div class="compare">
+<div id="cheatsheet-c57">
+  <h4><a href="#ch17-2">合成ロング</a><br><small>Synthetic Long</small></h4>
+  <div class="payoff" data-title="100C買い＋100P売り" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"put","k":100,"qty":-1,"prem":2.29}]'
+       data-caption="株を100で買ったのと同じ直線。"></div>
+  <p>同じ権利行使価格のコール買い＋プット売りで、原資産の買いと同じ損益。</p>
+  <p><small>相場観：強気　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c58">
+  <h4><a href="#ch17-2">合成ショート</a><br><small>Synthetic Short</small></h4>
+  <div class="payoff" data-title="100C売り＋100P買い" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"put","k":100,"qty":1,"prem":2.29}]'
+       data-caption="株を100で空売りしたのと同じ直線。"></div>
+  <p>同じ権利行使価格のコール売り＋プット買いで、原資産の売りと同じ損益。</p>
+  <p><small>相場観：弱気　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c59">
+  <h4><a href="#ch17-3">リスク・リバーサル</a><br><small>Risk Reversal</small></h4>
+  <div class="payoff" data-title="95P売り＋105C買い（スキューあり）" data-spot="100" data-range="80,120"
+       data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.8,"iv":0.23},{"type":"call","k":105,"qty":1,"prem":0.49,"iv":0.18}]'
+       data-caption="IVはプット23%・コール18%（第17章の例）。"></div>
+  <p>OTMプット売りでOTMコール買いの費用をまかなう。</p>
+  <p><small>相場観：強気（逆向きなら弱気）　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c60">
+  <h4><a href="#ch17-4">コンバージョン</a><br><small>Conversion</small></h4>
+  <div class="payoff" data-title="株買い＋100P買い＋100C売り" data-spot="100" data-range="85,115" data-r="0.04"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":100,"qty":1,"prem":2.12},{"type":"call","k":100,"qty":-1,"prem":2.45}]'
+       data-caption="どこでも＋0.33（＝株を買う資金の金利）。"></div>
+  <p>現物買い＋合成ショート。価格のずれを取る裁定。</p>
+  <p><small>相場観：裁定（方向なし）　難易度 ★★★　日本 △　米国 △</small></p>
+</div>
+<div id="cheatsheet-c61">
+  <h4><a href="#ch17-4">リバーサル</a><br><small>Reversal</small></h4>
+  <div class="payoff" data-title="株売り＋100P売り＋100C買い" data-spot="100" data-range="85,115" data-r="0.04"
+       data-legs='[{"type":"stock","qty":-1,"price":100},{"type":"put","k":100,"qty":-1,"prem":2.12},{"type":"call","k":100,"qty":1,"prem":2.45}]'
+       data-caption="どこでも−0.33（空売り代金の金利で相殺）。"></div>
+  <p>現物売り＋合成ロング。コンバージョンの逆。</p>
+  <p><small>相場観：裁定（方向なし）　難易度 ★★★　日本 △　米国 △</small></p>
+</div>
+<div id="cheatsheet-c62">
+  <h4><a href="#ch17-5">ボックス・スプレッド</a><br><small>Box Spread</small></h4>
+  <div class="payoff" data-title="90／110のボックス買い（1年）" data-spot="100" data-range="70,130" data-dte="365" data-r="0.04"
+       data-legs='[{"type":"call","k":90,"qty":1,"prem":16.06},{"type":"call","k":110,"qty":-1,"prem":5.66},{"type":"put","k":110,"qty":1,"prem":11.35},{"type":"put","k":90,"qty":-1,"prem":2.53}]'
+       data-caption="満期は必ず20。差の0.78が1年分の金利。"></div>
+  <p>満期に必ず権利行使価格の差になる組み合わせ。実質は資金の貸し借り。</p>
+  <p><small>相場観：裁定・資金調達　難易度 ★★★　日本 △　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c63">
+  <h4><a href="#ch17-6">ジェリー・ロール</a><br><small>Jelly Roll</small></h4>
+  <div class="payoff" data-title="30日の合成ショート＋120日の合成ロング" data-spot="100" data-range="80,120" data-r="0.04"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.45,"dte":30},{"type":"put","k":100,"qty":1,"prem":2.12,"dte":30},{"type":"call","k":100,"qty":1,"prem":5.19,"dte":120},{"type":"put","k":100,"qty":-1,"prem":3.96,"dte":120}]'
+       data-caption="ほぼ水平。差は90日分の金利。"></div>
+  <p>期近と期先の合成ポジションを入れ替える。満期の乗り換えに使う。</p>
+  <p><small>最大利益 ほぼ一定　／　最大損失 ほぼ一定（配当・割当で変動）（第17章の例）</small></p>
+  <p><small>相場観：裁定・満期の乗り換え　難易度 ★★★　日本 △　米国 ○</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-10">B-10　特殊・上級（12戦略）</h2>
+<p>第18章の戦略です。既出の部品を組み合わせた名前付きの戦略と、決算・0DTE・配当・ボラティリティのように「使う場面」で名前が付く戦略があります。場面の戦略は第18章の例の条件（IVや残り日数）で描いています。</p>
+<div class="compare">
+<div id="cheatsheet-c64">
+  <h4><a href="#ch18-1">ジェイド・リザード</a><br><small>Jade Lizard</small></h4>
+  <div class="payoff" data-title="96P売り＋103/104Cスプレッド売り" data-spot="100" data-range="85,112"
+       data-legs='[{"type":"put","k":96,"qty":-1,"prem":0.79},{"type":"call","k":103,"qty":-1,"prem":1.12},{"type":"call","k":104,"qty":1,"prem":0.86}]'
+       data-caption="受取1.05≧幅1なので上昇側の損失なし。"></div>
+  <p>プット売り＋コール・スプレッド売り。下落側の損失は大きい。</p>
+  <p><small>相場観：中立〜やや強気　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c65">
+  <h4><a href="#ch18-2">ビッグ・リザード</a><br><small>Big Lizard</small></h4>
+  <div class="payoff" data-title="100ストラドル売り＋103C買い" data-spot="100" data-range="85,112"
+       data-legs='[{"type":"put","k":100,"qty":-1,"prem":2.29},{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"call","k":103,"qty":1,"prem":1.12}]'
+       data-caption="受取3.46≧幅3なので上昇側の損失なし。"></div>
+  <p>ストラドル売りにOTMコール買いを足す。受取が大きく、下落側が大。</p>
+  <p><small>相場観：中立　難易度 ★★★　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c66">
+  <h4><a href="#ch18-8">ツイステッド・シスター</a><br><small>Twisted Sister</small></h4>
+  <div class="payoff" data-title="104C売り＋97/96Pスプレッド売り" data-spot="100" data-range="88,115"
+       data-legs='[{"type":"call","k":104,"qty":-1,"prem":0.86},{"type":"put","k":97,"qty":-1,"prem":1.06},{"type":"put","k":96,"qty":1,"prem":0.79}]'
+       data-caption="下落しても最低＋0.13。上昇で損失無制限。"></div>
+  <p>ジェイド・リザードの上下反転（リバース・ジェイド・リザード）。</p>
+  <p><small>相場観：中立〜やや弱気　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c67">
+  <h4><a href="#ch18-3">ブル・シーガル</a><br><small>Bull Seagull</small></h4>
+  <div class="payoff" data-title="100/105Cスプレッド買い＋95P売り" data-spot="100" data-range="80,115"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.64},{"type":"put","k":95,"qty":-1,"prem":0.57}]'
+       data-caption="支払1.08。95より下は損失が大きい。"></div>
+  <p>コール・スプレッド買いの費用をプット売りで下げる。</p>
+  <p><small>相場観：強気　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c68">
+  <h4><a href="#ch18-3">ベア・シーガル</a><br><small>Bear Seagull</small></h4>
+  <div class="payoff" data-title="100/95Pスプレッド買い＋105C売り" data-spot="100" data-range="85,120"
+       data-legs='[{"type":"put","k":100,"qty":1,"prem":2.29},{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"call","k":105,"qty":-1,"prem":0.64}]'
+       data-caption="支払1.08。105より上は損失無制限（株保有なら限定的）。"></div>
+  <p>プット・スプレッド買いの費用をコール売りで下げる。</p>
+  <p><small>相場観：弱気／ヘッジ　難易度 ★★☆　日本 ○　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c69">
+  <h4><a href="#ch18-8">ゼブラ</a><br><small>ZEBRA</small></h4>
+  <div class="payoff" data-title="97C買い×2＋100C売り" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":97,"qty":2,"prem":4.06},{"type":"call","k":100,"qty":-1,"prem":2.29}]'
+       data-caption="100より上は株と同じ傾き。損失は支払5.83まで。"></div>
+  <p>ITMコール2枚買い＋ATMコール1枚売り。時間的価値がほぼ打ち消し合う。</p>
+  <p><small>相場観：強気（株に近い動き）　難易度 ★★★　日本 △　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c70">
+  <h4><a href="#ch18-4">イベント前のストラドル買い</a><br><small>Earnings Straddle</small></h4>
+  <div class="payoff" data-title="決算前（IV 50%、残り7日）の100ストラドル" data-spot="100" data-range="80,120" data-dte="7" data-iv="0.25"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.76},{"type":"put","k":100,"qty":1,"prem":2.76}]'
+       data-caption="IVクラッシュで、動かないと翌日に−2.96。"></div>
+  <p>決算の大きな動きに賭ける。予想ほど動かないとIV低下で大きく損をする。</p>
+  <p><small>相場観：大きく動く　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c71">
+  <h4><a href="#ch18-4">イベント前のアイアン・コンドル売り</a><br><small>Earnings Iron Condor</small></h4>
+  <div class="payoff" data-title="決算前の90／95／105／110" data-spot="100" data-range="80,120" data-dte="7" data-iv="0.25"
+       data-legs='[{"type":"put","k":90,"qty":1,"prem":0.18},{"type":"put","k":95,"qty":-1,"prem":0.9},{"type":"call","k":105,"qty":-1,"prem":1.01},{"type":"call","k":110,"qty":1,"prem":0.28}]'
+       data-caption="動かなければIV低下で翌日＋1.29。"></div>
+  <p>発表後のIV低下を狙う売り。予想外の大きな動きで損失。</p>
+  <p><small>相場観：動かない（IVクラッシュ狙い）　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c72">
+  <h4><a href="#ch18-4">イベント前のカレンダー</a><br><small>Earnings Calendar</small></h4>
+  <div class="payoff" data-title="期近7日100C売り／期先35日100C買い" data-spot="100" data-range="80,120" data-iv="0.25"
+       data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.76,"dte":7},{"type":"call","k":100,"qty":1,"prem":3.95,"dte":35}]'
+       data-caption="動かなければ発表翌日に＋0.57。"></div>
+  <p>期近の高いIVを売り、発表後の期近IVの急低下を狙う。</p>
+  <p><small>最大利益 限定（100付近）　／　最大損失 1.19（支払額）（第18章の例）</small></p>
+  <p><small>相場観：小動き＋期近IV低下　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c73">
+  <h4><a href="#ch18-5">0DTEアイアン・コンドル</a><br><small>0DTE Iron Condor</small></h4>
+  <div class="payoff" data-title="SPX 6,000の当日満期（単位はポイント）" data-spot="6000" data-range="5900,6100" data-dte="1" data-iv="0.15"
+       data-legs='[{"type":"put","k":5940,"qty":1,"prem":2.23},{"type":"put","k":5960,"qty":-1,"prem":5.15},{"type":"call","k":6040,"qty":-1,"prem":5.23},{"type":"call","k":6060,"qty":1,"prem":2.31}]'
+       data-caption="±0.67%で売った権利行使価格に届く。"></div>
+  <p>当日満期のアイアン・コンドル。わずかな動きで損益が大きく変わる。</p>
+  <p><small>相場観：当日は小動き　難易度 ★★★　日本 ×　米国 ◎</small></p>
+</div>
+<div id="cheatsheet-c74">
+  <h4><a href="#ch18-6">配当取りカバード・コール</a><br><small>Dividend Covered Call</small></h4>
+  <div class="payoff" data-title="株100＋90C売り（配当を含まない）" data-spot="100" data-range="75,110"
+       data-legs='[{"type":"stock","qty":1,"price":100},{"type":"call","k":90,"qty":-1,"prem":9.11}]'
+       data-caption="配当1.00を受け取れて初めて＋0.11。"></div>
+  <p>権利落ち前にITMコールを売り、割り当てられなければ配当を得る。</p>
+  <p><small>相場観：中立（配当狙い）　難易度 ★★★　日本 ×　米国 ○</small></p>
+</div>
+<div id="cheatsheet-c75">
+  <h4><a href="#ch18-7">デルタ・ヘッジ付きオプション買い</a><br><small>Volatility Arbitrage</small></h4>
+  <div class="payoff" data-title="100C買い＋株0.51売り（建てた時点）" data-spot="100" data-range="85,115"
+       data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"stock","qty":-0.51,"price":100}]'
+       data-caption="実際はデルタが変わるたびに株数を調整する。"></div>
+  <p>オプション買いのデルタを株で打ち消し、実現ボラとIVの差を取る。</p>
+  <p><small>相場観：方向なし（RV＞IVに賭ける）　難易度 ★★★　日本 ○　米国 ◎</small></p>
+</div>
+</div>
+
+<h2 id="cheatsheet-11">B-11　見比べるときのヒント</h2>
+<ul class="summary-list">
+  <li>まず損益図の<b>左右の端</b>を見ます。端が下に伸び続ける側に、損失の天井がありません。</li>
+  <li>同じ形でも組み方が違う戦略があります（ロング・バタフライとアイアン・バタフライ、リスク・リバーサルとブル・フェンス（定義A）、ストラングルとガッツなど）。違いは受け払いの向き・証拠金・流動性です。</li>
+  <li>名前と相場観が逆に見える戦略（ベア・コール・ラダー、ブル・プット・ラダー）は、名前ではなく図で確認します。</li>
+  <li>候補を2〜3に絞ったら、<a href="#ch10">第10章</a>の選び方の手順と、<a href="#ch19">第19章</a>の実行可否の表で、自分の口座で組めるかを確かめます。</li>
+</ul>
