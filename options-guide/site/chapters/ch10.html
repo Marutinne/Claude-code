@@ -1,0 +1,729 @@
+<header class="chapter-head">
+  <p class="eyebrow">第3部　オプション戦略</p>
+  <h1>第10章　戦略の地図 ― 迷わないための分類法 <span class="lv">Lv.2</span></h1>
+  <p class="lead">オプションの戦略は、本書で扱うものだけでも約60あります。名前を1つずつ覚えようとすると必ず迷子になります。この章では、すべての戦略を「相場観」と「ボラティリティ観」の2本の軸で1枚の地図に配置し、目的・お金の流れ・リスクの大きさで仕分けます。第11章以降の各戦略は、この地図のどこかにある「地名」として読んでください。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>相場観の5分類（強気／弱気／中立（レンジ）／大きく動く／動かない）と、目的の4分類（収入／保険／投機／裁定）</li>
+  <li>横軸を相場観、縦軸をボラティリティ観にした「戦略マップ」の読み方と、全戦略の位置</li>
+  <li>デビット戦略とクレジット戦略、リスク限定型とリスク無限定型の見分け方</li>
+  <li>「ボラティリティを買う・売る」（ロング・ボラ／ショート・ボラ）という考え方</li>
+  <li>クレジット・カラー、ベア・フェンス、デイリー・カラー、オプション・ホイール、コリドーの位置づけ</li>
+  <li>同じ戦略に複数の名前がある問題と、その対応表</li>
+  <li>相場観→ボラ観→リスク許容度の順に戦略を絞り込む手順と、全戦略の一覧表</li>
+</ul></div>
+
+<h2 id="ch10-1">10-1　なぜ「地図」が必要なのか</h2>
+<p>オプションの戦略名は、バタフライ、コンドル、ストラングル、ジェイド・リザードと、まるで動物図鑑です。しかも同じものに別の名前があったり、名前に「ベア（弱気）」と付いているのに上昇で大もうけする戦略があったりします。名前から中身を推測するのは危険です。</p>
+<p>ところが、中身を見ると、どの戦略も<b>たった4つの部品</b>（コールの買い・売り、プットの買い・売り）と、ときどき原資産（株や先物）の組み合わせにすぎません（<a href="#ch03">第3章</a>）。そして、どの戦略も次の3つの問いへの「答え方」の違いとして整理できます。</p>
+<ol>
+  <li><b>方向</b>：原資産は上がると思うか、下がると思うか、どちらでもないか（相場観）</li>
+  <li><b>変動の大きさ</b>：大きく動くと思うか、あまり動かないと思うか。オプションの値段（IV）は高いか安いか（ボラティリティ観）</li>
+  <li><b>リスクの取り方</b>：損失に上限を付けたいか。お金を払って始めるか、受け取って始めるか</li>
+</ol>
+<p>この3つの問いに答えれば、候補は数個に絞れます。地図とは、この3つの問いの答えを<b>場所</b>として描いたものです。</p>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>戦略を選ぶ順番は「名前→中身」ではなく、<b>「自分の見方→地図の場所→そこにある戦略」</b>です。先に名前を覚えた戦略に相場を当てはめると、合わない道具で作業することになります。</p></div>
+
+<h2 id="ch10-2">10-2　相場観による5つの分類</h2>
+<p>相場観（そうばかん）とは、原資産がこれからどう動くかについての自分の見方です。オプションでは、次の5つに分けて考えるのが便利です。</p>
+<div class="tbl"><table>
+  <thead><tr><th>相場観</th><th>意味</th><th>代表的な戦略</th><th>利益の源</th></tr></thead>
+  <tbody>
+    <tr><td>強気</td><td>上がると思う</td><td>ロング・コール、ブル・コール・スプレッド、ブル・プット・スプレッド</td><td>上昇</td></tr>
+    <tr><td>弱気</td><td>下がると思う</td><td>ロング・プット、ベア・プット・スプレッド、ベア・コール・スプレッド</td><td>下落</td></tr>
+    <tr><td>中立（レンジ）</td><td>ある範囲の中で動く</td><td>アイアン・コンドル、ショート・ストラングル</td><td>時間の経過（範囲内にとどまること）</td></tr>
+    <tr><td>動かない</td><td>ほぼ今の水準にとどまる</td><td>ロング・バタフライ、アイアン・バタフライ、ショート・ストラドル</td><td>時間の経過（1点付近にとどまること）</td></tr>
+    <tr><td>大きく動く</td><td>方向は分からないが大きく動く</td><td>ロング・ストラドル、ロング・ストラングル</td><td>値動きの大きさ</td></tr>
+  </tbody>
+</table></div>
+<p>株の売買では「上がる」「下がる」の2つしか選べません。オプションでは、<b>「動かない」「大きく動く」にも賭けられる</b>ところが本質的に違います。この2つは方向ではなく<b>変動の大きさ</b>についての見方なので、次節で縦軸として扱います。</p>
+<p>「中立（レンジ）」と「動かない」の違いは、利益が出る範囲の広さです。アイアン・コンドルは「95〜105のどこかで終われば最大利益」のように幅があり、バタフライは「ちょうど100付近で終われば最大利益」のように1点を狙います。範囲が狭いほど、当たったときの利益は大きく、外れやすくなります。</p>
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価100、IV20%、残り30日のとき、同じ「中立」でも利益が出る範囲はこれだけ違います（満期時、1株あたり）。</p>
+<ul>
+  <li>ショート・ストラングル（95のプットと105のコールを売る、受取1.22）：損益分岐点は93.78と106.22。<b>幅は約12.4</b></li>
+  <li>ショート・ストラドル（100のプットとコールを売る、受取4.58）：損益分岐点は95.42と104.58。<b>幅は約9.2</b>で、最大利益4.58は100ちょうどで終わったときだけ</li>
+</ul>
+<p>どちらも損失は無限定になりうる売り戦略です（<a href="#ch14">第14章</a>）。</p></div>
+
+<h2 id="ch10-3">10-3　戦略マップ：相場観×ボラティリティ観</h2>
+<p>ここからが本章の中心です。横軸に<b>相場観</b>（左が弱気、右が強気）、縦軸に<b>ボラティリティ観</b>（上が「大きく動く・IVが上がる」と得をする、下が「動かない・IVが下がる」と得をする）をとった平面に、戦略を置いていきます。</p>
+<p>グリークス（<a href="#ch05">第5章</a>）の言葉で言えば、横軸はおおむね<b>デルタ</b>（方向への感応度）、縦軸はおおむね<b>ガンマとベガ</b>（変動への感応度）の符号です。右にある戦略ほどデルタがプラス、上にある戦略ほどガンマ・ベガがプラスで、セータ（時間の経過による損益）はマイナスになります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 740 536" role="img" aria-label="戦略マップの全体像：5つの相場観の位置">
+  <rect x="0" y="0" width="740" height="536" fill="var(--surface)"/>
+  <rect x="50" y="36" width="680" height="424" fill="none" stroke="var(--line)" stroke-width="1"/>
+  <line x1="50" x2="730" y1="250" y2="250" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+  <line x1="385" x2="385" y1="36" y2="460" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+  <ellipse cx="385" cy="110" rx="170" ry="60" fill="var(--gold)" fill-opacity="0.12" stroke="var(--gold)" stroke-width="1.2"/>
+  <ellipse cx="615" cy="250" rx="105" ry="120" fill="var(--accent)" fill-opacity="0.10" stroke="var(--accent)" stroke-width="1.2"/>
+  <ellipse cx="155" cy="250" rx="105" ry="120" fill="var(--loss)" fill-opacity="0.08" stroke="var(--loss)" stroke-width="1.2"/>
+  <ellipse cx="385" cy="362" rx="165" ry="44" fill="var(--gain)" fill-opacity="0.10" stroke="var(--gain)" stroke-width="1.2"/>
+  <ellipse cx="385" cy="432" rx="140" ry="22" fill="var(--gain)" fill-opacity="0.20" stroke="var(--gain)" stroke-width="1.2"/>
+  <circle cx="385" cy="250" r="22" fill="var(--muted)" fill-opacity="0.15" stroke="var(--muted)" stroke-width="1"/>
+  <g font-size="15" font-weight="700" fill="var(--fg)" text-anchor="middle">
+    <text x="385" y="92" fill="var(--fg)">大きく動く</text>
+    <text x="615" y="256" fill="var(--fg)">強気</text>
+    <text x="155" y="256" fill="var(--fg)">弱気</text>
+    <text x="385" y="352" fill="var(--fg)">中立（レンジ）</text>
+  </g>
+  <g font-size="12" fill="var(--fg)" text-anchor="middle">
+    <text x="385" y="116" fill="var(--fg)">ロング・ストラドル／ロング・ストラングル</text>
+    <text x="385" y="136" fill="var(--fg)">バックスプレッド（方向の偏りあり）</text>
+    <text x="615" y="186" fill="var(--fg)">ロング・コール</text>
+    <text x="615" y="206" fill="var(--fg)">（上寄り＝ボラ買い）</text>
+    <text x="615" y="300" fill="var(--fg)">ブル・プット・スプレッド</text>
+    <text x="615" y="320" fill="var(--fg)">カバード・コール</text>
+    <text x="615" y="340" fill="var(--fg)">（下寄り＝ボラ売り）</text>
+    <text x="155" y="186" fill="var(--fg)">ロング・プット</text>
+    <text x="155" y="206" fill="var(--fg)">（上寄り＝ボラ買い）</text>
+    <text x="155" y="300" fill="var(--fg)">ベア・コール・スプレッド</text>
+    <text x="155" y="320" fill="var(--fg)">（下寄り＝ボラ売り）</text>
+    <text x="385" y="376" fill="var(--fg)">アイアン・コンドル／ショート・ストラングル</text>
+    <text x="385" y="437" fill="var(--fg)">動かない：バタフライ／ショート・ストラドル</text>
+    <text x="385" y="286" fill="var(--muted)">中心＝裁定（方向もボラもなし）</text>
+  </g>
+  <text x="385" y="26" text-anchor="middle" font-size="12" fill="var(--fg)">↑ 上ほど「ボラを買う」（大きく動く・IV上昇で得をする）</text>
+  <text x="385" y="478" text-anchor="middle" font-size="12" fill="var(--fg)">↓ 下ほど「ボラを売る」（動かない・時間の経過とIV低下で得をする）</text>
+  <text x="50" y="500" font-size="12" fill="var(--fg)">← 弱気（下がると得）</text>
+  <text x="385" y="500" text-anchor="middle" font-size="12" fill="var(--fg)">中立</text>
+  <text x="730" y="500" text-anchor="end" font-size="12" fill="var(--fg)">強気（上がると得）→</text>
+</svg></div><figcaption>図10-1　戦略マップの全体像。5つの相場観は地図上の「地域」に当たります。強気・弱気の地域の中でも、上にあるもの（ロング・コールなど）はボラ買い、下にあるもの（カバード・コールなど）はボラ売りです。</figcaption></figure>
+
+<p>図10-1の見方のポイントは3つです。</p>
+<ul>
+  <li><b>左右の端</b>には、方向に賭ける戦略が並びます。端に行くほど、方向が当たったときの利益も外れたときの損失も大きくなります。</li>
+  <li><b>上の方</b>にはオプションを「買う」戦略が、<b>下の方</b>にはオプションを「売る」戦略が集まります。買いは時間の経過で損をし（セータがマイナス）、売りは時間の経過で得をする（セータがプラス）からです。</li>
+  <li><b>中心</b>には、方向にもボラティリティにも賭けない「裁定」の戦略があります。</li>
+</ul>
+<p>では、全戦略を章ごとに3枚の地図に置いてみます。点の色は主な目的（10-4節）を表します。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 740 536" role="img" aria-label="戦略マップ：第11・13・14章の戦略">
+<rect x="0" y="0" width="740" height="536" fill="var(--surface)"/>
+<rect x="50" y="36" width="680" height="424" fill="none" stroke="var(--line)" stroke-width="1"/>
+<line x1="50" x2="730" y1="250" y2="250" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<line x1="385" x2="385" y1="36" y2="460" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<text x="385" y="26" text-anchor="middle" font-size="12" fill="var(--fg)">↑ 上ほど「ボラを買う」（大きく動く・IV上昇で得をする）</text>
+<text x="385" y="478" text-anchor="middle" font-size="12" fill="var(--fg)">↓ 下ほど「ボラを売る」（動かない・時間の経過とIV低下で得をする）</text>
+<text x="50" y="500" font-size="12" fill="var(--fg)">← 弱気（下がると得）</text>
+<text x="385" y="500" text-anchor="middle" font-size="12" fill="var(--fg)">中立</text>
+<text x="730" y="500" text-anchor="end" font-size="12" fill="var(--fg)">強気（上がると得）→</text>
+<circle cx="55" cy="520" r="5" fill="var(--gain)"/><text x="64" y="524" font-size="12" fill="var(--fg)">収入</text>
+<circle cx="125" cy="520" r="5" fill="var(--accent)"/><text x="134" y="524" font-size="12" fill="var(--fg)">保険</text>
+<circle cx="195" cy="520" r="5" fill="var(--gold)"/><text x="204" y="524" font-size="12" fill="var(--fg)">投機</text>
+<circle cx="265" cy="520" r="5" fill="var(--muted)"/><text x="274" y="524" font-size="12" fill="var(--fg)">裁定</text>
+<text x="336" y="524" font-size="11" fill="var(--muted)">点の色＝主な目的（使い方で変わる）</text>
+<circle cx="340" cy="62" r="5" fill="var(--gold)"/><text x="348" y="66" font-size="12" fill="var(--fg)">ロング・ストラドル</text>
+<circle cx="340" cy="86" r="5" fill="var(--gold)"/><text x="348" y="90" font-size="12" fill="var(--fg)">ロング・ストラングル</text>
+<circle cx="340" cy="110" r="5" fill="var(--gold)"/><text x="348" y="114" font-size="12" fill="var(--fg)">ロング・ガッツ</text>
+<circle cx="250" cy="140" r="5" fill="var(--gold)"/><text x="242" y="144" text-anchor="end" font-size="12" fill="var(--fg)">ストリップ</text>
+<circle cx="520" cy="140" r="5" fill="var(--gold)"/><text x="528" y="144" font-size="12" fill="var(--fg)">ストラップ</text>
+<circle cx="205" cy="70" r="5" fill="var(--gold)"/><text x="197" y="74" text-anchor="end" font-size="12" fill="var(--fg)">プット・バックスプレッド</text>
+<circle cx="205" cy="94" r="5" fill="var(--gold)"/><text x="197" y="98" text-anchor="end" font-size="12" fill="var(--fg)">ブル・プット・ラダー</text>
+<circle cx="560" cy="70" r="5" fill="var(--gold)"/><text x="568" y="74" font-size="12" fill="var(--fg)">コール・バックスプレッド</text>
+<circle cx="560" cy="94" r="5" fill="var(--gold)"/><text x="568" y="98" font-size="12" fill="var(--fg)">ベア・コール・ラダー</text>
+<circle cx="150" cy="180" r="5" fill="var(--gold)"/><text x="142" y="184" text-anchor="end" font-size="12" fill="var(--fg)">ロング・プット</text>
+<circle cx="620" cy="180" r="5" fill="var(--gold)"/><text x="628" y="184" font-size="12" fill="var(--fg)">ロング・コール</text>
+<circle cx="560" cy="222" r="5" fill="var(--gold)"/><text x="568" y="226" font-size="12" fill="var(--fg)">ブル・コール・スプレッド</text>
+<circle cx="210" cy="222" r="5" fill="var(--gold)"/><text x="202" y="226" text-anchor="end" font-size="12" fill="var(--fg)">ベア・プット・スプレッド</text>
+<circle cx="560" cy="282" r="5" fill="var(--gain)"/><text x="568" y="286" font-size="12" fill="var(--fg)">ブル・プット・スプレッド</text>
+<circle cx="210" cy="282" r="5" fill="var(--gain)"/><text x="202" y="286" text-anchor="end" font-size="12" fill="var(--fg)">ベア・コール・スプレッド</text>
+<circle cx="440" cy="330" r="5" fill="var(--gain)"/><text x="448" y="334" font-size="12" fill="var(--fg)">ブル・コール・ラダー</text>
+<circle cx="440" cy="354" r="5" fill="var(--gain)"/><text x="448" y="358" font-size="12" fill="var(--fg)">コール・レシオ・スプレッド</text>
+<circle cx="330" cy="330" r="5" fill="var(--gain)"/><text x="322" y="334" text-anchor="end" font-size="12" fill="var(--fg)">ベア・プット・ラダー</text>
+<circle cx="330" cy="354" r="5" fill="var(--gain)"/><text x="322" y="358" text-anchor="end" font-size="12" fill="var(--fg)">プット・レシオ・スプレッド</text>
+<circle cx="600" cy="366" r="5" fill="var(--gain)"/><text x="608" y="370" font-size="12" fill="var(--fg)">ショート・プット</text>
+<circle cx="600" cy="390" r="5" fill="var(--gain)"/><text x="592" y="394" text-anchor="end" font-size="12" fill="var(--fg)">キャッシュ・セキュアード・プット</text>
+<circle cx="170" cy="372" r="5" fill="var(--gain)"/><text x="162" y="376" text-anchor="end" font-size="12" fill="var(--fg)">ショート・コール</text>
+<circle cx="340" cy="412" r="5" fill="var(--gain)"/><text x="348" y="416" font-size="12" fill="var(--fg)">ショート・ガッツ</text>
+<circle cx="340" cy="436" r="5" fill="var(--gain)"/><text x="348" y="440" font-size="12" fill="var(--fg)">ショート・ストラングル</text>
+<circle cx="340" cy="452" r="5" fill="var(--gain)"/><text x="332" y="456" text-anchor="end" font-size="12" fill="var(--fg)">ショート・ストラドル</text>
+</svg></div><figcaption>図10-2　戦略マップ（1）単一オプション・垂直スプレッド・ボラティリティ戦略（第11・13・14章）。買いが上、売りが下に上下対称に並びます。</figcaption></figure>
+
+<p>図10-2を見ると、<b>買いと売りがきれいに上下対称</b>になっていることが分かります。ロング・ストラドルの真下にショート・ストラドル、ロング・コールの反対側（左下）にショート・コールがあります。オプションの売り手と買い手は、同じ取引の反対側に立っているからです。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 760 536" role="img" aria-label="戦略マップ：第15・16章の戦略">
+<rect x="0" y="0" width="760" height="536" fill="var(--surface)"/>
+<rect x="50" y="36" width="700" height="424" fill="none" stroke="var(--line)" stroke-width="1"/>
+<line x1="50" x2="750" y1="250" y2="250" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<line x1="385" x2="385" y1="36" y2="460" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<text x="385" y="26" text-anchor="middle" font-size="12" fill="var(--fg)">↑ 上ほど「ボラを買う」（大きく動く・IV上昇で得をする）</text>
+<text x="385" y="478" text-anchor="middle" font-size="12" fill="var(--fg)">↓ 下ほど「ボラを売る」（動かない・時間の経過とIV低下で得をする）</text>
+<text x="50" y="500" font-size="12" fill="var(--fg)">← 弱気（下がると得）</text>
+<text x="385" y="500" text-anchor="middle" font-size="12" fill="var(--fg)">中立</text>
+<text x="750" y="500" text-anchor="end" font-size="12" fill="var(--fg)">強気（上がると得）→</text>
+<circle cx="55" cy="520" r="5" fill="var(--gain)"/><text x="64" y="524" font-size="12" fill="var(--fg)">収入</text>
+<circle cx="125" cy="520" r="5" fill="var(--accent)"/><text x="134" y="524" font-size="12" fill="var(--fg)">保険</text>
+<circle cx="195" cy="520" r="5" fill="var(--gold)"/><text x="204" y="524" font-size="12" fill="var(--fg)">投機</text>
+<circle cx="265" cy="520" r="5" fill="var(--muted)"/><text x="274" y="524" font-size="12" fill="var(--fg)">裁定</text>
+<text x="336" y="524" font-size="11" fill="var(--muted)">点の色＝主な目的（使い方で変わる）</text>
+<rect x="180" y="318" width="320" height="96" rx="14" fill="var(--gain)" fill-opacity="0.08" stroke="var(--gain)" stroke-width="1.2" stroke-dasharray="5 4"/>
+<text x="190" y="334" font-size="11" fill="var(--fg)">コリドー（通称）と呼ばれうる範囲</text>
+<text x="393" y="236" font-size="11" fill="var(--muted)">※縦の位置は目安（本文参照）</text>
+<circle cx="300" cy="70" r="5" fill="var(--gold)"/><text x="308" y="74" font-size="12" fill="var(--fg)">リバース・アイアン・バタフライ</text>
+<circle cx="300" cy="94" r="5" fill="var(--gold)"/><text x="308" y="98" font-size="12" fill="var(--fg)">リバース・アイアン・コンドル</text>
+<circle cx="300" cy="118" r="5" fill="var(--gold)"/><text x="308" y="122" font-size="12" fill="var(--fg)">ショート・バタフライ</text>
+<circle cx="545" cy="160" r="5" fill="var(--gain)"/><text x="553" y="164" font-size="12" fill="var(--fg)">プアマンズ・カバード・コール</text>
+<circle cx="545" cy="190" r="5" fill="var(--gold)"/><text x="553" y="194" font-size="12" fill="var(--fg)">ダイアゴナル・スプレッド</text>
+<circle cx="385" cy="214" r="5" fill="var(--gold)"/><text x="393" y="218" font-size="12" fill="var(--fg)">カレンダー・スプレッド</text>
+<circle cx="385" cy="150" r="5" fill="var(--gold)"/><text x="377" y="154" text-anchor="end" font-size="12" fill="var(--fg)">ショート・カレンダー・スプレッド</text>
+<circle cx="385" cy="268" r="5" fill="var(--gain)"/><text x="393" y="272" font-size="12" fill="var(--fg)">ダブル・カレンダー</text>
+<circle cx="385" cy="292" r="5" fill="var(--gain)"/><text x="393" y="296" font-size="12" fill="var(--fg)">ダブル・ダイアゴナル</text>
+<circle cx="260" cy="356" r="5" fill="var(--gold)"/><text x="268" y="360" font-size="12" fill="var(--fg)">ロング・コール／プット・コンドル</text>
+<circle cx="260" cy="378" r="5" fill="var(--gain)"/><text x="268" y="382" font-size="12" fill="var(--fg)">アイアン・コンドル</text>
+<circle cx="260" cy="400" r="5" fill="var(--gold)"/><text x="268" y="404" font-size="12" fill="var(--fg)">ロング・コール／プット・バタフライ</text>
+<circle cx="260" cy="440" r="5" fill="var(--gain)"/><text x="268" y="444" font-size="12" fill="var(--fg)">アイアン・バタフライ</text>
+<circle cx="530" cy="330" r="5" fill="var(--gain)"/><text x="538" y="334" font-size="12" fill="var(--fg)">ブロークン・ウィング・バタフライ</text>
+<circle cx="530" cy="354" r="5" fill="var(--gain)"/><text x="538" y="358" font-size="12" fill="var(--fg)">スキップ・ストライク・バタフライ</text>
+<circle cx="530" cy="378" r="5" fill="var(--gold)"/><text x="538" y="382" font-size="12" fill="var(--fg)">クリスマス・ツリー</text>
+</svg></div><figcaption>図10-3　戦略マップ（2）レンジ戦略・時間差戦略（第15・16章）。点線の枠は「コリドー」と呼ばれうる範囲型の戦略（主な使われ方であるショート・ストラングルは図10-2の下部）。カレンダー系は縦軸の性質が混ざる例外です。</figcaption></figure>
+
+<p>図10-3のバタフライ・コンドル系は、ほとんどが<b>中央の縦の線の近く</b>に集まります。方向ではなく「どこで終わるか」「どれくらいの範囲に収まるか」に賭ける戦略だからです。</p>
+<p>カレンダー・スプレッドは地図の<b>例外</b>です。期近のオプションを売り、期先を買う戦略で、「当面あまり動かない」ほうが得をする（ガンマがマイナス）一方、「IVが上がる」と得をします（ベガがプラス）。縦軸がまとめている2つの性質が、逆向きに混ざっているのです。そのため中央よりやや上に置いていますが、位置は目安です。売りと買いを逆にしたショート・カレンダーは、反対に「大きく動く」と得をし（ガンマがプラス）、「IVが下がる」と得をします（ベガがマイナス）（<a href="#ch16">第16章</a>）。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 760 536" role="img" aria-label="戦略マップ：第12・17・18章の戦略">
+<rect x="0" y="0" width="760" height="536" fill="var(--surface)"/>
+<rect x="50" y="36" width="700" height="424" fill="none" stroke="var(--line)" stroke-width="1"/>
+<line x1="50" x2="750" y1="250" y2="250" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<line x1="385" x2="385" y1="36" y2="460" stroke="var(--muted)" stroke-width="1" stroke-dasharray="4 4" fill="none"/>
+<text x="385" y="26" text-anchor="middle" font-size="12" fill="var(--fg)">↑ 上ほど「ボラを買う」（大きく動く・IV上昇で得をする）</text>
+<text x="385" y="478" text-anchor="middle" font-size="12" fill="var(--fg)">↓ 下ほど「ボラを売る」（動かない・時間の経過とIV低下で得をする）</text>
+<text x="50" y="500" font-size="12" fill="var(--fg)">← 弱気（下がると得）</text>
+<text x="385" y="500" text-anchor="middle" font-size="12" fill="var(--fg)">中立</text>
+<text x="750" y="500" text-anchor="end" font-size="12" fill="var(--fg)">強気（上がると得）→</text>
+<circle cx="55" cy="520" r="5" fill="var(--gain)"/><text x="64" y="524" font-size="12" fill="var(--fg)">収入</text>
+<circle cx="125" cy="520" r="5" fill="var(--accent)"/><text x="134" y="524" font-size="12" fill="var(--fg)">保険</text>
+<circle cx="195" cy="520" r="5" fill="var(--gold)"/><text x="204" y="524" font-size="12" fill="var(--fg)">投機</text>
+<circle cx="265" cy="520" r="5" fill="var(--muted)"/><text x="274" y="524" font-size="12" fill="var(--fg)">裁定</text>
+<text x="336" y="524" font-size="11" fill="var(--muted)">点の色＝主な目的（使い方で変わる）</text>
+<circle cx="385" cy="250" r="20" fill="var(--muted)" fill-opacity="0.15" stroke="var(--muted)" stroke-width="1"/>
+<circle cx="377" cy="244" r="4" fill="var(--muted)"/><circle cx="393" cy="244" r="4" fill="var(--muted)"/><circle cx="377" cy="257" r="4" fill="var(--muted)"/><circle cx="393" cy="257" r="4" fill="var(--muted)"/>
+<g font-size="12" fill="var(--fg)"><text x="60" y="60" fill="var(--fg)">中心の円＝裁定・資金調達（方向もボラもほぼなし）</text>
+<text x="60" y="80" fill="var(--fg)">・コンバージョン／リバーサル</text>
+<text x="60" y="100" fill="var(--fg)">・ボックス・スプレッド／ジェリー・ロール</text>
+<text x="60" y="120" fill="var(--fg)">・配当を使う裁定（配当を狙う戦略の一部）</text></g>
+<line x1="200" y1="128" x2="368" y2="236" stroke="var(--muted)" stroke-width="1" fill="none"/>
+<text x="393" y="84" font-size="11" fill="var(--muted)">（ボラの買いにも売りにもなる）</text>
+<circle cx="385" cy="64" r="5" fill="var(--gold)"/><text x="393" y="68" font-size="12" fill="var(--fg)">ボラティリティ・アービトラージ</text>
+<circle cx="560" cy="116" r="5" fill="var(--accent)"/><text x="568" y="120" font-size="12" fill="var(--fg)">プロテクティブ・プット</text>
+<circle cx="560" cy="140" r="5" fill="var(--accent)"/><text x="568" y="144" font-size="12" fill="var(--fg)">マリード・プット</text>
+<circle cx="80" cy="250" r="5" fill="var(--gold)"/><text x="88" y="254" font-size="12" fill="var(--fg)">合成ショート</text>
+<circle cx="80" cy="276" r="5" fill="var(--accent)"/><text x="88" y="280" font-size="12" fill="var(--fg)">ベア・フェンス</text>
+<circle cx="700" cy="250" r="5" fill="var(--gold)"/><text x="692" y="254" text-anchor="end" font-size="12" fill="var(--fg)">合成ロング</text>
+<circle cx="640" cy="222" r="5" fill="var(--gold)"/><text x="632" y="226" text-anchor="end" font-size="12" fill="var(--fg)">リスク・リバーサル</text>
+<circle cx="640" cy="196" r="5" fill="var(--gold)"/><text x="632" y="200" text-anchor="end" font-size="12" fill="var(--fg)">シーガル</text>
+<circle cx="700" cy="276" r="5" fill="var(--accent)"/><text x="692" y="280" text-anchor="end" font-size="12" fill="var(--fg)">ブル・フェンス</text>
+<circle cx="470" cy="294" r="5" fill="var(--accent)"/><text x="478" y="298" font-size="12" fill="var(--fg)">デビット・カラー</text>
+<circle cx="470" cy="316" r="5" fill="var(--accent)"/><text x="478" y="320" font-size="12" fill="var(--fg)">ゼロコスト・カラー</text>
+<circle cx="470" cy="338" r="5" fill="var(--accent)"/><text x="478" y="342" font-size="12" fill="var(--fg)">クレジット・カラー</text>
+<circle cx="470" cy="360" r="5" fill="var(--accent)"/><text x="478" y="364" font-size="12" fill="var(--fg)">短期ローテーション・カラー</text>
+<circle cx="470" cy="382" r="5" fill="var(--accent)"/><text x="478" y="386" font-size="12" fill="var(--fg)">3本足のフェンス</text>
+<circle cx="600" cy="396" r="5" fill="var(--gain)"/><text x="608" y="400" font-size="12" fill="var(--fg)">カバード・コール</text>
+<circle cx="600" cy="420" r="5" fill="var(--gain)"/><text x="608" y="424" font-size="12" fill="var(--fg)">オプション・ホイール</text>
+<circle cx="600" cy="444" r="5" fill="var(--gain)"/><text x="608" y="448" font-size="12" fill="var(--fg)">カバード・ストラングル</text>
+<circle cx="470" cy="408" r="5" fill="var(--gain)"/><text x="478" y="412" font-size="12" fill="var(--fg)">ジェイド・リザード</text>
+<circle cx="400" cy="438" r="5" fill="var(--gain)"/><text x="408" y="442" font-size="12" fill="var(--fg)">ビッグ・リザード</text>
+<circle cx="300" cy="420" r="5" fill="var(--gold)"/><text x="292" y="424" text-anchor="end" font-size="12" fill="var(--fg)">決算前後（IVクラッシュ狙いの売り）</text>
+<circle cx="300" cy="446" r="5" fill="var(--gold)"/><text x="292" y="450" text-anchor="end" font-size="12" fill="var(--fg)">0DTE戦略（位置は組み方次第）</text>
+<circle cx="300" cy="394" r="5" fill="var(--gain)"/><text x="292" y="398" text-anchor="end" font-size="12" fill="var(--fg)">ツイステッド・シスター</text>
+<circle cx="700" cy="170" r="5" fill="var(--gold)"/><text x="692" y="174" text-anchor="end" font-size="12" fill="var(--fg)">ゼブラ（ZEBRA）</text>
+</svg></div><figcaption>図10-4　戦略マップ（3）原資産と組み合わせる戦略・合成と裁定・特殊な戦略（第12・17・18章）。原資産を含む戦略は全体の位置。フェンスは原資産を持たない形（定義は第12章）の向きで置き、色は本来の用途（ヘッジ）で塗っています。</figcaption></figure>
+
+<p>図10-4は、原資産（株や先物）と組み合わせる戦略、合成・裁定、特殊な戦略です。原資産と組み合わせる戦略は、<b>原資産の分も含めた全体</b>の位置に置いています。カバード・コールは、株の買い（強気）にコール売り（ボラ売り）を足したものなので、右下にあります。</p>
+
+<div class="box warn"><span class="box-label">注意</span><p>地図上の位置は、代表的な組み方をしたときの<b>おおよその目安</b>です。同じ名前の戦略でも、権利行使価格の選び方や枚数で位置は動きます。たとえばアイアン・コンドルは、上下の幅を非対称にすれば少し強気や弱気に傾きます。また、ボラ売りの戦略（地図の下半分）の多くは、損失が大きくなりうる戦略です。位置を確認したら、必ず損益図で最大損失を確かめてください。</p></div>
+
+<h2 id="ch10-4">10-4　目的による4つの分類</h2>
+<p>地図の「場所」とは別に、<b>何のためにその戦略を使うのか</b>という目的による分け方があります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 300" role="img" aria-label="目的による4分類">
+  <rect x="0" y="0" width="640" height="300" fill="var(--surface)"/>
+  <rect x="8" y="8" width="306" height="136" rx="8" fill="var(--gain)" fill-opacity="0.08" stroke="var(--gain)" stroke-width="1.2"/>
+  <rect x="326" y="8" width="306" height="136" rx="8" fill="var(--accent)" fill-opacity="0.08" stroke="var(--accent)" stroke-width="1.2"/>
+  <rect x="8" y="156" width="306" height="136" rx="8" fill="var(--gold)" fill-opacity="0.08" stroke="var(--gold)" stroke-width="1.2"/>
+  <rect x="326" y="156" width="306" height="136" rx="8" fill="var(--muted)" fill-opacity="0.08" stroke="var(--muted)" stroke-width="1.2"/>
+  <g font-size="15" font-weight="700" fill="var(--fg)">
+    <text x="22" y="34" fill="var(--fg)">収入（インカム）</text>
+    <text x="340" y="34" fill="var(--fg)">保険（ヘッジ）</text>
+    <text x="22" y="182" fill="var(--fg)">投機</text>
+    <text x="340" y="182" fill="var(--fg)">裁定</text>
+  </g>
+  <g font-size="12" fill="var(--fg)">
+    <text x="22" y="58" fill="var(--fg)">プレミアムを受け取り、</text>
+    <text x="22" y="76" fill="var(--fg)">時間の経過を味方にする</text>
+    <text x="22" y="102" fill="var(--muted)">例：カバード・コール、</text>
+    <text x="22" y="120" fill="var(--muted)">キャッシュ・セキュアード・プット</text>
+    <text x="340" y="58" fill="var(--fg)">保険料を払って、</text>
+    <text x="340" y="76" fill="var(--fg)">大きな損失を防ぐ</text>
+    <text x="340" y="102" fill="var(--muted)">例：プロテクティブ・プット、</text>
+    <text x="340" y="120" fill="var(--muted)">カラー、フェンス</text>
+    <text x="22" y="206" fill="var(--fg)">少ない資金で、方向や</text>
+    <text x="22" y="224" fill="var(--fg)">値動きの大きさに賭ける</text>
+    <text x="22" y="250" fill="var(--muted)">例：ロング・コール、</text>
+    <text x="22" y="268" fill="var(--muted)">ストラドル、バックスプレッド</text>
+    <text x="340" y="206" fill="var(--fg)">価格のずれから、方向に</text>
+    <text x="340" y="224" fill="var(--fg)">関係なく小さな利益を取る</text>
+    <text x="340" y="250" fill="var(--muted)">例：コンバージョン、</text>
+    <text x="340" y="268" fill="var(--muted)">リバーサル、ボックス</text>
+  </g>
+  <g stroke="var(--line)" stroke-width="1" fill="none">
+    <line fill="none" x1="220" x2="300" y1="80" y2="80"/><line fill="none" x1="538" x2="618" y1="80" y2="80"/>
+    <line fill="none" x1="220" x2="300" y1="228" y2="228"/><line fill="none" x1="538" x2="618" y1="228" y2="228"/>
+  </g>
+  <polyline points="220,120 250,65 300,65" fill="none" stroke="var(--gain)" stroke-width="2.4"/>
+  <polyline points="538,105 568,105 618,45" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+  <polyline points="220,195 260,262 300,195" fill="none" stroke="var(--gold)" stroke-width="2.4"/>
+  <polyline points="538,220 618,220" fill="none" stroke="var(--muted)" stroke-width="2.4"/>
+  <g font-size="10" fill="var(--muted)" text-anchor="middle">
+    <text x="260" y="138" fill="var(--muted)">プット売りの形</text>
+    <text x="578" y="138" fill="var(--muted)">株＋プット買いの形</text>
+    <text x="260" y="284" fill="var(--muted)">ストラドル買いの形</text>
+    <text x="578" y="246" fill="var(--muted)">どこで終わっても一定</text>
+  </g>
+</svg></div><figcaption>図10-5　目的による4分類と、典型的な損益図の形（右側の小さな図。横線が損益ゼロ）。</figcaption></figure>
+
+<div class="tbl"><table>
+  <thead><tr><th>目的</th><th>お金の流れ</th><th>損益のパターン</th><th>地図上で多い場所</th></tr></thead>
+  <tbody>
+    <tr><td>収入（インカム）</td><td>プレミアムを受け取る</td><td>小さな利益を何度も得て、まれに大きな損失</td><td>下半分（ボラ売り）</td></tr>
+    <tr><td>保険（ヘッジ）</td><td>保険料を払う（カラーのように売りで相殺することも）</td><td>ふだんは小さなコスト、急落時に損失を止める</td><td>保有資産を含めた全体では右寄り（強気の資産を守る）</td></tr>
+    <tr><td>投機</td><td>払う場合も受け取る場合もある</td><td>見方が当たれば大きく、外れれば払った分を失う（買いの場合）</td><td>上半分や左右の端</td></tr>
+    <tr><td>裁定</td><td>ごく小さな価格差を取る</td><td>理論上はリスクが小さいが、利益も小さい</td><td>中心</td></tr>
+  </tbody>
+</table></div>
+
+<p>大事なのは、<b>同じ戦略でも使う人によって目的が変わる</b>ことです。</p>
+<div class="box example"><span class="box-label">数値例</span>
+<p>日経平均40,000円のとき、権利行使価格38,000円の日経225プット（残り30日、230円）を1枚買う（23万円）とします。</p>
+<ul>
+  <li><b>日経平均に連動する日本株を4,000万円分持っているAさん</b>にとっては「保険」です。日経平均が34,000円まで下がれば株は600万円の損ですが、プットは (38,000−34,000−230)×1,000＝377万円の利益になり、損失を大きく減らします。</li>
+  <li><b>株を持っていないBさん</b>にとっては「投機」です。下がれば377万円の利益、下がらなければ23万円を失います。</li>
+</ul>
+<p>地図上の位置も、Aさんは「株＋プット」で右上（プロテクティブ・プット）、Bさんは「プットだけ」で左上（ロング・プット）です。</p></div>
+
+<p>裁定（さいてい、arbitrage）は、理論上同じ価値を持つはずのものの価格のずれから利益を取る取引です。たとえばボックス・スプレッド（<a href="#ch17">第17章</a>）は、権利行使価格100と110で組むと満期に必ず10の価値になります。これを9.8で買えれば、満期に0.2の利益が確定する、という考え方です。実際には、そのようなずれはすぐに埋まり、手数料や資金の金利、早期割当などを考えると個人投資家が裁定で稼ぐのは難しいのが現実です。本書では主に<b>「理論上の関係を理解するため」</b>に扱います。</p>
+
+<h2 id="ch10-5">10-5　デビット戦略とクレジット戦略</h2>
+<p>戦略を建てるときに、差し引きでお金を<b>払う</b>ものを<b>デビット（debit）戦略</b>、差し引きでお金を<b>受け取る</b>ものを<b>クレジット（credit）戦略</b>といいます。デビットは「口座から引き落とされる」、クレジットは「口座に入金される」という会計の言葉から来ています。</p>
+<p>同じ「やや強気」でも、デビットとクレジットの両方の組み方があります。株価100、IV20%、残り30日で比べます。</p>
+
+<div class="payoff" data-title="図10-6　ブル・コール・スプレッド（デビット）：100のコール買い＋105のコール売り" data-spot="100" data-range="85,115"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"call","k":105,"qty":-1,"prem":0.65}]'
+     data-caption="支払い1.64。最大利益は5−1.64＝3.36（105以上）、最大損失は支払った1.64（100以下）、損益分岐点101.64。"></div>
+
+<div class="payoff" data-title="図10-7　ブル・プット・スプレッド（クレジット）：95のプット売り＋90のプット買い" data-spot="100" data-range="85,115"
+     data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"put","k":90,"qty":1,"prem":0.07}]'
+     data-caption="受取0.50。最大利益は受け取った0.50（95以上）、最大損失は5−0.50＝4.50（90以下）、損益分岐点94.50。"></div>
+
+<div class="compare">
+  <div><h4>デビット（図10-6）</h4>
+    <ul>
+      <li>最初に1.64を払う</li>
+      <li>利益を出すには<b>上がる必要がある</b>（101.64より上）</li>
+      <li>最大利益3.36、最大損失1.64（利益のほうが大きい）</li>
+      <li>時間の経過は基本的に不利</li>
+    </ul></div>
+  <div><h4>クレジット（図10-7）</h4>
+    <ul>
+      <li>最初に0.50を受け取る</li>
+      <li><b>下がらなければ</b>利益（94.50より上なら利益、95以上なら最大利益）</li>
+      <li>最大利益0.50、最大損失4.50（損失のほうが大きい）</li>
+      <li>時間の経過は基本的に有利</li>
+    </ul></div>
+</div>
+<p>クレジット戦略は「当たる確率は高いが、外れたときの損失が利益より大きい」、デビット戦略は「当たる確率は低めだが、当たったときの利益が損失より大きい」という傾向があります。どちらが有利ということではなく、<b>確率と損益の大きさの組み合わせ方が違う</b>のです。期待値の考え方は<a href="#ch23">第23章</a>で扱います。</p>
+
+<details class="deep"><summary>深掘り：デビットとクレジットは「権利行使価格の置き場所」の違いにすぎない</summary><div>
+<p>同じ権利行使価格100と105で、ブル・プット・スプレッドを組んでみます。105のプット（5.645）を売り、100のプット（2.287）を買うと、受取は約3.36です。最大利益は3.36、最大損失は5−3.36＝1.64、損益分岐点は101.64です。</p>
+<p>これは、図10-6のブル・コール・スプレッド（100／105）と<b>満期の損益がまったく同じ</b>です。プット・コール・パリティ（<a href="#ch04">第4章</a>）により、同じ権利行使価格の組み合わせなら、コールで組んでもプットで組んでも同じ損益図になるからです（金利・配当・早期行使を無視した場合）。</p>
+<p>つまり「デビットかクレジットか」は、戦略の本質というより、<b>現在値に対してどこに権利行使価格を置いたか</b>で決まる見かけの違いです。実務では、流動性の高いOTMのオプションで組めるほうを選ぶ、アメリカン・タイプで割当を受けにくいほうを選ぶ、といった理由で使い分けます。</p>
+</div></details>
+
+<div class="box warn"><span class="box-label">注意</span><p>「クレジット戦略＝お金をもらえるから安全」ではありません。受け取ったお金は、最大利益の上限でもあります。図10-7では、0.50の利益を狙って4.50の損失の可能性を引き受けています。逆に「デビット戦略＝損失は払った分まで」とも限りません。次節で見るように、デビットで始めても損失が無限定になる戦略があります。</p></div>
+
+<h2 id="ch10-6">10-6　リスク限定型とリスク無限定型</h2>
+<p>最大損失が建てる前に決まっているものを<b>リスク限定型（defined risk）</b>、決まっていないもの（理論上無限、または原資産がゼロになるまで大きくなりうるもの）を<b>リスク無限定型（undefined risk）</b>といいます。</p>
+<p>見分け方は簡単です。<b>売ったオプションが、同じ種類の買ったオプションで「ふた」をされているか</b>を見ます。コールを1枚売ったら、より高い権利行使価格のコールを1枚買っていればふたがあります。第3章の実践テクニックの通り、損益図の右端の傾き（コールの枚数と原資産の枚数の合計）がマイナスなら、上昇で損失が無限に広がります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 340" role="img" aria-label="デビット・クレジットとリスク限定・無限定の4つの組み合わせ">
+  <rect x="0" y="0" width="640" height="340" fill="var(--surface)"/>
+  <g font-size="13" font-weight="700" fill="var(--fg)" text-anchor="middle">
+    <text x="237" y="22" fill="var(--fg)">デビット（払って始める）</text>
+    <text x="507" y="22" fill="var(--fg)">クレジット（受け取って始める）</text>
+    <text x="50" y="100" fill="var(--fg)">リスク</text><text x="50" y="118" fill="var(--fg)">限定型</text>
+    <text x="50" y="244" fill="var(--fg)">リスク</text><text x="50" y="262" fill="var(--fg)">無限定型</text>
+  </g>
+  <rect x="104" y="32" width="266" height="146" rx="6" fill="var(--gain)" fill-opacity="0.08" stroke="var(--line)" stroke-width="1"/>
+  <rect x="374" y="32" width="262" height="146" rx="6" fill="var(--gain)" fill-opacity="0.08" stroke="var(--line)" stroke-width="1"/>
+  <rect x="104" y="184" width="266" height="150" rx="6" fill="var(--loss)" fill-opacity="0.08" stroke="var(--line)" stroke-width="1"/>
+  <rect x="374" y="184" width="262" height="150" rx="6" fill="var(--loss)" fill-opacity="0.08" stroke="var(--line)" stroke-width="1"/>
+  <g font-size="12" fill="var(--fg)">
+    <text x="116" y="54" fill="var(--fg)">ロング・コール／ロング・プット</text>
+    <text x="116" y="74" fill="var(--fg)">ブル・コール・スプレッド</text>
+    <text x="116" y="94" fill="var(--fg)">ベア・プット・スプレッド</text>
+    <text x="116" y="114" fill="var(--fg)">ロング・ストラドル／ストラングル</text>
+    <text x="116" y="134" fill="var(--fg)">ロング・バタフライ、カレンダー</text>
+    <text x="116" y="164" fill="var(--gain)">最大損失＝払った額（多くの場合）</text>
+    <text x="386" y="54" fill="var(--fg)">ブル・プット・スプレッド</text>
+    <text x="386" y="74" fill="var(--fg)">ベア・コール・スプレッド</text>
+    <text x="386" y="94" fill="var(--fg)">アイアン・コンドル</text>
+    <text x="386" y="114" fill="var(--fg)">アイアン・バタフライ</text>
+    <text x="386" y="164" fill="var(--gain)">最大損失＝幅−受取額</text>
+    <text x="116" y="206" fill="var(--fg)">（数は少ないが要注意）</text>
+    <text x="116" y="226" fill="var(--fg)">コール・レシオ・スプレッドを</text>
+    <text x="116" y="246" fill="var(--fg)">デビットで建てた場合</text>
+    <text x="116" y="266" fill="var(--fg)">ブル・コール・ラダー（デビット時）</text>
+    <text x="116" y="318" fill="var(--loss)">払ったのに損失は無限定</text>
+    <text x="386" y="206" fill="var(--fg)">ショート・コール（上に無限）</text>
+    <text x="386" y="226" fill="var(--fg)">ショート・プット（株価0まで）</text>
+    <text x="386" y="246" fill="var(--fg)">ショート・ストラドル／ストラングル</text>
+    <text x="386" y="266" fill="var(--fg)">カバード・コール（株の下落）</text>
+    <text x="386" y="318" fill="var(--loss)">最大利益＝受取額、損失は大きい</text>
+  </g>
+</svg></div><figcaption>図10-8　デビット／クレジットと、リスク限定型／無限定型の組み合わせ。「クレジット＝危険」「デビット＝安全」と単純には言えません。</figcaption></figure>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価100のとき、100のコールを1枚買い（2.29）、105のコールを2枚売る（0.65×2＝1.30）と、差し引き0.99の<b>デビット</b>です（コール・レシオ・スプレッド、<a href="#ch13">第13章</a>）。</p>
+<ul>
+  <li>満期に105：100のコールが5の価値、売った105のコールは価値ゼロ。5−0.99＝<b>+4.01</b>（最大利益）</li>
+  <li>満期に115：100のコール＋15、105のコール2枚で−20。15−20−0.99＝<b>−5.99</b></li>
+  <li>満期に130：30−50−0.99＝<b>−20.99</b>。上がるほど損失が増え、上限はありません</li>
+</ul>
+<p>払って始めた戦略なのに、売ったコールが買ったコールより1枚多いため、右端の傾きが1−2＝−1になっているのが原因です。</p></div>
+
+<p>ここで「リスク無限定型は悪い」と覚えないでください。カバード・コールやキャッシュ・セキュアード・プットは、損失の大きさでは「株を買った場合」とほぼ同じで、株式投資の延長として広く使われています。大切なのは、<b>最大損失がいくらになりうるかを建てる前に知り、その損失に耐えられる量だけ建てる</b>ことです（<a href="#ch21">第21章</a>）。</p>
+
+<h2 id="ch10-7">10-7　「ボラティリティを買う・売る」という考え方</h2>
+<p>地図の縦軸は、オプションならではの見方です。株では「上がる・下がる」にしか賭けられませんが、オプションでは<b>「どれくらい動くか」そのものを売り買いできます</b>。これを「ボラティリティを買う（ロング・ボラ）」「ボラティリティを売る（ショート・ボラ）」といいます。</p>
+<p>オプションの値段には、市場が予想する値動きの大きさ（インプライド・ボラティリティ、IV。<a href="#ch04">第4章</a>）が織り込まれています。オプションを買うことは、その予想値動きを買うことです。実際の値動きが予想より大きければ買い手の得、小さければ売り手の得になります。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th></th><th>ロング・ボラ（ボラを買う）</th><th>ショート・ボラ（ボラを売る）</th></tr></thead>
+  <tbody>
+    <tr><th>代表例</th><td>ロング・ストラドル、ロング・ストラングル、バックスプレッド</td><td>ショート・ストラドル、ショート・ストラングル、アイアン・コンドル</td></tr>
+    <tr><th>ガンマ</th><td>プラス（動くほどデルタが有利な方向に増える）</td><td>マイナス（動くほど不利になる）</td></tr>
+    <tr><th>ベガ</th><td>プラス（IVが上がると得）</td><td>マイナス（IVが下がると得）</td></tr>
+    <tr><th>セータ</th><td>マイナス（何もないと毎日少しずつ損）</td><td>プラス（何もないと毎日少しずつ得）</td></tr>
+    <tr><th>損益のパターン</th><td>小さな損を積み重ね、たまに大きな利益</td><td>小さな利益を積み重ね、たまに大きな損失</td></tr>
+  </tbody>
+</table></div>
+
+<div class="payoff" data-title="図10-9　ロング・ボラの典型：ロング・ストラドル（100のコールとプットを各2.29で買う）" data-spot="100" data-range="85,115"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"put","k":100,"qty":1,"prem":2.29}]'
+     data-curves="20,10"
+     data-caption="支払い4.58。満期に95.42より下か104.58より上なら利益。破線は満期まで残り20日・10日の損益（IV20%のまま）。動かないまま時間がたつと、損失が少しずつ広がる。"></div>
+
+<div class="payoff" data-title="図10-10　ショート・ボラの典型：ショート・ストラングル（95のプットと105のコールを売る）" data-spot="100" data-range="85,115"
+     data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"call","k":105,"qty":-1,"prem":0.65}]'
+     data-curves="20,10"
+     data-caption="受取1.22。93.78〜106.22で終われば利益。上昇側の損失は無制限、下落側も株価0まで大きくなりうる。時間がたつほど破線は満期の形（台形）に近づく。"></div>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>図10-9のロング・ストラドル（株価100、残り30日、支払い4.58）で、株価が100のまま動かなかった場合の、理論価格の変化です（1株あたり）。</p>
+<ul>
+  <li>IVが20%→25%に上がった（その日のうち）：ストラドルの価値は約5.72。<b>+1.14</b>の利益（米国株1枚＝100株なら+114ドル）</li>
+  <li>IVが20%→15%に下がった：価値は約3.43。<b>−1.15</b>の損失</li>
+  <li>IVは20%のまま10日たった（残り20日）：価値は約3.74。<b>−0.84</b>の損失（セータによる目減り）</li>
+</ul>
+<p>株価がまったく動かなくても、<b>IVと時間だけで損益が動く</b>ことが分かります。ボラを買う人は「IVが上がる」または「IVの予想より実際に大きく動く」ことに賭け、ボラを売る人はその逆に賭けています。</p></div>
+
+<div class="greek" data-greek="vega" data-type="call" data-k="100" data-iv="0.2" data-days="90,30,7" data-range="80,120"
+     data-title="図10-11　コール1単位のベガ（IV1%あたりの価格変化）" data-caption="ベガはATM付近で最大、満期までの日数が長いほど大きい。ストラドルはATMのコールとプットを両方買うので、ベガは約2倍になる。"></div>
+
+<p>日本の例でも見ておきます。日経平均40,000円、IV20%、残り30日なら、権利行使価格40,000円のコールとプットはどちらも理論上約915円です。ストラドルを1枚ずつ買うと 1,830円×1,000＝<b>183万円</b>の支払いで、日経平均が満期に38,170円より下か41,830円より上で終われば利益です。1か月で約4.6%以上動かないと利益にならない、というのが「ボラを買う」ことの値段です。</p>
+
+<div class="box key"><span class="box-label">ここが重要：ボラ売りが「儲かりやすく見える」理由</span><p>長い期間で見ると、IV（予想された値動き）は、その後に実際に起きた値動きより高めになる傾向が知られています。この差を<b>ボラティリティ・リスク・プレミアム</b>といい、オプションの売り手が平均的には報われやすい理由とされます（<a href="#ch23">第23章</a>）。ただしそれは「保険を引き受ける報酬」であり、急落や急騰のときにまとめて大きな損失を払う形になります。平均的に得をすることと、破綻しないことは別の問題です（<a href="#ch21">第21章</a>）。</p></div>
+
+<h2 id="ch10-8">10-8　調べて混乱しやすい用語の位置づけ</h2>
+<p>インターネットや本で戦略を調べると、正式な名前なのか、一部の人だけの呼び名なのか分からない言葉に出会います。ここでは、読者から質問のあった5つの用語を地図に位置づけます。</p>
+<div class="tbl"><table>
+  <thead><tr><th>用語</th><th>名前の性格</th><th>一言でいうと</th><th>地図上の位置</th><th>扱う章</th></tr></thead>
+  <tbody>
+    <tr><td>クレジット・カラー（credit collar）</td><td>広く使われる呼び名</td><td>保有株に「プット買い＋コール売り」を付けるカラーのうち、コールの受取がプットの支払いより多く、差し引きで受け取りになるもの。受取と引き換えに、上値の余地はふつう小さくなる</td><td>保険。株を含めた全体では中立〜やや強気</td><td><a href="#ch12">第12章</a></td></tr>
+    <tr><td>ベア・フェンス（bear fence）</td><td>資料によって定義が揺れる</td><td>代表的なのは、原資産を持たずに「OTMプット買い＋OTMコール売り」を組む形（弱気。上昇時の損失は無制限）。先物売りにコール買い＋プット売りを付けた「売りポジションの保険」や、カラーそのものを指す資料もある</td><td>定義により左（弱気）または保険</td><td><a href="#ch12">第12章</a></td></tr>
+    <tr><td>デイリー・カラー</td><td>通称（正式名ではない）</td><td>株や先物は持ち続けたまま、週次などごく短い満期のコール売り・プット買いを繰り返しロールするカラー。本書では<b>「短期ローテーション・カラー」</b>と呼び、利点と落とし穴を検証する</td><td>保険。やや強気</td><td><a href="#ch12">第12章</a></td></tr>
+    <tr><td>オプション・ホイール（wheel）</td><td>通称だが広く定着</td><td>キャッシュ・セキュアード・プットを売る→割当で株を取得→カバード・コールを売る→株を手放したら最初に戻る、という循環</td><td>収入。中立〜やや強気のボラ売り</td><td><a href="#ch12">第12章</a></td></tr>
+    <tr><td>コリドー（corridor）</td><td>特定の組み方を指す標準名ではない</td><td>「上限と下限にはさまれた範囲（回廊）に収まれば利益」という発想の呼び名。日本の個人向け情報では主にショート・ストラングルを指し、リスク限定版としてアイアン・コンドルを指すこともある</td><td>中立（レンジ）</td><td><a href="#ch15">第15章</a></td></tr>
+  </tbody>
+</table></div>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>知らない戦略名に出会ったら、名前ではなく<b>「何を何枚、どの権利行使価格で、買いか売りか」</b>という組み方を確認し、損益図を描いてから地図に置いてください。組み方が書かれていない説明は、それだけで信頼度を下げて読むのが安全です。特に「デイリー」「ゼロリスク」「毎月◯％」のように結果を約束するような呼び名は、中身を必ず損益図で確かめます。</p></div>
+
+<h2 id="ch10-9">10-9　同じ戦略に複数の呼び名がある問題</h2>
+<p>オプションの戦略名は、<b>1つの戦略を3つの別々の見方</b>で呼ぶことが多いため、名前が増えます。</p>
+<ul>
+  <li><b>相場観</b>で呼ぶ：ブル（強気）、ベア（弱気）</li>
+  <li><b>お金の流れ</b>で呼ぶ：デビット、クレジット</li>
+  <li><b>主役の売買</b>で呼ぶ：ロング（買いが主役）、ショート（売りが主役）</li>
+</ul>
+<p>たとえば「95のプットを売って、90のプットを買う」は、強気なので<b>ブル・プット・スプレッド</b>、受け取りなので<b>プット・クレジット・スプレッド</b>、高いほうのプットを売るので<b>ショート・プット・スプレッド</b>とも呼ばれます。3つとも同じものです。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>本書での名前</th><th>別の呼び名</th><th>補足</th></tr></thead>
+  <tbody>
+    <tr><td>ブル・プット・スプレッド</td><td>プット・クレジット・スプレッド、ショート・プット・スプレッド、ショート・プット・バーティカル</td><td>第13章</td></tr>
+    <tr><td>ベア・コール・スプレッド</td><td>コール・クレジット・スプレッド、ショート・コール・スプレッド</td><td>第13章</td></tr>
+    <tr><td>ブル・コール・スプレッド</td><td>コール・デビット・スプレッド、ロング・コール・スプレッド、ロング・コール・バーティカル</td><td>第13章</td></tr>
+    <tr><td>ベア・プット・スプレッド</td><td>プット・デビット・スプレッド、ロング・プット・スプレッド</td><td>第13章</td></tr>
+    <tr><td>垂直スプレッド（バーティカル・スプレッド）</td><td>マネー・スプレッド、プライス・スプレッド</td><td>同じ満期で権利行使価格が違う。オプションの価格表を縦に並べたときの縦方向の組み合わせ</td></tr>
+    <tr><td>カレンダー・スプレッド</td><td>ホリゾンタル・スプレッド、タイム・スプレッド</td><td>同じ権利行使価格で満期が違う。価格表の横方向（時間）の組み合わせ。第16章</td></tr>
+    <tr><td>ショート・カレンダー・スプレッド</td><td>Short Calendar Spread</td><td>大きく動く（IV低下も追い風）</td><td>クレジット</td><td>限定（ただし売った期先が残る）</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ダブル・カレンダー</td><td>Double Calendar</td><td>中立（レンジ）</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ダイアゴナル・スプレッド</td><td>（斜めのスプレッド）</td><td>権利行使価格も満期も違う。縦と横の両方で「斜め」。第16章</td></tr>
+    <tr><td>ショート・プット</td><td>ネイキッド・プット、アンカバード・プット、プットの売り</td><td>第11章</td></tr>
+    <tr><td>キャッシュ・セキュアード・プット</td><td>現金担保付きのプット売り</td><td>ショート・プットと損益図は同じ。違いは担保の持ち方。第11章</td></tr>
+    <tr><td>カバード・コール</td><td>バイ・ライト（株の購入と同時に建てる場合）</td><td>第12章</td></tr>
+    <tr><td>プロテクティブ・プット</td><td>マリード・プット（株の購入と同時に買う場合）</td><td>損益図の形は同じ。第12章</td></tr>
+    <tr><td>3本足のフェンス</td><td>スリーウェイ・カラー、スリーウェイ・フェンス</td><td>保有株＋「プットの買いスプレッドをコール売りで賄う（弱気のシーガル）」と同じ構造。第12章、第18章</td></tr>
+    <tr><td>短期ローテーション・カラー</td><td>デイリー・カラー（通称）</td><td>本書独自の呼び方。第12章</td></tr>
+    <tr><td>レシオ・スプレッド</td><td>フロント・スプレッド、レシオ・バーティカル</td><td>売りの枚数が多い。第13章</td></tr>
+    <tr><td>バックスプレッド</td><td>レシオ・バックスプレッド、リバース・レシオ・スプレッド</td><td>買いの枚数が多い。第13章</td></tr>
+    <tr><td>ブル・コール・ラダー／ベア・コール・ラダー</td><td>ロング・コール・ラダー／ショート・コール・ラダー</td><td>文献によってはラダーを「クリスマス・ツリー」と呼ぶこともあり、第15章のクリスマス・ツリーとは組み方が違う</td></tr>
+    <tr><td>ショート・ストラドル</td><td>ストラドルの売り</td><td>日本語の解説では「◯◯の売り／買い」と呼ぶことが多い。第14章</td></tr>
+    <tr><td>アイアン・コンドル</td><td>ショート・アイアン・コンドル</td><td>受け取りで建てる形。これを「ロング・アイアン・コンドル」と呼ぶ文献もあり、向きの呼び方が逆になることがある。第15章</td></tr>
+    <tr><td>合成ロング</td><td>シンセティック・ロング、合成先物の買い</td><td>第17章</td></tr>
+    <tr><td>リバーサル</td><td>リバース・コンバージョン</td><td>第17章</td></tr>
+    <tr><td>オプション・ホイール</td><td>ホイール戦略、ホイール</td><td>第12章</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box warn"><span class="box-label">注意：名前に惑わされる代表例</span>
+<ul>
+  <li><b>ベア・コール・ラダー</b>（コールを1枚売り、より高い権利行使価格のコールを1枚ずつ2本買う）は、名前に「ベア（弱気）」とありますが、<b>大きく上昇すると利益が無制限</b>になる、実質はボラ買いの戦略です。地図では右上にあります（図10-2）。同様に<b>ブル・プット・ラダー</b>は大きく下落すると利益が大きくなる戦略で、左上にあります。</li>
+  <li><b>「ロング」「ショート」</b>の向きは、文献によって「買いが主役か」「受け取りか」の基準が違うことがあります。アイアン・コンドルやバタフライで特に混乱しやすいので、名前ではなく組み方で確認してください。</li>
+  <li><b>「スプレッド」</b>には、①複数のオプションを組み合わせた戦略（垂直スプレッドなど）と、②買い気配と売り気配の差（ビッド・アスク・スプレッド、<a href="#ch06">第6章</a>）という、まったく別の2つの意味があります。</li>
+</ul></div>
+
+<h2 id="ch10-10">10-10　戦略選びのフローチャート</h2>
+<p>地図を使って戦略を選ぶ手順を、4つのステップにまとめます。</p>
+<ol class="flow">
+  <li><b>相場観を決める</b><br>上がる・下がる・動かない（レンジ）・大きく動く、のどれか。「分からない」なら見送るのも立派な選択です。</li>
+  <li><b>ボラ観を決める</b><br>今のIVは高いか低いか。IVランクやIVパーセンタイル（今のIVが過去1年の範囲のどのあたりか）で判断するのが一般的です。高ければ売り側、低ければ買い側が有利になりやすい。</li>
+  <li><b>リスク許容度を決める</b><br>損失に上限を付けたいか。最大でいくらまで失ってよいか。初心者はリスク限定型から始めます。</li>
+  <li><b>候補を損益図で比べる</b><br>最大利益・最大損失・損益分岐点・必要資金を比べ、損失に耐えられる枚数だけ建てます。</li>
+</ol>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 740 580" role="img" aria-label="戦略選びのフローチャート">
+  <rect x="0" y="0" width="740" height="580" fill="var(--surface)"/>
+  <rect x="10" y="8" width="720" height="34" rx="6" fill="var(--accent)" fill-opacity="0.10" stroke="var(--accent)" stroke-width="1"/>
+  <text x="22" y="30" font-size="12" fill="var(--fg)">保有株がある場合は先に：保険なら プロテクティブ・プット、カラー ／ 収入なら カバード・コール（第12章）</text>
+  <g font-size="12" font-weight="700" fill="var(--muted)">
+    <text x="70" y="64" text-anchor="middle" fill="var(--muted)">STEP1 相場観</text>
+    <text x="215" y="64" text-anchor="middle" fill="var(--muted)">STEP2 IVは？</text>
+    <text x="300" y="64" fill="var(--muted)">STEP3 リスク許容度 → 候補</text>
+  </g>
+  <g fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-width="1.2">
+    <rect fill="var(--accent)" x="10" y="76" width="120" height="108" rx="6"/>
+    <rect fill="var(--accent)" x="10" y="192" width="120" height="108" rx="6"/>
+    <rect fill="var(--accent)" x="10" y="308" width="120" height="108" rx="6"/>
+    <rect fill="var(--accent)" x="10" y="424" width="120" height="108" rx="6"/>
+  </g>
+  <g font-size="14" font-weight="700" fill="var(--fg)" text-anchor="middle">
+    <text x="70" y="135" fill="var(--fg)">上がる</text>
+    <text x="70" y="251" fill="var(--fg)">下がる</text>
+    <text x="70" y="360" fill="var(--fg)">動かない</text>
+    <text x="70" y="378" fill="var(--fg)">・レンジ</text>
+    <text x="70" y="483" fill="var(--fg)">大きく動く</text>
+  </g>
+  <g fill="var(--surface)" stroke="var(--muted)" stroke-width="1">
+    <rect fill="var(--surface)" x="160" y="80" width="110" height="46" rx="6"/><rect fill="var(--surface)" x="160" y="134" width="110" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="160" y="196" width="110" height="46" rx="6"/><rect fill="var(--surface)" x="160" y="250" width="110" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="160" y="312" width="110" height="46" rx="6"/><rect fill="var(--surface)" x="160" y="366" width="110" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="160" y="428" width="110" height="46" rx="6"/><rect fill="var(--surface)" x="160" y="482" width="110" height="46" rx="6"/>
+  </g>
+  <g font-size="12" fill="var(--fg)" text-anchor="middle">
+    <text x="215" y="107" fill="var(--fg)">IVが低い</text><text x="215" y="161" fill="var(--fg)">IVが高い</text>
+    <text x="215" y="223" fill="var(--fg)">IVが低い</text><text x="215" y="277" fill="var(--fg)">IVが高い</text>
+    <text x="215" y="339" fill="var(--fg)">IVが低い</text><text x="215" y="393" fill="var(--fg)">IVが高い</text>
+    <text x="215" y="455" fill="var(--fg)">IVが低い</text><text x="215" y="509" fill="var(--fg)">IVが高い</text>
+  </g>
+  <g stroke="var(--muted)" stroke-width="1" fill="none">
+    <polyline fill="none" points="130,130 145,130 145,103 160,103"/><polyline fill="none" points="145,130 145,157 160,157"/>
+    <polyline fill="none" points="130,246 145,246 145,219 160,219"/><polyline fill="none" points="145,246 145,273 160,273"/>
+    <polyline fill="none" points="130,362 145,362 145,335 160,335"/><polyline fill="none" points="145,362 145,389 160,389"/>
+    <polyline fill="none" points="130,478 145,478 145,451 160,451"/><polyline fill="none" points="145,478 145,505 160,505"/>
+    <line fill="none" x1="270" x2="290" y1="103" y2="103"/><line fill="none" x1="270" x2="290" y1="157" y2="157"/>
+    <line fill="none" x1="270" x2="290" y1="219" y2="219"/><line fill="none" x1="270" x2="290" y1="273" y2="273"/>
+    <line fill="none" x1="270" x2="290" y1="335" y2="335"/><line fill="none" x1="270" x2="290" y1="389" y2="389"/>
+    <line fill="none" x1="270" x2="290" y1="451" y2="451"/><line fill="none" x1="270" x2="290" y1="505" y2="505"/>
+  </g>
+  <g fill="var(--surface)" stroke="var(--line)" stroke-width="1">
+    <rect fill="var(--surface)" x="290" y="80" width="440" height="46" rx="6"/><rect fill="var(--surface)" x="290" y="134" width="440" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="290" y="196" width="440" height="46" rx="6"/><rect fill="var(--surface)" x="290" y="250" width="440" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="290" y="312" width="440" height="46" rx="6"/><rect fill="var(--surface)" x="290" y="366" width="440" height="46" rx="6"/>
+    <rect fill="var(--surface)" x="290" y="428" width="440" height="46" rx="6"/><rect fill="var(--surface)" x="290" y="482" width="440" height="46" rx="6"/>
+  </g>
+  <g font-size="12" fill="var(--fg)">
+    <text x="300" y="99" fill="var(--gain)">限定：ロング・コール、ブル・コール・スプレッド、PMCC</text>
+    <text x="300" y="118" fill="var(--loss)">無限定・大：合成ロング</text>
+    <text x="300" y="153" fill="var(--gain)">限定：ブル・プット・スプレッド</text>
+    <text x="300" y="172" fill="var(--loss)">無限定・大：ショート・プット、キャッシュ・セキュアード・プット</text>
+    <text x="300" y="215" fill="var(--gain)">限定：ロング・プット、ベア・プット・スプレッド</text>
+    <text x="300" y="234" fill="var(--loss)">無限定：合成ショート</text>
+    <text x="300" y="269" fill="var(--gain)">限定：ベア・コール・スプレッド</text>
+    <text x="300" y="288" fill="var(--loss)">無限定：ショート・コール（初心者には不向き）</text>
+    <text x="300" y="331" fill="var(--gain)">限定：ロング・バタフライ、カレンダー・スプレッド</text>
+    <text x="300" y="350" fill="var(--loss)">無限定：あえて選ぶ理由は小さい（受取が少ない）</text>
+    <text x="300" y="385" fill="var(--gain)">限定：アイアン・コンドル、アイアン・バタフライ</text>
+    <text x="300" y="404" fill="var(--loss)">無限定：ショート・ストラングル、ショート・ストラドル</text>
+    <text x="300" y="447" fill="var(--gain)">限定：ロング・ストラドル、ロング・ストラングル</text>
+    <text x="300" y="466" fill="var(--muted)">（買い側なので損失は払った額まで）</text>
+    <text x="300" y="501" fill="var(--gain)">限定：バックスプレッド、リバース・アイアン・コンドル</text>
+    <text x="300" y="520" fill="var(--muted)">買いが割高な局面。見送りも選択肢</text>
+  </g>
+  <text x="10" y="556" font-size="11" fill="var(--muted)">緑＝リスク限定型の候補、赤＝リスク無限定型または損失が非常に大きくなりうる候補。PMCC＝プアマンズ・カバード・コール（第16章）。</text>
+  <text x="10" y="572" font-size="11" fill="var(--muted)">IVの高低だけで決まるわけではない。あくまで候補を絞るための出発点。</text>
+</svg></div><figcaption>図10-12　戦略選びのフローチャート。相場観→IV→リスク許容度の順にたどると、候補が数個に絞れます。</figcaption></figure>
+
+<div class="box example"><span class="box-label">数値例：フローチャートを使ってみる</span>
+<p><b>日本の例</b>：日経平均40,000円。「SQまでの1か月は38,000〜42,000円のレンジだろう」と考え、日経平均VIは過去1年の中で高めの水準だとします。</p>
+<ol>
+  <li>相場観：動かない・レンジ</li>
+  <li>IV：高い</li>
+  <li>リスク許容度：損失は限定したい</li>
+</ol>
+<p>→ 候補は<b>アイアン・コンドル</b>です。たとえば38,000円のプットと42,000円のコールを売り、その外側の37,500円のプットと42,500円のコールを買えば、最大損失は「幅500円−受取額」×1,000円に限定されます（<a href="#ch15">第15章</a>）。</p>
+<p><b>米国の例</b>：株価100ドルの米国株。「決算までの間に上がりそう」だが、IVは低めだとします。損失は払った額までにしたい。</p>
+<p>→ 候補は<b>ロング・コール</b>か<b>ブル・コール・スプレッド</b>です。図10-6のブル・コール・スプレッドなら、1枚（100株分）の支払いは164ドル、最大利益は336ドルです。</p></div>
+
+<h2 id="ch10-11">10-11　全戦略一覧表</h2>
+<p>本書の第11〜18章で扱う戦略の一覧です（別名や変形をどこまで数えるかで、60〜70あまりになります）。「相場観」「デビット／クレジット」「リスク」は代表的な組み方の場合です。難易度は★1つ（入門）〜★3つ（上級）です。日本と米国で実際に組めるかどうかは<a href="#ch19">第19章</a>でまとめます。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>戦略名</th><th>英語名</th><th>相場観</th><th>デビット／クレジット</th><th>リスク</th><th>難易度</th><th>章</th></tr></thead>
+  <tbody>
+    <tr><td>ロング・コール</td><td>Long Call</td><td>強気</td><td>デビット</td><td>限定</td><td>★☆☆</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td>ロング・プット</td><td>Long Put</td><td>弱気</td><td>デビット</td><td>限定</td><td>★☆☆</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td>ショート・コール（ネイキッド）</td><td>Short (Naked) Call</td><td>弱気〜中立</td><td>クレジット</td><td>無限定</td><td>★★☆</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td>ショート・プット</td><td>Short (Naked) Put</td><td>強気〜中立</td><td>クレジット</td><td>大（株価0まで）</td><td>★★☆</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td>キャッシュ・セキュアード・プット</td><td>Cash-Secured Put</td><td>強気〜中立</td><td>クレジット</td><td>大（株価0まで）</td><td>★☆☆</td><td><a href="#ch11">11</a></td></tr>
+    <tr><td>カバード・コール</td><td>Covered Call</td><td>中立〜やや強気</td><td>クレジット</td><td>大（株の下落）</td><td>★☆☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>プロテクティブ・プット</td><td>Protective Put</td><td>強気（下落に備える）</td><td>デビット</td><td>限定</td><td>★☆☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>マリード・プット</td><td>Married Put</td><td>強気（下落に備える）</td><td>デビット</td><td>限定</td><td>★☆☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>ゼロコスト・カラー</td><td>Zero-Cost Collar</td><td>中立〜やや強気</td><td>ほぼゼロ</td><td>限定</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>クレジット・カラー</td><td>Credit Collar</td><td>中立〜やや強気</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>デビット・カラー</td><td>Debit Collar</td><td>中立〜やや強気</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>ブル・フェンス</td><td>Bull Fence</td><td>強気（定義による）</td><td>ほぼゼロ</td><td>原資産なしの形は大（下落側）</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>ベア・フェンス</td><td>Bear Fence</td><td>弱気（定義による）</td><td>ほぼゼロ</td><td>原資産なしの形は無限定（上昇側）</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>3本足のフェンス</td><td>Three-Way Collar</td><td>中立〜やや強気</td><td>ほぼゼロ〜クレジット</td><td>大（一定以下は保護なし）</td><td>★★★</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>オプション・ホイール</td><td>The Wheel</td><td>中立〜やや強気</td><td>クレジット</td><td>大（株価0まで）</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>カバード・ストラングル</td><td>Covered Strangle</td><td>中立〜やや強気</td><td>クレジット</td><td>大（下落時は株の約2倍）</td><td>★★☆</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>短期ローテーション・カラー</td><td>（通称 Daily Collar）</td><td>やや強気（保有継続）</td><td>組み方次第</td><td>各期間は限定（急変時のすき間に注意）</td><td>★★★</td><td><a href="#ch12">12</a></td></tr>
+    <tr><td>ブル・コール・スプレッド</td><td>Bull Call Spread</td><td>やや強気</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ベア・プット・スプレッド</td><td>Bear Put Spread</td><td>やや弱気</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ブル・プット・スプレッド</td><td>Bull Put Spread</td><td>やや強気〜中立</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ベア・コール・スプレッド</td><td>Bear Call Spread</td><td>やや弱気〜中立</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>コール・レシオ・スプレッド</td><td>Call Ratio Spread</td><td>中立〜やや強気（上がりすぎない）</td><td>組み方次第</td><td>無限定（上昇側）</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>プット・レシオ・スプレッド</td><td>Put Ratio Spread</td><td>中立〜やや弱気（下がりすぎない）</td><td>組み方次第</td><td>大（下落側）</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>コール・バックスプレッド</td><td>Call Backspread</td><td>大きく上昇</td><td>組み方次第</td><td>限定</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>プット・バックスプレッド</td><td>Put Backspread</td><td>大きく下落</td><td>組み方次第</td><td>限定</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ブル・コール・ラダー</td><td>Bull Call Ladder</td><td>中立〜やや強気（上がりすぎない）</td><td>組み方次第</td><td>無限定（上昇側）</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ベア・コール・ラダー</td><td>Bear Call Ladder</td><td>大きく上昇（名前と逆に注意）</td><td>組み方次第</td><td>限定</td><td>★★★</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><td>ブル・プット・ラダー</td><td>Bull Put Ladder</td><td>大きく下落（名前と逆に注意）</td><td>組み方次第</td><td>限定</td><td>★★★</td><td><a href="#ch13-10">13</a></td></tr>
+    <tr><td>ベア・プット・ラダー</td><td>Bear Put Ladder</td><td>中立〜やや弱気（下がりすぎない）</td><td>組み方次第</td><td>大（下落側）</td><td>★★★</td><td><a href="#ch13">13</a></td></tr>
+    <tr><td>ロング・ストラドル</td><td>Long Straddle</td><td>大きく動く</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ショート・ストラドル</td><td>Short Straddle</td><td>動かない</td><td>クレジット</td><td>無限定</td><td>★★★</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ロング・ストラングル</td><td>Long Strangle</td><td>大きく動く</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ショート・ストラングル</td><td>Short Strangle</td><td>中立（レンジ）</td><td>クレジット</td><td>無限定</td><td>★★★</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ロング・ガッツ</td><td>Long Guts</td><td>大きく動く</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ショート・ガッツ</td><td>Short Guts</td><td>中立（レンジ）</td><td>クレジット</td><td>無限定</td><td>★★★</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ストリップ</td><td>Strip</td><td>大きく動く（下落寄り）</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ストラップ</td><td>Strap</td><td>大きく動く（上昇寄り）</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch14">14</a></td></tr>
+    <tr><td>ロング・コール・バタフライ</td><td>Long Call Butterfly</td><td>動かない</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>ロング・プット・バタフライ</td><td>Long Put Butterfly</td><td>動かない</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>ショート・バタフライ</td><td>Short Butterfly</td><td>動く</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>アイアン・バタフライ</td><td>Iron Butterfly</td><td>動かない</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>リバース・アイアン・バタフライ</td><td>Reverse Iron Butterfly</td><td>大きく動く</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>ロング・コンドル（コール／プット）</td><td>Long Condor</td><td>中立（レンジ）</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>アイアン・コンドル</td><td>Iron Condor</td><td>中立（レンジ）</td><td>クレジット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>リバース・アイアン・コンドル</td><td>Reverse Iron Condor</td><td>大きく動く</td><td>デビット</td><td>限定</td><td>★★☆</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>コリドー（通称）</td><td>Corridor</td><td>中立（レンジ）</td><td>クレジット（主な使われ方）</td><td>ストラングル型は無限定、コンドル型は限定</td><td>★★☆〜★★★</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>ブロークン・ウィング・バタフライ</td><td>Broken Wing Butterfly</td><td>中立〜やや方向性あり</td><td>小さなデビット〜クレジット</td><td>限定</td><td>★★★</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>スキップ・ストライク・バタフライ</td><td>Skip-Strike Butterfly</td><td>中立〜やや方向性あり</td><td>小さなデビット〜クレジット</td><td>限定</td><td>★★★</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>クリスマス・ツリー</td><td>Christmas Tree</td><td>やや強気（コール）／やや弱気（プット）</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch15">15</a></td></tr>
+    <tr><td>カレンダー・スプレッド</td><td>Calendar Spread</td><td>当面動かない（IV上昇は追い風）</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ショート・カレンダー・スプレッド</td><td>Short Calendar Spread</td><td>大きく動く（IV低下も追い風）</td><td>クレジット</td><td>限定（ただし売った期先が残る）</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ダブル・カレンダー</td><td>Double Calendar</td><td>中立（レンジ）</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ダイアゴナル・スプレッド</td><td>Diagonal Spread</td><td>やや強気／やや弱気</td><td>デビット（多い）</td><td>限定（標準的な組み方）</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>ダブル・ダイアゴナル</td><td>Double Diagonal</td><td>中立（レンジ）</td><td>組み方次第</td><td>限定</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>プアマンズ・カバード・コール</td><td>Poor Man's Covered Call</td><td>やや強気</td><td>デビット</td><td>限定（標準的な組み方）</td><td>★★★</td><td><a href="#ch16">16</a></td></tr>
+    <tr><td>合成ロング</td><td>Synthetic Long</td><td>強気</td><td>ほぼゼロ</td><td>大（原資産0まで）</td><td>★★☆</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>合成ショート</td><td>Synthetic Short</td><td>弱気</td><td>ほぼゼロ</td><td>無限定</td><td>★★☆</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>リスク・リバーサル</td><td>Risk Reversal</td><td>強気（逆向きなら弱気）</td><td>ほぼゼロ</td><td>大／無限定（向きによる）</td><td>★★☆</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>コンバージョン</td><td>Conversion</td><td>裁定（方向なし）</td><td>―</td><td>理論上ほぼなし</td><td>★★★</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>リバーサル</td><td>Reversal</td><td>裁定（方向なし）</td><td>―</td><td>理論上ほぼなし</td><td>★★★</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>ボックス・スプレッド</td><td>Box Spread</td><td>裁定・資金調達</td><td>買いはデビット、売りはクレジット</td><td>理論上ほぼなし（早期割当に注意）</td><td>★★★</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>ジェリー・ロール</td><td>Jelly Roll</td><td>裁定・満期の乗り換え</td><td>組み方次第</td><td>理論上ほぼなし</td><td>★★★</td><td><a href="#ch17">17</a></td></tr>
+    <tr><td>ジェイド・リザード</td><td>Jade Lizard</td><td>中立〜やや強気</td><td>クレジット</td><td>大（下落側）</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>ビッグ・リザード</td><td>Big Lizard</td><td>中立</td><td>クレジット</td><td>大（下落側）</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>ツイステッド・シスター</td><td>Twisted Sister（Reverse Jade Lizard）</td><td>中立〜やや弱気</td><td>クレジット</td><td>無限定（上昇側）</td><td>★★★</td><td><a href="#ch18-8">18</a></td></tr>
+    <tr><td>ゼブラ</td><td>ZEBRA</td><td>強気（株に近い動き）</td><td>デビット</td><td>限定</td><td>★★★</td><td><a href="#ch18-8">18</a></td></tr>
+    <tr><td>シーガル</td><td>Seagull</td><td>強気（逆向きなら弱気）</td><td>ほぼゼロ</td><td>大（売った側）</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>決算（イベント）前後の戦略</td><td>Earnings Plays</td><td>動かない（IVクラッシュ狙い）／大きく動く</td><td>組み方次第</td><td>組み方次第</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>0DTE戦略</td><td>0DTE Strategies</td><td>組み方次第（当日のみ）</td><td>組み方次第</td><td>組み方次第</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>配当を狙う戦略</td><td>Dividend Strategies</td><td>裁定寄り</td><td>組み方次第</td><td>組み方次第（早期割当が鍵）</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+    <tr><td>ボラティリティ・アービトラージ</td><td>Volatility Arbitrage</td><td>方向なし（ボラ観のみ）</td><td>組み方次第</td><td>組み方次第</td><td>★★★</td><td><a href="#ch18">18</a></td></tr>
+  </tbody>
+</table></div>
+
+<p>表の「リスク」の欄で「大」としたものは、理論上の最大損失に上限はあるものの（原資産の価格は0より下がらないため）、実際には非常に大きな損失になりうるものです。「限定」でも、証拠金や早期割当、流動性の問題で思わぬ損失が出ることがあります。各章で必ず確認してください。</p>
+
+<h2 id="ch10-12">まとめ</h2>
+<ul class="summary-list">
+  <li>どの戦略も「方向」「変動の大きさ」「リスクの取り方」の3つの問いへの答え方の違い。名前からではなく、自分の見方から戦略を選ぶ。</li>
+  <li>相場観は強気／弱気／中立（レンジ）／大きく動く／動かないの5分類。オプションでは変動の大きさ（動く・動かない）にも賭けられる。</li>
+  <li>戦略マップは横軸が相場観（おおむねデルタ）、縦軸がボラ観（おおむねガンマ・ベガ）。上は買い中心でセータがマイナス、下は売り中心でセータがプラス、中心は裁定。</li>
+  <li>目的は収入／保険／投機／裁定。同じプット買いでも、株を持つ人には保険、持たない人には投機になる。</li>
+  <li>デビットは払って始める、クレジットは受け取って始める。クレジットは勝率が高めで損失が利益より大きく、デビットはその逆になりやすい。デビットでも損失が無限定の戦略（デビットで建てたレシオ・スプレッドなど）がある。</li>
+  <li>ロング・ボラはガンマ・ベガがプラスでセータがマイナス、ショート・ボラはその逆。株価が動かなくても、IVと時間で損益が動く。</li>
+  <li>クレジット・カラー、ベア・フェンス、短期ローテーション・カラー（通称デイリー・カラー）、オプション・ホイールは第12章、コリドーは第15章で扱う。</li>
+  <li>1つの戦略に、相場観・お金の流れ・主役の売買の3つの見方で別々の名前が付く（ブル・プット・スプレッド＝プット・クレジット・スプレッドなど）。名前ではなく組み方で確認する。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+
+  <div class="q"><p>日経平均について「次のSQまでは一定の範囲で動くだろう」と考えています。日経平均VIは過去1年の中で高めの水準で、損失は必ず限定したいと考えています。フローチャートに沿って選ぶと、最も適した候補はどれですか。</p>
+    <ol class="choices"><li>ロング・ストラドル</li><li>ショート・ストラングル</li><li>アイアン・コンドル</li><li>ロング・コール</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　相場観が「レンジ」、IVが高い（ボラを売る側が有利になりやすい）、リスク限定、の3つを満たすのはアイアン・コンドルです。Bのショート・ストラングルも「レンジ×IV高い」には合いますが、損失が無限定になりうるので条件に合いません。Aはボラを買う戦略、Dは強気の戦略です。</p></div></details>
+  </div>
+
+  <div class="q"><p>「ブル・プット・スプレッド」と同じ戦略を指す呼び名はどれですか。</p>
+    <ol class="choices"><li>プット・デビット・スプレッド</li><li>プット・クレジット・スプレッド</li><li>ベア・プット・スプレッド</li><li>プット・バックスプレッド</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ブル・プット・スプレッドは、高い権利行使価格のプットを売り、低い権利行使価格のプットを買う戦略で、差し引きで受け取り（クレジット）になります。相場観で呼ぶと「ブル」、お金の流れで呼ぶと「クレジット」です。Aのプット・デビット・スプレッドはベア・プット・スプレッド（C）の別名です。</p></div></details>
+  </div>
+
+  <div class="q"><p>次の損益図（満期時、1株あたり）の戦略について、正しい説明はどれですか。</p>
+    <div class="payoff" data-title="問題の損益図" data-spot="100" data-range="85,110" data-hide="legs"
+         data-legs='[{"type":"put","k":95,"qty":-1,"prem":0.57},{"type":"put","k":90,"qty":1,"prem":0.07}]'></div>
+    <ol class="choices"><li>デビット戦略で、リスク無限定型</li><li>クレジット戦略で、リスク限定型。やや強気〜中立</li><li>デビット戦略で、リスク限定型。大きく動くと得をする</li><li>クレジット戦略で、リスク無限定型。弱気</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　95以上で一定の利益（0.50）が出て、下がると損失が増え、90より下では損失が一定（−4.50）で止まっています。最大利益が「建てた時の受取」と同じ0.50なのでクレジット、左端が平らなのでリスク限定型です。下がらなければ利益なので、やや強気〜中立のブル・プット・スプレッドです。</p></div></details>
+  </div>
+
+  <div class="q"><p>ガンマがプラス、ベガがプラス、セータがマイナスの戦略は、戦略マップのどのあたりに置かれますか。</p>
+    <ol class="choices"><li>上側（ボラを買う側）</li><li>下側（ボラを売る側）</li><li>中心（裁定）</li><li>右端の下（強気のボラ売り）</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：A</b>　ガンマとベガがプラスで、時間の経過で損をする（セータがマイナス）のはロング・ボラの特徴です。ロング・ストラドルやロング・ストラングルのように、オプションを買う側の戦略が集まる地図の上側に置かれます。</p></div></details>
+  </div>
+
+  <div class="q"><p>株価100、IV20%、残り30日で、100のコールとプットを各2.29で買いました（ロング・ストラドル、支払い4.58）。株価は動かないまま、同じ日のうちにIVが25%に上がり、ストラドルの理論価格が5.72になりました。米国株オプション1枚ずつ（100株分）の場合、評価損益はいくらですか。</p>
+    <ol class="choices"><li>−114ドル</li><li>+57ドル</li><li>+114ドル</li><li>+572ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　(5.72−4.58)×100＝+114ドルです。株価はまったく動いていませんが、IVの上昇でオプションの価値が上がったため利益になっています。これが「ボラティリティを買う」ということです。逆にIVが下がれば、株価が動かなくても損失になります。</p></div></details>
+  </div>
+
+  <div class="q"><p>「デイリー・カラー」という言葉について、本書の扱いとして正しいものはどれですか。</p>
+    <ol class="choices"><li>取引所が定めた正式な戦略名で、第15章で扱う</li><li>正式名ではない通称で、本書では「短期ローテーション・カラー」として第12章で扱う</li><li>毎日必ず利益が出る無リスクの戦略の名前</li><li>コリドーと同じ戦略の別名</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　「デイリー・カラー」は正式な戦略名ではなく通称です。株や先物は持ち続けたまま、ごく短い満期のコール売りとプット買いを繰り返しロールするカラーのことで、本書では「短期ローテーション・カラー」と呼び、第12章で利点と落とし穴を検証します。どんな戦略も「毎日必ず利益」にはなりません（C）。</p></div></details>
+  </div>
+
+  <div class="q"><p>「デビットで始めた戦略なのに、損失が無限定になりうる」ものはどれですか（代表的な組み方の場合）。</p>
+    <ol class="choices"><li>ブル・コール・スプレッド</li><li>ロング・ストラドル</li><li>100のコール1枚買い＋105のコール2枚売りを、差し引き支払いで建てたコール・レシオ・スプレッド</li><li>ロング・バタフライ</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　売ったコールが買ったコールより1枚多いので、損益図の右端の傾きは1−2＝−1です。上がれば上がるほど損失が増え、上限がありません。支払いで始めたかどうかと、損失が限定されているかどうかは別の問題です。A、B、Dはどれも損失が支払額までに限定されます。</p></div></details>
+  </div>
+
+  <div class="q"><p>「ベア・コール・ラダー」（コールを1枚売り、より高い権利行使価格のコールを1枚ずつ2本買う）の説明として、正しいものはどれですか。</p>
+    <ol class="choices"><li>名前の通り、下落すればするほど利益が大きくなる</li><li>大きく上昇すると利益が無制限になる、実質的にはボラを買う側の戦略</li><li>上昇すると損失が無制限になる</li><li>方向にもボラにも関係しない裁定取引</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　コールの売りが1枚、買いが2枚なので、右端の傾きは−1＋2＝+1です。大きく上昇すれば利益は無制限に増えます。下落したときの損益は、建てたときの受取・支払いで決まる一定の値にとどまります。名前に「ベア」とあっても地図では右上にあり、「名前ではなく組み方で確認する」ことの代表例です。</p></div></details>
+  </div>
+
+</div>

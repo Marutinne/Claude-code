@@ -1,0 +1,427 @@
+<header class="chapter-head">
+  <p class="eyebrow">第6部　オプション戦略の自動売買</p>
+  <h1>第25章　自動売買に対応する証券会社と接続方式 <span class="lv">Lv.4</span></h1>
+  <p class="lead">自動売買は、自分で決めたルールどおりにプログラムやツールが注文を出す仕組みです。この章では、プログラムの作り方ではなく、「どの証券会社が、どんな接続方式で、オプションの自動発注に対応しているか」「日本居住者が使えるか」を整理します。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>自動売買の接続方式の種類（公式API、取引ツール連携、外部プラットフォーム経由、ブラウザ操作の自動化）と違い</li>
+  <li>日経225オプションなど国内オプションの発注にAPI等で対応している証券会社と、その接続方式・利用条件</li>
+  <li>米国オプションの発注にAPIで対応している主な証券会社と、日本居住者が口座を開けるか</li>
+  <li>自動売買を始める前に準備しておくべき安全装置（上限設定・停止スイッチ）と記録</li>
+</ul></div>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>この章の情報は、執筆時点（2026年9月）に各社の公式サイト・公式発表で確認できた範囲のものです。APIの対応商品、利用条件、料金、口座を開ける国は<strong>予告なく変わります</strong>。確認できなかった事項は「要確認」と書いています。利用する前に、必ず次の一次情報で最新の内容を確かめてください。</p>
+<ul>
+  <li>各証券会社のAPI公式ページ・開発者向け資料・利用規約・取引説明書</li>
+  <li>海外業者の登録状況：金融庁のウェブサイト（無登録の海外業者についての注意喚起）</li>
+  <li>税金：国税庁、税務署、税理士（<a href="#ch24">第24章</a>）</li>
+</ul>
+<p>本書は特定の証券会社やサービスを勧めるものではありません。</p>
+</div>
+
+<h2 id="ch25-1">25-1　自動売買の「接続」とは何か</h2>
+
+<p>自動売買は、次の3つの部品でできています。</p>
+<ol>
+  <li><strong>判断する部分</strong>：「IVが〇〇以上なら売る」「損失が〇〇円に達したら決済」などのルールを実行するプログラムやExcelのシート</li>
+  <li><strong>接続口</strong>：判断した結果を注文として証券会社に届ける通り道</li>
+  <li><strong>証券会社</strong>：注文を受け取り、取引所に取り次ぐ</li>
+</ol>
+<p>この章で扱うのは2番目の「接続口」です。<strong>オプションの注文を受け付ける接続口を用意している証券会社は限られ</strong>、株式の自動売買ができる会社でもオプションは対象外ということがよくあります。</p>
+
+<p>代表的な接続口が<strong>API（Application Programming Interface）</strong>、つまり「プログラムどうしが決まった形式でやり取りするための窓口」です。人間が画面のボタンを押す代わりに、プログラムがAPIに「この銘柄を、この値段で、何枚買う」と伝えます。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 360" role="img" aria-label="自動売買の4つの接続方式の構成図">
+  <rect x="10" y="140" width="130" height="80" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="75" y="172" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">あなたの</text>
+  <text x="75" y="192" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">プログラム</text>
+  <text x="75" y="210" font-size="11" text-anchor="middle" fill="var(--muted)">（ルールを実行）</text>
+
+  <rect x="580" y="120" width="130" height="120" rx="10" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="645" y="170" font-size="15" text-anchor="middle" fill="var(--fg)" font-weight="700">証券会社</text>
+  <text x="645" y="192" font-size="12" text-anchor="middle" fill="var(--fg)">→ 取引所</text>
+
+  <rect x="200" y="20" width="320" height="56" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="360" y="44" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">A　証券会社の公式API</text>
+  <text x="360" y="64" font-size="11" text-anchor="middle" fill="var(--muted)">REST／WebSocket、FIX（機関投資家向けが中心）</text>
+
+  <rect x="200" y="100" width="320" height="56" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="360" y="124" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">B　証券会社の取引ツールと連携</text>
+  <text x="360" y="144" font-size="11" text-anchor="middle" fill="var(--muted)">取引ツールのAPI機能、Excel連携（RSS）</text>
+
+  <rect x="200" y="180" width="320" height="56" rx="8" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="360" y="204" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">C　外部プラットフォーム経由</text>
+  <text x="360" y="224" font-size="11" text-anchor="middle" fill="var(--muted)">証券会社と提携した他社のツール・サービス</text>
+
+  <rect x="200" y="270" width="320" height="56" rx="8" fill="var(--loss)" fill-opacity="0.10" stroke="var(--loss)" stroke-dasharray="6 4"/>
+  <text x="360" y="294" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">D　ブラウザ操作の自動化（非推奨）</text>
+  <text x="360" y="314" font-size="11" text-anchor="middle" fill="var(--muted)">画面のクリックを機械で再現。規約違反になりうる</text>
+
+  <line x1="140" y1="170" x2="200" y2="48" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="140" y1="176" x2="200" y2="128" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="140" y1="186" x2="200" y2="208" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="140" y1="200" x2="200" y2="298" stroke="var(--loss)" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+  <line x1="520" y1="48" x2="580" y2="150" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="520" y1="128" x2="580" y2="170" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="520" y1="208" x2="580" y2="195" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <line x1="520" y1="298" x2="580" y2="225" stroke="var(--loss)" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+  <text x="360" y="350" font-size="11" text-anchor="middle" fill="var(--muted)">BとCは、あなたのPCで証券会社の取引ツールや他社ツールを起動しておく必要があることが多い</text>
+</svg></div><figcaption>図25-1　自動売買の4つの接続方式。A〜Cは証券会社が認めた正式な通り道、Dは画面操作の「なりすまし」で、規約違反や誤作動の危険が大きい。</figcaption></figure>
+
+<h2 id="ch25-2">25-2　接続方式の種類と違い</h2>
+
+<h3>A　証券会社の公式API</h3>
+<p>証券会社が、プログラムから直接注文を受け付けるために公開している窓口です。使われる技術によって、次のような種類があります。</p>
+<ul>
+  <li><strong>REST（レスト）API</strong>：プログラムが「注文を出す」「残高を教えて」と<strong>1回ずつ問い合わせる</strong>方式。ウェブの仕組みと同じなので、ほとんどのプログラミング言語から使えます。</li>
+  <li><strong>WebSocket（ウェブソケット）／PUSH配信</strong>：接続をつなぎっぱなしにして、価格や約定の情報を<strong>証券会社側から次々に送ってもらう</strong>方式。値動きに素早く反応したいときに使います。</li>
+  <li><strong>FIX（フィックス、Financial Information eXchange）</strong>：金融機関どうしの注文のやり取りで使われる業界標準の通信規格。高速ですが、専用の設備や契約が必要で、主に機関投資家や業者向けです。</li>
+</ul>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 250" role="img" aria-label="RESTとWebSocketの違い">
+  <text x="180" y="24" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">REST：その都度たずねる</text>
+  <rect x="30" y="40" width="100" height="180" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="80" y="134" font-size="13" text-anchor="middle" fill="var(--fg)">プログラム</text>
+  <rect x="230" y="40" width="100" height="180" rx="8" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="280" y="134" font-size="13" text-anchor="middle" fill="var(--fg)">証券会社</text>
+  <line x1="130" y1="70" x2="222" y2="70" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+  <path d="M222,65 l8,5 l-8,5 z" fill="var(--accent)"/>
+  <text x="180" y="62" font-size="11" text-anchor="middle" fill="var(--fg)">注文を出す</text>
+  <line x1="230" y1="95" x2="138" y2="95" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <path d="M138,90 l-8,5 l8,5 z" fill="var(--muted)"/>
+  <text x="180" y="112" font-size="11" text-anchor="middle" fill="var(--muted)">受付番号を返す</text>
+  <line x1="130" y1="150" x2="222" y2="150" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+  <path d="M222,145 l8,5 l-8,5 z" fill="var(--accent)"/>
+  <text x="180" y="142" font-size="11" text-anchor="middle" fill="var(--fg)">約定した？</text>
+  <line x1="230" y1="175" x2="138" y2="175" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <path d="M138,170 l-8,5 l8,5 z" fill="var(--muted)"/>
+  <text x="180" y="192" font-size="11" text-anchor="middle" fill="var(--muted)">約定済み</text>
+
+  <text x="540" y="24" font-size="14" text-anchor="middle" fill="var(--fg)" font-weight="700">WebSocket：つないで待つ</text>
+  <rect x="390" y="40" width="100" height="180" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="440" y="134" font-size="13" text-anchor="middle" fill="var(--fg)">プログラム</text>
+  <rect x="590" y="40" width="100" height="180" rx="8" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="640" y="134" font-size="13" text-anchor="middle" fill="var(--fg)">証券会社</text>
+  <rect x="490" y="52" width="100" height="16" rx="4" fill="var(--accent)" fill-opacity="0.25" stroke="none"/>
+  <text x="540" y="64" font-size="10" text-anchor="middle" fill="var(--fg)">接続を開いたまま</text>
+  <line x1="590" y1="95" x2="498" y2="95" stroke="var(--gain)" stroke-width="1.5" fill="none"/>
+  <path d="M498,90 l-8,5 l8,5 z" fill="var(--gain)"/>
+  <text x="540" y="88" font-size="11" text-anchor="middle" fill="var(--fg)">価格 120円</text>
+  <line x1="590" y1="130" x2="498" y2="130" stroke="var(--gain)" stroke-width="1.5" fill="none"/>
+  <path d="M498,125 l-8,5 l8,5 z" fill="var(--gain)"/>
+  <text x="540" y="123" font-size="11" text-anchor="middle" fill="var(--fg)">価格 125円</text>
+  <line x1="590" y1="165" x2="498" y2="165" stroke="var(--gain)" stroke-width="1.5" fill="none"/>
+  <path d="M498,160 l-8,5 l8,5 z" fill="var(--gain)"/>
+  <text x="540" y="158" font-size="11" text-anchor="middle" fill="var(--fg)">約定しました</text>
+  <text x="540" y="240" font-size="11" text-anchor="middle" fill="var(--muted)">変化があるたびに証券会社から届く</text>
+  <text x="180" y="240" font-size="11" text-anchor="middle" fill="var(--muted)">知りたいときに毎回問い合わせる</text>
+</svg></div><figcaption>図25-2　RESTとWebSocket（PUSH配信）の違い。多くの証券会社のAPIは、注文をRESTで出し、価格や約定の通知をWebSocketで受け取る組み合わせになっている。</figcaption></figure>
+
+<h3>B　証券会社の取引ツールとの連携</h3>
+<p>証券会社が配布しているパソコン用の取引ツールを起動しておき、そのツールを「中継役」にして注文を出す方式です。日本ではこの形が主流です。</p>
+<ul>
+  <li><strong>取引ツールのAPI機能</strong>：取引ツールがパソコンの中にAPIの窓口を開き、自分のプログラムはそこに注文を送ります（例：kabuステーションAPI、IBのTWS API）。</li>
+  <li><strong>Excel連携（RSS）</strong>：RSS（リアルタイム・スプレッドシート）は、Excelのセルに専用の関数を書くと価格が自動で更新され、発注用の関数やVBA（Excelのマクロ言語）で注文も出せる仕組みです（例：楽天証券のマーケットスピード II RSS、岡三証券の岡三RSS）。プログラミング言語を覚えなくても始めやすい一方、<strong>Windows版Excelが前提</strong>のものが多い点に注意が必要です。</li>
+</ul>
+
+<h3>C　外部プラットフォーム経由</h3>
+<p>証券会社と提携した他社が作ったシステムトレード用のツールやサービスを使い、その会社経由で証券会社に注文を届ける方式です。自分でプログラムを書かずにルールを設定できるものもあります。一方で、<strong>ツールの提供会社・料金・対応商品は証券会社とは別に確認が必要</strong>で、提供会社がサービスを終了すると使えなくなります。</p>
+
+<h3>D　ブラウザ操作の自動化（非推奨）</h3>
+<p>証券会社のウェブサイトを、ボタンのクリックや文字入力を機械で再現するソフトで操作する方式です。技術的には可能に見えても、<strong>この方式は勧めません</strong>。理由は次のとおりです。</p>
+<ul>
+  <li>多くの証券会社は、利用規約で認めていない方法による自動的なアクセスを制限・禁止しています。規約違反と判断されると、口座の利用停止などの対象になりえます。</li>
+  <li>画面のデザインが変わっただけで、ボタンの位置がずれ、<strong>意図しない注文</strong>を出す危険があります。</li>
+  <li>ログイン情報をソフトに保存する必要があり、情報流出の危険が増えます。</li>
+</ul>
+
+<h3>4つの方式の比較</h3>
+<div class="tbl"><table>
+  <thead><tr><th>方式</th><th>例</th><th>必要なもの</th><th>自由度</th><th>主な注意点</th></tr></thead>
+  <tbody>
+    <tr><td>A 公式API（REST／WebSocket）</td><td>ウィブル証券・moomoo証券のAPI、米国の各社API、IBのWeb API</td><td>プログラミングの知識、APIキー</td><td>高い</td><td>APIキーの管理、利用回数の上限</td></tr>
+    <tr><td>A 公式API（FIX）</td><td>IBのFIX（CTCI）など</td><td>専用設備・契約</td><td>非常に高い</td><td>主に機関投資家向け、最低手数料など条件が重い</td></tr>
+    <tr><td>B 取引ツール連携</td><td>kabuステーションAPI、TWS API、マーケットスピード II RSS、岡三RSS</td><td>取引ツールの起動（Windowsが多い）、Excelまたはプログラム</td><td>中〜高</td><td>PCとツールを起動し続ける必要がある</td></tr>
+    <tr><td>C 外部プラットフォーム</td><td>証券会社と提携したシステムトレード・ツール</td><td>ツールの契約</td><td>ツール次第</td><td>ツール会社の料金・継続性</td></tr>
+    <tr><td>D ブラウザ自動化</td><td>（勧めない）</td><td>―</td><td>―</td><td>規約違反・誤発注・情報流出の危険</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box key"><span class="box-label">ここが重要</span>
+<p>自動売買の接続方式を選ぶときは、「どの言語で書けるか」より先に、<strong>①その方式でオプションの発注ができるか、②日本居住者として使えるか、③PCを起動し続ける必要があるか</strong>の3点を確認します。①②のどちらかが満たされなければ、ほかの条件がどれほど良くても使えません。</p>
+</div>
+
+<h2 id="ch25-3">25-3　日本：国内オプションをAPI等で発注できる証券会社</h2>
+
+<p>日経225オプションなど、大阪取引所に上場しているオプションを自動で発注したい場合の選択肢です。執筆時点で公式情報を確認できた主な会社を挙げます。どの会社でも、先に<strong>先物・オプション取引口座</strong>の開設（審査あり）が必要です。</p>
+
+<h3>三菱UFJ eスマート証券（旧：auカブコム証券）― kabuステーションAPI</h3>
+<p>auカブコム証券は2025年2月1日に社名を三菱UFJ eスマート証券に変更しました（ウェブサイトのURLは変わっていません）。</p>
+<ul>
+  <li><strong>オプション発注</strong>：可能。kabuステーションAPIは2020年8月に株式向けに始まり、同年10月に先物・オプションに対応を広げました。オプション専用の発注の窓口があり、日中・夜間の取引時間を指定できます。</li>
+  <li><strong>接続方式</strong>：B（取引ツールのAPI機能）。PCで取引ツール「kabuステーション」を起動しておき、そこにREST APIで注文を送ります。価格の配信はPUSH API（WebSocket）で受け取れます。<strong>kabuステーションを起動しているのと同じPCからしか</strong>リクエストを受け付けません。</li>
+  <li><strong>利用条件</strong>：API自体は無料。ただし、kabuステーションの「Professionalプラン」以上が適用されていることが必要です（プランは取引実績などに応じて自動で適用され、初めて使うときは一定期間Professionalプランが適用されると案内されています。条件の詳細は要確認）。</li>
+  <li><strong>OS</strong>：kabuステーションはWindowsのみ対応です。</li>
+  <li><strong>回数の上限</strong>：発注系は1秒あたり5件、照会系は1秒あたり10件と案内されています。</li>
+</ul>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>発注の上限が1秒5件なら、1分間では最大300件です。日経225オプションで「コール売り＋プット売り」の2本足を建てるのに2件、決済に2件使うとすると、これを何十組も一斉に出すような設計は上限にかかります。逆に言えば、個人が数組のポジションを管理する用途なら、この上限はまず問題になりません。上限は「プログラムの暴走で大量の注文が出る」ことへの歯止めでもあります。</p>
+</div>
+
+<h3>楽天証券 ― マーケットスピード II RSS</h3>
+<ul>
+  <li><strong>オプション発注</strong>：可能。取引できる商品は、国内株式（現物・信用）、株価指数先物・オプション、商品先物と案内されています。注文用の関数は「国内株式」と「先物OP」に分かれ、新規・返済・訂正・取消を選んで使います。</li>
+  <li><strong>接続方式</strong>：B（Excel連携）。Excelのワークシート関数に加え、マクロ用のVBA関数も用意されています。</li>
+  <li><strong>利用条件</strong>：無料（取引ツール「マーケットスピード II」の利用申請が必要）。使うたびにマーケットスピード II の起動とログイン、Excelの起動が必要です。発注機能を使う前に「マーケットスピード II RSSの利用に関する確認書兼同意書」を読むよう求められています。</li>
+  <li><strong>OS</strong>：Windows版Excelのみ（Macは非対応）。</li>
+</ul>
+
+<h3>インタラクティブ・ブローカーズ証券（IB証券）― TWS API／Web API／FIX</h3>
+<ul>
+  <li><strong>オプション発注</strong>：可能。日経225オプションなど大阪取引所の商品を扱っています。日本居住者の口座は、<strong>国内上場商品用の口座（IBSJ口座）と海外上場商品用の口座（IBLLC口座）に分かれる</strong>と案内されています。日経225オプションはIBSJ口座で取引します。</li>
+  <li><strong>接続方式</strong>：
+    <ul>
+      <li>B：<strong>TWS API</strong>。取引ツール「TWS（トレーダー・ワークステーション）」か、画面を最小限にした「IB Gateway」を起動し、そこに自分のプログラムをつなぎます。公式のプログラム部品はPython、Java、C++、C#、Visual Basic向けに用意されています。Excelから使う方法もあります。</li>
+      <li>A：<strong>Web API（旧称 Client Portal API）</strong>。REST方式。口座を開設していれば追加料金なしで使えると案内されています。</li>
+      <li>A：<strong>FIX（CTCI）</strong>。注文専用で相場情報は取れず、毎月の最低手数料などの条件があります。</li>
+    </ul>
+  </li>
+  <li><strong>利用条件</strong>：API自体は無料。相場情報（マーケットデータ）の購読料が別にかかる場合があります（要確認）。</li>
+  <li><strong>OS</strong>：TWS・IB GatewayはWindows、Mac、Linux向けが提供されています。ただし、Excel連携とC#向けの部品はWindows版のみと案内されています。</li>
+</ul>
+
+<h3>そのほかの会社（確認できた範囲）</h3>
+<div class="tbl"><table>
+  <thead><tr><th>証券会社</th><th>確認できた内容（執筆時点、要確認）</th></tr></thead>
+  <tbody>
+    <tr><td>岡三証券（岡三RSS）</td><td>Excel連携の岡三RSSで、日経225オプションの価格取得関数や先物・オプションの建玉・約定照会の関数が用意され、発注機能もある。一定の取引条件を満たすと無料と案内されている。<strong>関数による日経225オプションの自動発注の範囲は要確認</strong></td></tr>
+    <tr><td>SBI証券</td><td>2018年5月から、先物・オプション口座のある顧客向けに「先物・オプションAPI」を提供。個人が自由にプログラムを書く形ではなく、<strong>提携した他社のツールを接続する方式（C）</strong>。事前に「外部ツール利用設定」が必要。現在接続できるツールは要確認</td></tr>
+    <tr><td>立花証券ｅ支店</td><td>無料のAPIを提供しているが、案内の中心は国内株式。先物・オプションの発注への対応は公式情報で確認できなかった（要確認）</td></tr>
+  </tbody>
+</table></div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 300" role="img" aria-label="日本の主な証券会社のオプション自動発注の接続構成">
+  <rect x="10" y="10" width="440" height="280" rx="10" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="230" y="32" font-size="13" text-anchor="middle" fill="var(--muted)">あなたのPC（多くはWindowsが前提）</text>
+
+  <rect x="30" y="50" width="160" height="50" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="110" y="80" font-size="12" text-anchor="middle" fill="var(--fg)">自作プログラム</text>
+  <rect x="250" y="50" width="180" height="50" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="340" y="72" font-size="12" text-anchor="middle" fill="var(--fg)">kabuステーション</text>
+  <text x="340" y="90" font-size="10" text-anchor="middle" fill="var(--muted)">REST・PUSH（同じPC内）</text>
+  <line x1="190" y1="75" x2="250" y2="75" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+
+  <rect x="30" y="130" width="160" height="50" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="110" y="152" font-size="12" text-anchor="middle" fill="var(--fg)">Excel（関数・VBA）</text>
+  <text x="110" y="170" font-size="10" text-anchor="middle" fill="var(--muted)">RSSアドイン</text>
+  <rect x="250" y="130" width="180" height="50" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="340" y="160" font-size="12" text-anchor="middle" fill="var(--fg)">マーケットスピード II</text>
+  <line x1="190" y1="155" x2="250" y2="155" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+
+  <rect x="30" y="210" width="160" height="50" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="110" y="240" font-size="12" text-anchor="middle" fill="var(--fg)">自作プログラム</text>
+  <rect x="250" y="210" width="180" height="50" rx="6" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)"/>
+  <text x="340" y="232" font-size="12" text-anchor="middle" fill="var(--fg)">TWS／IB Gateway</text>
+  <text x="340" y="250" font-size="10" text-anchor="middle" fill="var(--muted)">Win・Mac・Linux</text>
+  <line x1="190" y1="235" x2="250" y2="235" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+
+  <line x1="430" y1="75" x2="520" y2="75" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+  <line x1="430" y1="155" x2="520" y2="155" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+  <line x1="430" y1="235" x2="520" y2="235" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+  <text x="475" y="68" font-size="10" text-anchor="middle" fill="var(--muted)">インターネット</text>
+
+  <rect x="520" y="50" width="190" height="50" rx="6" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="615" y="72" font-size="12" text-anchor="middle" fill="var(--fg)">三菱UFJ eスマート証券</text>
+  <text x="615" y="90" font-size="10" text-anchor="middle" fill="var(--muted)">Professionalプラン以上</text>
+  <rect x="520" y="130" width="190" height="50" rx="6" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="615" y="160" font-size="12" text-anchor="middle" fill="var(--fg)">楽天証券</text>
+  <rect x="520" y="210" width="190" height="50" rx="6" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)"/>
+  <text x="615" y="232" font-size="12" text-anchor="middle" fill="var(--fg)">IB証券（IBSJ口座）</text>
+  <text x="615" y="250" font-size="10" text-anchor="middle" fill="var(--muted)">Web API・FIXもあり</text>
+</svg></div><figcaption>図25-3　日本で日経225オプションを自動発注するときの主な接続構成（執筆時点）。いずれも証券会社の取引ツールをPCで起動しておく「B：取引ツール連携」が中心になる。</figcaption></figure>
+
+<div class="box tip"><span class="box-label">実践テクニック</span>
+<p>取引ツールを起動し続ける方式では、自宅のPCの代わりに<strong>Windowsが動くクラウド上の仮想PC（VPS）</strong>を使う人もいます。停電や自宅回線の不調に強くなるためです。ただし、規約上の利用環境の制限やログイン情報の守り方を先に確認し、ツールが止まったら気づける仕組みも用意します。</p>
+</div>
+
+<h2 id="ch25-4">25-4　米国：米国オプションをAPIで発注できる主な証券会社</h2>
+
+<p>米国にはAPIでオプションを発注できる証券会社が多くありますが、<strong>その多くは米国居住者向け</strong>です。日本居住者にとって現実的なのは、①米国オプションを扱う国内の証券会社のAPI、②日本居住者を受け入れている海外の証券会社のAPI、の2つです。</p>
+
+<h3>国内の証券会社（米国オプション）</h3>
+<ul>
+  <li><strong>ウィブル証券 ― Webull OpenAPI</strong>：接続方式はA（REST等）。2024年11月に米国株・ETFのAPIを始め、2026年8月に米国株オプションに対応を広げたと発表しています。ただし執筆時点でAPIから出せるのは<strong>単一のオプションの買い（コールの買い・プットの買い）</strong>のみと案内されています。API利用の申請・審査があり、API経由の取引に追加料金はない（手数料はアプリと同じ）と案内されています。APIキーには有効期限があります。</li>
+  <li><strong>moomoo証券 ― Moomoo API（OpenAPI）</strong>：接続方式はA。PCやクラウドに中継ソフト「OpenD」を入れて起動し、そこに自分のプログラムをつなぎます。対応市場は米国株の現物・信用・オプションで、利用は無料と案内されています。moomoo証券の米国オプションは売りの戦略が限られると紹介されており（<a href="#ch08-9">8-9</a>）、<strong>APIで出せる注文の範囲は要確認</strong>です。</li>
+  <li><strong>インタラクティブ・ブローカーズ証券</strong>：25-3と同じTWS API／Web API／FIXで、米国オプションはIBLLC口座で取引します。複数の足（レッグ）をまとめたコンボ注文も、プラットフォームの機能としては用意されています。</li>
+</ul>
+
+<h3>海外の主な証券会社</h3>
+<div class="tbl"><table>
+  <thead><tr><th>証券会社</th><th>接続方式</th><th>日本居住者の口座開設（執筆時点）</th></tr></thead>
+  <tbody>
+    <tr><td>Interactive Brokers</td><td>TWS API、Web API、FIX</td><td>日本居住者はIB証券（日本法人）の口座として開設する形になる</td></tr>
+    <tr><td>Charles Schwab（旧TD Ameritrade APIの後継「Trader API」）</td><td>REST＋ストリーミング。Schwabの口座と開発者登録が必要</td><td><strong>不可と考えられる</strong>。日本は国際口座の対象国として確認できず、比較サイトでも日本居住者は開設不可とされている（要確認）</td></tr>
+    <tr><td>tastytrade（Open API）</td><td>REST／JSON。テスト用のサンドボックス環境あり</td><td><strong>不可と考えられる</strong>。国際口座の対象国に日本は確認できなかった（要確認）</td></tr>
+    <tr><td>Tradier</td><td>REST。API利用は無料と案内</td><td>公式ナレッジベースの「口座を開ける国」に日本が含まれると読める。ただし国によって信用取引・オプションの制限があり、<strong>オプション可否は要確認</strong></td></tr>
+    <tr><td>Alpaca</td><td>REST・WebSocket。米国株・オプションのAPI取引</td><td>一部の国の非居住者を受け入れているが、<strong>日本居住者の個人口座とオプション取引の可否は公式情報で確認できず（要確認）</strong></td></tr>
+    <tr><td>Webull（米国法人）OpenAPI</td><td>REST等</td><td><strong>不可</strong>。米国に住所または対象ビザのある人向け。日本居住者はウィブル証券（日本法人）を使う</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box warn"><span class="box-label">注意</span>
+<p>海外の証券会社が形式上は日本居住者の口座を受け付けていても、<strong>日本の金融商品取引業の登録を受けていない業者</strong>を使うと、トラブル時に日本の投資者保護の仕組みや相談窓口が使えない場合があります。金融庁は無登録の海外業者について注意を呼びかけています。税金の計算も英語の書類から自分で行う必要があります（<a href="#ch24">第24章</a>）。</p>
+</div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 720 330" role="img" aria-label="日本居住者が米国オプションをAPIで発注するための判定フロー">
+  <rect x="250" y="10" width="220" height="44" rx="8" fill="var(--surface)" stroke="var(--line)"/>
+  <text x="360" y="37" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">米国オプションをAPIで発注したい</text>
+  <line x1="360" y1="54" x2="360" y2="76" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <path d="M355,76 l5,8 l5,-8 z" fill="var(--muted)"/>
+
+  <rect x="200" y="86" width="320" height="44" rx="8" fill="var(--surface)" stroke="var(--accent)"/>
+  <text x="360" y="113" font-size="12" text-anchor="middle" fill="var(--fg)">日本の登録業者（国内の証券会社）を使う？</text>
+
+  <line x1="280" y1="130" x2="140" y2="170" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <text x="195" y="146" font-size="11" text-anchor="middle" fill="var(--gain)">はい</text>
+  <line x1="440" y1="130" x2="580" y2="170" stroke="var(--muted)" stroke-width="1.5" fill="none"/>
+  <text x="525" y="146" font-size="11" text-anchor="middle" fill="var(--loss)">いいえ</text>
+
+  <rect x="20" y="170" width="250" height="140" rx="8" fill="var(--gain)" fill-opacity="0.10" stroke="var(--gain)"/>
+  <text x="145" y="192" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">国内でAPI対応（執筆時点）</text>
+  <text x="145" y="216" font-size="12" text-anchor="middle" fill="var(--fg)">IB証券：TWS API・Web API・FIX</text>
+  <text x="145" y="238" font-size="12" text-anchor="middle" fill="var(--fg)">ウィブル証券：買いの単一レグのみ</text>
+  <text x="145" y="260" font-size="12" text-anchor="middle" fill="var(--fg)">moomoo証券：注文範囲は要確認</text>
+  <text x="145" y="290" font-size="11" text-anchor="middle" fill="var(--muted)">売り・スプレッドまで出したいならIBが中心</text>
+
+  <rect x="450" y="170" width="250" height="140" rx="8" fill="var(--loss)" fill-opacity="0.08" stroke="var(--loss)"/>
+  <text x="575" y="192" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">海外の証券会社</text>
+  <text x="575" y="216" font-size="12" text-anchor="middle" fill="var(--fg)">Schwab・tastytrade・Webull米国：</text>
+  <text x="575" y="236" font-size="12" text-anchor="middle" fill="var(--fg)">日本居住者は不可（と考えられる）</text>
+  <text x="575" y="260" font-size="12" text-anchor="middle" fill="var(--fg)">Tradier・Alpaca：要確認</text>
+  <text x="575" y="290" font-size="11" text-anchor="middle" fill="var(--muted)">無登録業者のリスク・税の手間に注意</text>
+</svg></div><figcaption>図25-4　日本居住者が米国オプションをAPIで発注するための判定の流れ（執筆時点）。米国の有名なAPI証券会社の多くは、日本居住者には口座を開いてもらえない。</figcaption></figure>
+
+<h2 id="ch25-5">25-5　日本居住者向けの比較表</h2>
+
+<p>ここまでの内容を1つの表にまとめます。「オプション対応」は、APIや連携ツールから<strong>オプションの注文を出せるか</strong>を指します（画面から手で注文できるかではありません）。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>証券会社</th><th>市場</th><th>オプション対応</th><th>接続方式</th><th>言語／ツール</th><th>日本居住者</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>三菱UFJ eスマート証券</td><td>日本</td><td>可</td><td>B：kabuステーションAPI（REST・PUSH）</td><td>任意の言語</td><td>可</td><td>Windows。Professionalプラン以上。API無料</td></tr>
+    <tr><td>楽天証券</td><td>日本</td><td>可（先物OP）</td><td>B：マーケットスピード II RSS</td><td>Excel関数・VBA</td><td>可</td><td>Windows版Excel。無料。同意書あり</td></tr>
+    <tr><td>岡三証券</td><td>日本</td><td>要確認</td><td>B：岡三RSS</td><td>Excel</td><td>可</td><td>一定条件で無料</td></tr>
+    <tr><td>SBI証券</td><td>日本</td><td>可（提携ツール経由）</td><td>C：先物・オプションAPI</td><td>提携他社のツール</td><td>可</td><td>自作プログラムは対象外。対応ツールは要確認</td></tr>
+    <tr><td>インタラクティブ・ブローカーズ証券</td><td>日本・米国ほか</td><td>可</td><td>B：TWS API／A：Web API、FIX</td><td>Python・Java・C++・C#など、Excel</td><td>可</td><td>国内はIBSJ口座、海外はIBLLC口座。データ購読料は要確認</td></tr>
+    <tr><td>ウィブル証券</td><td>米国</td><td>一部（買いの単一レグ）</td><td>A：Webull OpenAPI</td><td>SDK等</td><td>可</td><td>申請・審査あり。追加料金なし</td></tr>
+    <tr><td>moomoo証券</td><td>米国</td><td>可（範囲は要確認）</td><td>A：Moomoo API（OpenD経由）</td><td>主要言語のSDK</td><td>可</td><td>無料と案内</td></tr>
+    <tr><td>Charles Schwab</td><td>米国</td><td>可</td><td>A：Trader API</td><td>任意の言語</td><td>不可（要確認）</td><td>米国居住者向け</td></tr>
+    <tr><td>tastytrade</td><td>米国</td><td>可</td><td>A：Open API</td><td>任意の言語</td><td>不可（要確認）</td><td>サンドボックスあり</td></tr>
+    <tr><td>Tradier</td><td>米国</td><td>可</td><td>A：REST API</td><td>任意の言語</td><td>要確認</td><td>日本は開設可能国と読めるがオプション可否は要確認。無登録業者</td></tr>
+    <tr><td>Alpaca</td><td>米国</td><td>可</td><td>A：REST・WebSocket</td><td>任意の言語</td><td>要確認</td><td>非居住者の受入れは国による</td></tr>
+    <tr><td>Webull（米国法人）</td><td>米国</td><td>可</td><td>A：OpenAPI</td><td>任意の言語</td><td>不可</td><td>米国居住者向け</td></tr>
+  </tbody>
+</table></div>
+
+
+<h2 id="ch25-6">25-6　自動売買を始める前の注意</h2>
+
+<h3>規約と同意書</h3>
+<p>各社のAPIやRSSには専用の利用規約・同意書があります。プログラムの誤りによる注文も自分の注文として扱われるので、<strong>誤発注は取り消してもらえない</strong>前提で準備します。</p>
+
+<h3>費用</h3>
+<p>APIそのものは無料の会社が多いものの、①取引ツールのプラン条件、②相場情報の購読料、③外部ツールの利用料、④クラウドPCの月額料金、がかかることがあります。取引手数料は、手で注文したときと同じ体系が基本です。</p>
+
+<h3>発注ミス対策 ― 上限設定と停止スイッチ</h3>
+<p>自動売買で最も怖いのは、プログラムの誤りで<strong>想定の何十倍もの注文が出る</strong>ことです。オプションは1枚の金額が小さく見えても、枚数の桁を間違えると大きな金額になります。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p><b>日本の例</b>：日経225オプションの価格100円のプットを1枚売るつもりが、枚数の変数を誤って100枚売ってしまったとします。受け取るプレミアムは100円×1,000×100枚＝1,000万円ですが、その分だけ大きな下落リスクを抱えます。日経平均が大きく下がって価格が500円になれば、損失は（500−100）×1,000×100枚＝<strong>4,000万円</strong>です。売りの損失は大きく膨らみうることを忘れないでください。</p>
+<p><b>米国の例</b>：SPYのオプションを2.35ドルで1枚買うつもりが50枚になると、支払いは2.35×100×50＝<strong>11,750ドル</strong>です。</p>
+<p>どちらも「1回の注文は最大〇枚」「1日の新規注文は最大〇件」という上限をプログラムの中に書いておけば、ここまでの事故は防げます。</p>
+</div>
+
+<ol class="flow">
+  <li><b>注文前のチェック</b><br>枚数・価格・売買の向き・銘柄（限月・権利行使価格・コール／プット）が想定範囲内かを、注文を出す直前に確認する</li>
+  <li><b>上限の設定</b><br>1回あたりの枚数、1日の注文件数、同時に持てる建玉の上限、1日の損失の上限を決め、超えたら新規注文を止める</li>
+  <li><b>停止スイッチ（キルスイッチ）</b><br>ボタン1つ、またはファイル1つで「新規注文を止め、未約定の注文を取り消す」仕組みを用意する。証券会社の画面から手で決済する手順も確認しておく</li>
+  <li><b>監視と通知</b><br>約定・エラー・接続切れをメールやスマートフォンに知らせる。「動いている」ことを定期的に知らせ、連絡が途絶えたら異常と判断する</li>
+  <li><b>少額・デモから始める</b><br>デモ口座（ペーパートレード）や最小枚数で、注文から約定・決済・満期処理まで一通り確かめてから本番の規模にする</li>
+</ol>
+
+<h3>通信障害とシステム障害</h3>
+<p>回線、PC、証券会社、取引所のどこかが止まると、プログラムは注文も決済もできません。オプションの売りは、止まっている間の急変で損失が膨らみます（<a href="#ch21">第21章</a>）。<strong>自動売買が止まっても致命傷にならない大きさ</strong>にとどめ、スマートフォン・アプリなど別の経路から手で決済できるようにしておきます。</p>
+
+<h3>税の記録</h3>
+<p>自動売買は取引回数が多くなりがちです。日経225オプションの損益は申告分離課税の「先物取引に係る雑所得等」で、特定口座の対象外です。取引ごとの日時・銘柄・枚数・価格・手数料（米国オプションなら為替レートも）を自動で記録し、取引報告書と照合できるようにしておきます（<a href="#ch24">第24章</a>）。</p>
+
+<div class="box tip"><span class="box-label">実践テクニック</span>
+<p>多くのAPIには、実際のお金を使わずに注文を試せる<strong>デモ環境</strong>があります（例：IBのペーパートレード口座、tastytradeのサンドボックス）。本番で「試しに1枚」を出す前に、デモ環境で上限設定と停止スイッチが本当に効くかを確かめておくと、事故を大きく減らせます。</p>
+</div>
+
+<h2 id="ch25-7">まとめ</h2>
+<ul class="summary-list">
+  <li>自動売買の接続方式は、A：証券会社の公式API（REST／WebSocket、FIX）、B：取引ツールとの連携（ツールのAPI機能、Excel連携のRSS）、C：外部プラットフォーム経由、D：ブラウザ操作の自動化、に分けられる。Dは規約違反や誤発注の危険があり勧めない。</li>
+  <li>方式を選ぶときは、言語より先に「オプションを発注できるか」「日本居住者が使えるか」「PCを起動し続ける必要があるか」を確認する。</li>
+  <li>日経225オプションは、三菱UFJ eスマート証券のkabuステーションAPI、楽天証券のマーケットスピード II RSS、IB証券のTWS APIなどで自動発注できる（執筆時点）。多くはWindowsと取引ツールの起動が前提。SBI証券は提携ツール経由。</li>
+  <li>米国オプションでは、日本居住者が使える主な選択肢はIB証券、ウィブル証券（買いの単一レグのみ）、moomoo証券（範囲は要確認）。Schwab・tastytrade・Webull米国法人は日本居住者は使えないと考えられ、Tradier・Alpacaは要確認。</li>
+  <li>始める前に、規約・費用を確認し、枚数と件数の上限、停止スイッチ、監視・通知、デモでの検証、取引記録の自動保存を用意する。</li>
+  <li>サービスの内容は頻繁に変わるので、各社の公式情報で最新の条件を確認する。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+
+  <div class="q"><p>kabuステーションAPIについて、執筆時点（2026年）の説明として正しいものはどれですか。</p>
+    <ol class="choices">
+      <li>株式専用のAPIで、日経225オプションの注文は出せない</li>
+      <li>先物・オプションの注文にも対応しているが、kabuステーションを起動しているのと同じPCからしか注文を受け付けない</li>
+      <li>Macでも利用でき、取引ツールを起動する必要はない</li>
+      <li>利用には月額の利用料がかかる</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　kabuステーションAPIは2020年10月に先物・オプションへの対応を広げました。取引ツール「kabuステーション」（Windowsのみ対応）を中継役にする方式なので、ツールの起動が必要で、同じPCからのリクエストしか受け付けません。API自体は無料ですが、Professionalプラン以上の適用が条件です。</p></div></details>
+  </div>
+
+  <div class="q"><p>Excelで日経225オプションの自動発注をしたいAさんが、楽天証券のマーケットスピード II RSSを検討しています。正しい説明はどれですか。</p>
+    <ol class="choices">
+      <li>Mac版Excelでも利用できる</li>
+      <li>取引できるのは国内株式だけで、先物・オプションは対象外である</li>
+      <li>先物・オプションの注文用の関数があり、VBAと組み合わせて自動発注できる。使うときはマーケットスピード II の起動とログインが必要である</li>
+      <li>ブラウザだけで動くので、PCにソフトを入れる必要はない</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　マーケットスピード II RSSは、国内株式、株価指数先物・オプション、商品先物を取引できると案内されています。注文用の関数は「国内株式」と「先物OP」に分かれ、VBA用の関数もあります。Windows版Excelのみで、マーケットスピード II の起動・ログインが前提です。</p></div></details>
+  </div>
+
+  <div class="q"><p>日本に住むBさんが、米国オプションの売りを含む戦略をAPIで自動化したいと考えています。執筆時点の情報に基づく判断として、最も適切なものはどれですか。</p>
+    <ol class="choices">
+      <li>Charles SchwabのTrader APIが有名なので、Schwabに口座を開けばよい</li>
+      <li>tastytradeのOpen APIを使えばよい</li>
+      <li>ウィブル証券のOpenAPIなら、売りやスプレッドも自由に出せる</li>
+      <li>IB証券のTWS APIなどが主な選択肢になる。ほかの会社は、日本居住者の口座開設の可否とAPIで出せる注文の範囲を公式情報で確認する</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：D</b>　SchwabやtastytradeのAPIはオプションに対応していますが、日本は口座開設の対象国として確認できず、日本居住者は使えないと考えられます。ウィブル証券のOpenAPIは、執筆時点ではオプションの買いの単一レグのみです。売りやスプレッドを含めて自動化するなら、日本居住者を受け入れているIB証券（米国オプションはIBLLC口座）が中心的な選択肢です。</p></div></details>
+  </div>
+
+  <div class="q"><p>自動売買のプログラムで、日経225オプションの価格80円のコールを「1枚」売るつもりが、誤って「50枚」売る注文が約定しました。その後、このコールの価格が380円に上がったとき、50枚分の含み損はいくらですか（手数料は考えません）。</p>
+    <ol class="choices">
+      <li>15万円</li>
+      <li>150万円</li>
+      <li>1,500万円</li>
+      <li>1億5,000万円</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　日経225オプションは価格×1,000円が1枚の金額です。1枚あたりの損失は（380−80）×1,000＝30万円、50枚なら30万円×50＝1,500万円です。1枚だけなら30万円で済んだ損失が、枚数の誤りで50倍になりました。コールの売りは上昇時の損失に上限がありません。「1回の注文は最大〇枚」という上限をプログラムに入れておけば、この事故は防げます。</p></div></details>
+  </div>
+
+  <div class="q"><p>自動売買の接続方式について、正しい説明はどれですか。</p>
+    <ol class="choices">
+      <li>ブラウザ操作の自動化は、証券会社のAPIがない場合の正式な代わりとして推奨されている</li>
+      <li>FIXは個人向けの簡単な接続方式で、相場情報の取得にも向いている</li>
+      <li>WebSocketは、接続をつないだままにして、価格や約定の情報を証券会社側から次々に受け取る方式である</li>
+      <li>SBI証券の先物・オプションAPIは、個人が自作したプログラムを自由につなぐためのものである</li>
+    </ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　RESTはその都度問い合わせる方式、WebSocketはつないだまま情報を受け取る方式です。ブラウザ操作の自動化は規約違反や誤発注の危険があり勧めません。FIXは主に機関投資家向けで、IBのFIX（CTCI）は注文専用で相場情報は取れないと案内されています。SBI証券の先物・オプションAPIは、提携した他社のツールを接続する方式です。</p></div></details>
+  </div>
+
+</div>
