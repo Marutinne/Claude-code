@@ -224,7 +224,7 @@
   function fmt(x, digits) {
     if (!isFinite(x)) return "—";
     var a = Math.abs(x);
-    var d = digits != null ? digits : a >= 1000 ? 0 : a >= 100 ? 1 : 2;
+    var d = digits != null ? digits : a >= 1000 ? 0 : 2;
     return x.toLocaleString("ja-JP", { maximumFractionDigits: d, minimumFractionDigits: 0 });
   }
   function num(el, name, dflt) { var v = el.getAttribute("data-" + name); return v == null || v === "" ? dflt : parseFloat(v); }
