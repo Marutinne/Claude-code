@@ -1,0 +1,504 @@
+<header class="chapter-head">
+  <p class="eyebrow">第1部　ゼロから学ぶ基礎</p>
+  <h1>第2章　必須の基本用語 <span class="lv">Lv.1</span></h1>
+  <p class="lead">オプションの説明は、ほぼすべてこの章の用語の組み合わせでできています。用語を丸暗記するのではなく、「その言葉が何のためにあるのか」を数値例で確かめながら身につけましょう。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>原資産・権利行使価格・満期・プレミアム・取引単位の意味と、日経225オプション／ミニ／米国株オプションでの実額の計算方法</li>
+  <li>ITM・ATM・OTM の判定方法（コールとプットで向きが逆になる理由）</li>
+  <li>プレミアムを「本質的価値」と「時間的価値」に分解する方法</li>
+  <li>アメリカン・タイプとヨーロピアン・タイプの違い、どの商品がどちらか</li>
+  <li>権利行使と割当、差金決済と現物受渡しの流れ</li>
+  <li>建玉と出来高の違い、新規（買い建て・売り建て）と返済（転売・買戻し）の4つの注文</li>
+</ul></div>
+
+<h2 id="ch02-1">2-1　原資産と権利行使価格</h2>
+
+<h3>原資産（げんしさん、Underlying Asset）</h3>
+<p><strong>原資産</strong>とは、オプションが「買う権利」「売る権利」の対象にしているもののことです。<a href="#ch01">第1章</a>でたとえた「お米を決まった値段で買う権利」なら、お米が原資産です。</p>
+<p>実際の市場では、次のようなものが原資産になります。</p>
+<div class="tbl"><table>
+  <thead><tr><th>オプション</th><th>原資産</th><th>市場</th></tr></thead>
+  <tbody>
+    <tr><td>日経225オプション</td><td>日経平均株価（日経225）という株価指数</td><td>日本（大阪取引所）</td></tr>
+    <tr><td>日経225ミニオプション</td><td>同じく日経平均株価</td><td>日本（大阪取引所）</td></tr>
+    <tr><td>米国株オプション</td><td>個別株（例：米国の上場企業の株式）</td><td>米国</td></tr>
+    <tr><td>ETFオプション</td><td>SPY（S&amp;P500に連動するETF）など</td><td>米国</td></tr>
+    <tr><td>指数オプション</td><td>SPX（S&amp;P500指数そのもの）など</td><td>米国</td></tr>
+  </tbody>
+</table></div>
+<p>原資産が「株そのもの」か「指数という数字」かは、あとで学ぶ決済の方法（<a href="#ch02-8">2-8</a>）に直結します。指数は現物として受け渡しできないので、お金のやり取りだけで決済するしかないからです。</p>
+
+<h3>権利行使価格（けんりこうしかかく、Strike Price）</h3>
+<p><strong>権利行使価格</strong>は、「この値段で買える（売れる）」とあらかじめ決めてある価格です。英語の strike を略して<strong>ストライク</strong>、記号で <b>K</b> と書くこともよくあります。</p>
+<p>権利行使価格は自由に決められるわけではありません。取引所が一定の刻みで何本も用意し、投資家はその中から選びます。たとえば日経平均が40,000円前後なら、39,000円、39,500円、40,000円、40,500円、41,000円…のように、現在値の上下に多数の権利行使価格が並びます（実際の刻み幅は限月などによって異なり、第7章で扱います）。</p>
+<div class="box example"><span class="box-label">数値例</span>
+  <p>日経平均が40,000円のとき、「権利行使価格41,000円のコール」は「満期に日経平均を41,000円で買う権利」です。満期に日経平均が42,000円なら、41,000円で買えることに1,000円分の価値があります。満期に39,000円なら、わざわざ41,000円で買う人はいないので、権利の価値はゼロです。</p>
+</div>
+
+<h2 id="ch02-2">2-2　満期 ― 限月・満期日・最終取引日</h2>
+<p>オプションには必ず期限があります。期限を過ぎると権利は消えます。期限に関係する言葉は3つあり、混同しやすいので区別しておきましょう。</p>
+<div class="tbl"><table>
+  <thead><tr><th>用語</th><th>英語</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td>限月（げんげつ）</td><td>Contract Month</td><td>満期を迎える月。「2026年12月限（じゅうにがつぎり）」のように呼ぶ</td></tr>
+    <tr><td>満期日（まんきび）</td><td>Expiration Date</td><td>権利が消える日。日経225オプションでは SQ日（権利行使日）がこれにあたる</td></tr>
+    <tr><td>最終取引日</td><td>Last Trading Day</td><td>そのオプションを市場で売買できる最後の日</td></tr>
+  </tbody>
+</table></div>
+
+<p>日経225オプションの月ごとの限月では、満期は原則として<strong>各限月の第2金曜日（SQ日）</strong>です。SQ は Special Quotation（特別清算指数）の略で、SQ日の朝に日経平均を構成する各銘柄の始値をもとに計算される、決済専用の値です。そして<strong>最終取引日はSQ日の前営業日</strong>（通常は木曜日）です。つまり「満期日」と「最後に売買できる日」は1日ずれています。第2金曜日が休日の場合などの扱いは第6章・第7章で説明します。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 190" role="img" aria-label="日経225オプションの最終取引日とSQ日の関係">
+  <text x="20" y="22" font-size="13" fill="var(--fg)" font-weight="700">SQ日を含む週（第2金曜日の週）の例</text>
+  <rect x="20" y="40" width="110" height="74" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+  <rect x="142" y="40" width="110" height="74" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+  <rect x="264" y="40" width="110" height="74" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+  <rect x="386" y="40" width="110" height="74" rx="6" fill="var(--gold)" fill-opacity="0.18" stroke="var(--gold)" stroke-width="2"/>
+  <rect x="508" y="40" width="110" height="74" rx="6" fill="var(--accent)" fill-opacity="0.15" stroke="var(--accent)" stroke-width="2"/>
+  <text x="75" y="70" font-size="15" text-anchor="middle" fill="var(--fg)">月</text>
+  <text x="197" y="70" font-size="15" text-anchor="middle" fill="var(--fg)">火</text>
+  <text x="319" y="70" font-size="15" text-anchor="middle" fill="var(--fg)">水</text>
+  <text x="441" y="70" font-size="15" text-anchor="middle" fill="var(--fg)">木</text>
+  <text x="563" y="70" font-size="15" text-anchor="middle" fill="var(--fg)">金（第2）</text>
+  <text x="75" y="96" font-size="12" text-anchor="middle" fill="var(--muted)">売買できる</text>
+  <text x="197" y="96" font-size="12" text-anchor="middle" fill="var(--muted)">売買できる</text>
+  <text x="319" y="96" font-size="12" text-anchor="middle" fill="var(--muted)">売買できる</text>
+  <text x="441" y="96" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">最終取引日</text>
+  <text x="563" y="96" font-size="12" text-anchor="middle" fill="var(--fg)" font-weight="700">SQ日（満期）</text>
+  <path d="M441,122 L441,140 L563,140 L563,122" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+  <text x="502" y="160" font-size="12" text-anchor="middle" fill="var(--fg)">木曜の取引終了で売買は締め切り</text>
+  <text x="502" y="178" font-size="12" text-anchor="middle" fill="var(--fg)">金曜朝の始値から計算されるSQ値で清算</text>
+</svg></div><figcaption>図2-1　日経225オプション（月次の限月）の最終取引日とSQ日。最終取引日までに転売・買戻しをしなかった建玉は、SQ値で自動的に決済されます。</figcaption></figure>
+
+<p>日経225オプションには月ごとの限月のほかに、週ごとの満期（週次設定限月）もあります。日経225ミニオプションは週ごとの満期が中心です。米国の個別株オプションでは、月次の標準的な満期は原則として<strong>第3金曜日</strong>で、そのほかに週次の満期も多数あります。どの商品にどんな満期があるかは第7章（日本）と第8章（米国）でまとめます。</p>
+
+<div class="box warn"><span class="box-label">注意</span><p>「満期日＝最後に売買できる日」とは限りません。日経225オプションのように満期日の前日が最終取引日の商品もあれば、米国の個別株オプションのように満期日当日まで売買できる商品もあります。米国の SPX でも、月次の標準的な満期（朝の価格で清算されるタイプ）は満期日の前営業日が最終取引日です。取引する商品ごとに、取引所や証券会社の資料で必ず確認してください。</p></div>
+
+<h2 id="ch02-3">2-3　プレミアム ― オプションの値段</h2>
+<p><strong>プレミアム（Premium）</strong>は、オプションそのものの値段です。買い手が売り手に支払い、売り手が受け取ります。保険にたとえると「保険料」です。</p>
+<ul>
+  <li><b>買い手</b>：プレミアムを支払って権利を得ます。損失は最大でも支払ったプレミアムまでです。</li>
+  <li><b>売り手</b>：プレミアムを受け取る代わりに義務を負います。利益は最大でも受け取ったプレミアムまでですが、<strong>損失は非常に大きくなりえます</strong>（コールの売りは理論上無制限）。</li>
+</ul>
+<p>プレミアムは取引所で刻々と変わる市場価格です。売りたい人と買いたい人の注文が一致した値段で決まります。その背後には、原資産価格・権利行使価格・残り日数・ボラティリティ（値動きの激しさ）・金利・配当という6つの要因があります。これは<a href="#ch04">第4章</a>で詳しく扱います。この章では「プレミアムは<a href="#ch02-6">2-6</a>で学ぶ本質的価値と時間的価値の合計である」という分け方だけを押さえます。</p>
+<p>注意したいのは、画面に表示されるプレミアムは<strong>1単位あたり</strong>の値段だという点です。日経225オプションなら「日経平均1円あたり」、米国株オプションなら「1株あたり」です。実際に支払う金額を知るには、次の取引単位を掛ける必要があります。</p>
+
+<h2 id="ch02-4">2-4　取引単位（乗数）と実額の計算</h2>
+<p><strong>取引単位</strong>とは、オプション1枚（1単位の契約）が原資産のどれだけ分にあたるかです。<strong>乗数（Multiplier）</strong>とも呼びます。実際のお金は次の式で計算します。</p>
+<div class="box key"><span class="box-label">ここが重要</span><p><b>支払う（受け取る）金額 ＝ プレミアム × 乗数 × 枚数</b></p><p>画面の数字をそのまま金額だと思うと、桁を大きく読み違えます。発注前に必ずこの掛け算をしてください。</p></div>
+
+<div class="tbl"><table>
+  <thead><tr><th>商品</th><th>1枚の単位（乗数）</th><th>プレミアムの表示</th><th class="r">表示100のときの1枚の金額</th></tr></thead>
+  <tbody>
+    <tr><td>日経225オプション</td><td>日経平均 × 1,000円</td><td>円（指数のポイント）</td><td class="r">100,000円</td></tr>
+    <tr><td>日経225ミニオプション</td><td>日経平均 × 100円</td><td>円（指数のポイント）</td><td class="r">10,000円</td></tr>
+    <tr><td>米国株オプション</td><td>100株</td><td>1株あたりのドル</td><td class="r">10,000ドル（表示が $100 の場合）</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box example"><span class="box-label">数値例</span>
+  <p><b>日本の例</b>：日経平均が40,000円のとき、権利行使価格41,000円のコールのプレミアムが510円だったとします。</p>
+  <ul>
+    <li>日経225オプションを1枚買う：510円 × 1,000 ＝ <b>510,000円</b></li>
+    <li>日経225ミニオプションを1枚買う：510円 × 100 ＝ <b>51,000円</b></li>
+    <li>日経225ミニオプションを3枚買う：510円 × 100 × 3 ＝ <b>153,000円</b></li>
+  </ul>
+  <p><b>米国の例</b>：株価150ドルの米国株で、権利行使価格155ドルのコールのプレミアムが3.10ドルだったとします。</p>
+  <ul>
+    <li>1枚買う：3.10ドル × 100株 ＝ <b>310ドル</b></li>
+    <li>2枚買う：3.10ドル × 100株 × 2 ＝ <b>620ドル</b></li>
+  </ul>
+  <p>（プレミアムは、残り30日・ボラティリティ20%〈日経〉／30%〈米国株〉・金利0としてブラック・ショールズ式で計算した目安です。実際の値は市場で決まります。）</p>
+</div>
+
+<p>乗数は利益・損失にもそのまま掛かります。日経225オプションで満期に日経平均が1円動くと、1枚あたりの損益は1,000円動きます。次の図は、上の日経225オプション（ラージ）のコール1枚を買った場合の満期時の損益を、円の実額で描いたものです。</p>
+
+<div class="payoff" data-title="日経225コール買い（K=41,000、プレミアム510円、1枚）の実額" data-spot="40000" data-range="38000,44000" data-mult="1000"
+     data-legs='[{"type":"call","k":41000,"qty":1,"prem":510}]'
+     data-caption="損失は支払ったプレミアム510,000円（510円×1,000）が上限です。満期に日経平均が41,510円（41,000＋510）を超えると利益になります。"></div>
+
+<p>ミニなら同じ図の縦軸がちょうど10分の1になります。ミニは「同じ相場観を小さい金額で試せる」商品だと言えます。ただし手数料体系によっては、取引金額に対する手数料の割合がミニのほうが高くなることがあります。手数料や証拠金の具体的な水準は証券会社ごとに異なり、変わりうるため、第6章・第7章で確認方法とともに扱います。</p>
+
+<div class="box warn"><span class="box-label">注意</span><p>米国株オプションは「1枚＝100株」が原則ですが、株式分割や合併などがあると1枚あたりの受渡し株数や権利行使価格が調整されることがあります（調整後オプション）。見慣れない権利行使価格や銘柄コードのオプションを見つけたら、中身を確認するまで取引しないでください。</p></div>
+
+<details class="deep"><summary>深掘り：権利行使価格ベースでは1枚でいくら分の取引になるか</summary><div>
+  <p>プレミアムが小さくても、オプションが対象にしている金額（想定元本）は大きいことを実感しておきましょう。</p>
+  <ul>
+    <li>日経225オプション1枚（K=40,000）：40,000 × 1,000 ＝ 4,000万円分の日経平均</li>
+    <li>日経225ミニオプション1枚（K=40,000）：40,000 × 100 ＝ 400万円分</li>
+    <li>米国株オプション1枚（K=150ドル）：150 × 100 ＝ 15,000ドル分の株式</li>
+  </ul>
+  <p>買い手はプレミアム以上の損をしませんが、売り手はこの大きな金額の値動きの影響を受けます。これが「売りは証拠金が必要で、損失が大きくなりうる」理由です。</p>
+</div></details>
+
+<h2 id="ch02-5">2-5　ITM・ATM・OTM ― 権利に「中身」があるか</h2>
+<p>オプションは、原資産価格と権利行使価格の位置関係で3つの状態に分類されます。</p>
+<ul>
+  <li><strong>ITM（イン・ザ・マネー、In The Money）</strong>：いま権利を使えば得をする状態</li>
+  <li><strong>ATM（アット・ザ・マネー、At The Money）</strong>：原資産価格と権利行使価格がほぼ同じ状態</li>
+  <li><strong>OTM（アウト・オブ・ザ・マネー、Out of The Money）</strong>：いま権利を使っても得をしない状態</li>
+</ul>
+<p>判定の考え方は1つだけです。<b>「いま権利を使ったら得か？」</b>と自問してください。</p>
+<ul>
+  <li>コールは「Kで<b>買う</b>権利」です。原資産がKより<b>高い</b>ほど、安く買える権利に価値が出ます。だから<b>原資産価格 ＞ K</b> ならITMです。</li>
+  <li>プットは「Kで<b>売る</b>権利」です。原資産がKより<b>安い</b>ほど、高く売れる権利に価値が出ます。だから<b>原資産価格 ＜ K</b> ならITMです。</li>
+</ul>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 215" role="img" aria-label="原資産価格の数直線上でのコールとプットのITM・ATM・OTM">
+  <text x="20" y="66" font-size="14" fill="var(--fg)" font-weight="700">コール</text>
+  <text x="20" y="84" font-size="11" fill="var(--muted)">Kで買う権利</text>
+  <text x="20" y="126" font-size="14" fill="var(--fg)" font-weight="700">プット</text>
+  <text x="20" y="144" font-size="11" fill="var(--muted)">Kで売る権利</text>
+  <rect x="110" y="50" width="230" height="44" fill="var(--line)" fill-opacity="0.6" stroke="none"/>
+  <rect x="340" y="50" width="40" height="44" fill="var(--gold)" fill-opacity="0.35" stroke="none"/>
+  <rect x="380" y="50" width="240" height="44" fill="var(--gain)" fill-opacity="0.25" stroke="none"/>
+  <text x="225" y="77" font-size="13" text-anchor="middle" fill="var(--fg)">OTM（価格 ＜ K）</text>
+  <text x="360" y="77" font-size="12" text-anchor="middle" fill="var(--fg)">ATM</text>
+  <text x="500" y="77" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">ITM（価格 ＞ K）</text>
+  <rect x="110" y="110" width="230" height="44" fill="var(--gain)" fill-opacity="0.25" stroke="none"/>
+  <rect x="340" y="110" width="40" height="44" fill="var(--gold)" fill-opacity="0.35" stroke="none"/>
+  <rect x="380" y="110" width="240" height="44" fill="var(--line)" fill-opacity="0.6" stroke="none"/>
+  <text x="225" y="137" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">ITM（価格 ＜ K）</text>
+  <text x="360" y="137" font-size="12" text-anchor="middle" fill="var(--fg)">ATM</text>
+  <text x="500" y="137" font-size="13" text-anchor="middle" fill="var(--fg)">OTM（価格 ＞ K）</text>
+  <line x1="360" y1="36" x2="360" y2="176" stroke="var(--fg)" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+  <text x="360" y="28" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">権利行使価格 K</text>
+  <line x1="110" y1="176" x2="620" y2="176" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+  <path d="M620,176 l-9,-5 v10 z" fill="var(--fg)" stroke="none"/>
+  <text x="110" y="196" font-size="12" fill="var(--muted)">安い</text>
+  <text x="610" y="196" font-size="12" text-anchor="end" fill="var(--muted)">高い</text>
+  <text x="365" y="208" font-size="12" text-anchor="middle" fill="var(--fg)">原資産価格</text>
+</svg></div><figcaption>図2-2　同じ権利行使価格Kでも、コールとプットではITMの側が逆になります。緑がITM、灰色がOTM、中央の帯がATM（Kの近く）です。</figcaption></figure>
+
+<p>実際の取引画面（オプションの価格一覧表）では、原資産の現在値を固定して、権利行使価格を縦に並べて表示するのが普通です。この見方では次のようになります。</p>
+<div class="box example"><span class="box-label">数値例</span>
+  <p>日経平均の現在値が40,000円のとき：</p>
+  <div class="tbl"><table>
+    <thead><tr><th class="r">権利行使価格</th><th>コール</th><th>プット</th></tr></thead>
+    <tbody>
+      <tr><td class="r">39,000</td><td>ITM（40,000 ＞ 39,000）</td><td>OTM</td></tr>
+      <tr><td class="r">40,000</td><td>ATM</td><td>ATM</td></tr>
+      <tr><td class="r">41,000</td><td>OTM</td><td>ITM（40,000 ＜ 41,000）</td></tr>
+    </tbody>
+  </table></div>
+  <p>米国株の例：株価が150ドルなら、K=145ドルのコールとK=155ドルのプットがITM、K=155ドルのコールとK=145ドルのプットがOTMです。</p>
+</div>
+<p>ATMは厳密には「原資産価格＝権利行使価格」ですが、ぴったり一致することはまれです。実務では<strong>現在値に最も近い権利行使価格</strong>をATMと呼びます。さらに、Kから大きく離れたものを「ディープITM」「ディープOTM」、ATMに近いOTMを「ニアOTM」などと呼ぶこともあります。</p>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>「コールは上がITM、プットは下がITM」と暗記するより、「その権利を今使ったら得か」と毎回考えるほうが確実です。慣れてきたら、コールとプットで同じKなら<b>一方がITMのとき、もう一方は必ずOTM</b>（ATMのときは両方ATM）という関係も検算に使えます。</p></div>
+
+<h2 id="ch02-6">2-6　本質的価値と時間的価値</h2>
+<p>プレミアムは、次の2つの部分に分けて考えることができます。</p>
+<div class="box key"><span class="box-label">ここが重要</span><p><b>プレミアム ＝ 本質的価値 ＋ 時間的価値</b></p>
+<ul>
+  <li><b>本質的価値（Intrinsic Value）</b>：いま権利を使ったら得られる金額。コールは「原資産価格 − K」、プットは「K − 原資産価格」。マイナスになる場合は0。</li>
+  <li><b>時間的価値（Time Value／Extrinsic Value）</b>：プレミアムから本質的価値を引いた残り。「満期までにもっと有利になるかもしれない」という可能性への値段。</li>
+</ul></div>
+<p>本質的価値がある（0より大きい）のはITMのオプションだけです。ATMとOTMのオプションは本質的価値が0なので、<strong>プレミアムの全部が時間的価値</strong>です。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+  <p>日経平均40,000円、残り30日のコール（プレミアムは目安）：</p>
+  <div class="tbl"><table>
+    <thead><tr><th>権利行使価格</th><th>状態</th><th class="r">プレミアム</th><th class="r">本質的価値</th><th class="r">時間的価値</th></tr></thead>
+    <tbody>
+      <tr><td>39,000</td><td>ITM</td><td class="r">1,490</td><td class="r">1,000</td><td class="r">490</td></tr>
+      <tr><td>40,000</td><td>ATM</td><td class="r">910</td><td class="r">0</td><td class="r">910</td></tr>
+      <tr><td>41,000</td><td>OTM</td><td class="r">510</td><td class="r">0</td><td class="r">510</td></tr>
+    </tbody>
+  </table></div>
+  <p>K=39,000のコールの本質的価値は 40,000 − 39,000 ＝ 1,000円。時間的価値は 1,490 − 1,000 ＝ 490円です。</p>
+  <p>米国株の例：株価150ドルで、K=145ドルのコールが7.90ドルなら、本質的価値は5ドル、時間的価値は2.90ドルです。</p>
+</div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 270" role="img" aria-label="ITM、ATM、OTMのコールのプレミアムを本質的価値と時間的価値に分けた棒グラフ">
+  <rect x="20" y="12" width="14" height="12" fill="var(--accent)" fill-opacity="0.85" stroke="none"/>
+  <text x="40" y="23" font-size="12" fill="var(--fg)">本質的価値</text>
+  <rect x="130" y="12" width="14" height="12" fill="var(--gold)" fill-opacity="0.75" stroke="none"/>
+  <text x="150" y="23" font-size="12" fill="var(--fg)">時間的価値</text>
+  <rect x="125" y="107" width="90" height="113" fill="var(--accent)" fill-opacity="0.85" stroke="none"/>
+  <rect x="125" y="51" width="90" height="56" fill="var(--gold)" fill-opacity="0.75" stroke="none"/>
+  <text x="170" y="168" font-size="12" text-anchor="middle" fill="var(--surface)" font-weight="700">1,000</text>
+  <text x="170" y="84" font-size="12" text-anchor="middle" fill="var(--fg)">490</text>
+  <text x="170" y="44" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">計 1,490</text>
+  <rect x="285" y="117" width="90" height="103" fill="var(--gold)" fill-opacity="0.75" stroke="none"/>
+  <text x="330" y="173" font-size="12" text-anchor="middle" fill="var(--fg)">910</text>
+  <text x="330" y="110" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">計 910</text>
+  <rect x="445" y="162" width="90" height="58" fill="var(--gold)" fill-opacity="0.75" stroke="none"/>
+  <text x="490" y="196" font-size="12" text-anchor="middle" fill="var(--fg)">510</text>
+  <text x="490" y="155" font-size="13" text-anchor="middle" fill="var(--fg)" font-weight="700">計 510</text>
+  <line x1="90" y1="220" x2="580" y2="220" stroke="var(--fg)" stroke-width="1.5" fill="none"/>
+  <text x="170" y="240" font-size="12" text-anchor="middle" fill="var(--fg)">K=39,000</text>
+  <text x="170" y="257" font-size="12" text-anchor="middle" fill="var(--muted)">ITM</text>
+  <text x="330" y="240" font-size="12" text-anchor="middle" fill="var(--fg)">K=40,000</text>
+  <text x="330" y="257" font-size="12" text-anchor="middle" fill="var(--muted)">ATM</text>
+  <text x="490" y="240" font-size="12" text-anchor="middle" fill="var(--fg)">K=41,000</text>
+  <text x="490" y="257" font-size="12" text-anchor="middle" fill="var(--muted)">OTM</text>
+</svg></div><figcaption>図2-3　日経平均40,000円・残り30日のコールのプレミアムの内訳（目安）。プレミアムの総額はITMが最大ですが、時間的価値はATMが最大です。</figcaption></figure>
+
+<p>なぜ時間的価値はATMで最大になるのでしょうか。理由は「満期までの値動きで結果がどれだけ変わりうるか」です。</p>
+<ul>
+  <li><b>ATM</b>：少し上がればITM、少し下がればOTMです。結果が一番読めないので、「可能性の値段」が最も高くなります。</li>
+  <li><b>ディープOTM</b>：ITMになるには大きな値動きが必要です。可能性が小さいので時間的価値も小さくなります。</li>
+  <li><b>ディープITM</b>：ほぼ確実にITMのまま終わりそうで、原資産を持っているのとあまり変わりません。「上がれば得、下がっても損は限定」という保険の効き目が小さいため、時間的価値は小さくなります。</li>
+</ul>
+
+<p>次の図は、原資産価格が変わるとコールのプレミアムがどう変わるかを、残り日数ごとに描いたものです。破線が本質的価値です。各曲線と破線の縦の差が、その価格での時間的価値です。</p>
+
+<div class="greek" data-greek="value" data-type="call" data-k="40000" data-iv="0.2" data-days="90,30,7" data-range="36000,44000" data-intrinsic
+     data-title="コールのプレミアムと本質的価値（K=40,000）"
+     data-caption="ブラック・ショールズ式で計算（IV 20%、金利0%）。破線（本質的価値）はK=40,000を境に折れ曲がります。満期が近づくほど曲線は破線に近づきます。"></div>
+
+<div class="greek" data-greek="value" data-type="put" data-k="40000" data-iv="0.2" data-days="90,30,7" data-range="36000,44000" data-intrinsic
+     data-title="プットのプレミアムと本質的価値（K=40,000）"
+     data-caption="ブラック・ショールズ式で計算（IV 20%、金利0%）。プットは原資産価格が安いほど本質的価値が大きくなり、コールと左右が逆の形です。"></div>
+
+<p>時間的価値だけを取り出すと、次のような「山」の形になります。</p>
+
+<div class="greek" data-greek="timevalue" data-type="call" data-k="40000" data-iv="0.2" data-days="90,30,7" data-range="36000,44000"
+     data-title="時間的価値の形（コール、K=40,000）"
+     data-caption="ブラック・ショールズ式で計算（IV 20%、金利0%）。山の頂上はATM付近です。残り日数が減るほど山は低く、細くなり、満期には0になります。"></div>
+
+<p>この図から、時間的価値について2つの大切な性質が読み取れます。</p>
+<ol>
+  <li><b>満期に近づくほど減っていき、満期には0になる。</b>満期の時点では「この先の可能性」がもう残っていないからです。満期のプレミアムは本質的価値だけになります。この「時間とともに価値が減る」ことを<strong>タイム・ディケイ（時間的価値の減少）</strong>と呼び、<a href="#ch05">第5章</a>のセータとして詳しく学びます。</li>
+  <li><b>ATM付近が最も大きい。</b>上で説明した理由のとおりです。</li>
+</ol>
+<p>オプションの買い手は時間的価値を支払い、売り手は時間的価値を受け取っています。何も起きずに時間が過ぎると、時間的価値の分だけ買い手が不利、売り手が有利になります。ただし売り手は、相場が大きく動いたときに大きな損失を負う可能性と引き換えにこの価値を受け取っている点を忘れないでください。</p>
+
+<details class="deep"><summary>深掘り：時間的価値がマイナスになることはあるか</summary><div>
+  <p>アメリカン・タイプ（次の節）では、時間的価値がマイナスなら「すぐに権利行使すれば得」という状態になるため、通常は0以上に保たれます。</p>
+  <p>一方、ヨーロピアン・タイプでは満期まで権利行使できないため、金利や配当の影響で、ディープITMのオプションの時間的価値が理論上わずかにマイナスになることがあります。たとえば金利がプラスのときのディープITMのプットや、満期までに大きな配当がある場合のディープITMのコールです。上の図は金利0・配当0で計算しているので、時間的価値は常に0以上で、コールとプットの時間的価値は同じ形になります。この理由は<a href="#ch04">第4章</a>のプット・コール・パリティで説明します。</p>
+</div></details>
+
+<h2 id="ch02-7">2-7　アメリカン・タイプとヨーロピアン・タイプ</h2>
+<p>オプションは、<b>いつ権利行使できるか</b>によって2種類に分かれます。名前は地域に由来しますが、今では地域とは関係なく、商品の種類を表す言葉です。</p>
+<div class="compare">
+  <div><h4>アメリカン・タイプ（American Style）</h4>
+    <p>取引開始から満期日までの<b>いつでも</b>権利行使できる。</p>
+    <p>例：米国の個別株オプション、SPY・QQQなどのETFオプション</p>
+  </div>
+  <div><h4>ヨーロピアン・タイプ（European Style）</h4>
+    <p><b>満期日にだけ</b>権利行使できる。</p>
+    <p>例：日経225オプション、日経225ミニオプション、米国のSPX・XSP・NDX・RUTなどの指数オプション</p>
+  </div>
+</div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 200" role="img" aria-label="アメリカン・タイプとヨーロピアン・タイプの権利行使できる期間の比較">
+  <text x="150" y="24" font-size="12" fill="var(--muted)">買った日</text>
+  <text x="600" y="24" font-size="12" text-anchor="end" fill="var(--muted)">満期日</text>
+  <text x="20" y="62" font-size="13" fill="var(--fg)" font-weight="700">アメリカン</text>
+  <rect x="150" y="42" width="450" height="30" rx="4" fill="var(--gain)" fill-opacity="0.25" stroke="var(--gain)" stroke-width="1.5"/>
+  <text x="375" y="62" font-size="12" text-anchor="middle" fill="var(--fg)">この期間のいつでも権利行使できる</text>
+  <text x="20" y="112" font-size="13" fill="var(--fg)" font-weight="700">ヨーロピアン</text>
+  <line x1="150" y1="107" x2="585" y2="107" stroke="var(--line)" stroke-width="3" fill="none"/>
+  <text x="365" y="98" font-size="12" text-anchor="middle" fill="var(--muted)">途中では権利行使できない</text>
+  <circle cx="592" cy="107" r="9" fill="var(--accent)" stroke="none"/>
+  <text x="575" y="132" font-size="12" text-anchor="end" fill="var(--fg)">満期日だけ権利行使</text>
+  <text x="20" y="170" font-size="13" fill="var(--fg)" font-weight="700">両方に共通</text>
+  <rect x="150" y="150" width="450" height="30" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="375" y="170" font-size="12" text-anchor="middle" fill="var(--fg)">最終取引日までは市場で転売・買戻しできる</text>
+</svg></div><figcaption>図2-4　権利行使できるタイミングの違い。ヨーロピアンでも、市場で売買して手仕舞いすることは最終取引日までいつでもできます。</figcaption></figure>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>「ヨーロピアンだから満期まで持ち続けるしかない」は誤解です。権利行使できないだけで、<b>市場で転売・買戻しをすれば、いつでもその時点のプレミアムで損益を確定できます</b>。満期を待たずに転売・買戻しで手仕舞いするのは、ごく一般的な使い方です。</p></div>
+
+<p>違いが本当に効いてくるのは<b>売り手の側</b>です。アメリカン・タイプを売っていると、満期前でも買い手が権利行使するかもしれません。これを<strong>早期割当（Early Assignment）</strong>と言います。たとえば米国株のコールを売っていると、配当の権利落ち日の前に権利行使されて、急に株を引き渡す義務が生じることがあります。ヨーロピアン・タイプの売り手には、この心配がありません。</p>
+<p>ただし買い手の立場から見ると、アメリカン・タイプでも満期前の権利行使は多くの場合、損になります。権利行使すると時間的価値を捨てることになるからです。権利を使うより、市場で転売したほうが「本質的価値＋時間的価値」を受け取れます。早期行使が合理的になる例外（配当前のコールなど）と早期割当への備えは、<a href="#ch06">第6章</a>と第8章で扱います。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+  <p>株価150ドルで、K=145ドルのコール（アメリカン）が7.90ドルだとします。</p>
+  <ul>
+    <li><b>権利行使する</b>：145ドルで100株買い、150ドルで売れば、得られるのは本質的価値の (150 − 145) × 100 ＝ 500ドル（手数料は除く）。</li>
+    <li><b>市場で転売する</b>：7.90 × 100 ＝ 790ドルを受け取れる。</li>
+  </ul>
+  <p>差の290ドルが時間的価値です。権利行使を急ぐと、この290ドルを捨てることになります。</p>
+</div>
+
+<h2 id="ch02-8">2-8　権利行使と割当、差金決済と現物受渡し</h2>
+<p><strong>権利行使（Exercise）</strong>は、買い手が権利を実際に使うことです。権利行使されると、売り手のだれかがその相手として義務を果たすよう指定されます。これが<strong>割当（Assignment、アサインメント）</strong>です。買い手は「行使する側」、売り手は「割り当てられる側」です。</p>
+<p>権利行使の結果をどう決済するかには、2つの方法があります。</p>
+<ul>
+  <li><strong>差金決済（Cash Settlement）</strong>：原資産を受け渡さず、差額のお金だけをやり取りする方法。指数オプションで使われます。</li>
+  <li><strong>現物受渡し（Physical Delivery）</strong>：実際に原資産（株など）を権利行使価格で売買する方法。米国の個別株オプション・ETFオプションで使われます。</li>
+</ul>
+
+<h3>日経225オプション：満期に差金決済</h3>
+<p>日経225オプションはヨーロピアン・タイプで、差金決済です。満期（SQ日）にSQ値で清算され、ITMで終わった建玉は、原則として自動的に権利行使されます（自動権利行使）。流れは次のとおりです。</p>
+<ol class="flow">
+  <li><b>最終取引日</b><br>この日の取引終了までに転売・買戻しをしなければ、建玉は満期まで残る</li>
+  <li><b>SQ値の確定</b><br>SQ日の朝、構成銘柄の始値からSQ値が計算される</li>
+  <li><b>ITM・OTMの判定</b><br>SQ値とKを比べる。ITMなら自動的に権利行使、OTMなら権利は消滅</li>
+  <li><b>差金の授受</b><br>ITMの買い手は差額を受け取り、割り当てられた売り手は差額を支払う</li>
+</ol>
+<div class="box example"><span class="box-label">数値例</span>
+  <p>K=40,000円のコールをプレミアム300円で1枚売っていたところ、SQ値が40,650円になったとします。</p>
+  <ul>
+    <li>差金の支払い：(40,650 − 40,000) × 1,000 ＝ <b>650,000円</b></li>
+    <li>最初に受け取ったプレミアム：300 × 1,000 ＝ 300,000円</li>
+    <li>差し引きの損益：300,000 − 650,000 ＝ <b>−350,000円</b>（手数料は別）</li>
+  </ul>
+  <p>買い手の側から見ると、差金650,000円を受け取り、支払ったプレミアム300,000円を引いた350,000円が利益です。売り手の損失と買い手の利益はちょうど逆になります。</p>
+</div>
+
+<h3>米国株オプション：いつでも行使でき、現物で受け渡す</h3>
+<p>米国の個別株オプションはアメリカン・タイプで、現物受渡しです。権利行使は満期前でもでき、満期時点でわずかでもITMのオプションは、原則として自動的に権利行使されます（行使しない場合の指示方法や細かい基準は第6章・第8章）。割当は、清算機関（OCC）が証券会社の口座へ割り当て、証券会社がさらに顧客に割り当てる仕組みです。売り手は、自分が割り当てられるかどうかを事前に知ることはできません。</p>
+<ol class="flow">
+  <li><b>買い手が権利行使</b><br>満期前の行使指示、または満期時の自動行使</li>
+  <li><b>清算機関が割当</b><br>同じオプションを売っている建玉の中から割り当てる</li>
+  <li><b>売り手に通知</b><br>証券会社から割当の通知が届く</li>
+  <li><b>株と代金の受渡し</b><br>K×100株の代金と株式100株をやり取りする</li>
+</ol>
+<div class="compare">
+  <div><h4>コールが行使・割当された場合</h4>
+    <p>買い手：K×100 を支払い、株100株を受け取る</p>
+    <p>売り手：株100株を渡し、K×100 を受け取る（株を持っていなければ株を売った状態＝空売りになる）</p>
+  </div>
+  <div><h4>プットが行使・割当された場合</h4>
+    <p>買い手：株100株を渡し、K×100 を受け取る</p>
+    <p>売り手：K×100 を支払い、株100株を受け取る</p>
+  </div>
+</div>
+<div class="box warn"><span class="box-label">注意</span>
+  <p>現物受渡しでは、プレミアムに比べてはるかに大きなお金や株が動きます。たとえば K=145ドルのプットを1枚売って割り当てられると、145 × 100 ＝ <b>14,500ドル</b>で株を買い取る義務が生じます。受け取ったプレミアムが数百ドルでも、この資金（または証拠金）の準備が必要です。資金が足りないと、証券会社によって強制的に決済されることがあります。</p>
+  <p>コールを株を持たずに売っていて割り当てられると、株の空売りの状態になり、株価が上がり続ければ損失に上限がありません。</p>
+</div>
+<p>なお、米国でもSPXなどの指数オプションは<b>ヨーロピアン・タイプで差金決済</b>です。同じS&amp;P500に連動していても、SPY（ETF）のオプションはアメリカン・タイプで現物受渡し（ETFの受渡し）、SPX（指数）のオプションはヨーロピアン・タイプで差金決済、という違いがあります。この違いは早期割当の有無や税制にも関係します（第8章・<a href="#ch24">第24章</a>）。</p>
+
+<h2 id="ch02-9">2-9　建玉と出来高、新規と返済</h2>
+
+<h3>4種類の注文：新規と返済</h3>
+<p>オプション（や先物）の取引では、「ポジションを新しく作る注文」と「持っているポジションを閉じる注文」を区別します。ポジションのことを日本では<strong>建玉（たてぎょく）</strong>と言います。</p>
+<div class="tbl"><table>
+  <thead><tr><th></th><th>日本の呼び方</th><th>米国の呼び方</th><th>意味</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="2">新規</td><td>新規買い（買い建て）</td><td>Buy to Open</td><td>オプションを買って、新しく「買いの建玉」を持つ</td></tr>
+    <tr><td>新規売り（売り建て）</td><td>Sell to Open</td><td>オプションを売って、新しく「売りの建玉」を持つ</td></tr>
+    <tr><td rowspan="2">返済</td><td>転売（てんばい）</td><td>Sell to Close</td><td>持っている買いの建玉を売って閉じる</td></tr>
+    <tr><td>買戻し（かいもどし）</td><td>Buy to Close</td><td>持っている売りの建玉を買って閉じる</td></tr>
+  </tbody>
+</table></div>
+<p>なぜ区別が必要なのでしょうか。同じ「売り」でも、買いの建玉を持っている人の売りは「手仕舞い（リスクが減る）」、何も持っていない人の売りは「売り建て（新たな義務を負う）」で、意味がまったく違うからです。注文画面で「新規」と「返済」を間違えると、閉じるつもりのポジションが閉じず、逆に売りの建玉が新しくできてしまう、という事故が起こりえます。</p>
+<div class="box warn"><span class="box-label">注意</span><p>売り建て（新規売り）は、受け取るプレミアムが利益の上限で、損失は大きくなりえます。特にコールの売り建ては理論上、損失に上限がありません。売り建てには証拠金が必要で、相場が不利に動くと追加の証拠金を求められることがあります（第6章）。</p></div>
+
+<h3>建玉（オープン・インタレスト）と出来高</h3>
+<ul>
+  <li><strong>出来高（Volume）</strong>：その日に売買が成立した枚数。新規でも返済でも、1枚の売買が成立すれば1枚と数えます。</li>
+  <li><strong>建玉（残高）、オープン・インタレスト（Open Interest, OI）</strong>：まだ返済も決済もされずに残っている契約の枚数。買いの建玉と売りの建玉は必ず同じ数なので、片側だけを数えます。</li>
+</ul>
+<p>建玉が増えるか減るかは、売買の両側が「新規」か「返済」かで決まります。</p>
+<div class="box example"><span class="box-label">数値例</span>
+  <div class="tbl"><table>
+    <thead><tr><th>日</th><th>買った人</th><th>売った人</th><th class="r">その日の出来高</th><th class="r">取引後の建玉</th></tr></thead>
+    <tbody>
+      <tr><td>1日目</td><td>Aさん：新規買い</td><td>Bさん：新規売り</td><td class="r">1</td><td class="r">1（増える）</td></tr>
+      <tr><td>2日目</td><td>Cさん：新規買い</td><td>Aさん：転売</td><td class="r">1</td><td class="r">1（変わらない）</td></tr>
+      <tr><td>3日目</td><td>Bさん：買戻し</td><td>Cさん：転売</td><td class="r">1</td><td class="r">0（減る）</td></tr>
+    </tbody>
+  </table></div>
+  <p>2日目は、Aさんの買いの建玉がCさんに移っただけなので、建玉の総数は変わりません。3日目は両方が返済なので、建玉が1枚消えます。出来高は3日とも1枚ですが、建玉の動きはまったく違います。</p>
+</div>
+<div class="box tip"><span class="box-label">実践テクニック</span>
+  <p>建玉と出来高は、そのオプションが<b>売買しやすいか（流動性）</b>を判断する手がかりになります。建玉も出来高も少ない権利行使価格では、買値と売値の差（スプレッド）が広く、思った値段で手仕舞いできないことがあります。一般に、ATMに近い権利行使価格や期近の限月ほど取引が集まりやすい傾向があります。注文の出し方とスプレッドの読み方は第6章で扱います。</p>
+</div>
+
+<h2 id="ch02-10">2-10　用語の早見表</h2>
+<div class="tbl"><table>
+  <thead><tr><th>日本語</th><th>英語</th><th>一言説明</th></tr></thead>
+  <tbody>
+    <tr><td>原資産</td><td>Underlying</td><td>オプションが売買の対象にしているもの（株、指数など）</td></tr>
+    <tr><td>権利行使価格（ストライク）</td><td>Strike Price (K)</td><td>権利を使ったときに売買する価格</td></tr>
+    <tr><td>限月</td><td>Contract Month</td><td>満期を迎える月</td></tr>
+    <tr><td>満期日</td><td>Expiration Date</td><td>権利が消える日</td></tr>
+    <tr><td>最終取引日</td><td>Last Trading Day</td><td>市場で売買できる最後の日</td></tr>
+    <tr><td>SQ（特別清算指数）</td><td>Special Quotation</td><td>日経225オプションなどの満期清算に使う値</td></tr>
+    <tr><td>プレミアム</td><td>Premium</td><td>オプションの値段（1単位あたりで表示）</td></tr>
+    <tr><td>取引単位（乗数）</td><td>Multiplier / Contract Size</td><td>1枚が原資産のどれだけ分か（日経225は1,000倍、ミニは100倍、米国株は100株）</td></tr>
+    <tr><td>イン・ザ・マネー</td><td>ITM (In The Money)</td><td>いま権利を使えば得をする状態</td></tr>
+    <tr><td>アット・ザ・マネー</td><td>ATM (At The Money)</td><td>原資産価格と権利行使価格がほぼ同じ状態</td></tr>
+    <tr><td>アウト・オブ・ザ・マネー</td><td>OTM (Out of The Money)</td><td>いま権利を使っても得をしない状態</td></tr>
+    <tr><td>本質的価値</td><td>Intrinsic Value</td><td>いま権利を使ったら得られる金額（0以上）</td></tr>
+    <tr><td>時間的価値</td><td>Time Value / Extrinsic Value</td><td>プレミアムから本質的価値を引いた残り</td></tr>
+    <tr><td>タイム・ディケイ</td><td>Time Decay</td><td>時間の経過で時間的価値が減ること</td></tr>
+    <tr><td>アメリカン・タイプ</td><td>American Style</td><td>満期までいつでも権利行使できる</td></tr>
+    <tr><td>ヨーロピアン・タイプ</td><td>European Style</td><td>満期日にだけ権利行使できる</td></tr>
+    <tr><td>権利行使</td><td>Exercise</td><td>買い手が権利を実際に使うこと</td></tr>
+    <tr><td>割当（アサインメント）</td><td>Assignment</td><td>売り手が権利行使の相手に指定されること</td></tr>
+    <tr><td>早期割当</td><td>Early Assignment</td><td>アメリカン・タイプで満期前に割り当てられること</td></tr>
+    <tr><td>差金決済</td><td>Cash Settlement</td><td>差額のお金だけで決済する方法</td></tr>
+    <tr><td>現物受渡し</td><td>Physical Delivery</td><td>原資産そのものを受け渡して決済する方法</td></tr>
+    <tr><td>建玉</td><td>Open Position / Open Interest</td><td>決済されずに残っているポジション（市場全体の枚数はオープン・インタレスト）</td></tr>
+    <tr><td>出来高</td><td>Volume</td><td>その日に売買が成立した枚数</td></tr>
+    <tr><td>新規買い（買い建て）</td><td>Buy to Open</td><td>買いのポジションを新しく作る</td></tr>
+    <tr><td>新規売り（売り建て）</td><td>Sell to Open</td><td>売りのポジションを新しく作る</td></tr>
+    <tr><td>転売</td><td>Sell to Close</td><td>買いのポジションを売って閉じる</td></tr>
+    <tr><td>買戻し</td><td>Buy to Close</td><td>売りのポジションを買って閉じる</td></tr>
+  </tbody>
+</table></div>
+<p>本書全体の用語は、付録の<a href="#glossary">用語集</a>で五十音順・ABC順に引けます。</p>
+
+<h2 id="ch02-11">まとめ</h2>
+<ul class="summary-list">
+  <li>原資産は権利の対象、権利行使価格（K）は権利を使ったときの売買価格。指数が原資産なら差金決済になる。</li>
+  <li>日経225オプションの月次の満期は第2金曜日のSQ日で、最終取引日はその前営業日。満期日と最終取引日は同じとは限らない。</li>
+  <li>実際の金額は「プレミアム × 乗数 × 枚数」。日経225オプションは1,000倍、ミニは100倍、米国株オプションは100株。</li>
+  <li>コールは「原資産価格 ＞ K」、プットは「原資産価格 ＜ K」でITM。迷ったら「いま権利を使ったら得か」で判定する。</li>
+  <li>プレミアム＝本質的価値＋時間的価値。時間的価値はATM付近で最大、満期に向けて減り、満期には0になる。</li>
+  <li>アメリカンはいつでも、ヨーロピアンは満期日だけ権利行使できる。どちらも満期前の転売・買戻しは自由。日経225・SPXはヨーロピアン、米国株・ETFはアメリカン。</li>
+  <li>権利行使されると売り手に割当が起きる。米国株オプションは現物受渡しで、大きな資金が動く。</li>
+  <li>新規（買い建て・売り建て）と返済（転売・買戻し）を区別する。建玉は残っている契約数、出来高はその日の売買枚数。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+
+  <div class="q"><p>日経225オプション（ラージ）のプットを、プレミアム120円で3枚買いました。支払うプレミアムの合計はいくらですか（手数料は除く）。</p>
+    <ol class="choices"><li>360円</li><li>36,000円</li><li>360,000円</li><li>3,600,000円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　プレミアム × 乗数 × 枚数 ＝ 120 × 1,000 × 3 ＝ 360,000円です。画面の「120」をそのまま金額と考えないことが大切です。</p></div></details>
+  </div>
+
+  <div class="q"><p>日経225ミニオプションのコールのプレミアムが85円のとき、1枚買うのに必要な金額はいくらですか（手数料は除く）。</p>
+    <ol class="choices"><li>85円</li><li>8,500円</li><li>85,000円</li><li>850,000円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ミニの乗数は100倍なので、85 × 100 ＝ 8,500円です。同じプレミアムのラージ（1,000倍）なら85,000円になります。</p></div></details>
+  </div>
+
+  <div class="q"><p>米国株オプションで、プレミアムが2.35ドルのプットを2枚売り建てました。受け取るプレミアムの合計はいくらですか（手数料は除く）。</p>
+    <ol class="choices"><li>4.70ドル</li><li>235ドル</li><li>470ドル</li><li>4,700ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　1枚は100株分なので、2.35 × 100 × 2 ＝ 470ドルです。ただし売り建てなので、株価が大きく下がると、受け取った額を大きく超える損失が出る可能性があります。</p></div></details>
+  </div>
+
+  <div class="q"><p>日経平均が40,000円のとき、ITMであるものはどれですか。</p>
+    <ol class="choices"><li>権利行使価格41,000円のコール</li><li>権利行使価格41,000円のプット</li><li>権利行使価格39,000円のプット</li><li>権利行使価格40,000円のコール</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　プットは「Kで売る権利」です。40,000円のものを41,000円で売れるので、いま使えば得をします。Aは41,000円で買う権利なので得をしないOTM、Cは39,000円で売る権利なのでOTM、DはATMです。</p></div></details>
+  </div>
+
+  <div class="q"><p>満期まで残り5日、日経平均が40,300円のとき、権利行使価格40,000円のコールのプレミアムが540円でした。時間的価値はいくらですか。</p>
+    <ol class="choices"><li>0円</li><li>240円</li><li>300円</li><li>540円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　本質的価値は 40,300 − 40,000 ＝ 300円です。時間的価値は 540 − 300 ＝ 240円です。満期が近いので、時間的価値は小さめです。</p></div></details>
+  </div>
+
+  <div class="q"><p>株価が150ドルの米国株で、権利行使価格140ドルのプットのプレミアムが1.50ドルでした。正しい説明はどれですか。</p>
+    <ol class="choices"><li>本質的価値は10ドルである</li><li>本質的価値は1.50ドル、時間的価値は0ドルである</li><li>本質的価値は0ドル、時間的価値は1.50ドルである</li><li>このプットはITMである</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　株価150ドルの株を140ドルで売る権利は、いま使っても得をしないのでOTMです。OTMの本質的価値は0なので、プレミアム1.50ドルはすべて時間的価値です。</p></div></details>
+  </div>
+
+  <div class="q"><p>同じ原資産・同じ満期のコールのうち、時間的価値が最も大きいのは一般にどれですか。</p>
+    <ol class="choices"><li>ディープITMのコール</li><li>ATMのコール</li><li>ディープOTMのコール</li><li>どれも同じ</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ATMは、少しの値動きでITMにもOTMにもなり、結果が最も読めません。その「可能性の値段」である時間的価値はATM付近で最大になります。プレミアムの総額が最大なのはディープITMですが、その大部分は本質的価値です。</p></div></details>
+  </div>
+
+  <div class="q"><p>アメリカン・タイプとヨーロピアン・タイプについて、正しいものはどれですか。</p>
+    <ol class="choices"><li>日経225オプションはアメリカン・タイプである</li><li>ヨーロピアン・タイプのオプションは、満期まで転売できない</li><li>SPYのオプションはアメリカン・タイプ、SPXのオプションはヨーロピアン・タイプである</li><li>アメリカン・タイプの売り手は、満期前に割り当てられることはない</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　ETFであるSPYのオプションはアメリカン・タイプ（現物受渡し）、指数であるSPXのオプションはヨーロピアン・タイプ（差金決済）です。Aの日経225オプションはヨーロピアン、Bはヨーロピアンでも最終取引日まで市場で転売・買戻しができるので誤り、Dはアメリカンだからこそ早期割当がありうるので誤りです。</p></div></details>
+  </div>
+
+  <div class="q"><p>日経225オプションで、権利行使価格40,000円のコールをプレミアム300円で1枚売り建て、そのまま満期を迎えました。SQ値は40,650円でした。この売り手の損益はいくらですか（手数料は除く）。</p>
+    <ol class="choices"><li>+300,000円</li><li>−350,000円</li><li>−650,000円</li><li>−950,000円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ITMで終わったので自動権利行使され、売り手には差金の支払いが生じます。支払いは (40,650 − 40,000) × 1,000 ＝ 650,000円。受け取っていたプレミアムは 300 × 1,000 ＝ 300,000円なので、差し引き −350,000円です。</p></div></details>
+  </div>
+
+  <div class="q"><p>Dさんが新規買いの注文を1枚出し、その相手としてEさんの売り注文1枚と約定しました。Eさんは、このオプションの買いの建玉を1枚持っていて、それを手放すための売り注文でした。この取引で、市場全体の建玉（オープン・インタレスト）はどう変わりますか。</p>
+    <ol class="choices"><li>1枚増える</li><li>変わらない</li><li>1枚減る</li><li>2枚増える</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　Eさんの注文は「転売」（買いの建玉を売って閉じる）です。Dさんの新規買いとEさんの転売が約定すると、Eさんの買いの建玉がDさんに移るだけなので、建玉の総数は変わりません。出来高は1枚増えます。両方が新規なら建玉は1枚増え、両方が返済なら1枚減ります。</p></div></details>
+  </div>
+
+</div>

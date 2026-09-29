@@ -1,0 +1,450 @@
+<header class="chapter-head">
+  <p class="eyebrow">第1部　ゼロから学ぶ基礎</p>
+  <h1>第3章　損益図（ペイオフ・ダイアグラム）の読み方 <span class="lv">Lv.1</span></h1>
+  <p class="lead">損益図は、オプションの取引で「いくらで終わったら、いくら儲かるか・損するか」を1枚で見せてくれる地図です。この章で読み方と描き方を身につければ、第3部の約60の戦略はすべて「図の足し算」として理解できるようになります。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>損益図の横軸・縦軸・損益ゼロの線・利益ゾーン・損失ゾーン・損益分岐点の読み方</li>
+  <li>現物株や先物の損益図が「45度の直線」になる理由</li>
+  <li>4つの基本ポジション（コール買い・コール売り・プット買い・プット売り）の形と、最大利益・最大損失・損益分岐点の計算式</li>
+  <li>満期時の「折れ線」と、満期前の「曲線」の違い</li>
+  <li>損益図を足し算して、カバード・コールやストラドルなどの戦略を組み立てる考え方</li>
+  <li>損益図を自分の手で描く手順と、日経225オプションでの円建ての実額</li>
+</ul></div>
+
+<h2 id="ch03-1">3-1　損益図とは何か</h2>
+<p>損益図（ペイオフ・ダイアグラム、payoff diagram）とは、「満期のときに原資産の価格がいくらになっていたら、自分のポジションの損益はいくらになるか」を線で表したグラフです。原資産（げんしさん、underlying）とは、オプションの対象になっているもの、つまり株や株価指数のことでした（<a href="#ch02">第2章</a>）。</p>
+<p>損益図が便利なのは、未来の株価を当てる必要がないところです。「上がったら」「下がったら」「動かなかったら」のすべての場合を、1本の線で同時に見せてくれます。文章で「最大損失はプレミアムに限定され、損益分岐点は権利行使価格にプレミアムを足した水準で…」と読むより、図を1枚見るほうがずっと速く正確に理解できます。</p>
+
+<h3>図の各部位の名前</h3>
+<p>まず、第1章で学んだ「コール買い」（権利行使価格100のコールを、プレミアム3で1単位買う）を例に、損益図の各部位に名前を付けておきます。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 330" role="img" aria-label="損益図の各部位の名前">
+  <polygon points="370.5,200 600,200 600,47" fill="var(--gain)" fill-opacity="0.18"/>
+  <polygon points="60,200 370.5,200 330,227 60,227" fill="var(--loss)" fill-opacity="0.18"/>
+  <line x1="60" x2="600" y1="65" y2="65" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="600" y1="110" y2="110" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="600" y1="155" y2="155" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="600" y1="245" y2="245" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="60" y1="30" y2="280" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="280" y2="280" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="200" y2="200" stroke="var(--fg)" stroke-width="1.6" fill="none"/>
+  <line x1="330" x2="330" y1="30" y2="280" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+  <polyline points="60,227 330,227 600,47" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="370.5" cy="200" r="5" fill="var(--surface)" stroke="var(--fg)" stroke-width="1.8"/>
+  <line x1="150" x2="150" y1="250" y2="229" stroke="var(--fg)" stroke-width="1" fill="none"/>
+  <text x="54" y="69" text-anchor="end" font-size="12" fill="var(--fg)">15</text>
+  <text x="54" y="114" text-anchor="end" font-size="12" fill="var(--fg)">10</text>
+  <text x="54" y="159" text-anchor="end" font-size="12" fill="var(--fg)">5</text>
+  <text x="54" y="204" text-anchor="end" font-size="12" fill="var(--fg)">0</text>
+  <text x="54" y="249" text-anchor="end" font-size="12" fill="var(--fg)">-5</text>
+  <text x="60" y="298" text-anchor="middle" font-size="12" fill="var(--fg)">80</text>
+  <text x="195" y="298" text-anchor="middle" font-size="12" fill="var(--fg)">90</text>
+  <text x="330" y="298" text-anchor="middle" font-size="12" fill="var(--fg)">100</text>
+  <text x="465" y="298" text-anchor="middle" font-size="12" fill="var(--fg)">110</text>
+  <text x="600" y="298" text-anchor="middle" font-size="12" fill="var(--fg)">120</text>
+  <text x="8" y="20" font-size="13" fill="var(--fg)">縦軸＝損益（上がプラス、下がマイナス）</text>
+  <text x="600" y="322" text-anchor="end" font-size="13" fill="var(--fg)">横軸＝満期時の原資産価格 →</text>
+  <text x="66" y="193" font-size="12" fill="var(--fg)">損益ゼロの線</text>
+  <text x="90" y="218" font-size="12" fill="var(--fg)">損失ゾーン</text>
+  <text x="70" y="264" font-size="12" fill="var(--fg)">最大損失 -3（払ったプレミアム）</text>
+  <text x="336" y="274" font-size="12" fill="var(--fg)">権利行使価格 K＝100</text>
+  <text x="382" y="222" font-size="12" fill="var(--fg)">損益分岐点 103（K＋プレミアム）</text>
+  <text x="560" y="186" text-anchor="end" font-size="13" fill="var(--fg)">利益ゾーン</text>
+  <text x="590" y="34" text-anchor="end" font-size="12" fill="var(--fg)">右上へ伸び続ける＝利益は上限なし</text>
+</svg></div><figcaption>図3-1　損益図の各部位（コール買い：権利行使価格100、プレミアム3）。太線が「満期時の損益」。太線が損益ゼロの線より上なら利益、下なら損失です。</figcaption></figure>
+
+<p>図3-1の読み方を、部位ごとに確認します。</p>
+<div class="tbl"><table>
+  <thead><tr><th>部位</th><th>意味</th><th>図3-1での読み取り</th></tr></thead>
+  <tbody>
+    <tr><td>横軸</td><td>満期のときの原資産の価格。右へ行くほど高い</td><td>80〜120</td></tr>
+    <tr><td>縦軸</td><td>そのときの損益。上がプラス（利益）、下がマイナス（損失）</td><td>-3〜+17</td></tr>
+    <tr><td>損益ゼロの線</td><td>縦軸が0の水平線。ここより上か下かで勝ち負けが決まる</td><td>縦軸0の太い水平線</td></tr>
+    <tr><td>利益ゾーン</td><td>太線が損益ゼロの線より上にある範囲</td><td>原資産が103より上</td></tr>
+    <tr><td>損失ゾーン</td><td>太線が損益ゼロの線より下にある範囲</td><td>原資産が103より下</td></tr>
+    <tr><td>損益分岐点（ブレークイーブン、breakeven）</td><td>太線が損益ゼロの線と交わる価格。損も得もしない点</td><td class="r">103</td></tr>
+    <tr><td>折れ曲がる点</td><td>権利行使価格（K）。オプションの損益はここで向きが変わる</td><td class="r">100</td></tr>
+  </tbody>
+</table></div>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>損益図の横軸は「今の価格」ではなく「満期のときの価格」です。「満期にこの価格で終わったら、損益はこうなる」という<b>条件つきの答えを全部並べた表</b>を、線で描いたものだと考えてください。今日の損益を知りたいときは、3-4節で学ぶ「満期前の曲線」を見ます。</p></div>
+
+<p>なぜ100で折れ曲がるのでしょうか。満期に株価が100以下なら、100で買う権利を使っても得をしないので、権利は紙くずになります。損失は払ったプレミアム3だけで一定です。株価が100を超えると、超えた分だけ権利の価値が増えます。株価が1上がるごとに損益も1ずつ増えるので、線は右上がりになります。この「使わない／使う」の切り替わりが、折れ曲がりの正体です。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>図3-1のコール買いで、満期の株価ごとに損益を計算します。損益＝（株価−100と0の大きい方）−3 です。</p>
+<ul>
+  <li>株価 90 → 権利は使わない → 0−3＝<b>-3</b></li>
+  <li>株価 100 → 使っても得なし → 0−3＝<b>-3</b></li>
+  <li>株価 103 → 103−100＝3、3−3＝<b>0</b>（損益分岐点）</li>
+  <li>株価 110 → 110−100＝10、10−3＝<b>+7</b></li>
+  <li>株価 120 → 20−3＝<b>+17</b></li>
+</ul></div>
+
+<h2 id="ch03-2">3-2　いちばん単純な損益図：原資産は45度の直線</h2>
+<p>オプションの損益図を読む前に、比べる基準として「原資産そのもの」の損益図を見ておきます。株を100で1株買うと、満期（ここでは売るとき）の株価が110なら+10、90なら-10です。株価が1動けば損益もちょうど1動きます。縦軸と横軸の目盛りを同じ幅にすれば、傾きがちょうど1、つまり<b>45度の直線</b>になります。</p>
+
+<div class="payoff" data-title="図3-2　現物株を100で買った場合" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"stock","qty":1,"price":100}]'
+     data-caption="株価が1上がれば損益も1増える、まっすぐな右上がりの線。損益分岐点は買値の100。株価が0になった場合の-100が最大損失です（自動表示の最大損失-100）。"></div>
+
+<p>先物（さきもの、futures）も同じ形です。先物は「将来の決められた日に、今決めた価格で売買する約束」です。買いなら右上がり、売りなら右下がりの直線になります。先物は証拠金で取引するため、少ない資金で大きな金額が動く点に注意が必要です（<a href="#ch06">第6章</a>）。</p>
+
+<div class="payoff" data-title="図3-3　日経225先物（ラージ）を40,000円で1枚売った場合" data-spot="40000" data-range="36000,44000" data-mult="1000"
+     data-legs='[{"type":"stock","qty":-1,"price":40000}]'
+     data-caption="売りは右下がりの直線。日経225先物ラージは指数×1,000円なので、日経平均が1,000円上がると100万円の損失。上昇に上限がないため最大損失は無制限です。"></div>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>日経225先物（ラージ）の取引単位は「日経平均×1,000円」です（執筆時点・2026年。最新の制度はJPXの商品概要で確認してください）。40,000円で1枚売り、満期に41,000円になっていれば (40,000−41,000)×1,000＝<b>-100万円</b>、39,000円なら<b>+100万円</b>です。図3-3の最大利益「40,000,000」は、日経平均が0円になるという現実にはありえない極端な場合の数字です。</p>
+<p>米国の例も見ておきます。S&amp;P500に連動するETFのSPYを仮に1口500ドルで100口買うと、1ドル上がるごとに+100ドル、1ドル下がるごとに-100ドルです。形はやはり右上がりの直線です。</p></div>
+
+<p>この直線を頭に置いておくと、オプションの特徴がはっきりします。オプションの損益図は、この直線を<b>権利行使価格のところで折り曲げたもの</b>です。どちら側を折って平らにするかで、4つの基本ポジションに分かれます。</p>
+
+<h2 id="ch03-3">3-3　4つの基本ポジションの損益図</h2>
+<p><a href="#ch01">第1章</a>で学んだ4つの基本ポジションを、同じ条件で並べます。原資産の価格は100、権利行使価格はすべて100（アット・ザ・マネー）、プレミアムはコール・プットとも3とします。満期まで約50日、変動の大きさ（IV、<a href="#ch04">第4章</a>）が20%程度のときの現実的な水準です。</p>
+
+<div class="compare">
+<div><div class="payoff" data-title="図3-4　コール買い（ロング・コール）" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3}]'
+     data-caption="上昇で利益。損失は払ったプレミアム3まで。"></div></div>
+<div><div class="payoff" data-title="図3-5　コール売り（ショート・コール）" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"call","k":100,"qty":-1,"prem":3}]'
+     data-caption="コール買いを上下にひっくり返した形。利益は受け取った3まで、上昇すると損失は無制限。"></div></div>
+</div>
+<div class="compare">
+<div><div class="payoff" data-title="図3-6　プット買い（ロング・プット）" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"put","k":100,"qty":1,"prem":3}]'
+     data-caption="下落で利益。損失は払ったプレミアム3まで。"></div></div>
+<div><div class="payoff" data-title="図3-7　プット売り（ショート・プット）" data-spot="100" data-range="70,130"
+     data-legs='[{"type":"put","k":100,"qty":-1,"prem":3}]'
+     data-caption="プット買いをひっくり返した形。利益は3まで、下落すると大きな損失。"></div></div>
+</div>
+
+<p>4枚の図を見比べると、次の規則が見えてきます。</p>
+<ul>
+  <li><b>買いと売りは、損益ゼロの線を鏡にした上下対称</b>です。買い手の利益は売り手の損失、買い手の損失は売り手の利益です。オプションは買い手と売り手の間でお金が移るだけの取引（ゼロサム）だからです。</li>
+  <li><b>コールは右側で、プットは左側で傾きます</b>。コールは株価が上がると価値が出る権利、プットは下がると価値が出る権利だからです。</li>
+  <li><b>買いは「損失が平ら」、売りは「利益が平ら」</b>です。買い手は最悪でもプレミアムを失うだけ、売り手は最良でもプレミアムを受け取るだけです。</li>
+</ul>
+
+<h3>最大利益・最大損失・損益分岐点の計算式</h3>
+<p>記号を決めておきます。K＝権利行使価格、P＝1単位あたりのプレミアム、S＝満期時の原資産価格です。</p>
+<div class="tbl"><table>
+  <thead><tr><th>ポジション</th><th>最大利益</th><th>最大損失</th><th>損益分岐点</th><th>K=100、P=3 の場合</th></tr></thead>
+  <tbody>
+    <tr><td>コール買い</td><td>無制限</td><td>P</td><td>K＋P</td><td class="r">利益 無制限／損失 3／分岐点 103</td></tr>
+    <tr><td>コール売り</td><td>P</td><td>無制限</td><td>K＋P</td><td class="r">利益 3／損失 無制限／分岐点 103</td></tr>
+    <tr><td>プット買い</td><td>K−P（株価0のとき）</td><td>P</td><td>K−P</td><td class="r">利益 97／損失 3／分岐点 97</td></tr>
+    <tr><td>プット売り</td><td>P</td><td>K−P（株価0のとき）</td><td>K−P</td><td class="r">利益 3／損失 97／分岐点 97</td></tr>
+  </tbody>
+</table></div>
+
+<p>損益分岐点の式は暗記しなくても導けます。コールの買い手は、払ったPを取り戻すために、株価がKよりPだけ上にある必要があります。だからK＋Pです。プットの買い手は、株価がKよりPだけ下にある必要があるので、K−Pです。売り手の分岐点は、同じオプションの買い手と同じ価格です。鏡に映しても、線が損益ゼロの線と交わる位置は変わらないからです。</p>
+
+<div class="box warn"><span class="box-label">注意</span><p>売りの損益図（図3-5・図3-7）は、「利益は小さく確定、損失は大きい」形です。コール売りは株価が上がり続けると損失に上限がありません。プット売りも株価が0に近づけば損失は受け取ったプレミアムの何十倍にもなります。勝つ確率が高く見えても、1回の大きな負けで何か月分もの利益が消えることがある、と損益図は教えてくれています。売り戦略を学ぶ第3部でも、このリスクは毎回確認します。</p></div>
+
+<details class="deep"><summary>深掘り：損益の式を1行で書く</summary><div>
+<p>満期時の損益は、次のように書けます（1単位あたり）。max(a, b) は「aとbの大きい方」という意味です。</p>
+<ul>
+  <li>コール買い：max(S−K, 0) − P</li>
+  <li>プット買い：max(K−S, 0) − P</li>
+  <li>売りは符号を逆にする：コール売り＝P − max(S−K, 0)、プット売り＝P − max(K−S, 0)</li>
+  <li>原資産の買い：S − 買値</li>
+</ul>
+<p>max(S−K, 0) の部分が「Kより上だけ傾く折れ線」を、−P の部分が「線全体をPだけ下にずらす」ことを表しています。つまりオプションの損益図は、<b>折れ線を作ってから、プレミアムの分だけ上下に平行移動したもの</b>です。</p>
+</div></details>
+
+<h2 id="ch03-4">3-4　満期時の折れ線と、満期前の曲線</h2>
+<p>ここまでの図の太線は、すべて<b>満期時</b>の損益でした。では、満期の前にオプションを売って（決済して）手じまう場合の損益はどうなるでしょうか。満期前のオプションには、本質的価値に加えて時間的価値（<a href="#ch02">第2章</a>）が残っています。そのため満期前の損益は、折れ線ではなく、角の取れた<b>なめらかな曲線</b>になります。</p>
+<p>次の図は、コール買い（K＝100、プレミアム3）を、満期まで残り50日で買った場合です。破線は、残り50日（買った直後）、20日、5日の時点での損益を、理論価格（ブラック・ショールズ式、<a href="#ch04">第4章</a>）で計算したものです。</p>
+
+<div class="payoff" data-title="図3-8　コール買いの損益は、時間とともに満期の折れ線へ近づく" data-spot="100" data-range="80,120" data-dte="50" data-curves="50,20,5"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3}]'
+     data-caption="破線は満期前の損益（IV20%、金利0%で計算）。残り日数が減るほど、曲線は太線の折れ線に近づきます。"></div>
+
+<p>図3-8から読み取れることは3つあります。</p>
+<ol>
+  <li><b>買った直後（残り50日）の曲線は、現在値100のところでほぼ0を通ります。</b>買った瞬間は、払った価格と理論価格がほぼ同じだからです。</li>
+  <li><b>満期前の曲線は、満期の折れ線より上にあります。</b>時間的価値が残っている分だけ、オプションは本質的価値より高く売れるからです。買い手にとっては、満期前に売ればまだ価値を回収できるということです。</li>
+  <li><b>時間が経つほど曲線は下がり、折れ線に近づきます。</b>株価が100のまま動かなければ、残り20日では損失が広がり、残り5日ではほぼ-3に近づきます。これが時間的価値の減少（タイム・ディケイ、time decay）で、<a href="#ch05">第5章</a>でセータとして数値化します。</li>
+</ol>
+
+<p>売り手から見ると、同じ現象が逆向きに働きます。次の図はプット売り（K＝95、プレミアム1.1、残り50日）です。</p>
+
+<div class="payoff" data-title="図3-9　プット売りは、時間が味方になる" data-spot="100" data-range="80,115" data-dte="50" data-curves="50,20,5"
+     data-legs='[{"type":"put","k":95,"qty":-1,"prem":1.1}]'
+     data-caption="株価が大きく動かなければ、曲線は日ごとに持ち上がり、満期の利益1.1に近づきます。ただし下落すると損失は大きく膨らみます。"></div>
+
+<p>売り手の曲線は、満期の折れ線より下から始まり、時間とともに上へ持ち上がって折れ線に近づきます。株価が動かなければ、何もしなくても日々少しずつ利益が増えていきます。一方で、株価が95を大きく割り込むと損失は急に大きくなります。図3-9の自動表示の最大損失-93.9（95−1.1）が、その最悪のケースです。</p>
+
+<div class="compare">
+  <div><h4>満期時の損益図（折れ線）</h4><p>満期まで持ち続けた場合の最終結果。形は本質的価値だけで決まり、計算は足し算と引き算だけでできる。最大利益・最大損失・損益分岐点はこちらで読む。</p></div>
+  <div><h4>満期前の損益曲線（破線）</h4><p>途中で決済した場合の損益の目安。時間的価値を含むので、残り日数とIVで形が変わる。理論値なので、実際の売買価格とはずれることがある。</p></div>
+</div>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>多くの証券会社の取引ツールには「損益シミュレーター」が付いていて、残り日数やIVを変えたときの曲線を描けます（機能や名称は証券会社ごとに異なるため、各社のサイトで確認してください）。建てる前に「満期の折れ線」と「1週間後の曲線」の2本を必ず見る習慣をつけると、「方向は当たったのに、時間が経ちすぎて儲からなかった」という典型的な失敗を減らせます。</p></div>
+
+<h2 id="ch03-5">3-5　損益図の「足し算」で戦略を作る</h2>
+<p>この章でいちばん大切な考え方がここです。<b>複数のポジションを同時に持つと、その損益図は、それぞれの損益図を縦に足し合わせたものになります。</b>どの株価でも「ポジションAの損益＋ポジションBの損益」が合計の損益だからです。第3部で学ぶ戦略は、すべてこの足し算で作られています。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 330" role="img" aria-label="損益図の足し算の仕組み">
+  <line x1="60" x2="600" y1="50" y2="50" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="600" y1="110" y2="110" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="600" y1="230" y2="230" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="60" y1="14" y2="290" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="290" y2="290" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="170" y2="170" stroke="var(--fg)" stroke-width="1.4" fill="none"/>
+  <line x1="330" x2="330" y1="14" y2="290" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+  <line x1="60" x2="600" y1="260" y2="20" stroke="var(--accent)" stroke-width="2" stroke-dasharray="7 4" fill="none"/>
+  <polyline points="60,162.8 330,162.8 600,282.8" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="7 4"/>
+  <polyline points="60,252.8 330,132.8 600,132.8" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="465" x2="465" y1="74" y2="226" stroke="var(--muted)" stroke-width="1" stroke-dasharray="2 3" fill="none"/>
+  <circle cx="465" cy="80" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="465" cy="222.8" r="4.5" fill="var(--gold)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="465" cy="132.8" r="5" fill="var(--fg)" stroke="var(--surface)" stroke-width="1"/>
+  <text x="456" y="76" text-anchor="end" font-size="12" fill="var(--fg)">株 +15</text>
+  <text x="473" y="238" font-size="12" fill="var(--fg)">コール売り -8.8</text>
+  <text x="473" y="124" font-size="12" fill="var(--fg)">合計 +6.2（＝15−8.8）</text>
+  <line x1="72" x2="102" y1="26" y2="26" stroke="var(--accent)" stroke-width="2" stroke-dasharray="7 4" fill="none"/>
+  <text x="108" y="30" font-size="12" fill="var(--fg)">株の買い（買値100）</text>
+  <line x1="72" x2="102" y1="46" y2="46" stroke="var(--gold)" stroke-width="2" stroke-dasharray="7 4" fill="none"/>
+  <text x="108" y="50" font-size="12" fill="var(--fg)">コール売り（K＝105、プレミアム1.2）</text>
+  <line x1="72" x2="102" y1="66" y2="66" stroke="var(--fg)" stroke-width="3" fill="none"/>
+  <text x="108" y="70" font-size="12" fill="var(--fg)">合計＝カバード・コール</text>
+  <text x="54" y="54" text-anchor="end" font-size="12" fill="var(--fg)">20</text>
+  <text x="54" y="114" text-anchor="end" font-size="12" fill="var(--fg)">10</text>
+  <text x="54" y="174" text-anchor="end" font-size="12" fill="var(--fg)">0</text>
+  <text x="54" y="234" text-anchor="end" font-size="12" fill="var(--fg)">-10</text>
+  <text x="127.5" y="306" text-anchor="middle" font-size="12" fill="var(--fg)">90</text>
+  <text x="262.5" y="306" text-anchor="middle" font-size="12" fill="var(--fg)">100</text>
+  <text x="397.5" y="306" text-anchor="middle" font-size="12" fill="var(--fg)">110</text>
+  <text x="532.5" y="306" text-anchor="middle" font-size="12" fill="var(--fg)">120</text>
+  <text x="336" y="284" font-size="12" fill="var(--fg)">K＝105</text>
+  <text x="600" y="324" text-anchor="end" font-size="13" fill="var(--fg)">満期時の株価 →</text>
+</svg></div><figcaption>図3-10　足し算の仕組み（株価115のとき）。株の損益+15と、コール売りの損益（1.2−10＝-8.8）を縦に足すと、合計+6.2。すべての株価でこれを行うと、太線の合成損益図ができます。</figcaption></figure>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>足し算のコツは「<b>傾き</b>」で考えることです。原資産の買いは全区間で傾き+1。コール買いはKより右で+1、コール売りはKより右で-1。プット買いはKより左で「右下がり（-1）」、プット売りはKより左で「右上がり（+1）」。各区間の傾きを合計すれば、合成した図の形がすぐ分かります。たとえば株の買い（+1）とコール売り（Kより右で-1）を足すと、Kより右は +1−1＝0 で平らになります。これがカバード・コールの「上が平ら」な形の理由です。</p></div>
+
+<h3>例1　原資産の買い＋コール売り＝カバード・コール</h3>
+<p>株を持ったまま、その株を買う権利（コール）を売ってプレミアムを受け取る戦略です。株価100で株を買い、権利行使価格105のコールをプレミアム1.2で売ります。</p>
+<div class="compare">
+<div><div class="payoff" data-title="構成要素A：株の買い" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"stock","qty":1,"price":100}]'></div></div>
+<div><div class="payoff" data-title="構成要素B：コール売り K=105" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"call","k":105,"qty":-1,"prem":1.2}]'></div></div>
+</div>
+<div class="payoff" data-title="図3-11　合成：カバード・コール（A＋B）" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"stock","qty":1,"price":100},{"type":"call","k":105,"qty":-1,"prem":1.2}]'
+     data-caption="105より上は株の利益とコール売りの損失が打ち消し合って平らになる。最大利益6.2、損益分岐点98.8。"></div>
+<p>最大利益は、株の値上がり益（105−100＝5）にプレミアム1.2を足した<b>6.2</b>です。損益分岐点は、株の買値からプレミアムを引いた<b>98.8</b>です。受け取ったプレミアムの分だけ、株だけを持つより下落に少し強くなります。そのかわり105を超える値上がり益はあきらめています。最大損失は株価が0になった場合の<b>98.8</b>で、下落のリスクはほぼ株を持っているのと同じです（<a href="#ch12">第12章</a>で詳しく扱います）。</p>
+
+<h3>例2　原資産の買い＋プット買い＝プロテクティブ・プット</h3>
+<p>株を持ちながら、その株を売る権利（プット）を買って下落に備える戦略です。いわば株に保険をかける形です。株価100で株を買い、権利行使価格95のプットをプレミアム1.1で買います。</p>
+<div class="compare">
+<div><div class="payoff" data-title="構成要素A：株の買い" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"stock","qty":1,"price":100}]'></div></div>
+<div><div class="payoff" data-title="構成要素B：プット買い K=95" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"put","k":95,"qty":1,"prem":1.1}]'></div></div>
+</div>
+<div class="payoff" data-title="図3-12　合成：プロテクティブ・プット（A＋B）" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"stock","qty":1,"price":100},{"type":"put","k":95,"qty":1,"prem":1.1}]'
+     data-caption="95より下は株の損失をプットの利益が埋めて平らになる。最大損失6.1、損益分岐点101.1、上昇の利益は無制限。"></div>
+<p>傾きで確かめます。95より左では、株の+1とプット買いの-1が打ち消し合って平らになります。最大損失は、株の値下がり（100−95＝5）に保険料1.1を足した<b>6.1</b>です。どれだけ暴落しても、これ以上は損しません。損益分岐点は、買値に保険料を足した<b>101.1</b>です。保険料の分だけ、株だけを持つより利益の出発点が上にずれます。</p>
+
+<h3>例3　コール買い＋コール売り（高いK）＝ブル・コール・スプレッド</h3>
+<p>権利行使価格100のコールをプレミアム3で買い、同時に権利行使価格110のコールをプレミアム0.4で売ります。差し引きの支払いは 3−0.4＝2.6 です。</p>
+<div class="compare">
+<div><div class="payoff" data-title="構成要素A：コール買い K=100" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3}]'></div></div>
+<div><div class="payoff" data-title="構成要素B：コール売り K=110" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"call","k":110,"qty":-1,"prem":0.4}]'></div></div>
+</div>
+<div class="payoff" data-title="図3-13　合成：ブル・コール・スプレッド（A＋B）" data-spot="100" data-range="85,125"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3},{"type":"call","k":110,"qty":-1,"prem":0.4}]'
+     data-caption="100〜110の間だけ右上がりで、両端は平ら。最大利益7.4、最大損失2.6、損益分岐点102.6。"></div>
+<p>傾きは、100より左で0、100〜110で+1、110より右で +1−1＝0 です。最大損失は支払った<b>2.6</b>、最大利益は権利行使価格の幅10から支払い2.6を引いた<b>7.4</b>、損益分岐点は 100＋2.6＝<b>102.6</b> です。コール買いだけより支払いが安く、損益分岐点も低くなるかわりに、利益に上限がつきます（<a href="#ch13">第13章</a>）。</p>
+
+<h3>例4　コール買い＋プット買い（同じK）＝ストラドル</h3>
+<p>権利行使価格100のコールとプットを、どちらもプレミアム3で1単位ずつ買います。支払いの合計は6です。</p>
+<div class="compare">
+<div><div class="payoff" data-title="構成要素A：コール買い K=100" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3}]'></div></div>
+<div><div class="payoff" data-title="構成要素B：プット買い K=100" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"put","k":100,"qty":1,"prem":3}]'></div></div>
+</div>
+<div class="payoff" data-title="図3-14　合成：ロング・ストラドル（A＋B）" data-spot="100" data-range="80,120"
+     data-legs='[{"type":"call","k":100,"qty":1,"prem":3},{"type":"put","k":100,"qty":1,"prem":3}]'
+     data-caption="V字型。上下どちらでも大きく動けば利益。最大損失6、損益分岐点94と106。"></div>
+<p>左側はプット買いの-1、右側はコール買いの+1なので、V字になります。株価が100ちょうどで終わると両方とも紙くずになり、最大損失<b>6</b>です。損益分岐点は2つあり、100−6＝<b>94</b> と 100＋6＝<b>106</b> です。方向は分からないが「大きく動く」と考えるときの形です（<a href="#ch14">第14章</a>）。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>戦略</th><th>組み合わせ</th><th>最大利益</th><th>最大損失</th><th>損益分岐点</th></tr></thead>
+  <tbody>
+    <tr><td>カバード・コール</td><td>株買い100＋コール売りK105@1.2</td><td class="r">6.2</td><td class="r">98.8</td><td class="r">98.8</td></tr>
+    <tr><td>プロテクティブ・プット</td><td>株買い100＋プット買いK95@1.1</td><td class="r">無制限</td><td class="r">6.1</td><td class="r">101.1</td></tr>
+    <tr><td>ブル・コール・スプレッド</td><td>コール買いK100@3＋コール売りK110@0.4</td><td class="r">7.4</td><td class="r">2.6</td><td class="r">102.6</td></tr>
+    <tr><td>ロング・ストラドル</td><td>コール買いK100@3＋プット買いK100@3</td><td class="r">無制限</td><td class="r">6</td><td class="r">94／106</td></tr>
+  </tbody>
+</table></div>
+
+<details class="deep"><summary>深掘り：同じ形は、違う部品でも作れる</summary><div>
+<p>図3-12のプロテクティブ・プット（株買い＋プット買い）の形は、「Kより左が平らで、右が右上がり」で、コール買いとそっくりです。実際、株買い＋プット買いと、同じKのコール買い（＋現金）は、満期の損益図が同じ形になります。この「コールとプットと原資産のつながり」をプット・コール・パリティと呼び、<a href="#ch04">第4章</a>と<a href="#ch17">第17章</a>で扱います。損益図の足し算は、戦略を作るだけでなく、「同じ形を安く作れる別の組み合わせ」を探す道具にもなります。</p>
+</div></details>
+
+<h2 id="ch03-6">3-6　損益図を手で描く手順</h2>
+<p>証券会社のツールがなくても、損益図は紙とペンで描けます。満期の損益図は直線をつないだ折れ線なので、<b>折れ曲がる点と両端の数点</b>だけ計算すれば描けるからです。</p>
+<ol class="flow">
+  <li><b>ポジションを書き出す</b><br>各オプションの種類（コール／プット）、買いか売りか、権利行使価格K、プレミアム、枚数を一覧にします。原資産があれば買値も書きます。</li>
+  <li><b>計算する価格を決める</b><br>すべての権利行使価格に加え、いちばん低いKより下の価格を1つ、いちばん高いKより上の価格を1つ選びます。</li>
+  <li><b>各価格での損益を計算する</b><br>その価格で満期になったとき、各オプションの本質的価値からプレミアムを引き（売りは符号を逆に）、全部を足します。</li>
+  <li><b>点を打ち、直線で結ぶ</b><br>K と K の間は直線になるので、計算した点を順に直線で結びます。両端は、そのままの傾きで外へ延ばします。</li>
+  <li><b>損益分岐点・最大利益・最大損失を読む</b><br>線が損益ゼロの線と交わる所が損益分岐点です。両端が平らなら、その高さが最大利益や最大損失です。端が傾いたまま伸びるなら、その側は無制限です。</li>
+</ol>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>3-5節のブル・コール・スプレッド（コール買いK100@3、コール売りK110@0.4）を手で描きます。</p>
+<div class="tbl"><table>
+  <thead><tr><th>満期の株価</th><th>コール買いK100</th><th>コール売りK110</th><th>合計</th></tr></thead>
+  <tbody>
+    <tr><td class="r">90</td><td class="r">0−3＝-3</td><td class="r">0.4−0＝+0.4</td><td class="r">-2.6</td></tr>
+    <tr><td class="r">100</td><td class="r">0−3＝-3</td><td class="r">+0.4</td><td class="r">-2.6</td></tr>
+    <tr><td class="r">110</td><td class="r">10−3＝+7</td><td class="r">0.4−0＝+0.4</td><td class="r">+7.4</td></tr>
+    <tr><td class="r">120</td><td class="r">20−3＝+17</td><td class="r">0.4−10＝-9.6</td><td class="r">+7.4</td></tr>
+  </tbody>
+</table></div>
+<p>100で-2.6、110で+7.4なので、その間は10進むごとに10上がる傾き+1の直線です。損益ゼロになるのは100から2.6進んだ<b>102.6</b>です。</p></div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 270" role="img" aria-label="計算した点を結んで損益図を描く">
+  <line x1="60" x2="600" y1="100" y2="100" stroke="var(--line)" stroke-width="1" fill="none"/>
+  <line x1="60" x2="60" y1="14" y2="230" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="230" y2="230" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+  <line x1="60" x2="600" y1="160" y2="160" stroke="var(--fg)" stroke-width="1.4" fill="none"/>
+  <line x1="262.5" x2="262.5" y1="40" y2="230" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+  <line x1="397.5" x2="397.5" y1="40" y2="230" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+  <polyline points="60,191.2 262.5,191.2 397.5,71.2 600,71.2" fill="none" stroke="var(--fg)" stroke-width="2.4" stroke-linejoin="round"/>
+  <circle cx="127.5" cy="191.2" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="262.5" cy="191.2" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="397.5" cy="71.2" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="532.5" cy="71.2" r="5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1"/>
+  <circle cx="297.6" cy="160" r="5" fill="var(--surface)" stroke="var(--fg)" stroke-width="1.6"/>
+  <text x="127.5" y="212" text-anchor="middle" font-size="12" fill="var(--fg)">(90, -2.6)</text>
+  <text x="240" y="212" text-anchor="middle" font-size="12" fill="var(--fg)">(100, -2.6)</text>
+  <text x="310" y="180" font-size="12" fill="var(--fg)">損益分岐点 (102.6, 0)</text>
+  <text x="397.5" y="60" text-anchor="middle" font-size="12" fill="var(--fg)">(110, +7.4)</text>
+  <text x="532.5" y="60" text-anchor="middle" font-size="12" fill="var(--fg)">(120, +7.4)</text>
+  <text x="268" y="34" font-size="12" fill="var(--fg)">K＝100</text>
+  <text x="403" y="34" font-size="12" fill="var(--fg)">K＝110</text>
+  <text x="54" y="104" text-anchor="end" font-size="12" fill="var(--fg)">5</text>
+  <text x="54" y="164" text-anchor="end" font-size="12" fill="var(--fg)">0</text>
+  <text x="127.5" y="246" text-anchor="middle" font-size="12" fill="var(--fg)">90</text>
+  <text x="262.5" y="246" text-anchor="middle" font-size="12" fill="var(--fg)">100</text>
+  <text x="397.5" y="246" text-anchor="middle" font-size="12" fill="var(--fg)">110</text>
+  <text x="532.5" y="246" text-anchor="middle" font-size="12" fill="var(--fg)">120</text>
+  <text x="8" y="20" font-size="12" fill="var(--fg)">損益</text>
+  <text x="600" y="264" text-anchor="end" font-size="13" fill="var(--fg)">満期時の株価 →</text>
+</svg></div><figcaption>図3-15　表の4点（丸）を打ち、直線で結んだもの。KとKの間は必ず直線なので、折れ曲がる点さえ正しく計算すれば図は完成します。</figcaption></figure>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>複雑な戦略の図を見たら、まず<b>左端と右端の傾き</b>を確認してください。右端が右下がりなら「上昇で損失無制限」、左端が右上がり（左へ行くほど下がる）なら「下落で大きな損失」です。この2点を先に見るだけで、その戦略のいちばん怖いリスクが数秒で分かります。傾きは「右端＝コールと原資産の枚数の合計（買いは+、売りは−）」「左端＝原資産の枚数からプット買いの枚数を引き、プット売りの枚数を足したもの」で計算できます。</p></div>
+
+<h2 id="ch03-7">3-7　日経225オプションでの実額例</h2>
+<p>ここまでは1単位あたりの数字で説明してきました。実際の取引では、これに<b>取引単位（乗数）</b>を掛けた金額が動きます。日経225オプション（ラージ）の取引単位は「プレミアム×1,000円」です（執筆時点・2026年。最新の商品概要はJPXのサイトで確認してください）。日経225オプションはヨーロピアン・タイプで、満期はSQ値（<a href="#ch06">第6章</a>）による差金決済です。</p>
+<p>日経平均が仮に40,000円のとき、「下落に備えたい」という想定で、権利行使価格39,000円のプットを1枚、プレミアム490円で買うとします。支払額は 490×1,000＝49万円です。</p>
+
+<div class="payoff" data-title="図3-16　日経225プット買い（K=39,000、プレミアム490円、1枚）" data-spot="40000" data-range="36000,42000" data-mult="1000"
+     data-legs='[{"type":"put","k":39000,"qty":1,"prem":490}]'
+     data-caption="縦軸は円建ての損益（1枚＝×1,000）。最大損失は支払った49万円、損益分岐点38,510円。"></div>
+
+<div class="box example"><span class="box-label">数値例</span>
+<ul>
+  <li>損益分岐点：39,000−490＝<b>38,510円</b></li>
+  <li>SQ値が40,000円（下がらなかった）：権利は価値ゼロ → <b>-49万円</b>（最大損失）</li>
+  <li>SQ値が38,000円：(39,000−38,000−490)×1,000＝<b>+51万円</b></li>
+  <li>SQ値が37,000円：(39,000−37,000−490)×1,000＝<b>+151万円</b></li>
+  <li>最大利益：日経平均が0円になった場合の (39,000−490)×1,000＝3,851万円（理論上の上限。図の自動表示と同じ値）</li>
+</ul></div>
+
+<p>もう1つ、上昇を見込むブル・コール・スプレッドの例です。権利行使価格40,000円のコールを920円で買い、41,000円のコールを510円で売ります。差し引きの支払いは 410円×1,000＝41万円です。</p>
+
+<div class="payoff" data-title="図3-17　日経225ブル・コール・スプレッド（40,000／41,000、各1枚）" data-spot="40000" data-range="38500,42500" data-mult="1000"
+     data-legs='[{"type":"call","k":40000,"qty":1,"prem":920},{"type":"call","k":41000,"qty":-1,"prem":510}]'
+     data-caption="最大損失41万円、最大利益59万円（幅1,000円−支払い410円、×1,000）、損益分岐点40,410円。"></div>
+
+<p>最大利益は (1,000−410)×1,000＝<b>59万円</b>、最大損失は<b>41万円</b>、損益分岐点は 40,000＋410＝<b>40,410円</b>です。1単位あたりの図とまったく同じ形で、縦軸の目盛りが1,000倍になっているだけだと分かります。</p>
+
+<div class="box warn"><span class="box-label">注意</span><p>損益図には、売買手数料・税金・証拠金の金利などは含まれていません。また、上の例のプレミアムは説明のための仮の数値です。実際のプレミアムは、そのときの日経平均・残り日数・IVで大きく変わります。売り側の損失は1枚あたり数百万円以上になることもあるため、日経225オプションの売りでは特に、乗数を掛けた「円の金額」で損失を確認してから建ててください。</p></div>
+
+<p>米国株のオプションでは、1枚が原資産100株分です（主要な個別株・ETFオプションの場合）。たとえば1株200ドルの株を100株持ち、権利行使価格210ドルのコールを3ドルで1枚売るカバード・コールなら、1株あたりの図（最大利益 210−200＋3＝13ドル、損益分岐点197ドル）を100倍して、最大利益は1,300ドルになります。</p>
+
+<h2 id="ch03-8">まとめ</h2>
+<ul class="summary-list">
+  <li>損益図は、横軸が満期時の原資産価格、縦軸が損益。太線が損益ゼロの線より上が利益ゾーン、下が損失ゾーン、交わる点が損益分岐点。</li>
+  <li>原資産（現物株・先物）の損益図は傾き1の直線（45度）。オプションの損益図は、それを権利行使価格で折り曲げた形。</li>
+  <li>コール買いの損益分岐点はK＋P、プット買いはK−P。売りは同じ分岐点で、上下が逆。買いは損失が限定、売りは利益が限定で損失が大きくなりうる。</li>
+  <li>満期前の損益は時間的価値を含むなめらかな曲線で、残り日数が減るほど満期の折れ線に近づく。</li>
+  <li>複数のポジションの損益図は縦に足し算できる。傾きの合計で形が分かる。カバード・コール、プロテクティブ・プット、ブル・コール・スプレッド、ストラドルはすべて足し算で作れる。</li>
+  <li>手で描くときは、各Kと両端の損益を計算して直線で結ぶ。日経225オプションでは1単位の損益×1,000円が実額。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+
+  <div class="q"><p>次の損益図（満期時）が表しているポジションはどれですか。</p>
+    <figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 260" role="img" aria-label="問題の損益図">
+      <line x1="60" x2="60" y1="14" y2="240" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+      <line x1="60" x2="600" y1="240" y2="240" stroke="var(--muted)" stroke-width="1.2" fill="none"/>
+      <line x1="60" x2="600" y1="140" y2="140" stroke="var(--fg)" stroke-width="1.4" fill="none"/>
+      <line x1="330" x2="330" y1="30" y2="240" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+      <polyline points="60,236 330,90 600,90" fill="none" stroke="var(--fg)" stroke-width="3" stroke-linejoin="round"/>
+      <text x="54" y="144" text-anchor="end" font-size="12" fill="var(--fg)">0</text>
+      <text x="336" y="44" font-size="12" fill="var(--fg)">K</text>
+      <text x="8" y="20" font-size="12" fill="var(--fg)">損益</text>
+      <text x="600" y="256" text-anchor="end" font-size="13" fill="var(--fg)">満期時の原資産価格 →</text>
+    </svg></div></figure>
+    <ol class="choices"><li>コール買い</li><li>コール売り</li><li>プット買い</li><li>プット売り</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：D</b>　Kより右が平らで利益（ゼロの線より上）、Kより左で下がっていく形です。「利益が平ら」なのは売り、「左側で傾く」のはプットなので、プット売りです。平らな部分の高さが受け取ったプレミアム（最大利益）です。</p></div></details>
+  </div>
+
+  <div class="q"><p>次の損益図で、満期時の原資産価格が95だった場合の損益はいくらですか。</p>
+    <div class="payoff" data-title="問題の損益図" data-spot="100" data-range="80,115"
+         data-legs='[{"type":"put","k":100,"qty":-1,"prem":3}]'></div>
+    <ol class="choices"><li>+3</li><li>0</li><li>-2</li><li>-5</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　プット売り（K＝100、プレミアム3）です。株価95では買い手が権利を使い、売り手は100−95＝5を支払います。受け取った3と合わせて 3−5＝-2 です。図でも95の位置で線は損益ゼロの線より2だけ下にあります。</p></div></details>
+  </div>
+
+  <div class="q"><p>日経225オプションで、権利行使価格38,000円のプットをプレミアム400円で買いました。満期時の損益分岐点はいくらですか。</p>
+    <ol class="choices"><li>37,600円</li><li>38,000円</li><li>38,400円</li><li>37,200円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：A</b>　プット買いの損益分岐点はK−P＝38,000−400＝37,600円です。プットは下がって得をする権利なので、払った400円を取り戻すには、Kより400円下まで下がる必要があります。</p></div></details>
+  </div>
+
+  <div class="q"><p>株を2,000円で100株買い、同時に権利行使価格2,200円のコールをプレミアム50円で1枚（100株分）売りました（カバード・コール）。満期時の1株あたりの最大利益と損益分岐点の組み合わせとして正しいものはどれですか。</p>
+    <ol class="choices"><li>最大利益200円、損益分岐点2,000円</li><li>最大利益250円、損益分岐点1,950円</li><li>最大利益250円、損益分岐点2,050円</li><li>最大利益は無制限、損益分岐点1,950円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　株価が2,200円以上なら、株の値上がり益200円（2,200−2,000）とプレミアム50円で250円が上限です（100株なら25,000円）。損益分岐点は買値からプレミアムを引いた1,950円です。2,200円より上は株の+1とコール売りの-1で傾きが0になるため、利益は無制限になりません。</p></div></details>
+  </div>
+
+  <div class="q"><p>コール買いの「満期前の損益曲線」について正しい説明はどれですか。</p>
+    <ol class="choices"><li>満期前の曲線は、満期の折れ線より常に下にある</li><li>残り日数が減るほど、曲線は満期の折れ線に近づいていく</li><li>満期前の曲線は、残り日数に関係なく同じ形になる</li><li>満期前の曲線から、最大損失を正確に読み取るべきである</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　満期前のオプションには時間的価値が残っているため、買い手の曲線は満期の折れ線より上にあり、時間が経つにつれて時間的価値が減って折れ線に近づきます。最大損失などの確定した数字は、満期時の折れ線で読みます。</p></div></details>
+  </div>
+
+  <div class="q"><p>同じ権利行使価格のコール買いとプット買いを組み合わせると、満期時の損益図はどんな形になりますか。</p>
+    <ol class="choices"><li>右上がりの直線</li><li>両端が平らな階段の形</li><li>V字の形（ストラドル）</li><li>逆V字の形</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　Kより左ではプット買いの傾き（右下がり）、Kより右ではコール買いの傾き（右上がり）が効くので、Kを底とするV字になります。これがロング・ストラドルです。逆V字は両方を売ったショート・ストラドルです。</p></div></details>
+  </div>
+
+  <div class="q"><p>権利行使価格100のコールをプレミアム4で買い、権利行使価格105のコールをプレミアム1.5で売りました。満期時の最大利益・最大損失・損益分岐点の組み合わせとして正しいものはどれですか。</p>
+    <ol class="choices"><li>最大利益5、最大損失4、損益分岐点104</li><li>最大利益2.5、最大損失2.5、損益分岐点102.5</li><li>最大利益無制限、最大損失2.5、損益分岐点102.5</li><li>最大利益2.5、最大損失4、損益分岐点101.5</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ブル・コール・スプレッドです。差し引きの支払いは 4−1.5＝2.5 で、これが最大損失です。最大利益は権利行使価格の幅5から2.5を引いた2.5、損益分岐点は 100＋2.5＝102.5 です。105より上は傾きが +1−1＝0 なので、利益は無制限になりません。</p></div></details>
+  </div>
+
+  <div class="q"><p>日経225オプション（ラージ、取引単位×1,000円）で、権利行使価格41,000円のコールを300円で1枚買いました。SQ値が41,800円だった場合の損益はいくらですか（手数料・税金は考えない）。</p>
+    <ol class="choices"><li>+80万円</li><li>+50万円</li><li>+30万円</li><li>-30万円</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　本質的価値は 41,800−41,000＝800円、払ったプレミアムは300円なので、1単位あたり+500円です。1枚は×1,000なので 500×1,000＝+50万円です。損益分岐点は41,300円で、SQ値はそれを500円上回っています。</p></div></details>
+  </div>
+
+  <div class="q"><p>次のうち、満期時の損益図の右端が右下がりのまま伸びる（上昇すると損失が無制限になる）ポジションはどれですか。</p>
+    <ol class="choices"><li>株の買い＋コール売り（同じ株数分）</li><li>コール買い（K100）＋コール売り（K110）を1枚ずつ</li><li>コール売りだけ</li><li>プット売りだけ</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　右端の傾きは「コールと原資産の枚数の合計」です。Aは +1−1＝0、Bも +1−1＝0 で右端は平ら、Dはプットだけなので右端の傾きは0です。Cだけが-1になり、上昇が続くほど損失が膨らみます。</p></div></details>
+  </div>
+
+</div>
