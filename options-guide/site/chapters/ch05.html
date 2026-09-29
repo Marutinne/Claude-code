@@ -1,0 +1,368 @@
+<header class="chapter-head">
+  <p class="eyebrow">第1部　ゼロから学ぶ基礎</p>
+  <h1>第5章　グリークス ― ポジションの計器盤 <span class="lv">Lv.1</span></h1>
+  <p class="lead">オプションの価格は、株価・時間・ボラティリティ・金利が変わるたびに動きます。その「動き方」を数字で表したものがグリークスです。車の計器盤を読むように、自分のポジションの状態をひと目で把握できるようになりましょう。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この章で分かること</span><ul>
+  <li>5つのグリークス（デルタ・ガンマ・セータ・ベガ・ロー）が、それぞれ何を測る計器なのか</li>
+  <li>デルタを「株数」に換算する方法と、「ITMになる確率の目安」として使うときの限界</li>
+  <li>ガンマとセータが表裏一体である理由（買い手と売り手はどちらかを必ず支払う）</li>
+  <li>決算後のIVクラッシュで、株価が動いてもオプションが値下がりする仕組み</li>
+  <li>株とオプションを組み合わせたポジション全体のグリークスを足し算し、日経225オプションの円金額に換算する方法</li>
+</ul></div>
+
+<h2 id="ch05-1">5-1　グリークスとは ― 車の計器盤のたとえ</h2>
+<p>第4章で、オプションの価格は「原資産価格・権利行使価格・残存期間・ボラティリティ・金利・配当」の6つで決まることを学びました。このうち権利行使価格は契約で決まっていて動きません。残りの要素が少し動いたとき、オプション価格がどれだけ動くかを表す数字の集まりを<strong>グリークス（Greeks）</strong>と呼びます。多くがギリシャ文字で表されるので、この名前がついています。</p>
+<p>グリークスは、車の運転席にある<strong>計器盤</strong>にたとえると分かりやすくなります。速度計を見なければ、自分が何キロで走っているか分かりません。燃料計を見なければ、いつガス欠になるか分かりません。オプションも同じで、損益図（<a href="#ch03">第3章</a>）が「目的地の地図」だとすれば、グリークスは「今この瞬間の走行状態」を示します。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 200" role="img" aria-label="グリークスを車の計器盤にたとえた図"><rect x="2" y="2" width="636" height="196" rx="14" fill="var(--surface)" stroke="var(--line)" stroke-width="2"/><path d="M26,112 A44,44 0 0 1 114,112" fill="none" stroke="var(--line)" stroke-width="8"/><path d="M26,112 A44,44 0 0 1 76.9,68.5" fill="none" stroke="var(--accent)" stroke-width="8"/><line x1="70" y1="112" x2="75.0" y2="80.4" stroke="var(--loss)" stroke-width="2.5" fill="none"/><circle cx="70" cy="112" r="4" fill="var(--fg)"/><text x="70" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">デルタ（Δ）</text><text x="70" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">速度計</text><text x="70" y="162" text-anchor="middle" font-size="11" fill="var(--fg)">価格が1動くと</text><text x="70" y="178" text-anchor="middle" font-size="11" fill="var(--fg)">いくら動くか</text><path d="M151,112 A44,44 0 0 1 239,112" fill="none" stroke="var(--line)" stroke-width="8"/><path d="M151,112 A44,44 0 0 1 226.1,80.9" fill="none" stroke="var(--accent)" stroke-width="8"/><line x1="195" y1="112" x2="217.6" y2="89.4" stroke="var(--loss)" stroke-width="2.5" fill="none"/><circle cx="195" cy="112" r="4" fill="var(--fg)"/><text x="195" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">ガンマ（Γ）</text><text x="195" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">加速度計</text><text x="195" y="162" text-anchor="middle" font-size="11" fill="var(--fg)">デルタが</text><text x="195" y="178" text-anchor="middle" font-size="11" fill="var(--fg)">どれだけ変わるか</text><path d="M276,112 A44,44 0 0 1 364,112" fill="none" stroke="var(--line)" stroke-width="8"/><path d="M276,112 A44,44 0 0 1 294.1,76.4" fill="none" stroke="var(--gold)" stroke-width="8"/><line x1="320" y1="112" x2="301.2" y2="86.1" stroke="var(--loss)" stroke-width="2.5" fill="none"/><circle cx="320" cy="112" r="4" fill="var(--fg)"/><text x="320" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">セータ（Θ）</text><text x="320" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">燃料計</text><text x="320" y="162" text-anchor="middle" font-size="11" fill="var(--fg)">1日たつと</text><text x="320" y="178" text-anchor="middle" font-size="11" fill="var(--fg)">いくら減るか</text><path d="M401,112 A44,44 0 0 1 489,112" fill="none" stroke="var(--line)" stroke-width="8"/><path d="M401,112 A44,44 0 0 1 458.6,70.2" fill="none" stroke="var(--accent)" stroke-width="8"/><line x1="445" y1="112" x2="454.9" y2="81.6" stroke="var(--loss)" stroke-width="2.5" fill="none"/><circle cx="445" cy="112" r="4" fill="var(--fg)"/><text x="445" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">ベガ（ν）</text><text x="445" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">天気予報計</text><text x="445" y="162" text-anchor="middle" font-size="11" fill="var(--fg)">IVが1ポイント</text><text x="445" y="178" text-anchor="middle" font-size="11" fill="var(--fg)">動くといくらか</text><path d="M526,112 A44,44 0 0 1 614,112" fill="none" stroke="var(--line)" stroke-width="8"/><path d="M526,112 A44,44 0 0 1 530.8,92.0" fill="none" stroke="var(--accent)" stroke-width="8"/><line x1="570" y1="112" x2="541.5" y2="97.5" stroke="var(--loss)" stroke-width="2.5" fill="none"/><circle cx="570" cy="112" r="4" fill="var(--fg)"/><text x="570" y="36" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)">ロー（ρ）</text><text x="570" y="138" text-anchor="middle" font-size="12" font-weight="700" fill="var(--fg)">外気温計</text><text x="570" y="162" text-anchor="middle" font-size="11" fill="var(--fg)">金利が1%</text><text x="570" y="178" text-anchor="middle" font-size="11" fill="var(--fg)">動くといくらか</text></svg></div><figcaption>図5-1　グリークスは5つの計器。針の位置はイメージで、実際の値はポジションごとに変わります。</figcaption></figure>
+
+<div class="tbl"><table>
+  <thead><tr><th>名前</th><th>記号</th><th>計器のたとえ</th><th>何を測るか</th><th>ロング・コール（買い）の符号</th></tr></thead>
+  <tbody>
+    <tr><td>デルタ（Delta）</td><td>Δ</td><td>速度計</td><td>原資産が1動いたときのオプション価格の変化</td><td>＋（0〜1）</td></tr>
+    <tr><td>ガンマ（Gamma）</td><td>Γ</td><td>加速度計</td><td>原資産が1動いたときのデルタの変化</td><td>＋</td></tr>
+    <tr><td>セータ（Theta）</td><td>Θ</td><td>燃料計</td><td>1日たったときのオプション価格の変化</td><td>－（毎日減る）</td></tr>
+    <tr><td>ベガ（Vega）</td><td>ν（便宜上の記号）</td><td>天気予報計</td><td>IVが1ポイント動いたときのオプション価格の変化</td><td>＋</td></tr>
+    <tr><td>ロー（Rho）</td><td>ρ</td><td>外気温計</td><td>金利が1%動いたときのオプション価格の変化</td><td>＋</td></tr>
+  </tbody>
+</table></div>
+<p>ベガだけは正式なギリシャ文字ではありません。慣習でこう呼ばれています。本章の数値は、特に断りのない限りブラック・ショールズ式（配当なし、金利0%）で計算しています。セータは「暦日1日あたり」、ベガは「IV 1ポイントあたり」です。証券会社のツールでは計算の前提が異なることがあるので、表示の定義を一度確認しておきましょう。</p>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>グリークスは「他の条件を止めて、1つだけ少し動かしたら」という<strong>瞬間の感応度</strong>です。実際の相場では株価・時間・IVが同時に動くので、損益は複数の計器の合計で決まります。また計器の値そのものも刻々と変わります。</p></div>
+
+<h2 id="ch05-2">5-2　デルタ ― 速度計</h2>
+<h3>価格感応度としてのデルタ</h3>
+<p><strong>デルタ（Delta）</strong>は、原資産が1単位上がったときにオプション価格がどれだけ動くかを表します。コールのデルタは0〜1、プットのデルタは−1〜0の範囲をとります。コールは株価が上がると得をするのでプラス、プットは株価が上がると損をするのでマイナスです。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>米国株Aが100ドル。権利行使価格100ドル、残り30日、IV 20%のコールは理論価格2.29ドル、デルタ0.51です。</p>
+<ul>
+  <li>株価が1ドル上がると、コールは約0.51ドル上がると見込めます。</li>
+  <li>実際に株価101ドルで計算し直すと2.83ドルで、上昇幅は0.55ドルです。デルタの0.51より少し大きいのは、動いている途中でデルタ自体が0.58まで増えるからです（これが次節のガンマです）。</li>
+  <li>米国株オプションは1枚＝100株なので、1枚あたりでは約51ドルの値上がりになります。</li>
+</ul></div>
+
+<h3>デルタを「株数」に換算する</h3>
+<p>デルタの一番実用的な使い方は、<strong>ポジションを「株を何株持っているのと同じか」に換算すること</strong>です。デルタ0.51のコールを1枚（100株分）持つことは、目先の値動きに対しては株を約51株持っているのと同じです。この換算値を<strong>デルタ換算株数（ポジション・デルタ）</strong>と呼びます。</p>
+<p>日経225オプションなら、乗数1,000を掛けます。デルタ0.51のコール1枚は、日経平均を「510倍」保有しているのと同じ感応度です。日経225先物（ラージ、乗数1,000）に直すと約0.51枚分、日経225mini（乗数100）なら約5.1枚分になります。日経平均が100円上がると、約51円×1,000＝約5.1万円の値上がりです。</p>
+
+<h3>デルタ曲線と残存日数</h3>
+<p>下の図は、権利行使価格100のコールとプットについて、デルタを株価ごとに描いたものです。残り日数ごとに3本の線を描いています。</p>
+
+<div class="greek" data-greek="delta" data-type="call" data-k="100" data-iv="0.2" data-days="60,30,7" data-range="80,120" data-title="図5-2　コールのデルタ（K=100、IV 20%）" data-caption="ATMでは約0.5。ITMに深く入るほど1に、OTMに離れるほど0に近づきます。満期が近いほど、K付近で0から1へ急に切り替わる「階段」の形に近づきます。"></div>
+
+<div class="greek" data-greek="delta" data-type="put" data-k="100" data-iv="0.2" data-days="60,30,7" data-range="80,120" data-title="図5-3　プットのデルタ（K=100、IV 20%）" data-caption="プットのデルタはコールのデルタから1を引いた値（配当なしの場合）。形はコールと同じで、全体が1だけ下にずれています。"></div>
+
+<p>なぜ満期が近いほど線が立つのでしょうか。満期まで時間があれば、株価105ドルのコールでも「まだ100ドルを割り込むかもしれない」ので、デルタは1に届きません。ところが残り7日しかなければ、そこから5%も下がる可能性は小さくなります。そのため株と同じように動く、つまりデルタが1に近づくのです。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>株価</th><th class="r">90</th><th class="r">95</th><th class="r">100</th><th class="r">105</th><th class="r">110</th></tr></thead>
+  <tbody>
+    <tr><td>残り60日</td><td class="r">0.10</td><td class="r">0.28</td><td class="r">0.52</td><td class="r">0.74</td><td class="r">0.89</td></tr>
+    <tr><td>残り30日</td><td class="r">0.04</td><td class="r">0.19</td><td class="r">0.51</td><td class="r">0.81</td><td class="r">0.95</td></tr>
+    <tr><td>残り7日</td><td class="r">0.00</td><td class="r">0.03</td><td class="r">0.51</td><td class="r">0.96</td><td class="r">1.00</td></tr>
+  </tbody>
+</table></div>
+
+<h3>「ITMになる確率の目安」としてのデルタ</h3>
+<p>トレーダーはよく「デルタ0.20のコール＝満期にITMになる確率が約20%」と読みます。これは便利な<strong>目安</strong>です。実際、デルタと理論上のITM確率は近い値になります。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>コール（株価100、残り30日、IV 20%）</th><th class="r">K=95</th><th class="r">K=100</th><th class="r">K=105</th><th class="r">K=110</th></tr></thead>
+  <tbody>
+    <tr><td>デルタ</td><td class="r">0.82</td><td class="r">0.51</td><td class="r">0.21</td><td class="r">0.05</td></tr>
+    <tr><td>満期にITMとなる理論確率</td><td class="r">81%</td><td class="r">49%</td><td class="r">19%</td><td class="r">5%</td></tr>
+  </tbody>
+</table></div>
+<p>ただし、この読み方には限界があります。</p>
+<ul>
+  <li><strong>デルタは確率そのものではありません。</strong>表のとおり、コールではデルタの方が少し大きめに出ます。</li>
+  <li>計算の前提は「市場価格に織り込まれた確率（リスク中立確率）」で、現実に起こる確率とは一致しません。IVが高すぎれば確率も高めに出ます。</li>
+  <li>「満期の時点でITMか」の確率であって、<strong>途中で一度でも権利行使価格に触れる確率</strong>はおよそその2倍になるというのが実務の目安です。途中で触れるだけでも損切りラインに届くことがあります。</li>
+  <li>急落時にはIVが跳ね上がり、デルタ（＝確率の目安）が一晩で大きく変わります。</li>
+</ul>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>売り戦略の権利行使価格を選ぶとき、「デルタ0.15〜0.30あたり」と<strong>デルタで基準を決める</strong>方法が実務でよく使われます。株価や銘柄が変わっても、同じ「リスクの目盛り」で比べられるからです。日経225オプションでも米国株でも使えます。ただし確率の目安にすぎず、損失を限定するものではありません。</p></div>
+
+<h2 id="ch05-3">5-3　ガンマ ― 加速度計</h2>
+<p><strong>ガンマ（Gamma）</strong>は、原資産が1動いたときにデルタがどれだけ変わるかを表します。速度計（デルタ）の針がどれだけ速く動くか、つまり<strong>加速度計</strong>です。オプションを買っている人のガンマは常にプラス、売っている人はマイナスになります。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>先ほどのATMコール（株価100、残り30日）のガンマは0.070です。株価が100→101になると、デルタは0.51から約0.58（0.51＋0.07）に増えます。さらに102になると約0.65です。株価が上がるほど「株を持っている量」が自動で増えていきます。下がるときは逆にデルタが減るので、損の出方がゆるやかになります。</p></div>
+
+<p>ガンマは<strong>ATMで最大</strong>になり、ITMやOTMに離れるほど小さくなります。デルタ曲線の傾きがガンマなので、図5-2で線が一番急なところ（K付近）がガンマの山です。</p>
+
+<div class="greek" data-greek="gamma" data-type="call" data-k="100" data-iv="0.2" data-days="60,30,7" data-range="80,120" data-title="図5-4　ガンマ（K=100、IV 20%）" data-caption="ATMで山になり、満期が近づくほど山が高く細く尖ります。コールとプットのガンマは同じ値です。"></div>
+
+<div class="tbl"><table>
+  <thead><tr><th>ガンマ（K=100）</th><th class="r">残り60日</th><th class="r">残り30日</th><th class="r">残り7日</th></tr></thead>
+  <tbody>
+    <tr><td>株価100（ATM）</td><td class="r">0.049</td><td class="r">0.070</td><td class="r">0.144</td></tr>
+    <tr><td>株価90（OTM）</td><td class="r">0.025</td><td class="r">0.015</td><td class="r">0.0001</td></tr>
+  </tbody>
+</table></div>
+<p>なぜ満期直前のATMでガンマが尖るのでしょうか。満期の瞬間、デルタは「Kより上なら1、下なら0」に切り替わります。残り時間が少ないほど、その切り替えがK付近の狭い範囲に押し込まれます。狭い範囲でデルタが0から1まで動くのですから、変化の速さ（ガンマ）は大きくなります。一方、Kから離れた場所では勝負がほぼ決まっているので、ガンマはほぼ0です。</p>
+
+<h3>ショート・ガンマの怖さ</h3>
+<p>オプションを売ると、ガンマはマイナス（<strong>ショート・ガンマ</strong>）になります。これは「相場が自分に不利な方向へ動くほど、不利な方向のポジションが自動で膨らむ」状態です。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>米国株（100ドル）で、残り7日のATMストラドル（コールとプットを同じ権利行使価格で売る。<a href="#ch14">第14章</a>）を売り、1株あたり2.21ドルを受け取ったとします。セータは1日あたり＋0.158ドル、ガンマは−0.288です。翌日の株価ごとの損益（1株あたり）は次のとおりです。</p>
+<div class="tbl"><table>
+  <thead><tr><th>翌日の株価</th><th class="r">100</th><th class="r">101</th><th class="r">102</th><th class="r">103</th><th class="r">105</th></tr></thead>
+  <tbody>
+    <tr><td>損益</td><td class="r">+0.16</td><td class="r">±0.00</td><td class="r">−0.44</td><td class="r">−1.11</td><td class="r">−2.85</td></tr>
+    <tr><td>ポジションのデルタ</td><td class="r">−0.01</td><td class="r">−0.31</td><td class="r">−0.57</td><td class="r">−0.76</td><td class="r">−0.94</td></tr>
+  </tbody>
+</table></div>
+<p>株価が動かなければ1日0.16ドルの利益ですが、5%上がると2.85ドルの損失です。1枚（100株）では約285ドルの損失で、セータ収入の約18日分が1日で消えます。しかも上がるほどデルタがマイナスに傾き、「空売りしている株数」がどんどん増えていきます。</p></div>
+
+<div class="box warn"><span class="box-label">注意</span><p>日経225オプションで同じことを考えます。日経平均40,000円（仮定）、残り30日のATMストラドルを1枚ずつ売ると、IV 20%なら受取は約183万円、1日あたりのセータ収入は約3万円です。ところが翌日に10%急落して36,000円になると、IVが変わらなくても損失は約222万円、IVが30%に跳ね上がれば約250万円に達します。2024年8月5日には日経平均が1日で12%超下落しました。<strong>売り戦略の損失は、受け取ったプレミアムをはるかに超えて大きくなりえます。</strong>ショート・ガンマの管理は<a href="#ch20">第20章</a>・<a href="#ch21">第21章</a>で扱います。</p></div>
+
+<h2 id="ch05-4">5-4　セータ ― 燃料計</h2>
+<p><strong>セータ（Theta）</strong>は、他の条件が変わらないまま1日たったときに、オプション価格がどれだけ減るかを表します。第2章で学んだ「時間的価値」は、満期にはゼロになります。セータはその減り方の速さ、つまり<strong>燃料計</strong>の針が1日で下がる量です。買い手のセータはマイナス（毎日燃料が減る）、売り手はプラス（毎日その分を受け取る）になります。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>ATMコール（株価100、残り30日、IV 20%、価格2.29ドル）のセータは−0.038ドル/日です。1枚（100株）なら1日約3.8ドルずつ価値が減ります。日経225オプションのATMコール（日経平均40,000円、残り30日、IV 20%、理論価格約915円）ならセータは約−15.2円/日で、乗数1,000を掛けると<strong>1日あたり約1.5万円</strong>です。</p></div>
+
+<h3>セータはATMで最大、満期直前に加速する</h3>
+<div class="greek" data-greek="theta" data-type="call" data-k="100" data-iv="0.2" data-days="60,30,7" data-range="80,120" data-title="図5-5　セータ（1日あたり、K=100、IV 20%）" data-caption="マイナスの谷が深いほど、1日の減価が大きいことを示します。谷の底はATMで、満期が近いほど深く細くなります。"></div>
+
+<p>時間的価値が一番大きいのはATMなので、減る量もATMが最大です。深いOTMのオプションはもともと時間的価値が小さいため、満期直前にはセータもほぼ0になります。</p>
+
+<div class="greek" data-greek="decay" data-type="call" data-spot="100" data-ks="100,110" data-maxdays="90" data-iv="0.2" data-title="図5-6　株価が100のまま動かないときの価格の減り方" data-caption="横軸は満期までの残り日数（右端が満期日）。ATM（K=100）は最後の1か月で急に減り、OTM（K=110）は早い段階で価値をほぼ失います。"></div>
+
+<div class="tbl"><table>
+  <thead><tr><th>残り日数</th><th class="r">90日</th><th class="r">60日</th><th class="r">30日</th><th class="r">14日</th><th class="r">7日</th><th class="r">1日</th></tr></thead>
+  <tbody>
+    <tr><td>ATMコールの価格</td><td class="r">3.96</td><td class="r">3.23</td><td class="r">2.29</td><td class="r">1.56</td><td class="r">1.10</td><td class="r">0.42</td></tr>
+    <tr><td>ATMのセータ（1日）</td><td class="r">−0.022</td><td class="r">−0.027</td><td class="r">−0.038</td><td class="r">−0.056</td><td class="r">−0.079</td><td class="r">−0.209</td></tr>
+  </tbody>
+</table></div>
+<p>90日から30日までの60日間で失う価値は1.67ドルですが、最後の30日間では2.29ドル全部を失います。ATMの価格はおおよそ「残り日数の平方根」に比例するためです。残り日数が4分の1になると、価格は半分になります（90日で3.96→約22日で約2.0）。そのため残りが少なくなるほど、1日あたりの減り方が速くなります。</p>
+
+<h3>週末や休日はどう扱うか</h3>
+<p>本書の図や数値は「暦日」（1年＝365日）で計算しています。この前提では、金曜日から月曜日までの3日間で3日分減価します。ATMコール（残り30日）なら、1日分は0.038ドルですが、週末をはさむと約0.117ドルです。</p>
+<p>一方、実際の市場は土日に動きません。そのため「取引日」（1年＝約250日）で時間を数える考え方もあります。現実の価格はその中間で決まることが多く、週末の減価は金曜日までに少しずつ価格に織り込まれていく傾向があると言われます。<strong>「金曜に売れば週末のセータがまるごと取れる」とは限らない</strong>と考えてください。日本のゴールデンウィークや年末年始のような連休も同じです。</p>
+<div class="box tip"><span class="box-label">実践テクニック</span><p>証券会社の取引ツールによって、セータが暦日ベースか取引日ベースか、1枚あたりか1単位あたりかが異なります（執筆時点、2026年）。自分のツールの定義を、ヘルプ画面や各証券会社のマニュアルで一度確認しておくと、数字の読み違いを防げます。</p></div>
+
+<h2 id="ch05-5">5-5　ベガ ― 天気予報計</h2>
+<p><strong>ベガ（Vega）</strong>は、インプライド・ボラティリティ（IV、<a href="#ch04">第4章</a>）が1ポイント（たとえば20%→21%）動いたときのオプション価格の変化です。IVは市場が予想する「これからの荒れ具合」、つまり天気予報です。嵐の予報が出れば、傘（オプション）の値段が上がります。コールもプットも、買い手のベガはプラス、売り手はマイナスです。</p>
+<p>ベガは<strong>残存期間が長いほど大きく</strong>なります。IVは「1年あたり」の変動の大きさなので、期間が長いほど同じ1ポイントの差が効いてくるからです。</p>
+
+<div class="greek" data-greek="vega" data-type="call" data-k="100" data-iv="0.2" data-days="180,60,14" data-range="70,130" data-title="図5-7　ベガ（IV 1ポイントあたり、K=100）" data-caption="ATM付近で最大。残り180日のベガは残り14日の約3.6倍です。"></div>
+
+<div class="tbl"><table>
+  <thead><tr><th>ATM（株価100、IV 20%）</th><th class="r">7日</th><th class="r">30日</th><th class="r">90日</th><th class="r">180日</th><th class="r">1年</th><th class="r">2年</th></tr></thead>
+  <tbody><tr><td>ベガ</td><td class="r">0.055</td><td class="r">0.114</td><td class="r">0.198</td><td class="r">0.280</td><td class="r">0.397</td><td class="r">0.559</td></tr></tbody>
+</table></div>
+
+<h3>決算後のIVクラッシュ</h3>
+<p>米国の個別株では、決算発表の直前にIVが大きく上がり、発表直後に急低下することがよくあります。この急低下を<strong>IVクラッシュ（IV crush）</strong>と呼びます。「天気予報が嵐から晴れに変わる」ので、傘の値段が一気に下がるのです。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価200ドルの米国株B。決算発表の前日に、残り7日・権利行使価格200ドルのコールとプットを1枚ずつ買います（ロング・ストラドル）。IVは70%で、コール7.73ドル＋プット7.73ドル＝<strong>15.46ドル</strong>を支払いました。発表翌日（残り6日）にIVは30%まで下がったとします。</p>
+<ul>
+  <li><strong>株価が200ドルのまま</strong>なら、コールは7.73→3.07ドルと約6割下がります。内訳は、時間の経過が0.57ドル（IVが70%のままなら7.16ドル）、IV低下が4.09ドルです。IV低下分は「ベガ約0.102×40ポイント≒4.1ドル」とほぼ一致します。</li>
+  <li><strong>株価が5%上がって210ドル</strong>になっても、ストラドル全体は10.77ドルで、4.69ドルの損失です。コール単体では10.38ドルと値上がりしますが、プットの値下がりの方が大きいのです。</li>
+  <li>利益になるには、およそ<strong>±7.7%（15.46÷200）以上</strong>の値動きが必要です。10%動いた場合で、ようやく約20.0ドルになります。</li>
+</ul></div>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 300" role="img" aria-label="決算発表の前後でのストラドルの価値（IVが70%から30%へ低下した場合）"><line x1="64" x2="620" y1="240.0" y2="240.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="244.0" text-anchor="end" font-size="11" fill="var(--fg)">0</text><line x1="64" x2="620" y1="195.0" y2="195.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="199.0" text-anchor="end" font-size="11" fill="var(--fg)">5</text><line x1="64" x2="620" y1="150.0" y2="150.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="154.0" text-anchor="end" font-size="11" fill="var(--fg)">10</text><line x1="64" x2="620" y1="105.0" y2="105.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="109.0" text-anchor="end" font-size="11" fill="var(--fg)">15</text><line x1="64" x2="620" y1="60.0" y2="60.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="64.0" text-anchor="end" font-size="11" fill="var(--fg)">20</text><rect x="82.3" y="100.9" width="56" height="139.1" fill="var(--accent)" fill-opacity="0.85"/><text x="110.3" y="94.9" text-anchor="middle" font-size="12" fill="var(--fg)">15.46</text><text x="110.3" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表前</text><rect x="175.0" y="184.7" width="56" height="55.3" fill="var(--loss)" fill-opacity="0.85"/><text x="203.0" y="178.7" text-anchor="middle" font-size="12" fill="var(--fg)">6.14</text><text x="203.0" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表後</text><text x="203.0" y="272" text-anchor="middle" font-size="12" fill="var(--fg)">株価不変</text><rect x="267.7" y="143.1" width="56" height="96.9" fill="var(--loss)" fill-opacity="0.85"/><text x="295.7" y="137.1" text-anchor="middle" font-size="12" fill="var(--fg)">10.77</text><text x="295.7" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表後</text><text x="295.7" y="272" text-anchor="middle" font-size="12" fill="var(--fg)">+5%</text><rect x="360.3" y="144.2" width="56" height="95.8" fill="var(--loss)" fill-opacity="0.85"/><text x="388.3" y="138.2" text-anchor="middle" font-size="12" fill="var(--fg)">10.64</text><text x="388.3" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表後</text><text x="388.3" y="272" text-anchor="middle" font-size="12" fill="var(--fg)">−5%</text><rect x="453.0" y="59.7" width="56" height="180.3" fill="var(--gain)" fill-opacity="0.85"/><text x="481.0" y="53.7" text-anchor="middle" font-size="12" fill="var(--fg)">20.03</text><text x="481.0" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表後</text><text x="481.0" y="272" text-anchor="middle" font-size="12" fill="var(--fg)">+10%</text><rect x="545.7" y="59.9" width="56" height="180.1" fill="var(--gain)" fill-opacity="0.85"/><text x="573.7" y="53.9" text-anchor="middle" font-size="12" fill="var(--fg)">20.01</text><text x="573.7" y="256" text-anchor="middle" font-size="12" fill="var(--fg)">発表後</text><text x="573.7" y="272" text-anchor="middle" font-size="12" fill="var(--fg)">−10%</text><line x1="64" x2="620" y1="100.9" y2="100.9" stroke="var(--fg)" stroke-width="1.2" stroke-dasharray="6 4" fill="none"/><text x="620" y="94.9" text-anchor="end" font-size="11" fill="var(--fg)">買値 15.46（これを超えれば利益）</text><text x="4" y="14" font-size="11" fill="var(--fg)">ストラドルの価値（1株あたり、ドル）</text></svg></div><figcaption>図5-8　決算前にIV 70%で買ったストラドル（K=200、残り7日）の、発表翌日（IV 30%、残り6日）の価値。株価が5%動いても、IV低下のせいで買値を下回ります。</figcaption></figure>
+
+<div class="box warn"><span class="box-label">注意</span><p>「決算で大きく動きそうだからオプションを買う」は、多くの人が考えることです。その期待はすでにIVとして価格に入っています。オプションの買い手は、方向を当てるだけでなく、<strong>市場の予想（IV）より大きく動くこと</strong>を当てなければ勝てません。逆にIVクラッシュを狙う売り手は、予想を超える値動きで大きな損失を負う可能性があります。決算を使った戦略は<a href="#ch18">第18章</a>で扱います。</p></div>
+
+<h2 id="ch05-6">5-6　ロー ― 外気温計</h2>
+<p><strong>ロー（Rho）</strong>は、金利が1%（1パーセントポイント）動いたときのオプション価格の変化です。金利が上がると、コールは上がり、プットは下がります。コールを買うことは「株を買う代金の支払いを満期まで先延ばしする」ことに似ているからです。金利が高いほど先延ばしで浮くお金（その間の利息）が大きくなるので、コールの価値が上がります。</p>
+<p>外気温のように、ふだんの短い運転ではほとんど気になりません。しかし長距離（長期のオプション）では効いてきます。</p>
+
+<div class="box example"><span class="box-label">数値例</span>
+<p>株価100ドル、ATM、IV 25%で、金利が4%から5%に上がったとします（米国を想定した仮定の数値）。</p>
+<div class="tbl"><table>
+  <thead><tr><th>残存期間</th><th class="r">コール（4%→5%）</th><th class="r">ローの目安</th><th class="r">プットのロー</th></tr></thead>
+  <tbody>
+    <tr><td>30日</td><td class="r">3.02→3.06</td><td class="r">+0.04</td><td class="r">−0.04</td></tr>
+    <tr><td>1年</td><td class="r">11.84→12.34</td><td class="r">+0.50</td><td class="r">−0.46</td></tr>
+    <tr><td>2年</td><td class="r">17.68→18.65</td><td class="r">+0.97</td><td class="r">−0.86</td></tr>
+  </tbody>
+</table></div>
+<p>30日物では1%の金利変化でも0.04ドルしか動きません。これに対し、2年物のLEAPS（米国の長期オプション、<a href="#ch08">第8章</a>）では約1ドル動きます。</p></div>
+<p>日本の金利は長く非常に低かったため、日経225オプションの短期物ではローをほぼ無視できます。金利水準が変わっていく局面や、米国の長期オプション・<a href="#ch16">第16章</a>のプアマンズ・カバード・コールのような戦略では、ローも計器盤の一つとして確認しましょう。本章の図は金利0%で描いているため、ローの影響は含まれていません。</p>
+
+<h2 id="ch05-7">5-7　ガンマとセータのトレードオフ</h2>
+<p>ここまでの計器を並べると、ある規則に気づきます。<strong>ガンマがプラスのポジションはセータがマイナス、ガンマがマイナスのポジションはセータがプラス</strong>です。これは偶然ではありません。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th></th><th>オプションの買い手</th><th>オプションの売り手</th></tr></thead>
+  <tbody>
+    <tr><td>ガンマ</td><td>プラス（ロング・ガンマ）：大きく動くと得</td><td>マイナス（ショート・ガンマ）：大きく動くと損</td></tr>
+    <tr><td>セータ</td><td>マイナス（ショート・セータ）：毎日払う</td><td>プラス（ロング・セータ）：毎日受け取る</td></tr>
+    <tr><td>ベガ</td><td>プラス：IV上昇で得</td><td>マイナス：IV上昇で損</td></tr>
+    <tr><td>損益の性格</td><td>小さな損が続き、ときどき大きく勝つ</td><td>小さな勝ちが続き、ときどき大きく負ける</td></tr>
+    <tr><td>たとえ</td><td>保険を買う人</td><td>保険を引き受ける保険会社</td></tr>
+  </tbody>
+</table></div>
+
+<p>ガンマは「動いたら得をする力」、セータは「その力を持つための1日分の家賃」です。タダで得をする力は手に入らないので、ガンマを持つ人はセータを払い、ガンマを手放す人はセータを受け取ります。</p>
+<p>1日の損益はおおよそ「ガンマの利益（0.5×ガンマ×値動き²）＋セータ」で表せます。ATMストラドルを買った場合を図にすると次のようになります。</p>
+
+<figure class="fig"><div class="fig-svg"><svg viewBox="0 0 640 300" role="img" aria-label="1日後の損益と株価の動きの関係（ロング・ストラドルとショート・ストラドル）"><line x1="64" x2="620" y1="250.0" y2="250.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="254.0" text-anchor="end" font-size="11" fill="var(--fg)">-0.6</text><line x1="64" x2="620" y1="212.3" y2="212.3" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="216.3" text-anchor="end" font-size="11" fill="var(--fg)">-0.4</text><line x1="64" x2="620" y1="174.7" y2="174.7" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="178.7" text-anchor="end" font-size="11" fill="var(--fg)">-0.2</text><line x1="64" x2="620" y1="137.0" y2="137.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="141.0" text-anchor="end" font-size="11" fill="var(--fg)">0.0</text><line x1="64" x2="620" y1="99.3" y2="99.3" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="103.3" text-anchor="end" font-size="11" fill="var(--fg)">+0.2</text><line x1="64" x2="620" y1="61.7" y2="61.7" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="65.7" text-anchor="end" font-size="11" fill="var(--fg)">+0.4</text><line x1="64" x2="620" y1="24.0" y2="24.0" stroke="var(--line)" stroke-width="1" fill="none"/><text x="58" y="28.0" text-anchor="end" font-size="11" fill="var(--fg)">+0.6</text><line x1="64" x2="620" y1="137.0" y2="137.0" stroke="var(--fg)" stroke-width="1.2" fill="none"/><text x="64.0" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">-3</text><text x="156.7" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">-2</text><text x="249.3" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">-1</text><text x="342.0" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">0</text><text x="434.7" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">+1</text><text x="527.3" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">+2</text><text x="620.0" y="266" text-anchor="middle" font-size="11" fill="var(--fg)">+3</text><text x="620" y="284" text-anchor="end" font-size="11" fill="var(--fg)">1日の株価の動き（ドル）→</text><text x="4" y="14" font-size="11" fill="var(--fg)">1日後の損益（1株あたり、ドル）</text><rect x="245.0" y="24" width="194.0" height="226" fill="var(--gold)" fill-opacity="0.10"/><line x1="245.0" x2="245.0" y1="24" y2="250" stroke="var(--gold)" stroke-dasharray="4 3" stroke-width="1.2" fill="none"/><line x1="439.0" x2="439.0" y1="24" y2="250" stroke="var(--gold)" stroke-dasharray="4 3" stroke-width="1.2" fill="none"/><text x="342.0" y="38" text-anchor="middle" font-size="11" fill="var(--fg)">±1.05ドル以内なら売り手の勝ち</text><path d="M64.0,33.5L68.6,37.4L73.3,41.2L77.9,45.0L82.5,48.7L87.2,52.3L91.8,55.9L96.4,59.4L101.1,62.8L105.7,66.2L110.3,69.5L115.0,72.7L119.6,75.9L124.2,79.0L128.9,82.1L133.5,85.0L138.1,88.0L142.8,90.8L147.4,93.6L152.0,96.3L156.7,99.0L161.3,101.5L165.9,104.1L170.6,106.5L175.2,108.9L179.8,111.2L184.5,113.5L189.1,115.7L193.7,117.8L198.4,119.9L203.0,121.9L207.6,123.8L212.3,125.7L216.9,127.5L221.5,129.2L226.2,130.9L230.8,132.5L235.4,134.0L240.1,135.5L244.7,136.9L249.3,138.3L254.0,139.5L258.6,140.7L263.2,141.9L267.9,143.0L272.5,144.0L277.1,144.9L281.8,145.8L286.4,146.6L291.0,147.4L295.7,148.1L300.3,148.7L304.9,149.3L309.6,149.7L314.2,150.2L318.8,150.5L323.5,150.8L328.1,151.1L332.7,151.2L337.4,151.3L342.0,151.4L346.6,151.3L351.3,151.2L355.9,151.1L360.5,150.8L365.2,150.5L369.8,150.2L374.4,149.7L379.1,149.3L383.7,148.7L388.3,148.1L393.0,147.4L397.6,146.6L402.2,145.8L406.9,144.9L411.5,144.0L416.1,143.0L420.8,141.9L425.4,140.7L430.0,139.5L434.7,138.3L439.3,136.9L443.9,135.5L448.6,134.0L453.2,132.5L457.8,130.9L462.5,129.2L467.1,127.5L471.7,125.7L476.4,123.8L481.0,121.9L485.6,119.9L490.3,117.8L494.9,115.7L499.5,113.5L504.2,111.2L508.8,108.9L513.4,106.5L518.1,104.1L522.7,101.5L527.3,99.0L532.0,96.3L536.6,93.6L541.2,90.8L545.9,88.0L550.5,85.0L555.1,82.1L559.8,79.0L564.4,75.9L569.0,72.7L573.7,69.5L578.3,66.2L582.9,62.8L587.6,59.4L592.2,55.9L596.8,52.3L601.5,48.7L606.1,45.0L610.7,41.2L615.4,37.4L620.0,33.5" fill="none" stroke="var(--gain)" stroke-width="2.4"/><path d="M64.0,240.5L68.6,236.6L73.3,232.8L77.9,229.0L82.5,225.3L87.2,221.7L91.8,218.1L96.4,214.6L101.1,211.2L105.7,207.8L110.3,204.5L115.0,201.3L119.6,198.1L124.2,195.0L128.9,191.9L133.5,189.0L138.1,186.0L142.8,183.2L147.4,180.4L152.0,177.7L156.7,175.0L161.3,172.5L165.9,169.9L170.6,167.5L175.2,165.1L179.8,162.8L184.5,160.5L189.1,158.3L193.7,156.2L198.4,154.1L203.0,152.1L207.6,150.2L212.3,148.3L216.9,146.5L221.5,144.8L226.2,143.1L230.8,141.5L235.4,140.0L240.1,138.5L244.7,137.1L249.3,135.7L254.0,134.5L258.6,133.3L263.2,132.1L267.9,131.0L272.5,130.0L277.1,129.1L281.8,128.2L286.4,127.4L291.0,126.6L295.7,125.9L300.3,125.3L304.9,124.7L309.6,124.3L314.2,123.8L318.8,123.5L323.5,123.2L328.1,122.9L332.7,122.8L337.4,122.7L342.0,122.6L346.6,122.7L351.3,122.8L355.9,122.9L360.5,123.2L365.2,123.5L369.8,123.8L374.4,124.3L379.1,124.7L383.7,125.3L388.3,125.9L393.0,126.6L397.6,127.4L402.2,128.2L406.9,129.1L411.5,130.0L416.1,131.0L420.8,132.1L425.4,133.3L430.0,134.5L434.7,135.7L439.3,137.1L443.9,138.5L448.6,140.0L453.2,141.5L457.8,143.1L462.5,144.8L467.1,146.5L471.7,148.3L476.4,150.2L481.0,152.1L485.6,154.1L490.3,156.2L494.9,158.3L499.5,160.5L504.2,162.8L508.8,165.1L513.4,167.5L518.1,169.9L522.7,172.5L527.3,175.0L532.0,177.7L536.6,180.4L541.2,183.2L545.9,186.0L550.5,189.0L555.1,191.9L559.8,195.0L564.4,198.1L569.0,201.3L573.7,204.5L578.3,207.8L582.9,211.2L587.6,214.6L592.2,218.1L596.8,221.7L601.5,225.3L606.1,229.0L610.7,232.8L615.4,236.6L620.0,240.5" fill="none" stroke="var(--loss)" stroke-width="2.4" stroke-dasharray="7 4"/><text x="443.9" y="50.4" font-size="12" fill="var(--fg)">買い手（ロング・ガンマ）</text><text x="443.9" y="212.3" font-size="12" fill="var(--fg)">売り手（ショート・ガンマ）</text><circle cx="342.0" cy="151.4" r="3.5" fill="var(--gain)"/><text x="334.0" y="167.4" text-anchor="end" font-size="11" fill="var(--fg)">動かなければ −0.076</text></svg></div><figcaption>図5-9　ATMストラドル（株価100、残り30日、IV 20%、ガンマ0.139、セータ−0.076）の1日後の損益の近似。値動きが±1.05ドルを超えると買い手の勝ち、その内側なら売り手の勝ち。</figcaption></figure>
+
+<p>分岐点の1.05ドルは偶然の数字ではありません。IV 20%を1日あたりの動きに直すと「100×20%÷√365≒1.05ドル」です。つまり<strong>市場（IV）が予想する1日の平均的な値動きが、そのままガンマとセータの分岐点</strong>になっています。日経平均40,000円・IV 20%なら約418円です。買い手は「実際の値動きがIVの予想より大きい」ことに、売り手は「小さい」ことに賭けていると言えます。</p>
+
+<div class="payoff" data-title="図5-10　ロング・ストラドル（ロング・ガンマ、ショート・セータ）" data-spot="100" data-range="85,115" data-legs='[{"type":"call","k":100,"qty":1,"prem":2.29},{"type":"put","k":100,"qty":1,"prem":2.29}]' data-curves="30,10" data-caption="破線は満期前の損益曲線。残り30日の曲線はK付近で下に凸（ロング・ガンマ）で、時間がたつと満期時の太線へ下がっていきます（ショート・セータ）。"></div>
+
+<div class="payoff" data-title="図5-11　ショート・ストラドル（ショート・ガンマ、ロング・セータ）" data-spot="100" data-range="85,115" data-legs='[{"type":"call","k":100,"qty":-1,"prem":2.29},{"type":"put","k":100,"qty":-1,"prem":2.29}]' data-curves="30,10" data-caption="図5-10の上下反転。時間がたつほど破線が満期時の山へ持ち上がりますが、上下どちらに大きく動いても損失は大きくなり、上昇側は理論上無制限です。"></div>
+
+<p>ロング・ストラドルは4.58ドルを支払い、損益分岐点は約95.4ドルと約104.6ドル（100±4.58）です。ショート・ストラドルはその逆で、最大利益は受け取った4.58ドルに限られます。</p>
+
+<h2 id="ch05-8">5-8　ポジション全体のグリークスを合算する</h2>
+<p>グリークスの便利な性質は、<strong>足し算できる</strong>ことです。複数のオプションや株を組み合わせても、各部品のグリークスに枚数と乗数を掛けて足せば、ポジション全体の計器盤ができます。売りは符号を反転させます。株のデルタは1株あたり1で、ガンマ・セータ・ベガは0です。</p>
+
+<ol class="flow">
+  <li><b>部品ごとの値を調べる</b><br>取引ツールの1単位あたりのデルタ・ガンマ・セータ・ベガを確認する</li>
+  <li><b>符号と枚数を掛ける</b><br>買いは＋、売りは−。2枚なら2倍</li>
+  <li><b>乗数を掛ける</b><br>米国株は100、日経225オプションは1,000、ミニは100</li>
+  <li><b>全部を足す</b><br>合計がポジションの計器盤。デルタは「株数」、セータは「1日の金額」で読む</li>
+</ol>
+
+<h3>例1　株100株＋コール売り1枚（カバード・コール）</h3>
+<p>株価100ドルの米国株を100株持ち、権利行使価格105ドル・残り30日のコールを1枚売って0.64ドル（1枚64ドル）を受け取ります（<a href="#ch12">第12章</a>のカバード・コール）。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>部品</th><th class="r">デルタ</th><th class="r">ガンマ</th><th class="r">セータ（ドル/日）</th><th class="r">ベガ（ドル/IV 1pt）</th></tr></thead>
+  <tbody>
+    <tr><td>株100株</td><td class="r">+100</td><td class="r">0</td><td class="r">0</td><td class="r">0</td></tr>
+    <tr><td>コール売り1枚（1単位 Δ0.205、Γ0.050、Θ−0.027、ν0.082）×(−1)×100</td><td class="r">−20.5</td><td class="r">−4.96</td><td class="r">+2.72</td><td class="r">−8.16</td></tr>
+    <tr><td><b>合計</b></td><td class="r"><b>+79.5</b></td><td class="r"><b>−4.96</b></td><td class="r"><b>+2.72</b></td><td class="r"><b>−8.16</b></td></tr>
+  </tbody>
+</table></div>
+<p>読み方は次のとおりです。</p>
+<ul>
+  <li><strong>デルタ+79.5</strong>：目先は株を約80株持っているのと同じ。株価が1ドル上がると約80ドルの利益です（翌日に101ドルなら、計算上は約80ドル）。</li>
+  <li><strong>ガンマ−4.96</strong>：株価が1ドル上がるごとに、実質の保有株数が約5株ずつ減ります。上がるほど上昇の恩恵が減り、105ドルを超えると利益が頭打ちになる、という損益図の形がここに表れています。</li>
+  <li><strong>セータ+2.72</strong>：株価が動かなければ、1日あたり約2.7ドルずつ有利になります。</li>
+  <li><strong>ベガ−8.16</strong>：IVが1ポイント上がると約8ドル不利です。</li>
+</ul>
+
+<div class="payoff" data-title="図5-12　カバード・コール（株100株＋コール売り1枚、1枚=100株）" data-spot="100" data-range="85,115" data-mult="100" data-legs='[{"type":"stock","qty":1,"price":100},{"type":"call","k":105,"qty":-1,"prem":0.64}]' data-curves="30,10" data-caption="株価100付近の破線の傾きがデルタ約+80、上に凸の曲がり方がマイナスのガンマを表します。株価が大きく下がれば、株の値下がりによる損失はそのまま残ります。"></div>
+<p>最大利益は（105−100＋0.64）×100＝564ドル、損益分岐点は99.36ドルです。下落の損失はプレミアム分しか和らぎません。</p>
+
+<h3>例2　ストラドル（コール買い1枚＋プット買い1枚）</h3>
+<p>図5-10のATMストラドル（米国株、1枚＝100株）を合算します。</p>
+<div class="tbl"><table>
+  <thead><tr><th>部品（K=100、残り30日）</th><th class="r">デルタ</th><th class="r">ガンマ</th><th class="r">セータ（ドル/日）</th><th class="r">ベガ（ドル/IV 1pt）</th></tr></thead>
+  <tbody>
+    <tr><td>コール買い1枚</td><td class="r">+51.1</td><td class="r">+6.95</td><td class="r">−3.81</td><td class="r">+11.43</td></tr>
+    <tr><td>プット買い1枚</td><td class="r">−48.9</td><td class="r">+6.95</td><td class="r">−3.81</td><td class="r">+11.43</td></tr>
+    <tr><td><b>合計</b></td><td class="r"><b>+2.3</b></td><td class="r"><b>+13.9</b></td><td class="r"><b>−7.62</b></td><td class="r"><b>+22.87</b></td></tr>
+  </tbody>
+</table></div>
+<p>デルタはほぼ0なので、今は方向感のないポジションです（<strong>デルタ・ニュートラル</strong>）。ただしガンマが+13.9なので、株価が1ドル上がるとデルタは約+16株分に、1ドル下がると約−12株分になります。動いた方向に自動でデルタがついていくのが、ロング・ガンマの特徴です。その代わり、1日約7.6ドルのセータを払います。</p>
+
+<h3>日経225オプションでの金額換算（乗数1,000）</h3>
+<p>日経225オプションの価格は「円」単位の指数ポイントで表示され、1枚の金額は価格×1,000円です。グリークスも同じく1,000倍すれば、1枚あたりの円金額になります。日経平均40,000円（仮定）、権利行使価格40,000円、残り30日、IV 20%で計算します。</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>項目</th><th class="r">1単位あたり</th><th class="r">ATMコール1枚（×1,000）</th><th class="r">ATMストラドル買い1枚ずつ</th></tr></thead>
+  <tbody>
+    <tr><td>理論価格</td><td class="r">約915円</td><td class="r">約91.5万円</td><td class="r">約183万円（支払）</td></tr>
+    <tr><td>デルタ</td><td class="r">0.511</td><td class="r">511（日経平均100円上昇で約5.1万円）</td><td class="r">約23（100円上昇で約2,300円）</td></tr>
+    <tr><td>ガンマ</td><td class="r">0.000174（1円あたり）</td><td class="r">100円上昇でデルタ+17.4</td><td class="r">100円上昇でデルタ+34.8</td></tr>
+    <tr><td>セータ</td><td class="r">−15.2円/日</td><td class="r">約−1.5万円/日</td><td class="r">約−3.0万円/日</td></tr>
+    <tr><td>ベガ</td><td class="r">45.7円/IV 1pt</td><td class="r">約4.6万円/IV 1pt</td><td class="r">約9.1万円/IV 1pt</td></tr>
+  </tbody>
+</table></div>
+<p>ATMコール1枚で日経平均が100円上がると、デルタだけなら約5.1万円、ガンマの効果も含めて計算し直すと約5.2万円の値上がりです。日経225ミニオプション（乗数100）なら、すべての金額が10分の1になります。取引単位や乗数などの制度は変わることがあるため、最新の内容は日本取引所グループ（JPX）のウェブサイトで確認してください。</p>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>ポジション全体の計器盤は、次の4つの問いに答えるために読みます。</p>
+<ul>
+  <li>デルタ：相場が上下どちらに動くと得か。それは株（先物）何単位分か。</li>
+  <li>ガンマ：大きく動いたとき、有利に加速するか、不利に加速するか。</li>
+  <li>セータ：何も起きなければ、1日いくら得をするか（損をするか）。</li>
+  <li>ベガ：IVが急上昇（急落時によく起こる）したら、いくら動くか。</li>
+</ul></div>
+
+<div class="box tip"><span class="box-label">実践テクニック</span><p>ポジション全体のセータとガンマを並べて見る習慣をつけると、リスクの取りすぎに気づきやすくなります。たとえば「セータ収入が1日3万円」のポジションなら、「1日で何%動いたら何日分のセータが消えるか」を先に計算しておきます。先の日経平均の例では、10%の急落で約70日分が消えました。ポートフォリオ全体のグリークス管理は<a href="#ch21">第21章</a>で詳しく扱います。</p></div>
+
+<h2 id="ch05-9">5-9　さらに先の計器 ― 二次的グリークス</h2>
+<p>ここまでの5つは「価格そのもの」の感応度でした。実務ではさらに「グリークスがどう変わるか」を表す<strong>二次的グリークス</strong>も使われます。Lv.1の段階では名前と意味を知っておけば十分です。</p>
+
+<details class="deep"><summary>深掘り：二次的グリークスの名前と意味</summary><div>
+<div class="tbl"><table>
+  <thead><tr><th>名前</th><th>意味（何の変化か）</th><th>どんなときに気にするか</th></tr></thead>
+  <tbody>
+    <tr><td>バンナ（Vanna）</td><td>IVが動いたときのデルタの変化（株価が動いたときのベガの変化）</td><td>急落でIVが上がると、OTMプットのデルタが一気に大きくなる現象</td></tr>
+    <tr><td>ボマ（Volga／Vomma）</td><td>IVが動いたときのベガの変化</td><td>IV急変時に、OTMオプションのベガが膨らむ現象</td></tr>
+    <tr><td>チャーム（Charm）</td><td>時間がたったときのデルタの変化（デルタ・ディケイ）</td><td>週末明けや満期直前に、株価が動かなくてもデルタがずれる現象</td></tr>
+    <tr><td>スピード（Speed）</td><td>株価が動いたときのガンマの変化</td><td>満期直前のATM付近でガンマが激変する現象</td></tr>
+    <tr><td>カラー（Color）</td><td>時間がたったときのガンマの変化</td><td>満期が近づくとATMのガンマが尖っていく現象</td></tr>
+    <tr><td>ゾンマ（Zomma）</td><td>IVが動いたときのガンマの変化</td><td>IVが低いほどATMのガンマが尖る現象</td></tr>
+  </tbody>
+</table></div>
+<p>ブラック・ショールズ式（配当なし）での一次のグリークスは、d1＝[ln(S/K)＋(r＋σ²/2)T]／(σ√T)、N(・)を標準正規分布の累積分布関数、n(・)を密度関数として、次のとおりです。</p>
+<ul>
+  <li>コールのデルタ＝N(d1)、プットのデルタ＝N(d1)−1</li>
+  <li>ガンマ＝n(d1)／(Sσ√T)</li>
+  <li>ベガ＝S·n(d1)·√T（本書では÷100して「IV 1ポイントあたり」で表示）</li>
+  <li>セータ（コール、年あたり）＝−S·n(d1)·σ／(2√T)−rK·e<sup>−rT</sup>·N(d2)（本書では÷365して「1日あたり」で表示）</li>
+</ul>
+<p>金利0%では「セータ＝−0.5×ガンマ×S²×σ²÷365」が成り立ちます。これが5-7節の「ガンマとセータの分岐点＝IVが予想する1日の動き」の正体です。公式は付録C「公式集」にもまとめます。</p>
+</div></details>
+
+<h2 id="ch05-10">まとめ</h2>
+<ul class="summary-list">
+  <li>グリークスは、株価・時間・IV・金利が少し動いたときにオプション価格がどう動くかを示す計器盤。足し算でポジション全体の値が出せる。</li>
+  <li>デルタ（速度計）はコール0〜1、プット−1〜0。枚数と乗数を掛けると「株数」に換算できる。ITM確率の目安になるが、確率そのものではない。</li>
+  <li>ガンマ（加速度計）はATMで最大、満期が近いほど尖る。売り手はショート・ガンマで、不利な方向へ動くほど損失が加速する。</li>
+  <li>セータ（燃料計）はATMで最大、満期直前に加速する。週末の扱いはツールや市場の慣行で異なる。</li>
+  <li>ベガ（天気予報計）は残存期間が長いほど大きい。決算後のIVクラッシュでは、株価が動いても買い手が損をすることがある。</li>
+  <li>ロー（外気温計）は長期オプションで意味を持つ。</li>
+  <li>買い手はロング・ガンマ／ショート・セータ、売り手はその逆。分岐点は「IVが予想する1日の値動き」。</li>
+  <li>日経225オプションは1単位のグリークスを1,000倍すると1枚あたりの円金額になる（ミニは100倍）。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認テスト</p>
+  <div class="q"><p>デルタ0.40の米国株コールを1枚（100株分）持っています。株価が2ドル上がったとき、ガンマを無視するとオプション1枚の値上がりはおよそいくらですか。</p>
+    <ol class="choices"><li>0.80ドル</li><li>40ドル</li><li>80ドル</li><li>200ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　1株あたり0.40×2＝0.80ドル。1枚は100株分なので0.80×100＝80ドルです。Aは1株あたりの値で、乗数を掛け忘れています。</p></div></details>
+  </div>
+  <div class="q"><p>日経225オプションで、デルタ0.30のコールを3枚買っています。このポジションは、日経225先物（ラージ、乗数1,000）の何枚分の感応度に相当しますか。</p>
+    <ol class="choices"><li>0.3枚分</li><li>0.9枚分</li><li>3枚分</li><li>9枚分</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　0.30×3枚×1,000＝900（日経平均900倍分）。先物ラージ1枚は1,000倍なので0.9枚分です。日経平均が100円上がれば、約9万円の値上がりが見込めます。</p></div></details>
+  </div>
+  <div class="q"><p>デルタ0.50、ガンマ0.05のコールがあります。原資産が2上がった直後のデルタは、およそいくつですか。</p>
+    <ol class="choices"><li>0.40</li><li>0.52</li><li>0.60</li><li>1.00</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　ガンマは「原資産が1動いたときのデルタの変化」なので、0.50＋0.05×2＝0.60です。ガンマ自体も動くので厳密には少しずれますが、目安として十分です。</p></div></details>
+  </div>
+  <div class="q"><p>ガンマについて正しい説明はどれですか。</p>
+    <ol class="choices"><li>深いITMで最大になり、満期が近づくほど小さくなる</li><li>ATMで最大になり、満期が近づくほどATM付近で大きく尖る</li><li>残存期間に関係なく一定である</li><li>オプションを売った人のガンマはプラスになる</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　満期の瞬間、デルタはKを境に0から1へ切り替わります。残り時間が少ないほど、その切り替えがK付近に集中するため、ATMのガンマが尖ります（図5-4）。売った人のガンマはマイナスです。</p></div></details>
+  </div>
+  <div class="q"><p>米国株のATMコール（残り30日）のセータは−0.038ドル/日です。1枚（100株分）を持ったまま、株価もIVも変わらずに5日たちました。値下がりはおよそいくらですか。</p>
+    <ol class="choices"><li>約0.19ドル</li><li>約3.8ドル</li><li>約19ドル</li><li>約190ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　0.038×5日×100＝19ドルです。実際はセータが日ごとに加速するので、計算し直すと約20ドルと少しだけ大きくなります。</p></div></details>
+  </div>
+  <div class="q"><p>決算直前、IV 70%で7.73ドルのATMコールを買いました。このコールのベガは約0.10です。発表後に株価は変わらず、IVだけが30%に下がりました。時間の経過を無視すると、コールの価格はおよそいくらになりますか。</p>
+    <ol class="choices"><li>約3.7ドル</li><li>約6.7ドル</li><li>約7.3ドル</li><li>約11.7ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：A</b>　IVの低下は40ポイントなので、0.10×40＝約4.0ドル下がり、7.73−4.0≒3.7ドルです。本文の例では1日分の時間の経過も加わり、3.07ドルまで下がりました。株価が動かなくても、IVクラッシュだけで半分以下になります。</p></div></details>
+  </div>
+  <div class="q"><p>株価・IVの条件が同じとき、ベガが最も大きいのはどれですか。</p>
+    <ol class="choices"><li>残り7日のATMコール</li><li>残り180日のATMコール</li><li>残り180日の深いOTMコール</li><li>残り7日の深いITMコール</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　ベガはATM付近で最大、残存期間が長いほど大きくなります。IVは1年あたりの変動なので、期間が長いほど同じ1ポイントの差が価格に大きく効きます。</p></div></details>
+  </div>
+  <div class="q"><p>米国株を100株持ち、デルタ0.30のコールを1枚売りました（カバード・コール）。ポジション全体のデルタ（株数換算）はいくつですか。</p>
+    <ol class="choices"><li>+130</li><li>+100</li><li>+70</li><li>−30</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：C</b>　株100株のデルタは+100、コール売り1枚は−0.30×100＝−30。合計+70です。目先は株を70株持っているのと同じ動きをします。</p></div></details>
+  </div>
+  <div class="q"><p>あるATMストラドル（買い）のポジション全体で、ガンマが+0.07、セータが−0.035（いずれも1株あたり、1日あたり）です。ガンマの利益がセータの支払いとちょうど釣り合う1日の値動きの大きさは、およそいくらですか。「1日の損益≒0.5×ガンマ×値動き²＋セータ」を使ってください。</p>
+    <ol class="choices"><li>約0.5ドル</li><li>約1.0ドル</li><li>約2.0ドル</li><li>約5.0ドル</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：B</b>　0.5×0.07×x²＝0.035 より x²＝1、x＝1.0ドルです。1日に1ドルより大きく動けば買い手、小さければ売り手が有利です。</p></div></details>
+  </div>
+  <div class="q"><p>ロング・ストラドル（ATMのコールとプットを1枚ずつ買う）のグリークスの符号として正しい組み合わせはどれですか。</p>
+    <ol class="choices"><li>デルタ ほぼ0、ガンマ＋、セータ－、ベガ＋</li><li>デルタ ほぼ0、ガンマ－、セータ＋、ベガ－</li><li>デルタ＋、ガンマ＋、セータ＋、ベガ－</li><li>デルタ－、ガンマ－、セータ－、ベガ＋</li></ol>
+    <details><summary>解答と解説</summary><div><p><b>正解：A</b>　コールのデルタ（約+0.5）とプットのデルタ（約−0.5）が打ち消し合い、ほぼ0になります。どちらも買いなので、ガンマとベガはプラス、セータはマイナスです。Bはショート・ストラドルで、大きく動くと損失が大きくなりうる点に注意が必要です。</p></div></details>
+  </div>
+</div>

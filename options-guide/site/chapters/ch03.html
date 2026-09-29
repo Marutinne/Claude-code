@@ -168,7 +168,7 @@
 <ol>
   <li><b>買った直後（残り50日）の曲線は、現在値100のところでほぼ0を通ります。</b>買った瞬間は、払った価格と理論価格がほぼ同じだからです。</li>
   <li><b>満期前の曲線は、満期の折れ線より上にあります。</b>時間的価値が残っている分だけ、オプションは本質的価値より高く売れるからです。買い手にとっては、満期前に売ればまだ価値を回収できるということです。</li>
-  <li><b>時間が経つほど曲線は下がり、折れ線に近づきます。</b>株価が100のまま動かなければ、残り20日では損失が広がり、残り5日ではほぼ-3に近づきます。これが時間的価値の減少（タイム・ディケイ、time decay）で、<a href="#ch05">第5章</a>でセータとして数値化します。</li>
+  <li><b>時間が経つほど曲線は下がり、折れ線に近づきます。</b>株価が100のまま動かなければ、損益は残り20日で約-1.1、残り5日で約-2.1と広がり、満期には-3（プレミアム全額）になります。これが時間的価値の減少（タイム・ディケイ、time decay）で、<a href="#ch05">第5章</a>でセータとして数値化します。</li>
 </ol>
 
 <p>売り手から見ると、同じ現象が逆向きに働きます。次の図はプット売り（K＝95、プレミアム1.1、残り50日）です。</p>
@@ -205,8 +205,8 @@
   <circle cx="465" cy="222.8" r="4.5" fill="var(--gold)" stroke="var(--surface)" stroke-width="1"/>
   <circle cx="465" cy="132.8" r="5" fill="var(--fg)" stroke="var(--surface)" stroke-width="1"/>
   <text x="456" y="76" text-anchor="end" font-size="12" fill="var(--fg)">株 +15</text>
-  <text x="473" y="238" font-size="12" fill="var(--fg)">コール売り -8.8</text>
-  <text x="473" y="124" font-size="12" fill="var(--fg)">合計 +6.2（＝15−8.8）</text>
+  <text x="457" y="240" text-anchor="end" font-size="12" fill="var(--fg)">コール売り -8.8</text>
+  <text x="473" y="124" font-size="12" fill="var(--fg)">合計 +6.2</text>
   <line x1="72" x2="102" y1="26" y2="26" stroke="var(--accent)" stroke-width="2" stroke-dasharray="7 4" fill="none"/>
   <text x="108" y="30" font-size="12" fill="var(--fg)">株の買い（買値100）</text>
   <line x1="72" x2="102" y1="46" y2="46" stroke="var(--gold)" stroke-width="2" stroke-dasharray="7 4" fill="none"/>
