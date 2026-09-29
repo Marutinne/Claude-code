@@ -1,0 +1,582 @@
+<header class="chapter-head">
+  <p class="eyebrow">付録</p>
+  <h1>付録A　用語集（日英対照）</h1>
+  <p class="lead">本書に出てくる用語を、五十音順と英語（ABC順）の両方から引けるようにまとめました。各用語には一言の説明と、詳しく解説している節へのリンクを付けています。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この付録の使い方</span><ul>
+  <li>日本語で引くときは下の行（あ行・か行…）へ、英語で引くときは「英語から引く（ABC順）」へジャンプしてください。</li>
+  <li>「詳しく」の列の数字（例 5-2）は、その用語を詳しく説明している節です。クリックするとその節へ移動します。</li>
+  <li>ATM・IV・SQ のようにアルファベットで呼ぶ用語は、日本語名があるものは五十音順に、アルファベットでしか呼ばないものは「英字・数字で始まる用語」に載せています。</li>
+  <li>最も基本的な用語だけを1枚で見たいときは、<a href="#ch02-10">第2章の用語の早見表（2-10）</a>が便利です。式は<a href="#formulas">付録C　公式集</a>にまとめています。</li>
+</ul></div>
+<p><b>ジャンプ：</b><a href="#glossary-a">あ行</a> ｜ <a href="#glossary-ka">か行</a> ｜ <a href="#glossary-sa">さ行</a> ｜ <a href="#glossary-ta">た行</a> ｜ <a href="#glossary-na">な行</a> ｜ <a href="#glossary-ha">は行</a> ｜ <a href="#glossary-ma">ま行</a> ｜ <a href="#glossary-ya">や行</a> ｜ <a href="#glossary-ra">ら行</a> ｜ <a href="#glossary-wa">わ行</a> ｜ <a href="#glossary-en">英字・数字</a> ｜ <a href="#glossary-abc">英語から引く（ABC順）</a></p>
+<h2 id="glossary-a">あ行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t001"><td><b>アイアン・コンドル</b></td><td>Iron Condor</td><td>ブル・プット・スプレッドとベア・コール・スプレッドを同時に建て、満期に一定の範囲に収まれば受取額が利益になる戦略。損失は片側の幅−受取額に限定されます。</td><td><a href="#ch15-6">15-6</a></td></tr>
+<tr id="glossary-t002"><td><b>アイアン・バタフライ</b></td><td>Iron Butterfly</td><td>ATMのコールとプットを売り、外側のコールとプットを買って損失を限定した戦略。ショート・ストラドルにウィングを付けた形です。</td><td><a href="#ch15-4">15-4</a></td></tr>
+<tr id="glossary-t003"><td><b>アウト・オブ・ザ・マネー（OTM）</b></td><td>Out of the Money (OTM)</td><td>いま権利を使っても得をしない状態。コールは原資産価格＜権利行使価格、プットは原資産価格＞権利行使価格のときで、プレミアムは時間的価値だけです。</td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr id="glossary-t004"><td><b>アット・ザ・マネー（ATM）</b></td><td>At the Money (ATM)</td><td>原資産価格と権利行使価格がほぼ等しい状態。時間的価値・ガンマ・セータの絶対値が最も大きくなる位置です。</td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr id="glossary-t005"><td><b>アメリカン・タイプ</b></td><td>American Style</td><td>満期日までいつでも権利行使できるオプション。米国の個別株・ETFオプションが該当し、売り手は早期割当を受けることがあります。</td><td><a href="#ch02-7">2-7</a></td></tr>
+<tr id="glossary-t006"><td><b>板（気配）</b></td><td>Order Book / Quotes</td><td>価格ごとの売り注文・買い注文の数量を並べた一覧。オプションは銘柄が多いため板が薄くなりやすく、発注前の確認が欠かせません。</td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr id="glossary-t007"><td><b>1標準偏差（1σ）</b></td><td>One Standard Deviation</td><td>値動きのばらつきの単位。正規分布を仮定すると、約68%の確率で±1σ、約95%で±2σの範囲に収まるという目安になります。</td><td><a href="#ch04-8">4-8</a>・<a href="#ch11-8">11-8</a></td></tr>
+<tr id="glossary-t008"><td><b>イベント・トレード</b></td><td>Event Trading</td><td>決算発表などのイベントをまたいで、IVの上昇と発表後の急低下（IVクラッシュ）を利用・回避する取引。</td><td><a href="#ch18-4">18-4</a></td></tr>
+<tr id="glossary-t009"><td><b>イン・ザ・マネー（ITM）</b></td><td>In the Money (ITM)</td><td>いま権利を使えば得をする状態。コールは原資産価格＞権利行使価格、プットは原資産価格＜権利行使価格のときです。深いITMはディープITMと呼びます。</td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr id="glossary-t010"><td><b>インプライド・ボラティリティ（IV）</b></td><td>Implied Volatility (IV)</td><td>オプションの市場価格からブラック・ショールズ式などで逆算した変動率（年率）。市場がこれからどれだけ動くと見ているかを表します。</td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr id="glossary-t011"><td><b>ウィング</b></td><td>Wing</td><td>バタフライやコンドルの外側にある買いの脚。損失を止める「羽」で、売りの権利行使価格との差を幅と呼びます。</td><td><a href="#ch15-1">15-1</a></td></tr>
+<tr id="glossary-t012"><td><b>追証（追加証拠金）</b></td><td>Margin Call</td><td>損失の拡大や必要証拠金の増加で証拠金が不足したときに求められる追加の入金。期限までに解消できないと強制的に決済されることがあります。</td><td><a href="#ch06-5">6-5</a>・<a href="#ch00-3">0-3</a></td></tr>
+<tr id="glossary-t013"><td><b>大阪取引所</b></td><td>Osaka Exchange (OSE)</td><td>日本取引所グループ（JPX）の一員で、日経225オプションなど国内の主な先物・オプションを上場している取引所。</td><td><a href="#ch07-1">7-1</a></td></tr>
+<tr id="glossary-t014"><td><b>オプション</b></td><td>Option</td><td>決められた期日までに（または期日に）、決められた価格で原資産を買う・売る「権利」。買い手は権利を持ち、売り手は義務を負います。</td><td><a href="#ch01-1">1-1</a></td></tr>
+<tr id="glossary-t015"><td><b>オプション取引レベル</b></td><td>Options Approval Level</td><td>米国の証券会社が口座ごとに認める取引の段階。カバード・コールなど低リスクから、ネイキッドの売りなど高リスクまで段階的に許可されます。</td><td><a href="#ch08-6">8-6</a></td></tr>
+<tr id="glossary-t016"><td><b>オプション・ホイール</b></td><td>The Wheel</td><td>キャッシュ・セキュアード・プットの売り→割当で株を取得→カバード・コールの売り→株を売却、を繰り返す手法。</td><td><a href="#ch12-6">12-6</a></td></tr>
+<tr id="glossary-t017"><td><b>オープン・インタレスト</b></td><td>Open Interest</td><td>市場全体で決済されずに残っている建玉の枚数。出来高と並ぶ流動性の目安です。</td><td><a href="#ch02-9">2-9</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ka">か行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t018"><td><b>外国市場デリバティブ取引</b></td><td>Foreign Market Derivatives Transaction</td><td>外国の取引所で行う、国内の市場デリバティブ取引に類似する取引。米国オプションの課税区分を考えるときの論点になります。</td><td><a href="#ch24-6">24-6</a></td></tr>
+<tr id="glossary-t019"><td><b>買い建て（新規買い）</b></td><td>Buy to Open</td><td>買いのポジションを新しく作る注文。</td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr id="glossary-t020"><td><b>買戻し</b></td><td>Buy to Close</td><td>売りのポジションを買って閉じる注文。</td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr id="glossary-t021"><td><b>確定申告</b></td><td>Tax Return Filing</td><td>1年間の所得と税額を計算して申告する手続き。日本の先物・オプションの損益は特定口座の対象外のため、原則として申告が必要です。</td><td><a href="#ch24-4">24-4</a>・<a href="#ch24-11">24-11</a></td></tr>
+<tr id="glossary-t022"><td><b>カバード・コール</b></td><td>Covered Call</td><td>原資産を保有したまま、OTMのコールを売る戦略。プレミアムを受け取る代わりに、上昇時の利益が権利行使価格までに限られます。</td><td><a href="#ch12-1">12-1</a></td></tr>
+<tr id="glossary-t023"><td><b>カバード・ストラングル</b></td><td>Covered Strangle</td><td>カバード・コールに、さらにOTMのプット売りを加えた戦略。下落時には株とプットの2単位分の損失を負います。</td><td><a href="#ch12-7">12-7</a></td></tr>
+<tr id="glossary-t024"><td><b>カラー</b></td><td>Collar</td><td>原資産の保有に、OTMプットの買いとOTMコールの売りを組み合わせ、損益を上下で挟む戦略。受払がほぼ0のものをゼロコスト・カラーと呼びます。</td><td><a href="#ch12-3">12-3</a></td></tr>
+<tr id="glossary-t025"><td><b>カルマー・レシオ</b></td><td>Calmar Ratio</td><td>年率リターン÷最大ドローダウン。最悪の下落1単位あたりのリターンを表します。</td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr id="glossary-t026"><td><b>カレンダー・スプレッド</b></td><td>Calendar Spread</td><td>同じ権利行使価格で、期近を売り期先を買う（ロング・カレンダー）時間差戦略。期近の速い減価を利用します。</td><td><a href="#ch16-2">16-2</a></td></tr>
+<tr id="glossary-t027"><td><b>ガンマ</b></td><td>Gamma</td><td>原資産価格が1動いたときのデルタの変化。満期が近いATMほど大きく、買い手はプラス、売り手はマイナスです。</td><td><a href="#ch05-3">5-3</a></td></tr>
+<tr id="glossary-t028"><td><b>ガンマ・スキャルピング</b></td><td>Gamma Scalping</td><td>オプションを買ってガンマを持ち、値動きのたびにデルタを原資産の売買で0に戻して小さな利益を積み重ねる手法。</td><td><a href="#ch14-9">14-9</a></td></tr>
+<tr id="glossary-t029"><td><b>期間構造</b></td><td>Term Structure</td><td>満期ごとのIVの並び。通常は期先ほど高い（コンタンゴ）が、急落時は期近が高く（バックワーデーション）なりやすい。</td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t030"><td><b>期先</b></td><td>Back Month / Far Expiration</td><td>満期が遠い方の限月。時間差戦略では、減価の遅い期先を買うことが多くなります。</td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr id="glossary-t031"><td><b>期待値</b></td><td>Expected Value</td><td>同じ取引を繰り返したときの1回あたりの平均損益。勝率×平均利益−（1−勝率）×平均損失で計算します。</td><td><a href="#ch21-3">21-3</a></td></tr>
+<tr id="glossary-t032"><td><b>期待変動幅（予想変動幅）</b></td><td>Expected Move</td><td>IVから計算した、ある期間の値動きの目安（1σ）。ATMストラドルの価格もおおよその目安になります。</td><td><a href="#ch04-8">4-8</a>・<a href="#ch14-1">14-1</a></td></tr>
+<tr id="glossary-t033"><td><b>期近</b></td><td>Front Month / Near Expiration</td><td>満期が近い方の限月。流動性が高い一方、時間的価値の減少も速くなります。</td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr id="glossary-t034"><td><b>逆指値注文（ストップ注文）</b></td><td>Stop Order</td><td>価格が指定した水準に達したら発注する注文。オプションでは板の薄さから不利な価格で約定しやすい点に注意します。</td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr id="glossary-t035"><td><b>キャッシュ・セキュアード・プット</b></td><td>Cash-Secured Put</td><td>割り当てられたときの購入代金を現金で全額確保したうえでプットを売る戦略。損益の形はネイキッドのプット売りと同じです。</td><td><a href="#ch11-7">11-7</a></td></tr>
+<tr id="glossary-t036"><td><b>恐怖指数</b></td><td>Fear Index</td><td>VIXや日経平均VIの通称。オプション価格から計算した市場の予想変動率で、急落時に跳ね上がりやすい。</td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr id="glossary-t037"><td><b>金利</b></td><td>Interest Rate</td><td>オプション価格を決める要素の一つ。金利が上がるとコールは上がり、プットは下がります（ロー）。</td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr id="glossary-t038"><td><b>グリークス</b></td><td>Greeks</td><td>価格がどの要因にどれだけ反応するかを表す指標の総称（デルタ・ガンマ・セータ・ベガ・ロー）。ギリシャ文字で表すことからこう呼びます。</td><td><a href="#ch05-1">5-1</a></td></tr>
+<tr id="glossary-t039"><td><b>繰越控除（損失の3年繰越）</b></td><td>Loss Carryforward</td><td>先物取引に係る雑所得等の損失を、確定申告を続けることで翌年以後3年間の同じ区分の利益から差し引ける制度。</td><td><a href="#ch24-3">24-3</a></td></tr>
+<tr id="glossary-t040"><td><b>クリスマス・ツリー</b></td><td>Christmas Tree</td><td>等間隔の4つの権利行使価格で、1枚買い・（1つ飛ばして）3枚売り・2枚買いと組む、バタフライの変形。</td><td><a href="#ch15-10">15-10</a></td></tr>
+<tr id="glossary-t041"><td><b>クレジット</b></td><td>Credit</td><td>ポジションを建てるときに差し引きで受け取る金額。受け取る戦略をクレジット戦略と呼びます。</td><td><a href="#ch10-5">10-5</a></td></tr>
+<tr id="glossary-t042"><td><b>クレジット・スプレッド</b></td><td>Credit Spread</td><td>高いプレミアムを売り、安いプレミアムを買って差額を受け取るスプレッド。ブル・プット・スプレッドやベア・コール・スプレッドが代表です。</td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr id="glossary-t043"><td><b>限月</b></td><td>Contract Month</td><td>満期を迎える月。日経225オプションでは月次の限月に加え週次の満期もあります。</td><td><a href="#ch02-2">2-2</a>・<a href="#ch07-3">7-3</a></td></tr>
+<tr id="glossary-t044"><td><b>現在価値</b></td><td>Present Value</td><td>将来受け払いするお金を、金利で割り引いて今の金額に直したもの。プット・コール・パリティで権利行使価格を割り引くときに使います。</td><td><a href="#ch04-7">4-7</a></td></tr>
+<tr id="glossary-t045"><td><b>原資産</b></td><td>Underlying Asset</td><td>オプションが売買の対象にしているもの（株、株価指数、ETF、先物など）。</td><td><a href="#ch02-1">2-1</a></td></tr>
+<tr id="glossary-t046"><td><b>源泉徴収（米国）</b></td><td>Withholding Tax</td><td>支払いの時点で税金を差し引く仕組み。米国の配当は、W-8BENを提出すると租税条約の軽減税率が適用されます。</td><td><a href="#ch24-8">24-8</a></td></tr>
+<tr id="glossary-t047"><td><b>現物受渡し</b></td><td>Physical Delivery</td><td>権利行使のときに、原資産そのもの（株など）を受け渡して決済する方法。米国の個別株・ETFオプションが該当します。</td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr id="glossary-t048"><td><b>権利落ち日（配当落ち日）</b></td><td>Ex-Dividend Date</td><td>この日以降に株を買っても配当を受け取れない日。前日に、ITMのコールの売り手が早期割当を受けやすくなります。</td><td><a href="#ch06-8">6-8</a>・<a href="#ch08-7">8-7</a></td></tr>
+<tr id="glossary-t049"><td><b>権利行使</b></td><td>Exercise</td><td>オプションの買い手が、権利を実際に使うこと。</td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr id="glossary-t050"><td><b>権利行使価格（ストライク）</b></td><td>Strike Price</td><td>権利を使ったときに原資産を売買する価格。記号は K がよく使われます。</td><td><a href="#ch02-1">2-1</a></td></tr>
+<tr id="glossary-t051"><td><b>合成先物</b></td><td>Synthetic Futures</td><td>同じ権利行使価格のコール買いとプット売り（またはその逆）で、先物と同じ損益を作ったもの。</td><td><a href="#ch17-8">17-8</a></td></tr>
+<tr id="glossary-t052"><td><b>合成ロング／合成ショート</b></td><td>Synthetic Long / Synthetic Short</td><td>コール買い＋プット売り（同じK・同じ満期）で原資産の買いと同じ損益を作る形。逆に組めば合成ショートです。</td><td><a href="#ch17-2">17-2</a></td></tr>
+<tr id="glossary-t053"><td><b>コリドー</b></td><td>Corridor</td><td>一定の範囲（回廊）に収まることに賭けるレンジ戦略の呼び名。資料によって指す中身が異なるため、組み方で確認します。</td><td><a href="#ch15-7">15-7</a></td></tr>
+<tr id="glossary-t054"><td><b>コール（コール・オプション）</b></td><td>Call Option</td><td>原資産を決められた価格で「買う権利」。原資産が上がるほど価値が増えます。</td><td><a href="#ch01-2">1-2</a></td></tr>
+<tr id="glossary-t055"><td><b>コンタンゴ</b></td><td>Contango</td><td>期先のIV（または先物価格）が期近より高い、通常の状態。</td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t056"><td><b>コンバージョン</b></td><td>Conversion</td><td>原資産の買い＋合成ショート（コール売り・プット買い）で、価格のずれから利益を確定させる裁定取引。</td><td><a href="#ch17-4">17-4</a></td></tr>
+<tr id="glossary-t057"><td><b>コンボ注文</b></td><td>Combo Order</td><td>複数の脚を1つの注文として同時に発注する方法。片側だけ約定するレッギングのリスクを避けられます。</td><td><a href="#ch06-2">6-2</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-sa">さ行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t058"><td><b>最終取引日</b></td><td>Last Trading Day</td><td>市場で売買できる最後の日。日経225オプションではSQ日の前営業日が原則です。</td><td><a href="#ch02-2">2-2</a>・<a href="#ch06-6">6-6</a></td></tr>
+<tr id="glossary-t059"><td><b>最大ドローダウン</b></td><td>Maximum Drawdown (MDD)</td><td>資金が過去の最高値からどこまで下がったかの最大値。最悪のときにどれだけ耐える必要があったかを表します。</td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr id="glossary-t060"><td><b>最大利益・最大損失</b></td><td>Maximum Profit / Maximum Loss</td><td>満期時の損益図の一番高い点と一番低い点。売り戦略では最大損失が「無制限」になることがあります。</td><td><a href="#ch03-3">3-3</a></td></tr>
+<tr id="glossary-t061"><td><b>裁定取引（アービトラージ）</b></td><td>Arbitrage</td><td>同じ価値のものの価格のずれを利用して、理論上リスクなしに利益を得ようとする取引。実務では手数料・金利・早期割当などで崩れます。</td><td><a href="#ch17-4">17-4</a>・<a href="#ch17-7">17-7</a></td></tr>
+<tr id="glossary-t062"><td><b>先物取引に係る雑所得等</b></td><td>Miscellaneous Income from Futures Transactions</td><td>日本の上場先物・オプションの損益が入る税の区分。他の所得と分けて申告分離課税になります（執筆時点）。</td><td><a href="#ch24-2">24-2</a></td></tr>
+<tr id="glossary-t063"><td><b>差金決済</b></td><td>Cash Settlement</td><td>権利行使のとき、原資産を受け渡さず差額のお金だけで決済する方法。日経225オプションや米国の指数オプションが該当します。</td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr id="glossary-t064"><td><b>指値注文</b></td><td>Limit Order</td><td>価格を指定して出す注文。オプションでは成行を避け、ビッドとアスクの間に指値を置くのが基本です。</td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr id="glossary-t065"><td><b>残存期間</b></td><td>Time to Expiration</td><td>満期までの残りの時間。長いほど時間的価値は大きくなります。</td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr id="glossary-t066"><td><b>ジェイド・リザード</b></td><td>Jade Lizard</td><td>OTMプットの売りとベア・コール・スプレッドを組み合わせた戦略。受取額がコール側の幅以上なら上昇側の損失がなくなります。</td><td><a href="#ch18-1">18-1</a></td></tr>
+<tr id="glossary-t067"><td><b>ジェリー・ロール</b></td><td>Jelly Roll</td><td>満期の異なる合成ロングと合成ショートを組み合わせ、2つの満期の間の金利と配当に相当する価格差を取引する形。</td><td><a href="#ch17-6">17-6</a></td></tr>
+<tr id="glossary-t068"><td><b>シーガル</b></td><td>Seagull</td><td>垂直スプレッドに、反対側のOTMオプションの売りを加えてコストを下げた3本の脚の戦略。</td><td><a href="#ch18-3">18-3</a></td></tr>
+<tr id="glossary-t069"><td><b>時間差戦略</b></td><td>Time Spread / Horizontal Spread</td><td>満期の異なるオプションを組み合わせる戦略（カレンダー、ダイアゴナルなど）。期近と期先の減価の速さの違いを利用します。</td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr id="glossary-t070"><td><b>時間的価値</b></td><td>Time Value / Extrinsic Value</td><td>プレミアムから本質的価値を引いた残り。満期に向けて減り、満期には0になります。</td><td><a href="#ch02-6">2-6</a></td></tr>
+<tr id="glossary-t071"><td><b>時間ルール（残り21日）</b></td><td>21 DTE Rule</td><td>満期の一定日数前（例：残り21日）で手仕舞うという、ガンマの急増を避けるための管理ルールの例。</td><td><a href="#ch20-4">20-4</a></td></tr>
+<tr id="glossary-t072"><td><b>実現ボラティリティ（RV）</b></td><td>Realized Volatility</td><td>実際に起きた値動きから計算した変動率。ヒストリカル・ボラティリティとほぼ同じ意味で使われます。</td><td><a href="#ch04-8">4-8</a>・<a href="#ch14-1">14-1</a></td></tr>
+<tr id="glossary-t073"><td><b>自動権利行使</b></td><td>Automatic Exercise</td><td>満期にITMのオプションを、申告がなくても自動で権利行使する仕組み。日本はSQ値、米国はOCCの基準で判定されます。</td><td><a href="#ch06-6">6-6</a>・<a href="#ch06-7">6-7</a></td></tr>
+<tr id="glossary-t074"><td><b>自動売買</b></td><td>Automated Trading</td><td>プログラムが条件に従って発注する取引。証券会社のAPIや取引ツール連携などで接続します。</td><td><a href="#ch25-1">25-1</a></td></tr>
+<tr id="glossary-t075"><td><b>シナリオ分析</b></td><td>Scenario Analysis</td><td>原資産価格やIVが一定幅動いたと仮定して、ポジションの損益を事前に計算しておく方法。</td><td><a href="#ch21-6">21-6</a></td></tr>
+<tr id="glossary-t076"><td><b>シャープ・レシオ</b></td><td>Sharpe Ratio</td><td>（年率リターン−無リスク金利）÷年率の標準偏差。値動きのぶれ1単位あたりの上乗せリターンです。</td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr id="glossary-t077"><td><b>週次限月（ウィークリー）</b></td><td>Weekly Options</td><td>1週間ごとに満期が来るオプション。日経225ミニオプションや米国の主要銘柄に設定されています。</td><td><a href="#ch07-4">7-4</a>・<a href="#ch08-5">8-5</a></td></tr>
+<tr id="glossary-t078"><td><b>祝日取引</b></td><td>Holiday Trading</td><td>日本の祝日に一部の先物・オプションを取引できる制度。</td><td><a href="#ch07-7">7-7</a></td></tr>
+<tr id="glossary-t079"><td><b>証拠金</b></td><td>Margin</td><td>売り手などが損失に備えて差し入れる担保。証拠金は損失の上限ではない点が重要です。</td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr id="glossary-t080"><td><b>乗数（取引単位）</b></td><td>Multiplier / Contract Size</td><td>オプション1枚が原資産のどれだけ分かを表す数。日経225オプションは1,000倍、ミニは100倍、米国株オプションは100株です。</td><td><a href="#ch02-4">2-4</a></td></tr>
+<tr id="glossary-t081"><td><b>ショート</b></td><td>Short</td><td>売り持ちのこと。オプションの売り手（ショート）は受け取ったプレミアムと引き換えに義務を負います。</td><td><a href="#ch01-4">1-4</a></td></tr>
+<tr id="glossary-t082"><td><b>ショート・カレンダー・スプレッド</b></td><td>Short Calendar Spread</td><td>同じ権利行使価格で期近を買い期先を売る、ロング・カレンダーの逆の戦略。</td><td><a href="#ch16-3">16-3</a></td></tr>
+<tr id="glossary-t083"><td><b>ショート・ガンマ</b></td><td>Short Gamma</td><td>ガンマがマイナスのポジション（オプションの売り）。大きく動くほど損失が加速します。</td><td><a href="#ch05-3">5-3</a></td></tr>
+<tr id="glossary-t084"><td><b>ショート・ストラドル</b></td><td>Short Straddle</td><td>同じ権利行使価格のコールとプットを売る戦略。動かなければ利益、大きく動くと損失は非常に大きくなります。</td><td><a href="#ch14-3">14-3</a></td></tr>
+<tr id="glossary-t085"><td><b>ショート・ストラングル</b></td><td>Short Strangle</td><td>OTMのプットとOTMのコールを売る戦略。利益の出る範囲は広いが、急変時の損失は非常に大きくなりえます。</td><td><a href="#ch14-5">14-5</a></td></tr>
+<tr id="glossary-t086"><td><b>ショート・バタフライ</b></td><td>Short Butterfly</td><td>ロング・バタフライの売り買いを逆にした形。大きく動けば受取額が利益になり、損失は限定されます。</td><td><a href="#ch15-3">15-3</a></td></tr>
+<tr id="glossary-t087"><td><b>申告分離課税</b></td><td>Separate Self-Assessment Taxation</td><td>他の所得と分けて税額を計算し、自分で申告する方式。日本の先物・オプションの損益はこの方式です（執筆時点）。</td><td><a href="#ch24-2">24-2</a></td></tr>
+<tr id="glossary-t088"><td><b>垂直スプレッド</b></td><td>Vertical Spread</td><td>同じ満期で権利行使価格の異なるオプションを1枚買い1枚売りする戦略の総称。損益の上下が限定されます。</td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr id="glossary-t089"><td><b>スキップ・ストライク・バタフライ</b></td><td>Skip-Strike Butterfly</td><td>バタフライの片側で権利行使価格を1つ飛ばした形。片側の損益分岐点をなくす方向に調整できます。</td><td><a href="#ch15-9">15-9</a></td></tr>
+<tr id="glossary-t090"><td><b>スキュー（ボラティリティ・スキュー）</b></td><td>Volatility Skew</td><td>権利行使価格によってIVが傾いている形。株価指数では低い権利行使価格のプットのIVが高くなりやすい。</td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t091"><td><b>ストラップ</b></td><td>Strap</td><td>同じ権利行使価格のコール2枚買い＋プット1枚買い。大きく動く、特に上昇を期待する戦略です。</td><td><a href="#ch14-8">14-8</a></td></tr>
+<tr id="glossary-t092"><td><b>ストリップ</b></td><td>Strip</td><td>同じ権利行使価格のプット2枚買い＋コール1枚買い。大きく動く、特に下落を期待する戦略です。</td><td><a href="#ch14-7">14-7</a></td></tr>
+<tr id="glossary-t093"><td><b>ストレステスト</b></td><td>Stress Test</td><td>急落やIVの急上昇など厳しい状況を仮定して、ポジションの損失を計算しておくこと。</td><td><a href="#ch21-6">21-6</a></td></tr>
+<tr id="glossary-t094"><td><b>スマイル（ボラティリティ・スマイル）</b></td><td>Volatility Smile</td><td>権利行使価格ごとのIVを並べると、両端が高く笑った口の形になる現象。</td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t095"><td><b>スリッページ</b></td><td>Slippage</td><td>想定した価格と実際に約定した価格の差。スプレッドの広い銘柄や急変時に大きくなります。</td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr id="glossary-t096"><td><b>セータ</b></td><td>Theta</td><td>時間が1日たったときのオプション価格の変化。買い手はマイナス（毎日の減価）、売り手はプラスです。</td><td><a href="#ch05-4">5-4</a></td></tr>
+<tr id="glossary-t097"><td><b>先物・オプション取引口座</b></td><td>Futures and Options Account</td><td>国内でオプションを取引するために開く専用の口座。知識・経験・資産などの審査があります。</td><td><a href="#ch06-1">6-1</a></td></tr>
+<tr id="glossary-t098"><td><b>相関</b></td><td>Correlation</td><td>2つの値動きの連動の度合い。同じ方向の売りを複数の銘柄で重ねても、急落時には相関が高まり分散になりません。</td><td><a href="#ch21-8">21-8</a></td></tr>
+<tr id="glossary-t099"><td><b>早期割当</b></td><td>Early Assignment</td><td>アメリカン・タイプで、満期前に売り手が権利行使の相手に指定されること。配当落ち前日のITMのコールで起きやすい。</td><td><a href="#ch06-8">6-8</a>・<a href="#ch08-7">8-7</a></td></tr>
+<tr id="glossary-t100"><td><b>想定元本</b></td><td>Notional Value</td><td>取引の対象になっている原資産の総額（原資産価格×乗数×枚数）。プレミアムが小さくても想定元本は大きいことがあります。</td><td><a href="#ch09-3">9-3</a></td></tr>
+<tr id="glossary-t101"><td><b>相場観</b></td><td>Market Outlook</td><td>原資産が上がる・下がる・動かない・大きく動く、という見通し。戦略選びの出発点です。</td><td><a href="#ch10-2">10-2</a></td></tr>
+<tr id="glossary-t102"><td><b>損益図（ペイオフ・ダイアグラム）</b></td><td>Payoff Diagram</td><td>横軸に原資産価格、縦軸に損益をとり、ポジションの損益を描いた図。</td><td><a href="#ch03-1">3-1</a></td></tr>
+<tr id="glossary-t103"><td><b>損益通算</b></td><td>Loss Offset</td><td>同じ所得区分の中で利益と損失を相殺すること。日本の先物・オプションの損益は、上場株式の損益とは通算できません（執筆時点）。</td><td><a href="#ch24-3">24-3</a></td></tr>
+<tr id="glossary-t104"><td><b>損益比（ペイオフ・レシオ）</b></td><td>Payoff Ratio</td><td>平均利益÷平均損失。勝率とセットで見ないと、取引の良し悪しは判断できません。</td><td><a href="#ch21-3">21-3</a></td></tr>
+<tr id="glossary-t105"><td><b>損益分岐点</b></td><td>Breakeven Point</td><td>満期に損益がちょうど0になる原資産価格。ロング・コールなら権利行使価格＋プレミアムです。</td><td><a href="#ch03-3">3-3</a></td></tr>
+<tr id="glossary-t106"><td><b>損切り</b></td><td>Stop-Loss</td><td>損失が一定の基準に達したら決済するルール。受取額の2倍、デルタ、損益図上の位置などを基準にします。</td><td><a href="#ch20-3">20-3</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ta">た行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t107"><td><b>ダイアゴナル・スプレッド</b></td><td>Diagonal Spread</td><td>満期も権利行使価格も異なるオプションを組み合わせる戦略（例：期先のATMを買い、期近のOTMを売る）。</td><td><a href="#ch16-4">16-4</a></td></tr>
+<tr id="glossary-t108"><td><b>タイム・ディケイ</b></td><td>Time Decay</td><td>時間の経過で時間的価値が減ること。ATMは満期直前に減少が加速します。</td><td><a href="#ch04-4">4-4</a></td></tr>
+<tr id="glossary-t109"><td><b>建玉</b></td><td>Open Position</td><td>決済されずに残っているポジション。</td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr id="glossary-t110"><td><b>ダブル・カレンダー／ダブル・ダイアゴナル</b></td><td>Double Calendar / Double Diagonal</td><td>下側のプットと上側のコールで、それぞれカレンダー（ダイアゴナル）を組む戦略。利益の出る範囲が広がります。</td><td><a href="#ch16-5">16-5</a></td></tr>
+<tr id="glossary-t111"><td><b>短期ローテーション・カラー</b></td><td>Short-Term Rotating Collar（通称 Daily Collar）</td><td>原資産を持ったまま、週次などの短い満期でカラーを組み直し続ける手法。本書では通称「デイリー・カラー」をこう呼んで検証しています。</td><td><a href="#ch12-5">12-5</a></td></tr>
+<tr id="glossary-t112"><td><b>単純年率換算</b></td><td>Simple Annualization</td><td>期間の利回りに1年の回数を掛けて年率に直す方法（r×365÷日数）。うまくいった期間だけを掛け算しがちな点に注意します。</td><td><a href="#ch23-2">23-2</a></td></tr>
+<tr id="glossary-t113"><td><b>チャーム</b></td><td>Charm</td><td>時間がたったときのデルタの変化（デルタ・ディケイ）。二次的グリークスの一つです。</td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr id="glossary-t114"><td><b>調整</b></td><td>Adjustment</td><td>建てた後に、片側を閉じる・脚を足す・ロールするなどしてポジションの形を変えること。</td><td><a href="#ch20-6">20-6</a></td></tr>
+<tr id="glossary-t115"><td><b>調整後オプション</b></td><td>Adjusted Option</td><td>株式分割や合併などで、1枚あたりの受渡し株数や権利行使価格が変更されたオプション。中身を確認するまで取引しないのが原則です。</td><td><a href="#ch02-4">2-4</a>・<a href="#ch08-2">8-2</a></td></tr>
+<tr id="glossary-t116"><td><b>デビット</b></td><td>Debit</td><td>ポジションを建てるときに差し引きで支払う金額。支払う戦略をデビット戦略と呼びます。</td><td><a href="#ch10-5">10-5</a></td></tr>
+<tr id="glossary-t117"><td><b>デビット・スプレッド</b></td><td>Debit Spread</td><td>高いプレミアムを買い、安いプレミアムを売って差額を支払うスプレッド。ブル・コール・スプレッドやベア・プット・スプレッドが代表です。</td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr id="glossary-t118"><td><b>デルタ</b></td><td>Delta</td><td>原資産価格が1動いたときのオプション価格の変化。株数換算や、満期にITMになる確率の目安としても使われます。</td><td><a href="#ch05-2">5-2</a></td></tr>
+<tr id="glossary-t119"><td><b>デルタ・ニュートラル</b></td><td>Delta Neutral</td><td>ポジション全体のデルタが0に近く、小さな値動きでは損益がほぼ動かない状態。</td><td><a href="#ch14-9">14-9</a></td></tr>
+<tr id="glossary-t120"><td><b>デルタ・ヘッジ</b></td><td>Delta Hedge</td><td>原資産や先物を売買して、ポジションのデルタを打ち消すこと。</td><td><a href="#ch20-7">20-7</a>・<a href="#ch18-7">18-7</a></td></tr>
+<tr id="glossary-t121"><td><b>テールリスク</b></td><td>Tail Risk</td><td>確率は小さいが起きると非常に大きな損失になる、分布の端（テール）のリスク。</td><td><a href="#ch21-4">21-4</a></td></tr>
+<tr id="glossary-t122"><td><b>転売</b></td><td>Sell to Close</td><td>買いのポジションを売って閉じる注文。</td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr id="glossary-t123"><td><b>特定口座</b></td><td>Specified Account</td><td>証券会社が年間の損益を計算してくれる口座。日本の先物・オプションは対象外です（執筆時点）。</td><td><a href="#ch24-4">24-4</a></td></tr>
+<tr id="glossary-t124"><td><b>取引コスト</b></td><td>Transaction Costs</td><td>手数料、ビッド・アスク・スプレッド、スリッページ、税などの合計。短期で回転させる戦略ほど重くなります。</td><td><a href="#ch06-9">6-9</a></td></tr>
+<tr id="glossary-t125"><td><b>トレード計画</b></td><td>Trade Plan</td><td>建てる前に、目的・利益確定・損切り・時間の出口を書き出しておくこと。</td><td><a href="#ch20-1">20-1</a></td></tr>
+<tr id="glossary-t126"><td><b>トレード日誌</b></td><td>Trading Journal</td><td>取引の理由・結果・感情を記録するノート。月次の振り返りで同じ失敗を防ぎます。</td><td><a href="#ch22-5">22-5</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-na">な行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t127"><td><b>成行注文</b></td><td>Market Order</td><td>価格を指定せずに出す注文。板の薄いオプションでは、思わぬ価格で約定する危険があります。</td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr id="glossary-t128"><td><b>二項モデル</b></td><td>Binomial Model</td><td>原資産が上がるか下がるかの2通りに分かれる木を使ってオプションを値付けする方法。段数を増やすとブラック・ショールズ式に近づきます。</td><td><a href="#ch04-5">4-5</a></td></tr>
+<tr id="glossary-t129"><td><b>二次的グリークス</b></td><td>Second-Order Greeks</td><td>グリークス自体の変化を表す指標（バンナ、ボマ、チャームなど）。急変時のデルタやベガのずれを説明します。</td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr id="glossary-t130"><td><b>日経225オプション</b></td><td>Nikkei 225 Options</td><td>日経平均株価を原資産とする大阪取引所のオプション。乗数1,000、ヨーロピアン・タイプ、差金決済です。</td><td><a href="#ch07-2">7-2</a></td></tr>
+<tr id="glossary-t131"><td><b>日経225ミニオプション</b></td><td>Nikkei 225 mini Options</td><td>日経225オプションの10分の1（乗数100）の大きさのオプション。2023年5月に上場し、毎週水曜日・金曜日に満期が来ます。</td><td><a href="#ch07-4">7-4</a></td></tr>
+<tr id="glossary-t132"><td><b>日経平均VI（日経平均ボラティリティー・インデックス）</b></td><td>Nikkei Stock Average Volatility Index</td><td>日経平均オプションの価格から算出する、日経平均の1か月先の予想変動率（年率）。</td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr id="glossary-t133"><td><b>ネイキッド・ショート・コール</b></td><td>Naked Short Call</td><td>原資産を持たずにコールを売る戦略。上昇時の損失は理論上無制限です。</td><td><a href="#ch11-5">11-5</a></td></tr>
+<tr id="glossary-t134"><td><b>ネイキッド・ショート・プット</b></td><td>Naked Short Put</td><td>現金を全額確保せず証拠金でプットを売る戦略。原資産が0まで下がれば、権利行使価格−プレミアムの損失になります。</td><td><a href="#ch11-6">11-6</a></td></tr>
+<tr id="glossary-t135"><td><b>年平均成長率（CAGR）</b></td><td>Compound Annual Growth Rate</td><td>複数年の成績を複利で1年あたりに直した値。（最終資金÷当初資金）の（1÷年数）乗−1です。</td><td><a href="#ch23-2">23-2</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ha">は行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t136"><td><b>配当</b></td><td>Dividend</td><td>満期までに配当があると、配当落ちで株価が下がる分、コールは安くプットは高くなります。</td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr id="glossary-t137"><td><b>配当狙いの戦略</b></td><td>Dividend Play</td><td>権利落ち日前の株買いとディープITMのコール売りなどで配当を狙う手法。早期割当で狙いが外れることがあります。</td><td><a href="#ch18-6">18-6</a></td></tr>
+<tr id="glossary-t138"><td><b>バタフライ（ロング・バタフライ）</b></td><td>Long Butterfly</td><td>等間隔の3つの権利行使価格で、1枚買い・2枚売り・1枚買いと組む戦略。満期に中央の権利行使価格付近で最大利益になります。</td><td><a href="#ch15-2">15-2</a></td></tr>
+<tr id="glossary-t139"><td><b>バックスプレッド</b></td><td>Backspread</td><td>ATM付近を1枚売り、OTMを2枚買う形。レシオ・スプレッドの逆で、大きく動くことに賭けます。</td><td><a href="#ch13-9">13-9</a></td></tr>
+<tr id="glossary-t140"><td><b>バックワーデーション</b></td><td>Backwardation</td><td>期近のIV（または先物価格）が期先より高い状態。急落時の株価指数のIVで起きやすい。</td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t141"><td><b>幅</b></td><td>Width</td><td>スプレッドの2つの権利行使価格の差。幅が広いほど最大利益・最大損失が大きくなります。</td><td><a href="#ch13-1">13-1</a>・<a href="#ch13-7">13-7</a></td></tr>
+<tr id="glossary-t142"><td><b>ハーフ・ケリー</b></td><td>Half Kelly</td><td>ケリー基準で求めた賭け率の半分に抑える実務的な方法。成長率の多くを残しつつ、資金の振れ幅を半分程度にできます。</td><td><a href="#ch21-5">21-5</a></td></tr>
+<tr id="glossary-t143"><td><b>バンナ</b></td><td>Vanna</td><td>IVが動いたときのデルタの変化（株価が動いたときのベガの変化）。二次的グリークスの一つです。</td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr id="glossary-t144"><td><b>ヒストリカル・ボラティリティ（HV）</b></td><td>Historical Volatility (HV)</td><td>過去の実際の値動きから計算した変動率（年率）。日々の変化率の標準偏差×√252で求めます。</td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr id="glossary-t145"><td><b>ビッグ・リザード</b></td><td>Big Lizard</td><td>ATMのショート・ストラドルにOTMコールの買いを加え、上昇側の損失をなくそうとする戦略。</td><td><a href="#ch18-2">18-2</a></td></tr>
+<tr id="glossary-t146"><td><b>ビッド・アスク・スプレッド</b></td><td>Bid-Ask Spread</td><td>買い気配（ビッド）と売り気配（アスク）の差。売買のたびにかかる見えないコストです。</td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr id="glossary-t147"><td><b>標準偏差</b></td><td>Standard Deviation</td><td>データのばらつきの大きさ。ボラティリティは変化率の年率の標準偏差です。</td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr id="glossary-t148"><td><b>ピン・リスク</b></td><td>Pin Risk</td><td>満期に原資産が売った権利行使価格ちょうど付近で終わり、割当を受けるかどうか分からなくなるリスク。</td><td><a href="#ch06-8">6-8</a>・<a href="#ch20-9">20-9</a></td></tr>
+<tr id="glossary-t149"><td><b>ファットテール</b></td><td>Fat Tail</td><td>実際の値動きの分布の端が、正規分布の想定より厚いこと。極端な動きが理論より多く起きます。</td><td><a href="#ch21-4">21-4</a></td></tr>
+<tr id="glossary-t150"><td><b>プアマンズ・カバード・コール</b></td><td>Poor Man&#x27;s Covered Call</td><td>株の代わりに期先のディープITMコール（LEAPS）を買い、期近のOTMコールを売る戦略。</td><td><a href="#ch16-6">16-6</a></td></tr>
+<tr id="glossary-t151"><td><b>フェンス</b></td><td>Fence</td><td>カラーの別名、またはカラーにOTMプットの売りを足した3本足の形（スリーウェイ・カラー）。資料によって定義が異なります。</td><td><a href="#ch12-4">12-4</a></td></tr>
+<tr id="glossary-t152"><td><b>プット（プット・オプション）</b></td><td>Put Option</td><td>原資産を決められた価格で「売る権利」。原資産が下がるほど価値が増え、下落の保険として使えます。</td><td><a href="#ch01-2">1-2</a></td></tr>
+<tr id="glossary-t153"><td><b>プット・コール・パリティ</b></td><td>Put-Call Parity</td><td>同じ権利行使価格・同じ満期のコールとプットの価格の関係式。コール−プット＝原資産−権利行使価格の現在価値（配当なし）。</td><td><a href="#ch04-7">4-7</a></td></tr>
+<tr id="glossary-t154"><td><b>ブラック・ショールズ・モデル</b></td><td>Black-Scholes Model</td><td>原資産価格・権利行使価格・残存期間・ボラティリティ・金利からヨーロピアン・オプションの理論価格を求める式。</td><td><a href="#ch04-6">4-6</a></td></tr>
+<tr id="glossary-t155"><td><b>ブラックマンデー</b></td><td>Black Monday</td><td>1987年10月19日の米国株の歴史的急落。以後、株価指数のプットのIVが高くなるスキューが定着したとされます。</td><td><a href="#ch21-9">21-9</a>・<a href="#ch04-9">4-9</a></td></tr>
+<tr id="glossary-t156"><td><b>ブル・コール・スプレッド</b></td><td>Bull Call Spread</td><td>低い権利行使価格のコール買い＋高い権利行使価格のコール売り。上昇に賭け、損益とも限定されるデビット戦略です。</td><td><a href="#ch13-2">13-2</a></td></tr>
+<tr id="glossary-t157"><td><b>ブル・プット・スプレッド</b></td><td>Bull Put Spread</td><td>高い権利行使価格のプット売り＋低い権利行使価格のプット買い。大きく下がらなければ受取額が利益になるクレジット戦略です。</td><td><a href="#ch13-4">13-4</a></td></tr>
+<tr id="glossary-t158"><td><b>プレミアム</b></td><td>Premium</td><td>オプションの値段（1単位あたり）。本質的価値と時間的価値の合計です。</td><td><a href="#ch02-3">2-3</a></td></tr>
+<tr id="glossary-t159"><td><b>ブロークン・ウィング・バタフライ</b></td><td>Broken Wing Butterfly</td><td>バタフライの片方の羽だけ幅を広げた形。片側のリスクをなくす代わりに、反対側のリスクが増えます。</td><td><a href="#ch15-8">15-8</a></td></tr>
+<tr id="glossary-t160"><td><b>プロスペクト理論</b></td><td>Prospect Theory</td><td>同じ額でも損失は利益より約2倍つらく感じる、という人の判断の偏りを説明する理論。損切りの遅れの原因になります。</td><td><a href="#ch22-2">22-2</a></td></tr>
+<tr id="glossary-t161"><td><b>プロテクティブ・プット</b></td><td>Protective Put</td><td>保有する原資産にプットの買いを付けて、下落の損失を限定する戦略。株と同時に買うものをマリード・プットと呼びます。</td><td><a href="#ch12-2">12-2</a></td></tr>
+<tr id="glossary-t162"><td><b>ベア・コール・スプレッド</b></td><td>Bear Call Spread</td><td>低い権利行使価格のコール売り＋高い権利行使価格のコール買い。大きく上がらなければ受取額が利益になるクレジット戦略です。</td><td><a href="#ch13-5">13-5</a></td></tr>
+<tr id="glossary-t163"><td><b>ベア・プット・スプレッド</b></td><td>Bear Put Spread</td><td>高い権利行使価格のプット買い＋低い権利行使価格のプット売り。下落に賭け、損益とも限定されるデビット戦略です。</td><td><a href="#ch13-3">13-3</a></td></tr>
+<tr id="glossary-t164"><td><b>ベガ</b></td><td>Vega</td><td>IVが1ポイント（1%）動いたときのオプション価格の変化。買い手はプラス、売り手はマイナスです。</td><td><a href="#ch05-5">5-5</a></td></tr>
+<tr id="glossary-t165"><td><b>ベーシス</b></td><td>Basis</td><td>先物価格と原資産（現物指数）の価格の差。限月の違う先物とオプションを組むと、この差の分だけ損益がずれます。</td><td><a href="#ch12-1">12-1</a></td></tr>
+<tr id="glossary-t166"><td><b>ベータ加重デルタ</b></td><td>Beta-Weighted Delta</td><td>別々の銘柄のデルタを、指数（例：SPY）に対する感応度で換算して合計したもの。ポートフォリオ全体の方向リスクを1つの数字で測れます。</td><td><a href="#ch21-7">21-7</a></td></tr>
+<tr id="glossary-t167"><td><b>ヘッジ</b></td><td>Hedge</td><td>保有資産の損失を、反対の値動きをするポジションで小さくすること。オプションが存在する大きな理由の一つです。</td><td><a href="#ch01-5">1-5</a></td></tr>
+<tr id="glossary-t168"><td><b>ペーパートレード</b></td><td>Paper Trading</td><td>実際のお金を使わず、記録やデモ口座で売買を試すこと。</td><td><a href="#ch00-4">0-4</a></td></tr>
+<tr id="glossary-t169"><td><b>ポジション全体のグリークス</b></td><td>Position Greeks</td><td>複数の脚のグリークスを枚数・乗数を掛けて合計したもの。戦略全体の性格を表します。</td><td><a href="#ch05-8">5-8</a></td></tr>
+<tr id="glossary-t170"><td><b>ポジションサイズ</b></td><td>Position Sizing</td><td>1回の取引の大きさ（枚数）の決め方。1トレードの最大損失を資金の1〜5%程度に抑えるのが基本とされます。</td><td><a href="#ch21-2">21-2</a></td></tr>
+<tr id="glossary-t171"><td><b>ボックス・スプレッド</b></td><td>Box Spread</td><td>ブル・コール・スプレッドとベア・プット・スプレッドを同じ権利行使価格で組み、満期の価値を幅で固定した形。実質的に資金の貸し借りになります。</td><td><a href="#ch17-5">17-5</a></td></tr>
+<tr id="glossary-t172"><td><b>ポートフォリオ・マージン</b></td><td>Portfolio Margin</td><td>米国で、口座全体の損益をシナリオで計算して証拠金を決める方式。資金効率は高いが、急変時に必要額が急増しえます。</td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr id="glossary-t173"><td><b>ボマ（ボルガ）</b></td><td>Vomma / Volga</td><td>IVが動いたときのベガの変化。二次的グリークスの一つです。</td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr id="glossary-t174"><td><b>ボラティリティ</b></td><td>Volatility</td><td>値動きの激しさを表す年率の変動率。オプション価格を決める最も重要な要素の一つです。</td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr id="glossary-t175"><td><b>ボラティリティ・アービトラージ</b></td><td>Volatility Arbitrage</td><td>オプションを売買してデルタ・ヘッジを続け、IVと実現ボラティリティの差を収益にしようとする手法。</td><td><a href="#ch18-7">18-7</a></td></tr>
+<tr id="glossary-t176"><td><b>ボラティリティ観</b></td><td>Volatility Outlook</td><td>IVが上がるか下がるか、原資産が大きく動くか動かないかの見通し。相場観と合わせて戦略を選びます。</td><td><a href="#ch10-3">10-3</a></td></tr>
+<tr id="glossary-t177"><td><b>ボラティリティ・リスク・プレミアム</b></td><td>Volatility Risk Premium</td><td>IVが、その後に実現したボラティリティを平均的に上回る傾向。売り戦略の収益源とされますが、急変時の大損と表裏一体です。</td><td><a href="#ch23-4">23-4</a></td></tr>
+<tr id="glossary-t178"><td><b>ボラティリティを買う・売る</b></td><td>Long / Short Volatility</td><td>オプションを買ってベガ・ガンマをプラスにすること（買う）と、売ってマイナスにすること（売る）。</td><td><a href="#ch10-7">10-7</a></td></tr>
+<tr id="glossary-t179"><td><b>本質的価値</b></td><td>Intrinsic Value</td><td>いま権利を使ったら得られる金額（0以上）。コールは max(原資産−K, 0)、プットは max(K−原資産, 0) です。</td><td><a href="#ch02-6">2-6</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ma">ま行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t180"><td><b>マーケットメイカー</b></td><td>Market Maker</td><td>常に売りと買いの両方の気配を出して売買の相手になる業者。受けたリスクは先物などでヘッジします。</td><td><a href="#ch01-5">1-5</a>・<a href="#ch07-1">7-1</a></td></tr>
+<tr id="glossary-t181"><td><b>マリード・プット</b></td><td>Married Put</td><td>株を買うのと同時にプットを買う形。損益の形はプロテクティブ・プットと同じです。</td><td><a href="#ch12-2">12-2</a></td></tr>
+<tr id="glossary-t182"><td><b>満期</b></td><td>Expiration</td><td>オプションの権利が消える期限。満期日と最終取引日は同じとは限りません。</td><td><a href="#ch02-2">2-2</a></td></tr>
+<tr id="glossary-t183"><td><b>満期週</b></td><td>Expiration Week</td><td>満期を迎える週。ガンマが急増し、ピン・リスクやSQ前の手仕舞い判断が必要になります。</td><td><a href="#ch20-9">20-9</a></td></tr>
+<tr id="glossary-t184"><td><b>満期にITMとなる確率</b></td><td>Probability of Expiring ITM</td><td>満期に権利行使価格を超える（プットは下回る）確率の目安。ブラック・ショールズ式ではN(d2)で、デルタも近い値になります。</td><td><a href="#ch05-2">5-2</a></td></tr>
+<tr id="glossary-t185"><td><b>無リスク金利</b></td><td>Risk-Free Rate</td><td>短期国債など、ほぼ確実に得られる利回り。ブラック・ショールズ式の r やシャープ・レシオで使います。</td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr id="glossary-t186"><td><b>メジャーSQ・マイナーSQ</b></td><td>Major SQ / Minor SQ</td><td>3・6・9・12月の第2金曜日で先物と重なるSQをメジャーSQ、それ以外の月をマイナーSQと呼びます。</td><td><a href="#ch07-3">7-3</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ya">や行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t187"><td><b>夜間取引（ナイト・セッション）</b></td><td>Night Session</td><td>日本の先物・オプションで、日中取引の後に行われる取引時間帯。板が薄くなりやすい点に注意します。</td><td><a href="#ch07-7">7-7</a></td></tr>
+<tr id="glossary-t188"><td><b>約定</b></td><td>Execution / Fill</td><td>注文が成立すること。オプションでは指値を工夫しないと不利な価格で約定しやすくなります。</td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr id="glossary-t189"><td><b>有価証券オプション</b></td><td>Securities Options</td><td>日本の個別株を原資産とするオプション。制度はあるが、多くの銘柄で流動性が乏しいのが現状です。</td><td><a href="#ch07-6">7-6</a></td></tr>
+<tr id="glossary-t190"><td><b>ヨーロピアン・タイプ</b></td><td>European Style</td><td>満期日にだけ権利行使できるオプション。日経225オプションや米国のSPXなど指数オプションが該当します。</td><td><a href="#ch02-7">2-7</a></td></tr>
+<tr id="glossary-t191"><td><b>呼値（刻み）</b></td><td>Tick Size</td><td>注文で指定できる価格の最小単位。</td><td><a href="#ch06-3">6-3</a>・<a href="#ch07-2">7-2</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-ra">ら行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t192"><td><b>ラダー</b></td><td>Ladder</td><td>垂直スプレッドに、さらに外側の権利行使価格の売り（または買い）を1本足した3本の脚の形。</td><td><a href="#ch13-10">13-10</a></td></tr>
+<tr id="glossary-t193"><td><b>利益確定</b></td><td>Profit Taking</td><td>含み益が一定の基準（例：受取額の50%）に達したら決済するルール。</td><td><a href="#ch20-2">20-2</a></td></tr>
+<tr id="glossary-t194"><td><b>リスク限定型・リスク無限定型</b></td><td>Defined Risk / Undefined Risk</td><td>最大損失が決まっている戦略と、理論上無制限または非常に大きい戦略の区別。</td><td><a href="#ch10-6">10-6</a></td></tr>
+<tr id="glossary-t195"><td><b>リスク中立確率</b></td><td>Risk-Neutral Probability</td><td>オプションの値付けで使う計算上の確率（重み）。現実の確率とは異なります。</td><td><a href="#ch04-5">4-5</a></td></tr>
+<tr id="glossary-t196"><td><b>リスク・リバーサル</b></td><td>Risk Reversal</td><td>OTMプットの売りとOTMコールの買いを組み合わせた形。スキューの度合いを表す用語としても使われます。</td><td><a href="#ch17-3">17-3</a></td></tr>
+<tr id="glossary-t197"><td><b>リバーサル</b></td><td>Reversal</td><td>原資産の売り＋合成ロング（コール買い・プット売り）で価格のずれを取る裁定取引。コンバージョンの逆です。</td><td><a href="#ch17-4">17-4</a></td></tr>
+<tr id="glossary-t198"><td><b>流動性</b></td><td>Liquidity</td><td>売買のしやすさ。出来高・建玉・ビッド・アスク・スプレッドで判断します。</td><td><a href="#ch08-8">8-8</a></td></tr>
+<tr id="glossary-t199"><td><b>レシオ・スプレッド</b></td><td>Ratio Spread</td><td>買う枚数より売る枚数を多くした垂直スプレッド（例：1枚買い・2枚売り）。売りの1枚は裸になります。</td><td><a href="#ch13-8">13-8</a></td></tr>
+<tr id="glossary-t200"><td><b>レッギング</b></td><td>Legging</td><td>複数の脚を1本ずつ別々に発注すること。間に価格が動くと想定外の損益になるリスクがあります。</td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr id="glossary-t201"><td><b>レバレッジ</b></td><td>Leverage</td><td>小さな資金で大きな金額の値動きを取ること。利益も損失も拡大します。</td><td><a href="#ch00-3">0-3</a>・<a href="#ch11-3">11-3</a></td></tr>
+<tr id="glossary-t202"><td><b>ロー</b></td><td>Rho</td><td>金利が1%動いたときのオプション価格の変化。長期のオプションほど大きくなります。</td><td><a href="#ch05-6">5-6</a></td></tr>
+<tr id="glossary-t203"><td><b>ロスカット（強制決済）</b></td><td>Forced Liquidation</td><td>証拠金不足が解消されないときなどに、証券会社がポジションを強制的に決済すること。</td><td><a href="#ch06-5">6-5</a></td></tr>
+<tr id="glossary-t204"><td><b>ロール</b></td><td>Roll</td><td>いまのポジションを閉じ、満期や権利行使価格の違うポジションに乗り換えること。損失の先送りになりやすい点に注意します。</td><td><a href="#ch20-5">20-5</a></td></tr>
+<tr id="glossary-t205"><td><b>ロング</b></td><td>Long</td><td>買い持ちのこと。オプションの買い手（ロング）は、損失が支払ったプレミアムまでに限られます。</td><td><a href="#ch01-4">1-4</a></td></tr>
+<tr id="glossary-t206"><td><b>ロング・ガッツ</b></td><td>Long Guts</td><td>ITMのコールとITMのプットを買う形。損益はロング・ストラングルとほぼ同じです。</td><td><a href="#ch14-6">14-6</a></td></tr>
+<tr id="glossary-t207"><td><b>ロング・コール</b></td><td>Long Call</td><td>コールを買う戦略。上昇に賭け、損失は支払ったプレミアムまで、利益は理論上無制限です。</td><td><a href="#ch11-2">11-2</a></td></tr>
+<tr id="glossary-t208"><td><b>ロング・コンドル</b></td><td>Long Condor</td><td>4つの権利行使価格で買い・売り・売り・買いと組むレンジ戦略。バタフライより利益の出る範囲が広い。</td><td><a href="#ch15-5">15-5</a></td></tr>
+<tr id="glossary-t209"><td><b>ロング・ストラドル</b></td><td>Long Straddle</td><td>同じ権利行使価格のコールとプットを買う戦略。どちらかに大きく動けば利益になります。</td><td><a href="#ch14-2">14-2</a></td></tr>
+<tr id="glossary-t210"><td><b>ロング・ストラングル</b></td><td>Long Strangle</td><td>OTMのプットとOTMのコールを買う戦略。ストラドルより安いが、より大きな動きが必要です。</td><td><a href="#ch14-4">14-4</a></td></tr>
+<tr id="glossary-t211"><td><b>ロング・プット</b></td><td>Long Put</td><td>プットを買う戦略。下落に賭ける、または保有資産の保険として使います。</td><td><a href="#ch11-4">11-4</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-wa">わ行</h2>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t212"><td><b>割当（アサインメント）</b></td><td>Assignment</td><td>売り手が、買い手の権利行使の相手に指定されること。</td><td><a href="#ch02-8">2-8</a>・<a href="#ch20-8">20-8</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-en">英字・数字で始まる用語</h2>
+<p>アルファベットの略称で呼ぶのが一般的な用語です。数字、アルファベットの順に並べています。</p>
+<div class="tbl"><table>
+<thead><tr><th>日本語</th><th>英語</th><th>一言説明</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr id="glossary-t213"><td><b>0DTE（当日満期）</b></td><td>Zero Days to Expiration</td><td>満期当日のオプション、またはそれを使う取引。ガンマが非常に大きく、数分で損益が大きく動きます。</td><td><a href="#ch18-5">18-5</a>・<a href="#ch08-5">8-5</a></td></tr>
+<tr id="glossary-t214"><td><b>AM決済・PM決済</b></td><td>AM / PM Settlement</td><td>米国の指数オプションで、満期日の寄付きの値（AM）と引けの値（PM）のどちらで清算するかの区別。SPXの標準の月次はAM決済、週次などはPM決済です。</td><td><a href="#ch08-3">8-3</a></td></tr>
+<tr id="glossary-t215"><td><b>API</b></td><td>Application Programming Interface</td><td>プログラムから証券会社のシステムに発注・照会するための接続口。自動売買の中心的な方式です。</td><td><a href="#ch25-2">25-2</a></td></tr>
+<tr id="glossary-t216"><td><b>BXM・PUT指数</b></td><td>Cboe S&amp;P 500 BuyWrite Index / PutWrite Index</td><td>S&amp;P500のカバード・コール（BXM）と現金担保のプット売り（PUT）の成績を示す指数。売り戦略の長期実績の参考になります。</td><td><a href="#ch23-5">23-5</a></td></tr>
+<tr id="glossary-t217"><td><b>Cboe</b></td><td>Cboe Global Markets</td><td>米国の大手オプション取引所グループ。SPXオプションやVIXの算出元として知られます。</td><td><a href="#ch08-1">8-1</a></td></tr>
+<tr id="glossary-t218"><td><b>ETFオプション</b></td><td>ETF Options</td><td>SPYやQQQなど上場投資信託（ETF）を原資産とする米国のオプション。1枚＝100口で、アメリカン・タイプ・現物受渡しです。</td><td><a href="#ch08-2">8-2</a></td></tr>
+<tr id="glossary-t219"><td><b>FIX</b></td><td>Financial Information eXchange Protocol</td><td>金融機関の間で注文をやり取りするための標準的な通信規格。</td><td><a href="#ch25-2">25-2</a></td></tr>
+<tr id="glossary-t220"><td><b>IVクラッシュ</b></td><td>IV Crush</td><td>決算などのイベント通過後に、IVが急低下すること。株価が予想どおり動いても、オプションの買いが損をする原因になります。</td><td><a href="#ch18-4">18-4</a>・<a href="#ch05-5">5-5</a></td></tr>
+<tr id="glossary-t221"><td><b>IVランク／IVパーセンタイル</b></td><td>IV Rank / IV Percentile</td><td>今のIVが過去1年程度の範囲のどのあたりにあるかを示す指標。IVが高いか低いかの判断に使われます。</td><td><a href="#ch10-10">10-10</a>・<a href="#ch14-2">14-2</a></td></tr>
+<tr id="glossary-t222"><td><b>JPX（日本取引所グループ）</b></td><td>Japan Exchange Group</td><td>東京証券取引所・大阪取引所・日本証券クリアリング機構などを傘下に持つ持株会社。</td><td><a href="#ch07-1">7-1</a></td></tr>
+<tr id="glossary-t223"><td><b>JSCC（日本証券クリアリング機構）</b></td><td>Japan Securities Clearing Corporation</td><td>国内の上場デリバティブの清算機関。取引の相手方となって決済を保証し、証拠金の計算方法を定めます。</td><td><a href="#ch07-1">7-1</a>・<a href="#ch06-4">6-4</a></td></tr>
+<tr id="glossary-t224"><td><b>LEAPS</b></td><td>Long-Term Equity AnticiPation Securities</td><td>米国の、満期が1年を超える長期オプション。プアマンズ・カバード・コールなどで株の代わりに使われます。</td><td><a href="#ch08-5">8-5</a></td></tr>
+<tr id="glossary-t225"><td><b>NISA</b></td><td>Nippon Individual Savings Account</td><td>日本の少額投資非課税制度。オプション取引は対象外です（執筆時点）。</td><td><a href="#ch24-10">24-10</a></td></tr>
+<tr id="glossary-t226"><td><b>OCC</b></td><td>The Options Clearing Corporation</td><td>米国の上場オプションの清算機関。すべての取引の相手方となり、自動権利行使の基準も定めます。</td><td><a href="#ch08-1">8-1</a>・<a href="#ch06-7">6-7</a></td></tr>
+<tr id="glossary-t227"><td><b>Reg T（レギュレーションT）</b></td><td>Regulation T</td><td>米国の証拠金規制。ポジションの種類ごとに決まった計算式で必要証拠金を出す方式の基礎になります。</td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr id="glossary-t228"><td><b>SPX</b></td><td>S&amp;P 500 Index Options</td><td>S&amp;P500指数を原資産とするCboeの指数オプション。ヨーロピアン・タイプ、差金決済です。</td><td><a href="#ch08-4">8-4</a></td></tr>
+<tr id="glossary-t229"><td><b>SPY</b></td><td>SPDR S&amp;P 500 ETF Trust</td><td>S&amp;P500に連動するETF。そのオプションはアメリカン・タイプ・現物受渡しで、SPXとは性質が異なります。</td><td><a href="#ch08-4">8-4</a></td></tr>
+<tr id="glossary-t230"><td><b>SQ（特別清算指数）</b></td><td>Special Quotation</td><td>日経225オプションなどの満期清算に使う値。原則として満期日の構成銘柄の始値から算出します。</td><td><a href="#ch07-3">7-3</a>・<a href="#ch06-6">6-6</a></td></tr>
+<tr id="glossary-t231"><td><b>TTM（仲値）</b></td><td>Telegraphic Transfer Middle Rate</td><td>銀行が公表する外国為替の基準レート。米ドル建ての損益を円に換算するときに使います。</td><td><a href="#ch24-7">24-7</a></td></tr>
+<tr id="glossary-t232"><td><b>VaR方式</b></td><td>Value at Risk Method</td><td>過去の値動きなどから一定の確率で起こりうる損失を計算して、証拠金を決める方式。JSCCは2023年11月にSPAN方式から移行しました。</td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr id="glossary-t233"><td><b>VIX</b></td><td>Cboe Volatility Index</td><td>S&amp;P500のオプション価格から算出する、今後30日の予想変動率（年率）。恐怖指数とも呼ばれます。</td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr id="glossary-t234"><td><b>W-8BEN</b></td><td>Form W-8BEN</td><td>米国の税務上、外国人であることと租税条約の適用を届け出る書類。米国株の配当の源泉徴収率に関わります。</td><td><a href="#ch24-8">24-8</a></td></tr>
+<tr id="glossary-t235"><td><b>XSP（ミニSPX）</b></td><td>Mini-SPX Index Options</td><td>SPXの10分の1の大きさの指数オプション。ヨーロピアン・タイプ、差金決済です。</td><td><a href="#ch08-4">8-4</a></td></tr>
+</tbody></table></div>
+
+<h2 id="glossary-abc">英語から引く（ABC順）</h2>
+<p>英語の資料や米国の証券会社の画面で見かけた用語を、日本語に引き直すための索引です。日本語名をクリックすると上の表の該当行へ、節番号をクリックすると本文へ移動します。</p>
+<p><b>頭文字：</b><a href="#glossary-abc-num">0-9</a> <a href="#glossary-abc-a">A</a> <a href="#glossary-abc-b">B</a> <a href="#glossary-abc-c">C</a> <a href="#glossary-abc-d">D</a> <a href="#glossary-abc-e">E</a> <a href="#glossary-abc-f">F</a> <a href="#glossary-abc-g">G</a> <a href="#glossary-abc-h">H</a> <a href="#glossary-abc-i">I</a> <a href="#glossary-abc-j">J</a> <a href="#glossary-abc-l">L</a> <a href="#glossary-abc-m">M</a> <a href="#glossary-abc-n">N</a> <a href="#glossary-abc-o">O</a> <a href="#glossary-abc-p">P</a> <a href="#glossary-abc-r">R</a> <a href="#glossary-abc-s">S</a> <a href="#glossary-abc-t">T</a> <a href="#glossary-abc-u">U</a> <a href="#glossary-abc-v">V</a> <a href="#glossary-abc-w">W</a> <a href="#glossary-abc-z">Z</a></p>
+<div class="tbl"><table>
+<thead><tr><th>英語</th><th>日本語</th><th>詳しく</th></tr></thead>
+<tbody>
+<tr><th colspan="3" id="glossary-abc-num">0-9</th></tr>
+<tr><td>21 DTE Rule</td><td><a href="#glossary-t071">時間ルール（残り21日）</a></td><td><a href="#ch20-4">20-4</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-a">A</th></tr>
+<tr><td>Adjusted Option</td><td><a href="#glossary-t115">調整後オプション</a></td><td><a href="#ch02-4">2-4</a>・<a href="#ch08-2">8-2</a></td></tr>
+<tr><td>Adjustment</td><td><a href="#glossary-t114">調整</a></td><td><a href="#ch20-6">20-6</a></td></tr>
+<tr><td>AM / PM Settlement</td><td><a href="#glossary-t214">AM決済・PM決済</a></td><td><a href="#ch08-3">8-3</a></td></tr>
+<tr><td>American Style</td><td><a href="#glossary-t005">アメリカン・タイプ</a></td><td><a href="#ch02-7">2-7</a></td></tr>
+<tr><td>Application Programming Interface</td><td><a href="#glossary-t215">API</a></td><td><a href="#ch25-2">25-2</a></td></tr>
+<tr><td>Arbitrage</td><td><a href="#glossary-t061">裁定取引（アービトラージ）</a></td><td><a href="#ch17-4">17-4</a>・<a href="#ch17-7">17-7</a></td></tr>
+<tr><td>Assignment</td><td><a href="#glossary-t212">割当（アサインメント）</a></td><td><a href="#ch02-8">2-8</a>・<a href="#ch20-8">20-8</a></td></tr>
+<tr><td>At the Money (ATM)</td><td><a href="#glossary-t004">アット・ザ・マネー（ATM）</a></td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr><td>Automated Trading</td><td><a href="#glossary-t074">自動売買</a></td><td><a href="#ch25-1">25-1</a></td></tr>
+<tr><td>Automatic Exercise</td><td><a href="#glossary-t073">自動権利行使</a></td><td><a href="#ch06-6">6-6</a>・<a href="#ch06-7">6-7</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-b">B</th></tr>
+<tr><td>Back Month / Far Expiration</td><td><a href="#glossary-t030">期先</a></td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr><td>Backspread</td><td><a href="#glossary-t139">バックスプレッド</a></td><td><a href="#ch13-9">13-9</a></td></tr>
+<tr><td>Backwardation</td><td><a href="#glossary-t140">バックワーデーション</a></td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Basis</td><td><a href="#glossary-t165">ベーシス</a></td><td><a href="#ch12-1">12-1</a></td></tr>
+<tr><td>Bear Call Spread</td><td><a href="#glossary-t162">ベア・コール・スプレッド</a></td><td><a href="#ch13-5">13-5</a></td></tr>
+<tr><td>Bear Put Spread</td><td><a href="#glossary-t163">ベア・プット・スプレッド</a></td><td><a href="#ch13-3">13-3</a></td></tr>
+<tr><td>Beta-Weighted Delta</td><td><a href="#glossary-t166">ベータ加重デルタ</a></td><td><a href="#ch21-7">21-7</a></td></tr>
+<tr><td>Bid-Ask Spread</td><td><a href="#glossary-t146">ビッド・アスク・スプレッド</a></td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr><td>Big Lizard</td><td><a href="#glossary-t145">ビッグ・リザード</a></td><td><a href="#ch18-2">18-2</a></td></tr>
+<tr><td>Binomial Model</td><td><a href="#glossary-t128">二項モデル</a></td><td><a href="#ch04-5">4-5</a></td></tr>
+<tr><td>Black Monday</td><td><a href="#glossary-t155">ブラックマンデー</a></td><td><a href="#ch21-9">21-9</a>・<a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Black-Scholes Model</td><td><a href="#glossary-t154">ブラック・ショールズ・モデル</a></td><td><a href="#ch04-6">4-6</a></td></tr>
+<tr><td>Box Spread</td><td><a href="#glossary-t171">ボックス・スプレッド</a></td><td><a href="#ch17-5">17-5</a></td></tr>
+<tr><td>Breakeven Point</td><td><a href="#glossary-t105">損益分岐点</a></td><td><a href="#ch03-3">3-3</a></td></tr>
+<tr><td>Broken Wing Butterfly</td><td><a href="#glossary-t159">ブロークン・ウィング・バタフライ</a></td><td><a href="#ch15-8">15-8</a></td></tr>
+<tr><td>Bull Call Spread</td><td><a href="#glossary-t156">ブル・コール・スプレッド</a></td><td><a href="#ch13-2">13-2</a></td></tr>
+<tr><td>Bull Put Spread</td><td><a href="#glossary-t157">ブル・プット・スプレッド</a></td><td><a href="#ch13-4">13-4</a></td></tr>
+<tr><td>Buy to Close</td><td><a href="#glossary-t020">買戻し</a></td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr><td>Buy to Open</td><td><a href="#glossary-t019">買い建て（新規買い）</a></td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-c">C</th></tr>
+<tr><td>Calendar Spread</td><td><a href="#glossary-t026">カレンダー・スプレッド</a></td><td><a href="#ch16-2">16-2</a></td></tr>
+<tr><td>Call Option</td><td><a href="#glossary-t054">コール（コール・オプション）</a></td><td><a href="#ch01-2">1-2</a></td></tr>
+<tr><td>Calmar Ratio</td><td><a href="#glossary-t025">カルマー・レシオ</a></td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr><td>Cash Settlement</td><td><a href="#glossary-t063">差金決済</a></td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr><td>Cash-Secured Put</td><td><a href="#glossary-t035">キャッシュ・セキュアード・プット</a></td><td><a href="#ch11-7">11-7</a></td></tr>
+<tr><td>Cboe Global Markets</td><td><a href="#glossary-t217">Cboe</a></td><td><a href="#ch08-1">8-1</a></td></tr>
+<tr><td>Cboe S&amp;P 500 BuyWrite Index / PutWrite Index</td><td><a href="#glossary-t216">BXM・PUT指数</a></td><td><a href="#ch23-5">23-5</a></td></tr>
+<tr><td>Cboe Volatility Index</td><td><a href="#glossary-t233">VIX</a></td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr><td>Charm</td><td><a href="#glossary-t113">チャーム</a></td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr><td>Christmas Tree</td><td><a href="#glossary-t040">クリスマス・ツリー</a></td><td><a href="#ch15-10">15-10</a></td></tr>
+<tr><td>Collar</td><td><a href="#glossary-t024">カラー</a></td><td><a href="#ch12-3">12-3</a></td></tr>
+<tr><td>Combo Order</td><td><a href="#glossary-t057">コンボ注文</a></td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr><td>Compound Annual Growth Rate</td><td><a href="#glossary-t135">年平均成長率（CAGR）</a></td><td><a href="#ch23-2">23-2</a></td></tr>
+<tr><td>Contango</td><td><a href="#glossary-t055">コンタンゴ</a></td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Contract Month</td><td><a href="#glossary-t043">限月</a></td><td><a href="#ch02-2">2-2</a>・<a href="#ch07-3">7-3</a></td></tr>
+<tr><td>Conversion</td><td><a href="#glossary-t056">コンバージョン</a></td><td><a href="#ch17-4">17-4</a></td></tr>
+<tr><td>Correlation</td><td><a href="#glossary-t098">相関</a></td><td><a href="#ch21-8">21-8</a></td></tr>
+<tr><td>Corridor</td><td><a href="#glossary-t053">コリドー</a></td><td><a href="#ch15-7">15-7</a></td></tr>
+<tr><td>Covered Call</td><td><a href="#glossary-t022">カバード・コール</a></td><td><a href="#ch12-1">12-1</a></td></tr>
+<tr><td>Covered Strangle</td><td><a href="#glossary-t023">カバード・ストラングル</a></td><td><a href="#ch12-7">12-7</a></td></tr>
+<tr><td>Credit</td><td><a href="#glossary-t041">クレジット</a></td><td><a href="#ch10-5">10-5</a></td></tr>
+<tr><td>Credit Spread</td><td><a href="#glossary-t042">クレジット・スプレッド</a></td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-d">D</th></tr>
+<tr><td>Debit</td><td><a href="#glossary-t116">デビット</a></td><td><a href="#ch10-5">10-5</a></td></tr>
+<tr><td>Debit Spread</td><td><a href="#glossary-t117">デビット・スプレッド</a></td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr><td>Defined Risk / Undefined Risk</td><td><a href="#glossary-t194">リスク限定型・リスク無限定型</a></td><td><a href="#ch10-6">10-6</a></td></tr>
+<tr><td>Delta</td><td><a href="#glossary-t118">デルタ</a></td><td><a href="#ch05-2">5-2</a></td></tr>
+<tr><td>Delta Hedge</td><td><a href="#glossary-t120">デルタ・ヘッジ</a></td><td><a href="#ch20-7">20-7</a>・<a href="#ch18-7">18-7</a></td></tr>
+<tr><td>Delta Neutral</td><td><a href="#glossary-t119">デルタ・ニュートラル</a></td><td><a href="#ch14-9">14-9</a></td></tr>
+<tr><td>Diagonal Spread</td><td><a href="#glossary-t107">ダイアゴナル・スプレッド</a></td><td><a href="#ch16-4">16-4</a></td></tr>
+<tr><td>Dividend</td><td><a href="#glossary-t136">配当</a></td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr><td>Dividend Play</td><td><a href="#glossary-t137">配当狙いの戦略</a></td><td><a href="#ch18-6">18-6</a></td></tr>
+<tr><td>Double Calendar / Double Diagonal</td><td><a href="#glossary-t110">ダブル・カレンダー／ダブル・ダイアゴナル</a></td><td><a href="#ch16-5">16-5</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-e">E</th></tr>
+<tr><td>Early Assignment</td><td><a href="#glossary-t099">早期割当</a></td><td><a href="#ch06-8">6-8</a>・<a href="#ch08-7">8-7</a></td></tr>
+<tr><td>ETF Options</td><td><a href="#glossary-t218">ETFオプション</a></td><td><a href="#ch08-2">8-2</a></td></tr>
+<tr><td>European Style</td><td><a href="#glossary-t190">ヨーロピアン・タイプ</a></td><td><a href="#ch02-7">2-7</a></td></tr>
+<tr><td>Event Trading</td><td><a href="#glossary-t008">イベント・トレード</a></td><td><a href="#ch18-4">18-4</a></td></tr>
+<tr><td>Ex-Dividend Date</td><td><a href="#glossary-t048">権利落ち日（配当落ち日）</a></td><td><a href="#ch06-8">6-8</a>・<a href="#ch08-7">8-7</a></td></tr>
+<tr><td>Execution / Fill</td><td><a href="#glossary-t188">約定</a></td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr><td>Exercise</td><td><a href="#glossary-t049">権利行使</a></td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr><td>Expected Move</td><td><a href="#glossary-t032">期待変動幅（予想変動幅）</a></td><td><a href="#ch04-8">4-8</a>・<a href="#ch14-1">14-1</a></td></tr>
+<tr><td>Expected Value</td><td><a href="#glossary-t031">期待値</a></td><td><a href="#ch21-3">21-3</a></td></tr>
+<tr><td>Expiration</td><td><a href="#glossary-t182">満期</a></td><td><a href="#ch02-2">2-2</a></td></tr>
+<tr><td>Expiration Week</td><td><a href="#glossary-t183">満期週</a></td><td><a href="#ch20-9">20-9</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-f">F</th></tr>
+<tr><td>Fat Tail</td><td><a href="#glossary-t149">ファットテール</a></td><td><a href="#ch21-4">21-4</a></td></tr>
+<tr><td>Fear Index</td><td><a href="#glossary-t036">恐怖指数</a></td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr><td>Fence</td><td><a href="#glossary-t151">フェンス</a></td><td><a href="#ch12-4">12-4</a></td></tr>
+<tr><td>Financial Information eXchange Protocol</td><td><a href="#glossary-t219">FIX</a></td><td><a href="#ch25-2">25-2</a></td></tr>
+<tr><td>Forced Liquidation</td><td><a href="#glossary-t203">ロスカット（強制決済）</a></td><td><a href="#ch06-5">6-5</a></td></tr>
+<tr><td>Foreign Market Derivatives Transaction</td><td><a href="#glossary-t018">外国市場デリバティブ取引</a></td><td><a href="#ch24-6">24-6</a></td></tr>
+<tr><td>Form W-8BEN</td><td><a href="#glossary-t234">W-8BEN</a></td><td><a href="#ch24-8">24-8</a></td></tr>
+<tr><td>Front Month / Near Expiration</td><td><a href="#glossary-t033">期近</a></td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr><td>Futures and Options Account</td><td><a href="#glossary-t097">先物・オプション取引口座</a></td><td><a href="#ch06-1">6-1</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-g">G</th></tr>
+<tr><td>Gamma</td><td><a href="#glossary-t027">ガンマ</a></td><td><a href="#ch05-3">5-3</a></td></tr>
+<tr><td>Gamma Scalping</td><td><a href="#glossary-t028">ガンマ・スキャルピング</a></td><td><a href="#ch14-9">14-9</a></td></tr>
+<tr><td>Greeks</td><td><a href="#glossary-t038">グリークス</a></td><td><a href="#ch05-1">5-1</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-h">H</th></tr>
+<tr><td>Half Kelly</td><td><a href="#glossary-t142">ハーフ・ケリー</a></td><td><a href="#ch21-5">21-5</a></td></tr>
+<tr><td>Hedge</td><td><a href="#glossary-t167">ヘッジ</a></td><td><a href="#ch01-5">1-5</a></td></tr>
+<tr><td>Historical Volatility (HV)</td><td><a href="#glossary-t144">ヒストリカル・ボラティリティ（HV）</a></td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr><td>Holiday Trading</td><td><a href="#glossary-t078">祝日取引</a></td><td><a href="#ch07-7">7-7</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-i">I</th></tr>
+<tr><td>Implied Volatility (IV)</td><td><a href="#glossary-t010">インプライド・ボラティリティ（IV）</a></td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr><td>In the Money (ITM)</td><td><a href="#glossary-t009">イン・ザ・マネー（ITM）</a></td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr><td>Interest Rate</td><td><a href="#glossary-t037">金利</a></td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr><td>Intrinsic Value</td><td><a href="#glossary-t179">本質的価値</a></td><td><a href="#ch02-6">2-6</a></td></tr>
+<tr><td>Iron Butterfly</td><td><a href="#glossary-t002">アイアン・バタフライ</a></td><td><a href="#ch15-4">15-4</a></td></tr>
+<tr><td>Iron Condor</td><td><a href="#glossary-t001">アイアン・コンドル</a></td><td><a href="#ch15-6">15-6</a></td></tr>
+<tr><td>IV Crush</td><td><a href="#glossary-t220">IVクラッシュ</a></td><td><a href="#ch18-4">18-4</a>・<a href="#ch05-5">5-5</a></td></tr>
+<tr><td>IV Rank / IV Percentile</td><td><a href="#glossary-t221">IVランク／IVパーセンタイル</a></td><td><a href="#ch10-10">10-10</a>・<a href="#ch14-2">14-2</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-j">J</th></tr>
+<tr><td>Jade Lizard</td><td><a href="#glossary-t066">ジェイド・リザード</a></td><td><a href="#ch18-1">18-1</a></td></tr>
+<tr><td>Japan Exchange Group</td><td><a href="#glossary-t222">JPX（日本取引所グループ）</a></td><td><a href="#ch07-1">7-1</a></td></tr>
+<tr><td>Japan Securities Clearing Corporation</td><td><a href="#glossary-t223">JSCC（日本証券クリアリング機構）</a></td><td><a href="#ch07-1">7-1</a>・<a href="#ch06-4">6-4</a></td></tr>
+<tr><td>Jelly Roll</td><td><a href="#glossary-t067">ジェリー・ロール</a></td><td><a href="#ch17-6">17-6</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-l">L</th></tr>
+<tr><td>Ladder</td><td><a href="#glossary-t192">ラダー</a></td><td><a href="#ch13-10">13-10</a></td></tr>
+<tr><td>Last Trading Day</td><td><a href="#glossary-t058">最終取引日</a></td><td><a href="#ch02-2">2-2</a>・<a href="#ch06-6">6-6</a></td></tr>
+<tr><td>Legging</td><td><a href="#glossary-t200">レッギング</a></td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr><td>Leverage</td><td><a href="#glossary-t201">レバレッジ</a></td><td><a href="#ch00-3">0-3</a>・<a href="#ch11-3">11-3</a></td></tr>
+<tr><td>Limit Order</td><td><a href="#glossary-t064">指値注文</a></td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr><td>Liquidity</td><td><a href="#glossary-t198">流動性</a></td><td><a href="#ch08-8">8-8</a></td></tr>
+<tr><td>Long</td><td><a href="#glossary-t205">ロング</a></td><td><a href="#ch01-4">1-4</a></td></tr>
+<tr><td>Long / Short Volatility</td><td><a href="#glossary-t178">ボラティリティを買う・売る</a></td><td><a href="#ch10-7">10-7</a></td></tr>
+<tr><td>Long Butterfly</td><td><a href="#glossary-t138">バタフライ（ロング・バタフライ）</a></td><td><a href="#ch15-2">15-2</a></td></tr>
+<tr><td>Long Call</td><td><a href="#glossary-t207">ロング・コール</a></td><td><a href="#ch11-2">11-2</a></td></tr>
+<tr><td>Long Condor</td><td><a href="#glossary-t208">ロング・コンドル</a></td><td><a href="#ch15-5">15-5</a></td></tr>
+<tr><td>Long Guts</td><td><a href="#glossary-t206">ロング・ガッツ</a></td><td><a href="#ch14-6">14-6</a></td></tr>
+<tr><td>Long Put</td><td><a href="#glossary-t211">ロング・プット</a></td><td><a href="#ch11-4">11-4</a></td></tr>
+<tr><td>Long Straddle</td><td><a href="#glossary-t209">ロング・ストラドル</a></td><td><a href="#ch14-2">14-2</a></td></tr>
+<tr><td>Long Strangle</td><td><a href="#glossary-t210">ロング・ストラングル</a></td><td><a href="#ch14-4">14-4</a></td></tr>
+<tr><td>Long-Term Equity AnticiPation Securities</td><td><a href="#glossary-t224">LEAPS</a></td><td><a href="#ch08-5">8-5</a></td></tr>
+<tr><td>Loss Carryforward</td><td><a href="#glossary-t039">繰越控除（損失の3年繰越）</a></td><td><a href="#ch24-3">24-3</a></td></tr>
+<tr><td>Loss Offset</td><td><a href="#glossary-t103">損益通算</a></td><td><a href="#ch24-3">24-3</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-m">M</th></tr>
+<tr><td>Major SQ / Minor SQ</td><td><a href="#glossary-t186">メジャーSQ・マイナーSQ</a></td><td><a href="#ch07-3">7-3</a></td></tr>
+<tr><td>Margin</td><td><a href="#glossary-t079">証拠金</a></td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr><td>Margin Call</td><td><a href="#glossary-t012">追証（追加証拠金）</a></td><td><a href="#ch06-5">6-5</a>・<a href="#ch00-3">0-3</a></td></tr>
+<tr><td>Market Maker</td><td><a href="#glossary-t180">マーケットメイカー</a></td><td><a href="#ch01-5">1-5</a>・<a href="#ch07-1">7-1</a></td></tr>
+<tr><td>Market Order</td><td><a href="#glossary-t127">成行注文</a></td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr><td>Market Outlook</td><td><a href="#glossary-t101">相場観</a></td><td><a href="#ch10-2">10-2</a></td></tr>
+<tr><td>Married Put</td><td><a href="#glossary-t181">マリード・プット</a></td><td><a href="#ch12-2">12-2</a></td></tr>
+<tr><td>Maximum Drawdown (MDD)</td><td><a href="#glossary-t059">最大ドローダウン</a></td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr><td>Maximum Profit / Maximum Loss</td><td><a href="#glossary-t060">最大利益・最大損失</a></td><td><a href="#ch03-3">3-3</a></td></tr>
+<tr><td>Mini-SPX Index Options</td><td><a href="#glossary-t235">XSP（ミニSPX）</a></td><td><a href="#ch08-4">8-4</a></td></tr>
+<tr><td>Miscellaneous Income from Futures Transactions</td><td><a href="#glossary-t062">先物取引に係る雑所得等</a></td><td><a href="#ch24-2">24-2</a></td></tr>
+<tr><td>Multiplier / Contract Size</td><td><a href="#glossary-t080">乗数（取引単位）</a></td><td><a href="#ch02-4">2-4</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-n">N</th></tr>
+<tr><td>Naked Short Call</td><td><a href="#glossary-t133">ネイキッド・ショート・コール</a></td><td><a href="#ch11-5">11-5</a></td></tr>
+<tr><td>Naked Short Put</td><td><a href="#glossary-t134">ネイキッド・ショート・プット</a></td><td><a href="#ch11-6">11-6</a></td></tr>
+<tr><td>Night Session</td><td><a href="#glossary-t187">夜間取引（ナイト・セッション）</a></td><td><a href="#ch07-7">7-7</a></td></tr>
+<tr><td>Nikkei 225 mini Options</td><td><a href="#glossary-t131">日経225ミニオプション</a></td><td><a href="#ch07-4">7-4</a></td></tr>
+<tr><td>Nikkei 225 Options</td><td><a href="#glossary-t130">日経225オプション</a></td><td><a href="#ch07-2">7-2</a></td></tr>
+<tr><td>Nikkei Stock Average Volatility Index</td><td><a href="#glossary-t132">日経平均VI（日経平均ボラティリティー・インデックス）</a></td><td><a href="#ch04-10">4-10</a></td></tr>
+<tr><td>Nippon Individual Savings Account</td><td><a href="#glossary-t225">NISA</a></td><td><a href="#ch24-10">24-10</a></td></tr>
+<tr><td>Notional Value</td><td><a href="#glossary-t100">想定元本</a></td><td><a href="#ch09-3">9-3</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-o">O</th></tr>
+<tr><td>One Standard Deviation</td><td><a href="#glossary-t007">1標準偏差（1σ）</a></td><td><a href="#ch04-8">4-8</a>・<a href="#ch11-8">11-8</a></td></tr>
+<tr><td>Open Interest</td><td><a href="#glossary-t017">オープン・インタレスト</a></td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr><td>Open Position</td><td><a href="#glossary-t109">建玉</a></td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr><td>Option</td><td><a href="#glossary-t014">オプション</a></td><td><a href="#ch01-1">1-1</a></td></tr>
+<tr><td>Options Approval Level</td><td><a href="#glossary-t015">オプション取引レベル</a></td><td><a href="#ch08-6">8-6</a></td></tr>
+<tr><td>The Options Clearing Corporation</td><td><a href="#glossary-t226">OCC</a></td><td><a href="#ch08-1">8-1</a>・<a href="#ch06-7">6-7</a></td></tr>
+<tr><td>Order Book / Quotes</td><td><a href="#glossary-t006">板（気配）</a></td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr><td>Osaka Exchange (OSE)</td><td><a href="#glossary-t013">大阪取引所</a></td><td><a href="#ch07-1">7-1</a></td></tr>
+<tr><td>Out of the Money (OTM)</td><td><a href="#glossary-t003">アウト・オブ・ザ・マネー（OTM）</a></td><td><a href="#ch02-5">2-5</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-p">P</th></tr>
+<tr><td>Paper Trading</td><td><a href="#glossary-t168">ペーパートレード</a></td><td><a href="#ch00-4">0-4</a></td></tr>
+<tr><td>Payoff Diagram</td><td><a href="#glossary-t102">損益図（ペイオフ・ダイアグラム）</a></td><td><a href="#ch03-1">3-1</a></td></tr>
+<tr><td>Payoff Ratio</td><td><a href="#glossary-t104">損益比（ペイオフ・レシオ）</a></td><td><a href="#ch21-3">21-3</a></td></tr>
+<tr><td>Physical Delivery</td><td><a href="#glossary-t047">現物受渡し</a></td><td><a href="#ch02-8">2-8</a></td></tr>
+<tr><td>Pin Risk</td><td><a href="#glossary-t148">ピン・リスク</a></td><td><a href="#ch06-8">6-8</a>・<a href="#ch20-9">20-9</a></td></tr>
+<tr><td>Poor Man&#x27;s Covered Call</td><td><a href="#glossary-t150">プアマンズ・カバード・コール</a></td><td><a href="#ch16-6">16-6</a></td></tr>
+<tr><td>Portfolio Margin</td><td><a href="#glossary-t172">ポートフォリオ・マージン</a></td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr><td>Position Greeks</td><td><a href="#glossary-t169">ポジション全体のグリークス</a></td><td><a href="#ch05-8">5-8</a></td></tr>
+<tr><td>Position Sizing</td><td><a href="#glossary-t170">ポジションサイズ</a></td><td><a href="#ch21-2">21-2</a></td></tr>
+<tr><td>Premium</td><td><a href="#glossary-t158">プレミアム</a></td><td><a href="#ch02-3">2-3</a></td></tr>
+<tr><td>Present Value</td><td><a href="#glossary-t044">現在価値</a></td><td><a href="#ch04-7">4-7</a></td></tr>
+<tr><td>Probability of Expiring ITM</td><td><a href="#glossary-t184">満期にITMとなる確率</a></td><td><a href="#ch05-2">5-2</a></td></tr>
+<tr><td>Profit Taking</td><td><a href="#glossary-t193">利益確定</a></td><td><a href="#ch20-2">20-2</a></td></tr>
+<tr><td>Prospect Theory</td><td><a href="#glossary-t160">プロスペクト理論</a></td><td><a href="#ch22-2">22-2</a></td></tr>
+<tr><td>Protective Put</td><td><a href="#glossary-t161">プロテクティブ・プット</a></td><td><a href="#ch12-2">12-2</a></td></tr>
+<tr><td>Put Option</td><td><a href="#glossary-t152">プット（プット・オプション）</a></td><td><a href="#ch01-2">1-2</a></td></tr>
+<tr><td>Put-Call Parity</td><td><a href="#glossary-t153">プット・コール・パリティ</a></td><td><a href="#ch04-7">4-7</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-r">R</th></tr>
+<tr><td>Ratio Spread</td><td><a href="#glossary-t199">レシオ・スプレッド</a></td><td><a href="#ch13-8">13-8</a></td></tr>
+<tr><td>Realized Volatility</td><td><a href="#glossary-t072">実現ボラティリティ（RV）</a></td><td><a href="#ch04-8">4-8</a>・<a href="#ch14-1">14-1</a></td></tr>
+<tr><td>Regulation T</td><td><a href="#glossary-t227">Reg T（レギュレーションT）</a></td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr><td>Reversal</td><td><a href="#glossary-t197">リバーサル</a></td><td><a href="#ch17-4">17-4</a></td></tr>
+<tr><td>Rho</td><td><a href="#glossary-t202">ロー</a></td><td><a href="#ch05-6">5-6</a></td></tr>
+<tr><td>Risk Reversal</td><td><a href="#glossary-t196">リスク・リバーサル</a></td><td><a href="#ch17-3">17-3</a></td></tr>
+<tr><td>Risk-Free Rate</td><td><a href="#glossary-t185">無リスク金利</a></td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr><td>Risk-Neutral Probability</td><td><a href="#glossary-t195">リスク中立確率</a></td><td><a href="#ch04-5">4-5</a></td></tr>
+<tr><td>Roll</td><td><a href="#glossary-t204">ロール</a></td><td><a href="#ch20-5">20-5</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-s">S</th></tr>
+<tr><td>S&amp;P 500 Index Options</td><td><a href="#glossary-t228">SPX</a></td><td><a href="#ch08-4">8-4</a></td></tr>
+<tr><td>Scenario Analysis</td><td><a href="#glossary-t075">シナリオ分析</a></td><td><a href="#ch21-6">21-6</a></td></tr>
+<tr><td>Seagull</td><td><a href="#glossary-t068">シーガル</a></td><td><a href="#ch18-3">18-3</a></td></tr>
+<tr><td>Second-Order Greeks</td><td><a href="#glossary-t129">二次的グリークス</a></td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr><td>Securities Options</td><td><a href="#glossary-t189">有価証券オプション</a></td><td><a href="#ch07-6">7-6</a></td></tr>
+<tr><td>Sell to Close</td><td><a href="#glossary-t122">転売</a></td><td><a href="#ch02-9">2-9</a></td></tr>
+<tr><td>Separate Self-Assessment Taxation</td><td><a href="#glossary-t087">申告分離課税</a></td><td><a href="#ch24-2">24-2</a></td></tr>
+<tr><td>Sharpe Ratio</td><td><a href="#glossary-t076">シャープ・レシオ</a></td><td><a href="#ch23-3">23-3</a></td></tr>
+<tr><td>Short</td><td><a href="#glossary-t081">ショート</a></td><td><a href="#ch01-4">1-4</a></td></tr>
+<tr><td>Short Butterfly</td><td><a href="#glossary-t086">ショート・バタフライ</a></td><td><a href="#ch15-3">15-3</a></td></tr>
+<tr><td>Short Calendar Spread</td><td><a href="#glossary-t082">ショート・カレンダー・スプレッド</a></td><td><a href="#ch16-3">16-3</a></td></tr>
+<tr><td>Short Gamma</td><td><a href="#glossary-t083">ショート・ガンマ</a></td><td><a href="#ch05-3">5-3</a></td></tr>
+<tr><td>Short Straddle</td><td><a href="#glossary-t084">ショート・ストラドル</a></td><td><a href="#ch14-3">14-3</a></td></tr>
+<tr><td>Short Strangle</td><td><a href="#glossary-t085">ショート・ストラングル</a></td><td><a href="#ch14-5">14-5</a></td></tr>
+<tr><td>Short-Term Rotating Collar（通称 Daily Collar）</td><td><a href="#glossary-t111">短期ローテーション・カラー</a></td><td><a href="#ch12-5">12-5</a></td></tr>
+<tr><td>Simple Annualization</td><td><a href="#glossary-t112">単純年率換算</a></td><td><a href="#ch23-2">23-2</a></td></tr>
+<tr><td>Skip-Strike Butterfly</td><td><a href="#glossary-t089">スキップ・ストライク・バタフライ</a></td><td><a href="#ch15-9">15-9</a></td></tr>
+<tr><td>Slippage</td><td><a href="#glossary-t095">スリッページ</a></td><td><a href="#ch06-3">6-3</a></td></tr>
+<tr><td>SPDR S&amp;P 500 ETF Trust</td><td><a href="#glossary-t229">SPY</a></td><td><a href="#ch08-4">8-4</a></td></tr>
+<tr><td>Special Quotation</td><td><a href="#glossary-t230">SQ（特別清算指数）</a></td><td><a href="#ch07-3">7-3</a>・<a href="#ch06-6">6-6</a></td></tr>
+<tr><td>Specified Account</td><td><a href="#glossary-t123">特定口座</a></td><td><a href="#ch24-4">24-4</a></td></tr>
+<tr><td>Standard Deviation</td><td><a href="#glossary-t147">標準偏差</a></td><td><a href="#ch04-8">4-8</a></td></tr>
+<tr><td>Stop Order</td><td><a href="#glossary-t034">逆指値注文（ストップ注文）</a></td><td><a href="#ch06-2">6-2</a></td></tr>
+<tr><td>Stop-Loss</td><td><a href="#glossary-t106">損切り</a></td><td><a href="#ch20-3">20-3</a></td></tr>
+<tr><td>Strap</td><td><a href="#glossary-t091">ストラップ</a></td><td><a href="#ch14-8">14-8</a></td></tr>
+<tr><td>Stress Test</td><td><a href="#glossary-t093">ストレステスト</a></td><td><a href="#ch21-6">21-6</a></td></tr>
+<tr><td>Strike Price</td><td><a href="#glossary-t050">権利行使価格（ストライク）</a></td><td><a href="#ch02-1">2-1</a></td></tr>
+<tr><td>Strip</td><td><a href="#glossary-t092">ストリップ</a></td><td><a href="#ch14-7">14-7</a></td></tr>
+<tr><td>Synthetic Futures</td><td><a href="#glossary-t051">合成先物</a></td><td><a href="#ch17-8">17-8</a></td></tr>
+<tr><td>Synthetic Long / Synthetic Short</td><td><a href="#glossary-t052">合成ロング／合成ショート</a></td><td><a href="#ch17-2">17-2</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-t">T</th></tr>
+<tr><td>Tail Risk</td><td><a href="#glossary-t121">テールリスク</a></td><td><a href="#ch21-4">21-4</a></td></tr>
+<tr><td>Tax Return Filing</td><td><a href="#glossary-t021">確定申告</a></td><td><a href="#ch24-4">24-4</a>・<a href="#ch24-11">24-11</a></td></tr>
+<tr><td>Telegraphic Transfer Middle Rate</td><td><a href="#glossary-t231">TTM（仲値）</a></td><td><a href="#ch24-7">24-7</a></td></tr>
+<tr><td>Term Structure</td><td><a href="#glossary-t029">期間構造</a></td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Theta</td><td><a href="#glossary-t096">セータ</a></td><td><a href="#ch05-4">5-4</a></td></tr>
+<tr><td>Tick Size</td><td><a href="#glossary-t191">呼値（刻み）</a></td><td><a href="#ch06-3">6-3</a>・<a href="#ch07-2">7-2</a></td></tr>
+<tr><td>Time Decay</td><td><a href="#glossary-t108">タイム・ディケイ</a></td><td><a href="#ch04-4">4-4</a></td></tr>
+<tr><td>Time Spread / Horizontal Spread</td><td><a href="#glossary-t069">時間差戦略</a></td><td><a href="#ch16-1">16-1</a></td></tr>
+<tr><td>Time to Expiration</td><td><a href="#glossary-t065">残存期間</a></td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr><td>Time Value / Extrinsic Value</td><td><a href="#glossary-t070">時間的価値</a></td><td><a href="#ch02-6">2-6</a></td></tr>
+<tr><td>Trade Plan</td><td><a href="#glossary-t125">トレード計画</a></td><td><a href="#ch20-1">20-1</a></td></tr>
+<tr><td>Trading Journal</td><td><a href="#glossary-t126">トレード日誌</a></td><td><a href="#ch22-5">22-5</a></td></tr>
+<tr><td>Transaction Costs</td><td><a href="#glossary-t124">取引コスト</a></td><td><a href="#ch06-9">6-9</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-u">U</th></tr>
+<tr><td>Underlying Asset</td><td><a href="#glossary-t045">原資産</a></td><td><a href="#ch02-1">2-1</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-v">V</th></tr>
+<tr><td>Value at Risk Method</td><td><a href="#glossary-t232">VaR方式</a></td><td><a href="#ch06-4">6-4</a></td></tr>
+<tr><td>Vanna</td><td><a href="#glossary-t143">バンナ</a></td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr><td>Vega</td><td><a href="#glossary-t164">ベガ</a></td><td><a href="#ch05-5">5-5</a></td></tr>
+<tr><td>Vertical Spread</td><td><a href="#glossary-t088">垂直スプレッド</a></td><td><a href="#ch13-1">13-1</a></td></tr>
+<tr><td>Volatility</td><td><a href="#glossary-t174">ボラティリティ</a></td><td><a href="#ch04-2">4-2</a></td></tr>
+<tr><td>Volatility Arbitrage</td><td><a href="#glossary-t175">ボラティリティ・アービトラージ</a></td><td><a href="#ch18-7">18-7</a></td></tr>
+<tr><td>Volatility Outlook</td><td><a href="#glossary-t176">ボラティリティ観</a></td><td><a href="#ch10-3">10-3</a></td></tr>
+<tr><td>Volatility Risk Premium</td><td><a href="#glossary-t177">ボラティリティ・リスク・プレミアム</a></td><td><a href="#ch23-4">23-4</a></td></tr>
+<tr><td>Volatility Skew</td><td><a href="#glossary-t090">スキュー（ボラティリティ・スキュー）</a></td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Volatility Smile</td><td><a href="#glossary-t094">スマイル（ボラティリティ・スマイル）</a></td><td><a href="#ch04-9">4-9</a></td></tr>
+<tr><td>Vomma / Volga</td><td><a href="#glossary-t173">ボマ（ボルガ）</a></td><td><a href="#ch05-9">5-9</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-w">W</th></tr>
+<tr><td>Weekly Options</td><td><a href="#glossary-t077">週次限月（ウィークリー）</a></td><td><a href="#ch07-4">7-4</a>・<a href="#ch08-5">8-5</a></td></tr>
+<tr><td>The Wheel</td><td><a href="#glossary-t016">オプション・ホイール</a></td><td><a href="#ch12-6">12-6</a></td></tr>
+<tr><td>Width</td><td><a href="#glossary-t141">幅</a></td><td><a href="#ch13-1">13-1</a>・<a href="#ch13-7">13-7</a></td></tr>
+<tr><td>Wing</td><td><a href="#glossary-t011">ウィング</a></td><td><a href="#ch15-1">15-1</a></td></tr>
+<tr><td>Withholding Tax</td><td><a href="#glossary-t046">源泉徴収（米国）</a></td><td><a href="#ch24-8">24-8</a></td></tr>
+<tr><th colspan="3" id="glossary-abc-z">Z</th></tr>
+<tr><td>Zero Days to Expiration</td><td><a href="#glossary-t213">0DTE（当日満期）</a></td><td><a href="#ch18-5">18-5</a>・<a href="#ch08-5">8-5</a></td></tr>
+</tbody></table></div>
+
+<div class="box key"><span class="box-label">ここが重要</span><p>同じ戦略や指標でも、資料や証券会社によって呼び名が違うことがあります（例：ブル・プット・スプレッド＝プット・クレジット・スプレッド、フェンスの定義の揺れ）。名前だけで判断せず、「どの権利行使価格を、何枚、買うのか売るのか」という中身で確認してください。呼び名の整理は<a href="#ch10-9">10-9</a>にまとめています。</p></div>
