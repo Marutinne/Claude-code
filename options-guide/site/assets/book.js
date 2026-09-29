@@ -47,20 +47,20 @@
       { id: "ch25", n: "25", t: "対応証券会社と接続方式", ready: true }
     ]},
     { part: "第7部", title: "習熟度テスト", lv: "", ch: [
-      { id: "ex1", n: "試1", t: "Lv.1 初級認定試験", plan: ["第1〜2部の範囲"] },
+      { id: "ex1", n: "試1", t: "Lv.1 初級認定試験", ready: true },
       { id: "ex2", n: "試2", t: "Lv.2 中級認定試験", plan: ["第10〜14章の範囲"] },
       { id: "ex3", n: "試3", t: "Lv.3 上級認定試験", plan: ["第15〜22章の範囲"] },
       { id: "ex4", n: "試4", t: "Lv.4 マスター試験", plan: ["全範囲の総合ケーススタディ"] }
     ]},
     { part: "第8部", title: "小話", lv: "", ch: [
       { id: "hist", n: "話1", t: "オプションの歴史", ready: true },
-      { id: "stories", n: "話2", t: "オプション小話集", plan: ["LTCM", "ベアリングズ銀行と日経225", "VIX誕生", "ボルマゲドン", "ゲームストップ", "2024年8月5日", "戦略名の由来"] }
+      { id: "stories", n: "話2", t: "オプション小話集", ready: true }
     ]},
     { part: "第9部", title: "質問コーナー", lv: "", ch: [
       { id: "qa", n: "Q&A", t: "質問コーナー", ready: true }
     ]},
     { part: "付録", title: "", lv: "", ch: [
-      { id: "glossary", n: "A", t: "用語集（日英対照）", plan: [] },
+      { id: "glossary", n: "A", t: "用語集（日英対照）", ready: true },
       { id: "cheatsheet", n: "B", t: "全戦略早見表", ready: true },
       { id: "formulas", n: "C", t: "公式集", plan: [] },
       { id: "refs", n: "D", t: "参考資料・データソース", plan: [] }
