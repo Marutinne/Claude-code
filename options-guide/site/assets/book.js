@@ -367,9 +367,12 @@
     for (ci = 1; ci < curves.length; ci++) key += '<span><i style="border-color:' + colors[(ci - 1) % 3] + ';border-top-style:dashed"></i>満期まで残り' + curves[ci].d + "日</span>";
     key += '<span><i style="border-color:var(--accent);width:0;border-top:0"></i>▲ 現在値 ' + fmt(spot) + "</span></div>";
     var title = el.getAttribute("data-title");
+    var hide = el.getAttribute("data-hide") || "";   // quiz use: "legs,stats,be"
+    if (/\bstats\b/.test(hide)) stats = "";
+    if (/\bbe\b/.test(hide)) svg = svg.replace(/<text class="lbl"[^>]*>[^<]*<\/text>/g, "");
     el.classList.add("chart");
     el.innerHTML = (title ? '<p class="chart-title">' + esc(title) + "</p>" : "") + svg + key +
-      '<ul class="chart-legs">' + legs.map(function (l) { return '<li class="' + (l.qty > 0 ? "long" : "short") + '">' + esc(legLabel(l, mixed)) + "</li>"; }).join("") + "</ul>" + stats +
+      (/\blegs\b/.test(hide) ? "" : '<ul class="chart-legs">' + legs.map(function (l) { return '<li class="' + (l.qty > 0 ? "long" : "short") + '">' + esc(legLabel(l, mixed)) + "</li>"; }).join("") + "</ul>") + stats +
       (el.getAttribute("data-caption") ? '<p class="chart-caption">' + esc(el.getAttribute("data-caption")) + "</p>" : "");
   }
 
