@@ -49,8 +49,8 @@
     { part: "第7部", title: "習熟度テスト", lv: "", ch: [
       { id: "ex1", n: "試1", t: "Lv.1 初級認定試験", ready: true },
       { id: "ex2", n: "試2", t: "Lv.2 中級認定試験", ready: true },
-      { id: "ex3", n: "試3", t: "Lv.3 上級認定試験", plan: ["第15〜22章の範囲"] },
-      { id: "ex4", n: "試4", t: "Lv.4 マスター試験", plan: ["全範囲の総合ケーススタディ"] }
+      { id: "ex3", n: "試3", t: "Lv.3 上級認定試験", ready: true },
+      { id: "ex4", n: "試4", t: "Lv.4 マスター試験", ready: true }
     ]},
     { part: "第8部", title: "小話", lv: "", ch: [
       { id: "hist", n: "話1", t: "オプションの歴史", ready: true },
