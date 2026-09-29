@@ -307,7 +307,7 @@
     var ys = []; curves.forEach(function (c) { c.pts.forEach(function (p) { ys.push(p[1]); }); });
     var ymin = Math.min.apply(null, ys.concat([0])), ymax = Math.max.apply(null, ys.concat([0]));
     var pad = (ymax - ymin) * 0.1 || 1; ymin -= pad; ymax += pad;
-    var f = frame(xlo, xhi, ymin, ymax, { xlabel: "満期時の原資産価格 →", ylabel: "損益" + (mult !== 1 ? "（円）" : "") });
+    var f = frame(xlo, xhi, ymin, ymax, { xlabel: "満期時の原資産価格 →", ylabel: "損益" + (el.getAttribute("data-unit") ? "（" + el.getAttribute("data-unit") + "）" : mult !== 1 ? "（円）" : "") });
     var id = "po" + (++uid), y0 = f.sy(0);
     var exp = curves[0].pts, line = pathOf(exp, f.sx, f.sy);
     var area = line + "L" + f.sx(xhi).toFixed(1) + "," + y0 + "L" + f.sx(xlo).toFixed(1) + "," + y0 + "Z";

@@ -411,7 +411,7 @@
 <h3>ピン・リスク</h3>
 <p><strong>ピン・リスク（pin risk）</strong>とは、満期時に原資産が、売っているオプションの権利行使価格<strong>ちょうど付近</strong>で終わったときのリスクです。保有者は引け後の値動きを見て行使・不行使を選べるため、<strong>売り手は割り当てられたかどうかを週明けまで確実には知れません</strong>。例として、100コール買い・105コール売りを2.00ドル（200ドル）で建て、満期日の終値がちょうど105.00ドルだったとします。</p>
 
-<div class="payoff" data-title="ブル・コール・スプレッド（満期日の終値が105ちょうど）" data-spot="105" data-range="92,115" data-mult="100"
+<div class="payoff" data-unit="ドル" data-title="ブル・コール・スプレッド（満期日の終値が105ちょうど）" data-spot="105" data-range="92,115" data-mult="100"
      data-legs='[{"type":"call","k":100,"qty":1,"prem":3},{"type":"call","k":105,"qty":-1,"prem":1}]'
      data-caption="100コールを3.00ドルで買い、105コールを1.00ドルで売った場合（1枚100株）。満期に105以上なら最大利益300ドル、100以下なら最大損失200ドル。損益分岐点は102ドル。"></div>
 
@@ -565,7 +565,7 @@
   </div>
 
   <div class="q"><p>次の損益図は、米国株で100コールを3.00ドルで買い、105コールを1.00ドルで売ったブル・コール・スプレッドです。満期日の終値がちょうど105.00ドルだったとき、最も注意すべきことはどれですか。</p>
-    <div class="payoff" data-title="ブル・コール・スプレッド" data-spot="105" data-range="92,115" data-mult="100"
+    <div class="payoff" data-unit="ドル" data-title="ブル・コール・スプレッド" data-spot="105" data-range="92,115" data-mult="100"
          data-legs='[{"type":"call","k":100,"qty":1,"prem":3},{"type":"call","k":105,"qty":-1,"prem":1}]'></div>
     <ol class="choices">
       <li>最大損失の200ドルが確定しているので、何もする必要はない</li>
