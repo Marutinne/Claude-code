@@ -62,7 +62,6 @@
     { part: "第8部", title: "実行と管理", lv: "Lv.3〜4", ch: [
       { id: "ch37", n: "37", t: "投資仮説・投資メモ・売却判断", plan: ["投資仮説の書き方", "追跡すべきKPI", "決算ごとの仮説検証", "プレモーテム", "売るべき3つの場面", "投資日誌"] },
       { id: "ch38", n: "38", t: "ポートフォリオ構築と資金管理", plan: ["集中と分散", "ポジションサイズ", "ケリー基準", "相関・セクター・ファクターの偏り", "リバランス・買い増しのルール", "成績評価"] },
-      { id: "ch99", n: "99", t: "部品テスト", plan: [] },
       { id: "ch39", n: "39", t: "投資家心理と行動バイアス", plan: ["確証バイアスとアンカリング", "損失回避・処分効果・サンクコスト", "ナラティブの罠と過信", "群集心理とバブル", "チェックリストと記録", "長く続けるための心構え"] }
     ]},
     { part: "第9部", title: "通し演習", lv: "", ch: [
@@ -91,7 +90,7 @@
     ]}
   ];
   // Chapters whose files are published. Kept as one list so a release is a one-line change.
-  var READY = "ch00 ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13 ch14 ch15 ch16 ch17 ch18 ch19 ch20 ch21 ch22 ch23 ch24 ch25 ch26 ch27 ch28 ch29 ch30 ch31 ch32 ch33 ch34 ch35 ch36 ch37 ch38 ch39 ch99 ws1 ws2 ex1 ex2 ex3 ex4 hist legends qa glossary formulas checklist kpi refs".split(" ");
+  var READY = "".split(" ");
 
   var FLAT = [];
   PARTS.forEach(function (p) { p.ch.forEach(function (c) { c.partRef = p; c.ready = READY.indexOf(c.id) >= 0; FLAT.push(c); }); });
