@@ -90,7 +90,7 @@
     ]}
   ];
   // Chapters whose files are published. Kept as one list so a release is a one-line change.
-  var READY = "ch01 ch02".split(" ");
+  var READY = "ch00 ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13".split(" ");
 
   var FLAT = [];
   PARTS.forEach(function (p) { p.ch.forEach(function (c) { c.partRef = p; c.ready = READY.indexOf(c.id) >= 0; FLAT.push(c); }); });
@@ -244,13 +244,15 @@
     range: function (n) { var a = []; for (var i = 0; i < n; i++) a.push(i); return a; }
   };
   var FN = Object.keys(F);
+  // Variable names win over helper names (an input called "per" hides the per() helper).
   function compile(expr, names) {
-    try { return new Function(names.concat(FN, ["Math"]).join(","), '"use strict"; return (' + expr + ");"); }
+    var keys = FN.filter(function (k) { return names.indexOf(k) < 0; });
+    try { var fn = new Function(names.concat(keys, ["Math"]).join(","), '"use strict"; return (' + expr + ");"); fn._keys = keys; return fn; }
     catch (e) { return null; }
   }
   function evalWith(fn, names, vals) {
     if (!fn) return NaN;
-    try { return fn.apply(null, vals.concat(FN.map(function (k) { return F[k]; }), [Math])); } catch (e) { return NaN; }
+    try { return fn.apply(null, vals.concat(fn._keys.map(function (k) { return F[k]; }), [Math])); } catch (e) { return NaN; }
   }
 
   // ----- number formats ------------------------------------------------------

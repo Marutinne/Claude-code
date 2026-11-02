@@ -58,13 +58,15 @@ function staticChecks(id, html) {
         const main = document.getElementById("main");
         const brokenFigs = [...main.querySelectorAll(".chart-caption")].filter(e => /図の設定に誤り/.test(e.textContent)).map(e => e.textContent);
         const nan = /NaN|undefined|Infinity/.test(main.innerText) ? (main.innerText.match(/.{0,30}(NaN|undefined|Infinity).{0,20}/) || [""])[0] : "";
+        const deadCalc = [...main.querySelectorAll(".calc-out dd")].filter(d => d.textContent.trim() === "—").map(d => d.previousElementSibling.textContent);
         const comps = {};
         for (const s of [".linechart", ".barchart", ".waterfall", ".scatter", ".sens", ".calc", ".quiz", "table", "figure"]) comps[s] = main.querySelectorAll(s).length;
         const wide = [...main.querySelectorAll("*")].filter(e => { const b = e.getBoundingClientRect(); return b.right > window.innerWidth + 1 && !e.closest(".tbl,.fig-svg,.formula .eq"); }).slice(0, 3).map(e => e.tagName + "." + e.className);
-        return { brokenFigs, nan, comps, sw: document.documentElement.scrollWidth, chars: main.innerText.length, wide };
+        return { deadCalc, brokenFigs, nan, comps, sw: document.documentElement.scrollWidth, chars: main.innerText.length, wide };
       });
       errs.forEach(e => probs.push(`[${tag}] ${e}`));
       r.brokenFigs.forEach(e => probs.push(`[${tag}] ${e}`));
+      if (r.deadCalc.length) probs.push(`[${tag}] 試算ツールの出力が計算できていません（式の誤り・0除算など）: ${r.deadCalc.join(", ")}`);
       if (r.nan) probs.push(`[${tag}] 表示に NaN/undefined/Infinity: …${r.nan}…`);
       if (r.sw > w + 1) probs.push(`[${tag}] 横にはみ出しています（幅 ${r.sw}px）: ${r.wide.join(", ")}`);
       if (tag === "desktop") console.log(`  ${id}: 本文 ${r.chars} 字 / 部品 ` + Object.entries(r.comps).filter(([, n]) => n).map(([k, n]) => k.replace(".", "") + "×" + n).join(" "));
