@@ -244,3 +244,4 @@ figure.fig figcaption, .chart-caption { font-size: .82rem; color: var(--muted); 
 .score-btn { font: inherit; font-size: .9rem; padding: 6px 14px; border-radius: var(--radius); border: 1px solid var(--accent); background: var(--accent); color: var(--surface); cursor: pointer; }
 .sens table { font-size: .82rem; }
 .sens td, .sens th { white-space: nowrap; padding: 6px 8px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 25; background: var(--surface); }
