@@ -163,7 +163,7 @@
                 {"id":"apd","label":"仕入債務回転日数（売上原価比）","min":0,"max":150,"step":1,"value":60,"fmt":"num0"},
                 {"id":"fa","label":"固定資産／売上高","min":0.05,"max":1.5,"step":0.005,"value":0.375,"fmt":"pct"}]'
   data-vars='{"cr":0.655,"oth":-0.041,"t":0.3,"w":0.081}'
-  data-outputs='[{"label":"投下資本／売上高","expr":"ard/365+invd*cr/365-apd*cr/365+fa+oth","fmt":"pct"},{"label":"投下資本回転率","expr":"1/(ard/365+invd*cr/365-apd*cr/365+fa+oth)","fmt":"x2"},{"label":"NOPATマージン","expr":"om*(1-t)","fmt":"pct"},{"label":"ROIC","expr":"om*(1-t)/(ard/365+invd*cr/365-apd*cr/365+fa+oth)","fmt":"pct","hl":true},{"label":"ROIC − WACC（8.1%）","expr":"om*(1-t)/(ard/365+invd*cr/365-apd*cr/365+fa+oth)-w","fmt":"pct"}]'></div>
+  data-outputs='[{"label":"投下資本／売上高","expr":"ard/365+invd*cr/365-apd*cr/365+fa+oth","fmt":"pct"},{"label":"投下資本回転率（回）","expr":"1/(ard/365+invd*cr/365-apd*cr/365+fa+oth)","fmt":"num2"},{"label":"NOPATマージン","expr":"om*(1-t)","fmt":"pct2"},{"label":"ROIC","expr":"om*(1-t)/(ard/365+invd*cr/365-apd*cr/365+fa+oth)","fmt":"pct","hl":true},{"label":"ROIC − WACC（8.1%）","expr":"om*(1-t)/(ard/365+invd*cr/365-apd*cr/365+fa+oth)-w","fmt":"pct"}]'></div>
 <p>試算ツールで在庫日数を2024年3月期の92日に戻すと、ROICは約15.9%に下がります。営業利益率を10.0%に下げると約11.4%です。ミナモ精機では、利益率1ポイントがROIC約1.1ポイントに相当し、在庫日数10日がROIC約0.5ポイントに相当します。どのKPIに経営の注力が向くべきかが、数字で比べられます。</p>
 
 <h2 id="ch23-3">23-3　成長率＝再投資率×ROIC と価値の式</h2>
