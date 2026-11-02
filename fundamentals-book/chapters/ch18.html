@@ -118,7 +118,7 @@
   data-inputs='[{"id":"g","label":"成長期間中のEPS成長率","min":0.02,"max":0.4,"step":0.01,"value":0.2,"fmt":"pct0"},
                 {"id":"n","label":"成長が続く年数","min":1,"max":15,"step":1,"value":5,"fmt":"yr0"},
                 {"id":"pt","label":"成長期間後のPER","min":8,"max":25,"step":0.5,"value":15,"fmt":"x1"},
-                {"id":"r","label":"株主資本コスト","min":0.06,"max":0.12,"step":0.0025,"value":0.081,"fmt":"pct2"}]'
+                {"id":"r","label":"株主資本コスト","min":0.06,"max":0.12,"step":0.001,"value":0.081,"fmt":"pct1"}]'
   data-vars='{"po":0.3}'
   data-outputs='[{"label":"妥当なPER（実績EPSベース）","expr":"po*sum(range(n).map(function(t){return Math.pow((1+g)/(1+r),t+1);}))+Math.pow((1+g)/(1+r),n)*pt","fmt":"x1","hl":true},
                  {"label":"妥当なPEG","expr":"(po*sum(range(n).map(function(t){return Math.pow((1+g)/(1+r),t+1);}))+Math.pow((1+g)/(1+r),n)*pt)/(g*100)","fmt":"num2"},
