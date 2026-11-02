@@ -1,0 +1,388 @@
+<header class="chapter-head">
+  <p class="eyebrow">第10部　習熟度テスト　Lv.4</p>
+  <h1>Lv.4 マスター試験</h1>
+  <p class="lead">第29〜39章と通し演習（演習1・演習2）の範囲から32問を出題します。応用バリュエーション、決算・イベント・マクロの読み方、ポートフォリオと心理の管理までを、計算と判断の両面で確かめる最終試験です。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この試験で確かめること</span>
+<ul>
+<li>SOTP・リバースDCF・潜在株式・LBO・清算価値・CAPEなどの応用手法を、自分の手で計算できる</li>
+<li>進捗率・合併裁定・株式報酬・為替感応度・ファクタースコアを使って、イベントやマクロの影響を数字で読める</li>
+<li>ケリー基準・分散・成績評価・行動バイアスを踏まえて、資金管理と売買の判断ができる</li>
+<li>複数の手法と情報を組み合わせ、「この前提ならこの価格帯」という形で総合判断ができる</li>
+</ul></div>
+
+<h2 id="ex4-1">試4-1　受験の案内</h2>
+<p>この試験は4択の32問です。うち23問が計算問題、残りが概念と事例の判断問題です。計算には電卓を使ってかまいません。目安の時間は90分です。各問の選択肢を1つ選び、最後の「採点する」ボタンを押すと、正解数と点数が表示されます。答えと解説は各問の下の「答えと解説」を開くと読めます。採点の前に開かないようにしてください。</p>
+
+<div class="box key"><span class="box-label">合格ライン</span>
+<p>32問中26問以上の正解（8割以上）で合格です。計算問題は、途中の数字を四捨五入しすぎると選択肢とずれることがあるので、最後に丸めてください。</p></div>
+
+<div class="tbl"><table>
+<caption>出題の構成</caption>
+<tr><th>区分</th><th>範囲</th><th class="r">問題</th><th class="r">うち計算</th></tr>
+<tr><td>応用バリュエーション</td><td>第29・30章</td><td class="r">Q1〜Q10</td><td class="r">9問</td></tr>
+<tr><td>市場・イベント・マクロ</td><td>第31〜36章</td><td class="r">Q11〜Q22</td><td class="r">7問</td></tr>
+<tr><td>実行と管理</td><td>第37〜39章</td><td class="r">Q23〜Q28</td><td class="r">5問</td></tr>
+<tr><td>通し演習と総合事例</td><td>演習1・演習2、全範囲</td><td class="r">Q29〜Q32</td><td class="r">2問</td></tr>
+<tr class="sum"><td>合計</td><td></td><td class="r">32問</td><td class="r">23問</td></tr>
+</table></div>
+
+<p>問題に出てくる会社は、ミナモ精機とオボロ化学工業を含めてすべて架空です。市場の前提は本書共通の値（リスクフリーレート1.5%、市場リスクプレミアム6.0%、実効税率30%）を使います。リスクフリーレート1.5%は説明用の固定前提で、2026年11月時点の実際の長期金利はこれより高い水準です（<a href="#ch35-1">第35章 35-1</a>）。</p>
+
+<div class="quiz" data-key="C,A,D,D,B,A,B,C,A,B,D,C,A,B,D,C,C,B,A,D,B,D,A,C,B,D,A,C,D,B,A,C">
+<p class="quiz-title">Lv.4 マスター試験（32問）</p>
+
+<h2 id="ex4-2">試4-2　応用バリュエーション（第29・30章）</h2>
+
+<div class="q"><p>架空のK社は3つの事業を持ちます。精密事業のEBIT 30億円にEV/EBIT 12倍、素材事業の20億円に8倍、医療事業の10億円に15倍を当てます。セグメントに配分されない本社費（年4億円）は10倍で資本化します。ネットキャッシュは50億円、投資有価証券は時価40億円（うち含み益20億円、売却時の税率30%）、株式数は30百万株で、非支配株主持分はありません。SOTPによる1株価値はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q1" value="A"> 2,513円</label></li>
+<li><label><input type="radio" name="q1" value="B"> 2,400円</label></li>
+<li><label><input type="radio" name="q1" value="C"> 2,380円</label></li>
+<li><label><input type="radio" name="q1" value="D"> 2,267円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　事業の価値は 30 × 12 ＋ 20 × 8 ＋ 10 × 15 ＝ 360 ＋ 160 ＋ 150 ＝ 670億円。本社費 4 × 10 ＝ 40億円を引いて630億円。ネットキャッシュ50億円と、投資有価証券の税引後の価値 40 − 20 × 30% ＝ 34億円を加えると、株主価値は714億円、1株 714 ÷ 30百万株 ＝ 2,380円です。(A)は本社費を引き忘れた値、(B)は含み益の税を無視した値、(D)は投資有価証券を加え忘れた値です。SOTPでは「本社費の控除」と「非事業資産の税引後での加算」を漏らさないことが要です（<a href="#ch29-2">第29章 29-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>株価から逆算した事業価値が1,000億円、WACCが8%、来期のNOPATが50億円の会社があります。新規投資のROIC（RONIC）を20%と置くと、バリュードライバー式から逆算した、株価に織り込まれた永久成長率はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q2" value="A"> 4.0%</label></li>
+<li><label><input type="radio" name="q2" value="B"> 3.2%</label></li>
+<li><label><input type="radio" name="q2" value="C"> 3.0%</label></li>
+<li><label><input type="radio" name="q2" value="D"> 5.0%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　g ＝ (事業価値 × WACC − NOPAT<sub>1</sub>) ÷ (事業価値 − NOPAT<sub>1</sub> ÷ RONIC) ＝ (80 − 50) ÷ (1,000 − 250) ＝ 30 ÷ 750 ＝ 4.0%です。(B)の約3.2%は、成長に再投資が要らない（RONICが無限大）とした場合の 30 ÷ 950、(C)は分母に事業価値をそのまま使った値、(D)は NOPAT ÷ 事業価値（益回り）です。RONICが低いほど、同じ株価を正当化するのに必要な成長率は高くなります。逆算した値は、使った割引率とRONICを添えて解釈します（<a href="#ch29-3">第29章 29-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>赤字が続く成長企業をDCFで評価したところ、ターミナルバリューの現在価値が事業価値の120%になりました。この結果の解釈として最も適切なものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q3" value="A"> 計算の誤りなので、予測期間を短くしてターミナルバリューの比率を100%以下に収める</label></li>
+<li><label><input type="radio" name="q3" value="B"> ターミナルバリューが100%を超える会社の価値は、ゼロとみなすのが原則である</label></li>
+<li><label><input type="radio" name="q3" value="C"> より保守的にするため、増資による株式数の増加も1株価値の計算に加える</label></li>
+<li><label><input type="radio" name="q3" value="D"> 予測期間のFCFFの現在価値の合計がマイナスなので計算上ありうる。価値のすべてが定常状態の前提に依存するので、その売上・利益率と失敗の確率の根拠を点検する</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　予測期間中のFCFFがマイナスなら、その現在価値の合計もマイナスになり、ターミナルバリューの比率は100%を超えます。誤りではありませんが、価値のすべてが10年後の定常状態の前提にかかっているので、そこを最も厳しく確かめます。(C)はマイナスのFCFFをすでに差し引いているのに、増資による株式数の増加も数える「希薄化の二重計上」です（<a href="#ch29-4">第29章 29-4</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>株主価値が2,000億円、自己株式を除く発行済株式数が100百万株の会社があります。潜在株式はストックオプション5百万株（行使価格1,200円、すべて権利確定済み）だけです。潜在株式を含めた1株価値（自己株式法で整合的に判定）はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q4" value="A"> 2,060円</label></li>
+<li><label><input type="radio" name="q4" value="B"> 2,000円</label></li>
+<li><label><input type="radio" name="q4" value="C"> 1,905円</label></li>
+<li><label><input type="radio" name="q4" value="D"> 1,962円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　行使代金は 5百万株 × 1,200円 ＝ 60億円です。1株価値 ＝ (2,000 ＋ 60) ÷ (100 ＋ 5) ＝ 2,060億円 ÷ 105百万株 ≒ 1,962円。1,962円は行使価格1,200円を上回るので「行使される」という仮定と整合します。(A)は行使代金だけを足して株数を増やさなかった値、(B)はオプションを無視した値、(C)は株数だけ増やして行使代金を足さなかった値です（<a href="#ch29-7">第29章 29-7</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>架空のZ社の時価総額は1,000億円、連結の純有利子負債は200億円です。Z社は上場子会社（子会社の時価総額300億円）の70%を持ち、ほかに持分法を適用する上場関連会社の株式（時価50億円）を持っています。連結のEBITDAと対応させたEVはいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q5" value="A"> 1,150億円</label></li>
+<li><label><input type="radio" name="q5" value="B"> 1,240億円</label></li>
+<li><label><input type="radio" name="q5" value="C"> 1,340億円</label></li>
+<li><label><input type="radio" name="q5" value="D"> 1,290億円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　連結のEBITDAには子会社の100%が入るので、非支配株主持分を時価（300 × 30% ＝ 90億円）で加えます。持分法投資の利益はEBITDAに入らないので、その時価50億円を差し引きます。EV ＝ 1,000 ＋ 200 ＋ 90 − 50 ＝ 1,240億円です。(A)は非支配株主持分を加え忘れた値、(C)は持分法投資を足してしまった値、(D)は持分法投資を差し引かなかった値です。分子と分母を「同じ人の取り分」にそろえるのが原則です（<a href="#ch29-6">第29章 29-6</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>ファンドが架空のM社を、EBITDA 100億円の6.0倍（事業価値600億円）で買収しました。借入は360億円、出資は240億円です。5年後にEBITDAは125億円になり、同じ6.0倍で売却しました。そのときの借入残高は160億円で、途中の配当や追加出資はありません。ファンドのIRRに最も近いものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q6" value="A"> 19.7%</label></li>
+<li><label><input type="radio" name="q6" value="B"> 29.2%</label></li>
+<li><label><input type="radio" name="q6" value="C"> 10.2%</label></li>
+<li><label><input type="radio" name="q6" value="D"> 14.1%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　出口のエクイティ価値は 125 × 6.0 − 160 ＝ 590億円、MOICは 590 ÷ 240 ≒ 2.46倍、IRRは 2.46<sup>1/5</sup> − 1 ≒ 19.7%です。増加分350億円は、EBITDAの成長 (125 − 100) × 6.0 ＝ 150億円と、借入の返済 360 − 160 ＝ 200億円に分解でき、マルチプルの変化は0です。(B)は増加率を5で割った単純平均、(C)は借入が返済されない（残高360億円のまま）とした場合、(D)は出口の倍率が5.0倍に下がった場合のIRRです（<a href="#ch30-3">第30章 30-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>問6と同じ前提で、借入はEBITDAの3.6倍（360億円）に固定され、出口のエクイティ価値は買収価格に関係なく590億円だとします。ファンドの目標IRRが25%のとき、払える事業価値の上限に最も近いものはどれですか（取引費用は無視）。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q7" value="A"> 193億円</label></li>
+<li><label><input type="radio" name="q7" value="B"> 553億円</label></li>
+<li><label><input type="radio" name="q7" value="C"> 622億円</label></li>
+<li><label><input type="radio" name="q7" value="D"> 750億円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　払えるエクイティの上限は 590 ÷ 1.25<sup>5</sup> ＝ 590 ÷ 3.052 ≒ 193億円、これに借入360億円を足すと約553億円（EBITDAの約5.5倍）です。目標IRRが25%なら、6.0倍（600億円）では払えません。(A)はエクイティの上限だけで借入を足していない値、(C)は 590 ÷ (1 ＋ 25% × 5) のように単利で割り引いた値、(D)は出口の事業価値です（<a href="#ch30-3">第30章 30-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>架空のN社の資産は、現金80億円、売掛金100億円、棚卸資産50億円、有形固定資産120億円、のれん・無形資産30億円、投資有価証券（上場株、時価で計上）20億円で、負債合計は200億円、株式数は10百万株です。掛け目を現金100%・売掛金80%・棚卸資産40%・有形固定資産30%・のれん無形資産0%・投資有価証券90%、清算費用を15億円とすると、1株あたりの清算価値はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q8" value="A"> 340円</label></li>
+<li><label><input type="radio" name="q8" value="B"> 2,000円</label></li>
+<li><label><input type="radio" name="q8" value="C"> 190円</label></li>
+<li><label><input type="radio" name="q8" value="D"> 0円（債務超過）</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　回収額は 80 ＋ 80 ＋ 20 ＋ 36 ＋ 0 ＋ 18 ＝ 234億円。負債200億円と清算費用15億円を引くと19億円で、1株190円です。帳簿上の純資産は 400 − 200 ＝ 200億円で、BPS2,000円（(B)、いわゆる解散価値）の1割に満たない水準です。(A)は清算費用を引き忘れた値です。「PBR1倍割れは解散価値割れ」と判断するときは、帳簿ではなく掛け目を当てた清算価値と比べます（<a href="#ch30-4">第30章 30-4</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>CAPE（景気調整PER）を計算するため、10年前の名目EPS100円を今の貨幣価値に直します。10年前の物価指数は90、現在の物価指数は108です。この年の実質EPSはいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q9" value="A"> 120円</label></li>
+<li><label><input type="radio" name="q9" value="B"> 83.3円</label></li>
+<li><label><input type="radio" name="q9" value="C"> 100円</label></li>
+<li><label><input type="radio" name="q9" value="D"> 108円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　実質EPS ＝ 名目EPS × 現在の物価指数 ÷ その年の物価指数 ＝ 100 × 108 ÷ 90 ＝ 120円です。(B)は掛け算と割り算を逆にした値、(C)は物価調整をしない値です。物価が上がってきた期間に名目のまま平均すると、過去の利益が小さく数えられ、CAPEは高めに出ます（<a href="#ch30-5">第30章 30-5</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>単独の価値が時価総額と同じ1,000億円と見られる会社に、事業会社が30%のプレミアムを付けてTOBを行います。プレミアムの分を、成長しない永久のシナジーで取り戻すには、税引前で毎年いくらのシナジーが必要ですか（割引率8%、税率30%）。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q10" value="A"> 24.0億円</label></li>
+<li><label><input type="radio" name="q10" value="B"> 約34.3億円</label></li>
+<li><label><input type="radio" name="q10" value="C"> 約16.8億円</label></li>
+<li><label><input type="radio" name="q10" value="D"> 300億円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　プレミアムは 1,000 × 30% ＝ 300億円です。必要な税引後のシナジーは 300 × 8% ＝ 24.0億円、税引前では 24.0 ÷ (1 − 30%) ≒ 34.3億円です。(A)は税引後のまま、(C)は税を逆向きに掛けた値（24.0 × 0.7）、(D)はプレミアムの総額で、毎年の額ではありません。必要なシナジーを営業利益と比べると、プレミアムが現実的かどうかが分かります（<a href="#ch30-2">第30章 30-2</a>）。</p></div></details>
+</div>
+
+<h2 id="ex4-3">試4-3　市場・イベント・マクロ（第31〜36章）</h2>
+
+<div class="q"><p>架空のP社の通期の営業利益の会社予想は200億円です。第1四半期累計の営業利益は40億円、第2四半期累計（上期）は92億円でした。過去3期の上期の進捗率は平均44%で、季節性は安定しています。第2四半期単独（3か月）の営業利益と、季節性から見た通期の着地の組み合わせとして正しいものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q11" value="A"> 52億円、184億円</label></li>
+<li><label><input type="radio" name="q11" value="B"> 92億円、約209億円</label></li>
+<li><label><input type="radio" name="q11" value="C"> 46億円、200億円</label></li>
+<li><label><input type="radio" name="q11" value="D"> 52億円、約209億円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　第2四半期単独は 92 − 40 ＝ 52億円で、第1四半期の40億円から増えています。季節性から見た着地は 92 ÷ 44% ≒ 209億円で、会社予想を約9億円上回ります。(A)の184億円は上期を単純に2倍した値で季節性を無視しています。(B)は累計を単独の数字と取り違えています（<a href="#ch31-2">第31章 31-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>架空のQ社の上期の営業利益の進捗率は58%で、過去の平均50%を上回りました。しかし、第2四半期単独の営業利益は第1四半期より25%少なく、受注残も2四半期続けて減っています。会社は通期予想を据え置きました。最も適切な読み方はどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q12" value="A"> 進捗率が過去の平均を上回っているので、上方修正の可能性が高い</label></li>
+<li><label><input type="radio" name="q12" value="B"> 進捗率が50%を超えているので、通期予想の達成は確実である</label></li>
+<li><label><input type="radio" name="q12" value="C"> 景気の下降局面では、下期の落ち込みで進捗率が見かけ上高くなる。3か月単独の減速と受注残の減少を重く見て、下期の前提を点検する</label></li>
+<li><label><input type="radio" name="q12" value="D"> 3か月単独の数字は決算短信に載らないので、分析に使うべきではない</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　ミナモ精機の2024年3月期も、上期の進捗率は51.2%と高かったのに、通期は大きな減益でした。進捗率が高いことは、必ずしも良い知らせではありません。3か月単独の数字は「今回の累計 − 前回までの累計」で自分で計算でき、勢いの変化を見るのに欠かせません（(D)は誤り）（<a href="#ch31-2">第31章 31-2</a>、<a href="#ch26-4">第26章 26-4</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>プライム市場でPBR1倍割れの会社の比率は、約5割（2022年7月）から27%（2026年初め）に下がりました。この変化の読み方として最も適切なものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q13" value="A"> 市場全体の株価の上昇（PERの上昇）も含まれるので、PBRをROEとPERに分け、ROEの改善による部分を確かめる</label></li>
+<li><label><input type="radio" name="q13" value="B"> 低下はすべて、各社の資本効率の改善によるものである</label></li>
+<li><label><input type="radio" name="q13" value="C"> 東証の要請により、PBR1倍割れの会社が上場廃止になったためである</label></li>
+<li><label><input type="radio" name="q13" value="D"> PBRが1倍を上回った会社は、ROEが資本コストを上回ったと判断できる</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　PBR ＝ ROE × PER なので、PBRの上昇は資本効率の改善と、市場の評価（PER）の上昇の両方から生まれます。東証の要請は上場廃止の規則ではありません（(C)は誤り）。PBRが1倍を超えても、相場全体の上昇によるものなら、ROEが資本コストを上回ったとは限りません（(D)は誤り）（<a href="#ch32-1">第32章 32-1</a>、<a href="#ch32-2">32-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>株主資本コスト8%、純資産の成長率 g が2%の会社で、PBR1.2倍を正当化するには、長期のROEがいくら必要ですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q14" value="A"> 8.0%</label></li>
+<li><label><input type="radio" name="q14" value="B"> 9.2%</label></li>
+<li><label><input type="radio" name="q14" value="C"> 9.6%</label></li>
+<li><label><input type="radio" name="q14" value="D"> 7.2%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　理論PBR ＝ (ROE − g) ÷ (r − g) より、1.2 ＝ (ROE − 2%) ÷ 6%、ROE ＝ 1.2 × 6% ＋ 2% ＝ 9.2%です。(A)の8.0%はPBR1倍になるROE（ROE ＝ r）、(C)は成長を無視して 1.2 × 8% とした値、(D)は g を足し忘れた値です（<a href="#ch32-2">第32章 32-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>1株2,500円の現金TOBが発表され、株価は2,400円になりました。不成立なら株価は1,800円になると見積もります。自分の見積もる成立確率は92%、決済まで6か月です。期待リターンの年率に最も近いものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q15" value="A"> 約1.8%</label></li>
+<li><label><input type="radio" name="q15" value="B"> 約8.5%</label></li>
+<li><label><input type="radio" name="q15" value="C"> 0%</label></li>
+<li><label><input type="radio" name="q15" value="D"> 約3.7%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　期待価格は 0.92 × 2,500 ＋ 0.08 × 1,800 ＝ 2,444円、6か月の期待リターンは 2,444 ÷ 2,400 − 1 ≒ 1.83%、年率は 1.0183<sup>2</sup> − 1 ≒ 3.7%です。(A)は年率に直す前の値、(B)は成立が確実とした場合のスプレッド4.17%の年率です。市場が織り込む成立確率は (2,400 − 1,800) ÷ (2,500 − 1,800) ≒ 85.7%で、これを自分の見積もりにすると期待リターンは0%（(C)）になります。不成立時の損失600円は成立時の利益100円の6倍で、「小さく勝ち、まれに大きく負ける」形です（<a href="#ch33-2">第33章 33-2</a>、<a href="#ch33-3">33-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>TOBで買い手が議決権の85%を取得しました。残りの株式を取得して完全子会社にする手続きについて、正しいものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q16" value="A"> 85%あれば、特別支配株主の株式等売渡請求で、株主総会を開かずに残りの株式を取得できる</label></li>
+<li><label><input type="radio" name="q16" value="B"> 少数株主が全員同意しない限り、完全子会社化はできない</label></li>
+<li><label><input type="radio" name="q16" value="C"> 売渡請求に必要な90%に届かないので、株主総会の特別決議による株式併合を使うのが一般的で、反対する株主は価格決定の申立てができる</label></li>
+<li><label><input type="radio" name="q16" value="D"> 議決権が3分の2以上あっても、株式併合には株主総会の特別決議に加えて裁判所の許可が必要である</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　特別支配株主の株式等売渡請求は議決権の90%以上を持つ株主が使える手続きです（(A)は誤り）。90%未満では、株主総会の特別決議（3分の2以上）による株式併合で少数株主の持分を端数にして現金化するのが一般的です。このため、TOBの下限は3分の2に置かれることが多くなります。公正な手続きを経た案件では、価格決定の申立てで価格が上がる余地は小さいとされます（<a href="#ch33-2">第33章 33-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>米国の架空のV社（期首株式数400百万株、株価50ドル）では、権利が確定したRSU 10百万株のうち、源泉税を払うために3百万株を会社が留保し（税の支払い150百万ドル、財務CF）、7百万株を新株で交付しました。自社株買いは900百万ドル（18百万株）、会社が発表したFCFは1,500百万ドルです。希薄化を打ち消すための現金を差し引いたFCFはいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q17" value="A"> 1,500百万ドル</label></li>
+<li><label><input type="radio" name="q17" value="B"> 1,350百万ドル</label></li>
+<li><label><input type="radio" name="q17" value="C"> 1,000百万ドル</label></li>
+<li><label><input type="radio" name="q17" value="D"> 600百万ドル</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　交付した新株7百万株を買い戻す費用は 7 × 50 ＝ 350百万ドル、これに純株式決済の税150百万ドルを足した500百万ドルが、株式報酬の現金換算のコストです。1,500 − 500 ＝ 1,000百万ドルになります。株式数は 7 − 18 ＝ −11百万株（期首比 −2.75%）と減っていますが、自社株買い900百万ドルのうち350百万ドルは新株の打ち消しに使われ、株数を本当に減らしたのは550百万ドル分です。(D)は株数を減らした分まで差し引いた誤りです（<a href="#ch34-4">第34章 34-4</a>、<a href="#ch27-7">第27章 27-7</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>架空のR社の海外売上はすべてドル建てで2億ドル（想定為替レート1ドル＝150円で300億円）、ドル建ての費用は0.8億ドルで、ヘッジはしていません。会社予想の営業利益100億円は150円の想定です。実際の平均レートは156円、営業利益の実績は110億円でした。為替の影響を除いた営業利益は、会社予想を何%上回る（下回る）ことになりますか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q18" value="A"> ＋10.0%</label></li>
+<li><label><input type="radio" name="q18" value="B"> ＋2.8%</label></li>
+<li><label><input type="radio" name="q18" value="C"> −2.0%</label></li>
+<li><label><input type="radio" name="q18" value="D"> ＋5.2%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　為替感応度は (2 − 0.8)億ドル × 1円 ＝ 1円の円安で1.2億円です。6円の円安で為替の寄与は7.2億円、為替を除くと 110 − 7.2 ＝ 102.8億円で、予想を2.8%上回ります。(A)は見出しの数字のまま、(C)は売上の感応度（2億円）だけを使い、外貨建ての費用を無視した値、(D)は費用の感応度（0.8億円）だけを使った値です（<a href="#ch35-2">第35章 35-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>売上に占める原材料費が30%、営業利益率が6%の会社で、原材料価格が10%上がりました。値上がり分の60%を販売価格に転嫁できるとき、営業利益はおよそ何%減りますか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q19" value="A"> 20%</label></li>
+<li><label><input type="radio" name="q19" value="B"> 4%</label></li>
+<li><label><input type="radio" name="q19" value="C"> 50%</label></li>
+<li><label><input type="radio" name="q19" value="D"> 30%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　営業利益の変化率 ≒ 原材料価格の変化率 × (原材料費 ÷ 営業利益) × (1 − 転嫁率) ＝ 10% × (30% ÷ 6%) × 40% ＝ 20%の減益です。(C)はまったく転嫁できない場合、(D)は転嫁率をそのまま掛けた誤り、(B)は原材料費が営業利益の5倍あるという「てこ」を無視した値です（<a href="#ch35-5">第35章 35-5</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>マルチファクター・スコアリングで、架空のS社の指標は次のとおりです。益回り8.0%（比べる銘柄群の平均6.0%、標準偏差2.0%）、B/P 0.5（平均0.8、標準偏差0.3）、クオリティのスコア0.8、モメンタムのスコア0.4、ボラティリティ20%（平均30%、標準偏差10%）。バリューは益回りとB/PのZスコアの平均、低ボラはボラティリティのZスコアの符号を逆にした値です。重みをバリュー40%・クオリティ30%・モメンタム10%・低ボラ20%とすると、複合スコアはいくつですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q20" value="A"> 0.08</label></li>
+<li><label><input type="radio" name="q20" value="B"> 0.55</label></li>
+<li><label><input type="radio" name="q20" value="C"> 2.20</label></li>
+<li><label><input type="radio" name="q20" value="D"> 0.48</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　益回りのZは (8.0 − 6.0) ÷ 2.0 ＝ 1.0、B/PのZは (0.5 − 0.8) ÷ 0.3 ＝ −1.0で、バリューは0.0です。ボラティリティのZは (20 − 30) ÷ 10 ＝ −1.0なので、低ボラは＋1.0。複合スコアは 0.4 × 0.0 ＋ 0.3 × 0.8 ＋ 0.1 × 0.4 ＋ 0.2 × 1.0 ＝ 0.48です。(A)はボラティリティの符号を逆にし忘れた値、(B)は等ウエイトで平均した値、(C)は重みを掛けずに合計した値です（<a href="#ch36-3">第36章 36-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>現在上場している銘柄だけを使って、過去20年間の低PBR戦略をバックテストしました。この検証の問題点として最も適切なものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q21" value="A"> 先読みバイアスで、成績が実際より悪く見えやすい</label></li>
+<li><label><input type="radio" name="q21" value="B"> 生存バイアスで、途中で上場廃止や経営破綻になった銘柄が抜け落ち、財務の弱い銘柄を含む戦略ほど成績が良く見えやすい</label></li>
+<li><label><input type="radio" name="q21" value="C"> データマイニングで、検証する戦略が1つなら問題は起きない</label></li>
+<li><label><input type="radio" name="q21" value="D"> 取引コストの問題で、低PBR戦略は売買回転率が高いので必ずマイナスになる</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　過去の各時点で実際に上場していた銘柄（上場廃止になった銘柄を含む）で検証しなければ、失敗した銘柄が最初から除かれ、成績が過大に出ます。低PBR株には財務の弱い会社が多く含まれるので、影響が大きくなりやすい戦略です。先読みバイアス（(A)）は、その時点で手に入らなかった情報を使う誤りで、通常は成績を良く見せます（<a href="#ch36-4">第36章 36-4</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>上場子会社の少数株主の立場で、最も注意して確かめるべき点はどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q22" value="A"> 親会社が過半数を持つので経営は安定しており、少数株主の利益は自動的に守られる</label></li>
+<li><label><input type="radio" name="q22" value="B"> 親会社による完全子会社化には常に大きなプレミアムが付くので、利益相反を気にする必要はない</label></li>
+<li><label><input type="radio" name="q22" value="C"> 上場子会社の株価は親会社の株価と常に連動するので、親会社を分析すれば足りる</label></li>
+<li><label><input type="radio" name="q22" value="D"> グループ内の取引条件、親会社への資金の預け入れ、事業機会の配分、将来の完全子会社化の価格で利益相反が起きやすいので、独立社外取締役の構成や少数株主保護の仕組みを確かめる</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　親会社と少数株主の利害は一致しないことがあり、取引価格や資金の扱い、事業の線引き、完全子会社化の価格が典型的な論点です。完全子会社化の価格は、プレミアムの大きさではなく本来価値と比べます。少数株主保護の制度の見直し（2026年3月公表のものを含む）も確かめます（<a href="#ch32-4">第32章 32-4</a>、<a href="#ch32-6">32-6</a>）。</p></div></details>
+</div>
+
+<h2 id="ex4-4">試4-4　実行と管理（第37〜39章）</h2>
+
+<div class="q"><p>市場に対する期待超過リターン（α）が年6%、固有リスクの変動率が30%と見込む銘柄があります。連続近似のケリー比率を使い、その4分の1（4分の1ケリー）を上限にすると、資産の何%になりますか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q23" value="A"> 約16.7%</label></li>
+<li><label><input type="radio" name="q23" value="B"> 約66.7%</label></li>
+<li><label><input type="radio" name="q23" value="C"> 5.0%</label></li>
+<li><label><input type="radio" name="q23" value="D"> 20.0%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　f* ≈ α ÷ σ<sub>ε</sub><sup>2</sup> ＝ 6% ÷ (30%)<sup>2</sup> ＝ 0.06 ÷ 0.09 ≒ 66.7%（(B)、フルケリー）で、4分の1にすると約16.7%です。(D)は分散ではなく変動率で割った値、(C)はそれをさらに4分の1にした値です。αの推定誤差と複数銘柄の同時保有を考えると、実務では2分の1〜4分の1の分数ケリーを上限の目安にします（<a href="#ch38-3">第38章 38-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>資産5,000万円の投資家が、ある銘柄のポジションの上限を決めます。確信度による上限は資産の15%、1銘柄で許容する損失は資産の2%、弱気シナリオの価値は現在の株価より25%低い水準です。1日平均売買代金は3,000万円で、参加率5%、手仕舞いに3日を使えるとします。3つの上限の最小値をとると、上限はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q24" value="A"> 750万円</label></li>
+<li><label><input type="radio" name="q24" value="B"> 450万円</label></li>
+<li><label><input type="radio" name="q24" value="C"> 400万円</label></li>
+<li><label><input type="radio" name="q24" value="D"> 100万円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　確信度の上限は 5,000 × 15% ＝ 750万円、下値基準の上限は 2% ÷ 25% ＝ 8%で400万円、流動性の上限は 3,000 × 5% × 3日 ＝ 450万円です。最小値の400万円が上限になります。(D)の100万円は許容する損失額そのもので、ポジションの大きさではありません（<a href="#ch38-2">第38章 38-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>個別銘柄の変動率がどれも25%、銘柄間の平均相関が0.36のとき、等金額で20銘柄を持つポートフォリオの変動率と、銘柄数を無限に増やしたときの下限の組み合わせとして正しいものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q25" value="A"> 約5.6%、0%</label></li>
+<li><label><input type="radio" name="q25" value="B"> 約15.7%、15.0%</label></li>
+<li><label><input type="radio" name="q25" value="C"> 約15.7%、9.0%</label></li>
+<li><label><input type="radio" name="q25" value="D"> 9.0%、0%</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　σ<sub>P</sub> ＝ 25% × √(1/20 ＋ 19/20 × 0.36) ＝ 25% × √0.392 ≒ 15.7%。下限は σ × √ρ ＝ 25% × 0.6 ＝ 15.0%です。20銘柄で、分散で消せるリスクのほとんどはすでに消えています。(A)は相関をゼロとした値、9.0%は平方根を取り忘れた値です。分散の効き目は銘柄数より相関で決まります（<a href="#ch38-1">第38章 38-1</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>ある運用者のベンチマークに対する超過リターンは平均で年2%、トラッキングエラーは年5%です。年ごとの超過リターンが独立だとすると、t値（およそ 情報レシオ × √年数）が2.0に届くには、何年分の実績が必要ですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q26" value="A"> 5年</label></li>
+<li><label><input type="radio" name="q26" value="B"> 10年</label></li>
+<li><label><input type="radio" name="q26" value="C"> 16年</label></li>
+<li><label><input type="radio" name="q26" value="D"> 25年</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　情報レシオは 2% ÷ 5% ＝ 0.4です。0.4 × √T ＝ 2.0 より √T ＝ 5、T ＝ 25年です。(C)の16年は情報レシオ0.5の場合です。優れた運用者でも、実力を統計的に示すには長い年月がかかるので、数年の成績で自分や他人の腕前を判断しすぎないことが大切です（<a href="#ch38-6">第38章 38-6</a>、<a href="#ch36-4">第36章 36-4</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>投資仮説の書き方として、本書の考え方に最も近いものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q27" value="A"> 株価が織り込む前提（市場の見方）、自分の見方、その差がどちらに転ぶかを確かめる方法（KPIと時期）の3つをそろえる</label></li>
+<li><label><input type="radio" name="q27" value="B"> 会社の強みをできるだけ多く書き出し、買う理由を補強する</label></li>
+<li><label><input type="radio" name="q27" value="C"> 目標株価を決め、株価が目標に届いたら仮説が正しかったと判断する</label></li>
+<li><label><input type="radio" name="q27" value="D"> 自分の見方がコンセンサスと同じなら確度が高いので、ポジションを大きくする</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　市場の見方と自分の見方に差がなければ、買う理由はありません。市場の見方はリバースDCF（<a href="#ch29-3">第29章 29-3</a>）で数字にできます。(B)は確証バイアスを強める書き方で、仮説を否定する証拠を先に書くべきです（<a href="#ch39-2">第39章 39-2</a>）。(C)は結果と判断の質を混同しています。(D)はコンセンサスどおりなら株価にすでに織り込まれています（<a href="#ch37-1">第37章 37-1</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>50%の確率で＋20万円、50%の確率で−10万円になる賭けがあります。損失を同額の利益の2.25倍に感じる人の主観的な期待値はいくらですか（感応度の逓減は無視し、損益をそのまま評価する）。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q28" value="A"> ＋5.0万円</label></li>
+<li><label><input type="radio" name="q28" value="B"> −11.25万円</label></li>
+<li><label><input type="radio" name="q28" value="C"> −1.25万円</label></li>
+<li><label><input type="radio" name="q28" value="D"> ＋1.25万円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　0.5 × 20 − 0.5 × 2.25 × 10 ＝ 10 − 11.25 ＝ −1.25万円です。客観的な期待値は＋5.0万円（(A)）と有利な賭けなのに、主観的にはマイナスになり、断りたくなります。(B)は損失側だけを計算した値です。損失回避の係数2.25は Tversky・Kahneman（1992）の推定値です（<a href="#ch39-3">第39章 39-3</a>）。</p></div></details>
+</div>
+
+<h2 id="ex4-5">試4-5　通し演習と総合事例</h2>
+
+<div class="q"><p>演習1のミナモ精機のシナリオ別1株価値は、強気2,104円・基本1,798円・弱気1,256円です。「上値・下値の比」を（強気の価値 − 株価）÷（株価 − 弱気の価値）で測るとき、株価1,800円の場合と、株価が1,450円まで下がった場合の組み合わせとして正しいものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q29" value="A"> 約0.6倍、約1.8倍</label></li>
+<li><label><input type="radio" name="q29" value="B"> 約1.8倍、約0.3倍</label></li>
+<li><label><input type="radio" name="q29" value="C"> 約0.6倍、約1.5倍</label></li>
+<li><label><input type="radio" name="q29" value="D"> 約0.6倍、約3.4倍</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(D)　1,800円では上値 2,104 − 1,800 ＝ 304円、下値 1,800 − 1,256 ＝ 544円で、比は約0.56倍です。1,450円では上値654円、下値194円で、約3.37倍です。同じ会社・同じ価値の分布でも、価格によって判断が変わります。(A)は1,450円で基本シナリオを上値に使った値、(B)は比を逆にした値、(C)は中心値1,750円を上値に使った値です（<a href="#ws1-7">演習1 演1-7</a>、<a href="#ws1-10">演1-10</a>、<a href="#ch37-2">第37章 37-2</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>演習2のオボロ化学工業（時価総額750億円）は、政策保有株（時価300億円、取得原価90億円）、不動産（時価185億円、簿価25億円）、現金258億円（事業に必要な現金は100億円）、有利子負債120億円を持っています。非事業資産を税引後の売却額（税率30%）で評価すると、市場が事業部分に付けている値段はいくらですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q30" value="A"> 227億円</label></li>
+<li><label><input type="radio" name="q30" value="B"> 338億円</label></li>
+<li><label><input type="radio" name="q30" value="C"> 372.5億円</label></li>
+<li><label><input type="radio" name="q30" value="D"> 218億円</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(B)　政策保有株は 300 − (300 − 90) × 30% ＝ 237億円、不動産は 185 − (185 − 25) × 30% ＝ 137億円、余剰現金は 258 − 100 ＝ 158億円です。750 − 237 − 137 − 158 ＋ 120 ＝ 338億円になります。(A)は税を無視した値、(C)は税を含み益ではなく時価全体に掛けた値、(D)は有利子負債を足し戻し忘れた値です。事業の税引後利益32.6億円に対して約10.4倍で、事業は安く見えますが、それは非事業資産が株主に届かないと市場が見ているからかもしれません（<a href="#ws2-4">演習2 演2-4</a>、<a href="#ch29-6">第29章 29-6</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>事例：架空のT化学（PBR0.5倍、ROE3.5%、株主資本コスト7.5%）が、中期経営計画で「政策保有株（時価200億円）を3年で全額売却し、手取りの全額で自社株買いを行い、ROEを5%に高める」と発表し、株価は15%上がりました。非事業資産を除いた事業のROEは3%で、計画は赤字事業の扱いに触れていません。この発表の評価として最も適切なものはどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q31" value="A"> 時価で売って還元するだけでは価値の増加は小さく、ROEの上昇は主に分母の縮小による。価値の源泉は価値より安い価格での自社株買いと市場の割引の縮小で、事業ROEを高める計画がなければPBR1倍への収れんは期待しにくい</label></li>
+<li><label><input type="radio" name="q31" value="B"> ROEが5%に上がれば理論PBRは1倍を超えるので、株価はさらに倍になる余地がある</label></li>
+<li><label><input type="radio" name="q31" value="C"> 政策保有株の売却益が毎年計上されるので、EPSは恒常的に増える</label></li>
+<li><label><input type="radio" name="q31" value="D"> 政策保有株の売却で純資産が大きく減るので、株主価値は損なわれる</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(A)　ROE5%は株主資本コスト7.5%を下回るので、理論PBRは1倍未満のままです（(B)は誤り）。売却益は一度きりで、日本基準ではすでに評価差額金として純資産に含まれていた含み益が純利益に振り替わるだけです（(C)は誤り）。上場の政策保有株は時価で計上済みなので、売却で純資産が大きく減ることもありません（(D)は誤り）。価値を増やすのは、資本コストを下回る事業からの撤退や、価値より安い価格での自社株買いです（<a href="#ws2-7">演習2 演2-7</a>、<a href="#ch32-2">第32章 32-2</a>、<a href="#ch32-3">32-3</a>）。</p></div></details>
+</div>
+
+<div class="q"><p>事例：架空のW社（株価1,110円）に、PEファンドが1株1,500円のTOBを提案しました（前営業日比のプレミアム約35%）。あなたの評価では、W社単独の価値の幅は1,600〜1,900円（中心1,750円）、LBO分析ではファンドが目標IRRを満たして払える上限は約1,550円です。特別委員会は設置されていますが、算定に使われた事業計画は過去の実績より大幅に低い成長を前提にしています。不成立なら株価は1,150円程度に戻ると見ています。最も適切な判断はどれですか。</p>
+<ol class="choices">
+<li><label><input type="radio" name="q32" value="A"> プレミアム35%は日本のTOBプレミアムの目安に近いので、価格は公正であり、応募するのが合理的である</label></li>
+<li><label><input type="radio" name="q32" value="B"> TOB価格は本来価値を下回るので、TOBは必ず不成立になる。株価が下がるまで待って買い増す</label></li>
+<li><label><input type="radio" name="q32" value="C"> プレミアムではなく本来価値の幅と比べる。特別委員会の独立性・交渉の経緯・事業計画の前提を確かめ、価格引き上げや対抗提案の可能性と、不成立時の株価を含めた期待値で、応募・市場での売却・保有継続を比べる</label></li>
+<li><label><input type="radio" name="q32" value="D"> LBOの上限を超える価格を出す買い手はいないので、対抗提案の可能性はゼロとみなしてよい</label></li>
+</ol>
+<details><summary>答えと解説</summary><div><p>正解：(C)　プレミアムは公表前の株価の水準に左右されるので、それだけでは公正さを判断できません（(A)は誤り、<a href="#ch32-6">第32章 32-6</a>）。成立するかどうかは応募の状況や下限の設定で決まり、価値を下回る価格でも成立することはあります（(B)は誤り）。LBOの上限は財務的買い手の目安で、シナジーを見込める戦略的買い手はそれを上回る価格を出しうるので、(D)も誤りです（<a href="#ch30-2">第30章 30-2</a>、<a href="#ch30-3">30-3</a>）。LBOの上限が約1,550円なら、同じファンドの引き上げ余地は小さいことも織り込み、成立時・不成立時の価格と確率で期待値を比べます（<a href="#ch33-2">第33章 33-2</a>）。</p></div></details>
+</div>
+
+<p><button class="score-btn" type="button">採点する</button> <span class="score-out"></span></p>
+</div>
+
+<h2 id="ex4-6">試4-6　結果の見方と復習</h2>
+<p>26問以上できた人は、本書の範囲の内容を一通り使いこなせる水準にあります。ここから先は、実際の会社の決算書と開示資料で、演習1・演習2と同じ手順を繰り返すことが最良の練習です。投資メモと投資日誌を残し、判断の質を記録していってください（<a href="#ch37-7">第37章 37-7</a>）。</p>
+<p>25問以下だった人は、間違えた問題の区分ごとに、次の節を読み直してから再挑戦してください。計算問題で間違えた場合は、解説の「誤りの選択肢がどの計算から来るか」を確かめると、自分のつまずき方が分かります。</p>
+
+<div class="tbl"><table>
+<caption>間違えた問題と読み直す節</caption>
+<tr><th>問題</th><th>主な論点</th><th>読み直す節</th></tr>
+<tr><td>Q1〜Q5</td><td>SOTP、リバースDCF、赤字成長企業、潜在株式、連結のEV</td><td><a href="#ch29-2">29-2</a>・<a href="#ch29-3">29-3</a>・<a href="#ch29-4">29-4</a>・<a href="#ch29-6">29-6</a>・<a href="#ch29-7">29-7</a></td></tr>
+<tr><td>Q6〜Q10</td><td>LBOのIRRと上限価格、清算価値、CAPE、買収プレミアム</td><td><a href="#ch30-2">30-2</a>・<a href="#ch30-3">30-3</a>・<a href="#ch30-4">30-4</a>・<a href="#ch30-5">30-5</a></td></tr>
+<tr><td>Q11〜Q12</td><td>進捗率と季節性</td><td><a href="#ch31-2">31-2</a></td></tr>
+<tr><td>Q13〜Q14、Q22</td><td>東証改革、理論PBR、親子上場</td><td><a href="#ch32-1">32-1</a>・<a href="#ch32-2">32-2</a>・<a href="#ch32-4">32-4</a></td></tr>
+<tr><td>Q15〜Q16</td><td>合併裁定の期待リターン、スクイーズアウト</td><td><a href="#ch33-2">33-2</a>・<a href="#ch33-3">33-3</a></td></tr>
+<tr><td>Q17</td><td>株式報酬の希薄化</td><td><a href="#ch34-4">34-4</a></td></tr>
+<tr><td>Q18〜Q19</td><td>為替感応度、価格転嫁</td><td><a href="#ch35-2">35-2</a>・<a href="#ch35-5">35-5</a></td></tr>
+<tr><td>Q20〜Q21</td><td>マルチファクター・スコア、バックテストの罠</td><td><a href="#ch36-3">36-3</a>・<a href="#ch36-4">36-4</a></td></tr>
+<tr><td>Q23〜Q26</td><td>ケリー基準、ポジションサイズ、分散、成績評価</td><td><a href="#ch38-1">38-1</a>・<a href="#ch38-2">38-2</a>・<a href="#ch38-3">38-3</a>・<a href="#ch38-6">38-6</a></td></tr>
+<tr><td>Q27〜Q28</td><td>投資仮説、プロスペクト理論</td><td><a href="#ch37-1">37-1</a>・<a href="#ch39-3">39-3</a></td></tr>
+<tr><td>Q29〜Q32</td><td>価値の幅と判断、低PBR企業の評価、TOBへの対応</td><td><a href="#ws1-9">演1-9</a>・<a href="#ws1-10">演1-10</a>・<a href="#ws2-4">演2-4</a>・<a href="#ws2-7">演2-7</a>・<a href="#ch32-6">32-6</a></td></tr>
+</table></div>
+
+<div class="box tip"><span class="box-label">実践のコツ</span>
+<p>試験の点数より大切なのは、問題の数字を自分の分析に置き換えられるかどうかです。たとえばQ2のリバースDCFやQ18の為替感応度は、保有している会社の数字を入れて計算し直すと、その会社について「何を議論すべきか」がはっきりします。</p></div>
