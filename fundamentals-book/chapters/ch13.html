@@ -175,7 +175,7 @@
 <li><strong>PBRが1倍を割るのは ROE &lt; r のとき</strong>：PBR1倍割れは、それだけで割安の証拠ではありません。市場が「この会社のROEは資本コストに届かない」と見ていることの表れである場合が多いのです。</li>
 </ul>
 
-<div class="linechart" data-title="成長率と理論PER（株主資本コスト8.1%）" data-xrange="0,0.06" data-xfmt="pct" data-xlabel="永続的な成長率 g" data-yfmt="x" data-zero="0"
+<div class="linechart" data-title="成長率と理論PER（株主資本コスト8.1%）" data-xrange="0,0.045" data-xfmt="pct" data-xlabel="永続的な成長率 g" data-yfmt="x" data-zero="0"
   data-series='[{"name":"ROE 15%","expr":"per(0.15,0.081,x)","color":"accent"},{"name":"ROE 8.1%（＝資本コスト）","expr":"per(0.081,0.081,x)","color":"muted"},{"name":"ROE 5%","expr":"per(0.05,0.081,x)","color":"loss"}]'
   data-hlines='[{"y":12.35,"label":"1/r ＝ 12.3倍"}]'
   data-caption="ROEが資本コストを上回るときだけ、成長が倍率を押し上げる。ROE 5%では成長するほど理論PERが下がる"></div>
@@ -195,7 +195,7 @@
                 {"id":"r","label":"株主資本コスト r","min":0.04,"max":0.12,"step":0.001,"value":0.081,"fmt":"pct1"},
                 {"id":"g","label":"永続的な成長率 g","min":0,"max":0.06,"step":0.001,"value":0.03,"fmt":"pct1"}]'
   data-outputs='[{"label":"理論PBR","expr":"pbr(roe,r,g)","fmt":"x2","hl":true},{"label":"理論PER","expr":"per(roe,r,g)","fmt":"x1"},{"label":"必要な配当性向（1−g/ROE）","expr":"1-g/roe","fmt":"pct1"},{"label":"1株価値（PBR基準）","expr":"pbr(roe,r,g)*762.2","fmt":"yen"},{"label":"1株価値（PER基準）","expr":"per(roe,r,g)*111.3","fmt":"yen"}]'></div>
-<p>試算ツールでROEを8.1%に合わせると、gをどう動かしてもPBRは1倍のままになることを確かめてください。2つの1株価値がわずかにずれるのは、予想EPS111.3円が期中の自社株買いを反映した株式数で計算されていることと丸めによるものです。</p>
+<p>試算ツールでROEを8.1%に合わせると、gをどう動かしてもPBRは1倍のままになることを確かめてください。初期値では2つの1株価値が一致します（ROE14.6%は予想EPS111.3円 ÷ BPS762.2円にあたるため）。ROEを動かすと、PER基準の値は予想EPSを固定したまま倍率だけが変わるのでずれていきます。「ROEが変われば利益も変わる」ことを忘れて倍率だけを当てはめると誤る、という例でもあります。</p>
 
 <h2 id="ch13-5">13-5　PBR＝ROE×PER</h2>
 <p>PBR、ROE、PERの3つの間には、定義から必ず成り立つ関係があります。</p>
