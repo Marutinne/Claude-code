@@ -12,6 +12,7 @@ const server = http.createServer((req, res) => {
   const f = path.join(ROOT, p);
   if (!f.startsWith(ROOT) || !fs.existsSync(f)) { res.writeHead(404); return res.end(); }
   res.writeHead(200, { "content-type": TYPES[path.extname(f)] || "application/octet-stream" });
+  if (p === "/assets/book.js") return res.end(fs.readFileSync(f, "utf8").replace(/var READY = "[^"]*"/, 'var READY = "' + [...known].join(" ") + '"'));
   fs.createReadStream(f).pipe(res);
 });
 function staticChecks(id, html) {

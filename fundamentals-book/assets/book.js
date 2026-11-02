@@ -90,7 +90,7 @@
     ]}
   ];
   // Chapters whose files are published. Kept as one list so a release is a one-line change.
-  var READY = "".split(" ");
+  var READY = "ch01 ch02".split(" ");
 
   var FLAT = [];
   PARTS.forEach(function (p) { p.ch.forEach(function (c) { c.partRef = p; c.ready = READY.indexOf(c.id) >= 0; FLAT.push(c); }); });
