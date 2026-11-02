@@ -1,0 +1,533 @@
+<header class="chapter-head">
+  <p class="eyebrow">第9部　通し演習　Lv.3〜4</p>
+  <h1>1社を丸ごと分析する（ミナモ精機）</h1>
+  <p class="lead">本書は架空の精密部品メーカー「ミナモ精機」の数字を、章ごとに少しずつ計算してきました。この演習では、それを決算書の読み込みから投資メモまでの1本の分析にまとめます。各段階で先に自分で考える「問い」を置き、解答例は折りたたんであります。最後に手法ごとの価値の幅を1枚の図に並べ、「この前提ならこの価格帯」という形で結論を書きます。</p>
+</header>
+
+<div class="box goal"><span class="box-label">この演習のゴール</span>
+<ul>
+<li>決算書5期分から、会社の「物語」を数字で説明できる</li>
+<li>財務分析・利益の質・競争優位の評価を、価値評価の前提につなげられる</li>
+<li>前提の違う2つのDCFの差を分解し、どちらを使うかを自分で選べる</li>
+<li>DCF・マルチプル・残余利益モデルなどの結果を「価値の幅」として1枚にまとめられる</li>
+<li>推奨ではなく「この前提ならこの価格帯」という形の投資メモを書ける</li>
+</ul></div>
+
+<h2 id="ws1-1">演1-1　演習の進め方：評価日・前提・分析の地図</h2>
+<p>この演習は、本書のどこかの章で一度は計算した数字だけで組み立てます。新しく置いた仮定は、そのつど「新たな仮定」と明示します。読み方のルールは1つです。<strong>「読者への問い」を読んだら、解答例を開く前に、紙か表計算ソフトで自分の答えを出してください。</strong>答えが合っているかより、自分の考えと解答例のどこが違うかを確かめることに価値があります。</p>
+
+<h3>評価日と共通の前提</h3>
+<div class="tbl"><table>
+<caption>この演習の前提（評価日2026年3月末。単位：億円、株式数は百万株、1株指標は円）</caption>
+<tr><th>項目</th><th class="r">値</th><th>出所・説明</th></tr>
+<tr><td>評価日・株価</td><td class="r">1,800円</td><td>2026年3月末の終値（本書の設定）</td></tr>
+<tr><td>自己株式を除く期末株式数</td><td class="r">48.52</td><td>発行済50.00百万株から自己株式約1.48百万株を除く（<a href="#ch01-2">第1章 1-2</a>）</td></tr>
+<tr><td>時価総額</td><td class="r">873.4</td><td>1,800円 × 48.52百万株</td></tr>
+<tr><td>純有利子負債</td><td class="r neg">-46.7</td><td>有利子負債75.0 − 現金121.7（実質無借金）</td></tr>
+<tr><td>EV</td><td class="r">826.6</td><td>時価総額 ＋ 純有利子負債（<a href="#ch01-3">第1章 1-3</a>）</td></tr>
+<tr><td>株主資本コスト＝WACC</td><td class="r">8.1%</td><td>リスクフリーレート1.5% ＋ β1.1 × 市場リスクプレミアム6.0%（<a href="#ch12-3">第12章 12-3</a>）</td></tr>
+<tr><td>実効税率</td><td class="r">30%</td><td>本書の共通前提</td></tr>
+<tr><td>永久成長率</td><td class="r">1.0%</td><td>名目成長の慎重な側の想定（<a href="#ch14-4">第14章 14-4</a>）</td></tr>
+</table></div>
+
+<div class="box warn"><span class="box-label">注意</span><p>リスクフリーレート1.5%は、本書の数値例をそろえるための固定前提です。実際の日本の10年国債利回りは2026年9月に一時3%を超えました（<a href="#ch06">第6章</a>で確認）。3%を使うと株主資本コストは 3.0% ＋ 1.1 × 6.0% ＝ 9.6% になります。この「実勢金利に近い前提」での価値も、演1-8で計算して価値の幅に加えます。</p></div>
+
+<h3>分析の地図</h3>
+<ol class="flow">
+<li><strong>決算書5期分を読む</strong>：何が起きた会社かを数字で語る（<a href="#ch02">第2章</a>〜<a href="#ch05">第5章</a>）</li>
+<li><strong>財務分析と同業比較</strong>：収益性・効率性・安全性・成長性とデュポン分析（<a href="#ch07">第7章</a>）</li>
+<li><strong>利益の質と健全性</strong>：Fスコア・M-Score・Zスコア（<a href="#ch20">第20章</a>〜<a href="#ch22">第22章</a>）</li>
+<li><strong>競争優位と資本効率</strong>：モートの仮説とROIC（<a href="#ch08">第8章</a>・<a href="#ch09">第9章</a>・<a href="#ch23">第23章</a>）</li>
+<li><strong>業績予想</strong>：3年分の3表連動モデルとシナリオ（<a href="#ch16">第16章</a>）</li>
+<li><strong>DCF</strong>：2つの予想の差を分解する（<a href="#ch14">第14章</a>）</li>
+<li><strong>検証と価値の幅</strong>：マルチプル・残余利益・その他の手法を並べ、投資メモにまとめる（<a href="#ch13">第13章</a>・<a href="#ch15">第15章</a>・<a href="#ch37">第37章</a>）</li>
+</ol>
+
+<div class="box tip"><span class="box-label">読者への問い 0</span><p>分析を始める前に、株価1,800円が「どんな倍率で評価されているか」を5つの指標で書き出してください。使う数字は、2026年3月期のEPS 103.8円、会社予想EPS 111.3円、BPS 762.2円、EBITDA 90.8億円、FCF 37.7億円、1株配当30円（会社予想34円）です。</p></div>
+<details class="deep"><summary>解答例：株価1,800円が意味する倍率</summary><div>
+<div class="tbl"><table>
+<caption>株価1,800円の倍率（2026年3月末）</caption>
+<tr><th>指標</th><th class="r">値</th><th>計算</th></tr>
+<tr><td>実績PER／予想PER</td><td class="r">17.3倍／16.2倍</td><td>1,800 ÷ 103.8、1,800 ÷ 111.3</td></tr>
+<tr><td>PBR</td><td class="r">2.36倍</td><td>1,800 ÷ 762.2</td></tr>
+<tr><td>EV/EBITDA</td><td class="r">9.1倍</td><td>826.6 ÷ 90.8</td></tr>
+<tr><td>FCF利回り</td><td class="r">4.3%</td><td>37.7 ÷ 873.4</td></tr>
+<tr><td>配当利回り（実績／予想）</td><td class="r">1.7%／1.9%</td><td>30 ÷ 1,800、34 ÷ 1,800</td></tr>
+</table></div>
+<p>PBRが2倍を超えているので、市場は純資産の額ではなく「純資産をどれだけの利回りで回せるか」に値段を付けています。<a href="#ch17-3">第17章 17-3</a>で見たとおり、正味流動資産（NCAV）は1株335.5円で、株価の約19%しかありません。資産の安さではなく、収益力の持続性で説明される株価です。分析の焦点は「ROE・ROICの高さがどれだけ続くか」になる、という見通しを最初に持っておきます。</p>
+</div></details>
+
+<h2 id="ws1-2">演1-2　第1段階：決算書5期分を読む</h2>
+<p>最初に5期分の数字を眺め、何が起きた会社かを言葉にします。比率の計算は次の段階に回し、ここでは「大きく動いた数字」と「その理由」を探します。</p>
+
+<div class="tbl"><table>
+<caption>ミナモ精機の5期の要約（単位：億円。EPS・DPSは円）</caption>
+<tr><th>項目</th><th class="r">22/3期</th><th class="r">23/3期</th><th class="r">24/3期</th><th class="r">25/3期</th><th class="r">26/3期</th></tr>
+<tr><td>売上高</td><td class="r">400.0</td><td class="r">432.0</td><td class="r">410.0</td><td class="r">452.0</td><td class="r">488.0</td></tr>
+<tr><td>営業利益</td><td class="r">50.0</td><td class="r">58.3</td><td class="r">41.0</td><td class="r">61.5</td><td class="r">70.8</td></tr>
+<tr><td class="ind">営業利益率</td><td class="r">12.5%</td><td class="r">13.5%</td><td class="r">10.0%</td><td class="r">13.6%</td><td class="r">14.5%</td></tr>
+<tr><td>特別損益</td><td class="r">0.0</td><td class="r">0.0</td><td class="r neg">-6.0</td><td class="r">0.0</td><td class="r">1.5</td></tr>
+<tr><td>当期純利益</td><td class="r">34.9</td><td class="r">40.8</td><td class="r">24.2</td><td class="r">43.1</td><td class="r">50.8</td></tr>
+<tr><td>EPS／DPS</td><td class="r">69.7／20</td><td class="r">81.6／25</td><td class="r">48.3／15</td><td class="r">86.8／25</td><td class="r">103.8／30</td></tr>
+<tr><td>棚卸資産</td><td class="r">55.1</td><td class="r">63.0</td><td class="r">71.3</td><td class="r">67.2</td><td class="r">68.3</td></tr>
+<tr><td>営業CF</td><td class="r">47.2</td><td class="r">45.2</td><td class="r">44.5</td><td class="r">58.5</td><td class="r">62.7</td></tr>
+<tr><td>設備投資</td><td class="r">20.0</td><td class="r">24.0</td><td class="r">26.0</td><td class="r">22.0</td><td class="r">25.0</td></tr>
+<tr><td>FCF</td><td class="r">27.2</td><td class="r">21.2</td><td class="r">18.5</td><td class="r">36.5</td><td class="r">37.7</td></tr>
+<tr><td>現金及び預金／有利子負債</td><td class="r">77.2／80.0</td><td class="r">95.9／90.0</td><td class="r">106.9／90.0</td><td class="r">121.1／90.0</td><td class="r">121.7／75.0</td></tr>
+<tr><td>自社株買い</td><td class="r">0.0</td><td class="r">0.0</td><td class="r">0.0</td><td class="r">10.0</td><td class="r">15.0</td></tr>
+<tr class="sum"><td>純資産</td><td class="r">282.9</td><td class="r">311.2</td><td class="r">327.8</td><td class="r">348.6</td><td class="r">369.8</td></tr>
+</table></div>
+
+<div class="linechart" data-title="ミナモ精機の売上高・営業利益・営業CF" data-x="22/3期,23/3期,24/3期,25/3期,26/3期" data-yfmt="oku"
+  data-series='[{"name":"売上高","values":[400,432,410,452,488],"labels":true},{"name":"営業利益","values":[50,58.3,41,61.5,70.8],"color":"accent","labels":true},{"name":"営業CF","values":[47.2,45.2,44.5,58.5,62.7],"color":"teal","dash":true}]'
+  data-caption="24/3期は売上が5.1%減、営業利益は29.7%減。営業CFは5期とも当期純利益を上回る"></div>
+
+<div class="box tip"><span class="box-label">読者への問い 1</span><p>表とグラフから、この5年間の「物語」を3つの出来事で説明してください。それぞれ、根拠になる数字を2つ以上挙げること。</p></div>
+<details class="deep"><summary>解答例：5期の物語</summary><div>
+<ol>
+<li><strong>24/3期の在庫調整</strong>：半導体の在庫調整で売上が432.0億円から410.0億円へ5.1%減り、営業利益は29.7%減りました。利益の減少率は売上の約5.8倍で、固定費の重さ（営業レバレッジ、<a href="#ch03-4">第3章 3-4</a>）が表れています。棚卸資産は63.0億円から71.3億円に増え、営業CFは44.5億円にとどまりました。工場再編損6.0億円（非資金の減損）を計上し、配当性向約30%の方針どおり、1株配当は25円から15円に下がりました（<a href="#ch10">第10章</a>）。</li>
+<li><strong>25/3〜26/3期の回復と最高益</strong>：売上は2期で19.0%増え、営業利益率は14.5%と5期で最も高くなりました。売上総利益率も33.0%（22/3期）から34.5%に上がっています。数量の回復だけでなく、価格や製品構成も改善している可能性があります（<a href="#ch08-5">第8章 8-5</a>）。</li>
+<li><strong>資本配分の転換</strong>：25/3期から自社株買い（10.0億円、15.0億円）を始め、26/3期には有利子負債を15億円返済し、政策保有株を簿価6.0億円で売って売却益1.5億円を計上しました。それでも現金は121.7億円あり、「貯める会社」から「返す会社」への移行の途中にあります。</li>
+</ol>
+</div></details>
+
+<h3>一過性の項目を外す</h3>
+<p>EPSを評価に使う前に、特別損益を外します（<a href="#ch03-6">第3章 3-6</a>）。26/3期の投資有価証券売却益1.5億円を除くと、EPSは (72.6 − 1.5) × 0.7 ÷ 48.94百万株 ＝ 101.7円で、報告値103.8円より約2円低くなります。24/3期の工場再編損6.0億円を除くと、EPSは 40.5 × 0.7 ÷ 50.00百万株 ＝ 56.7円です。減損は非資金の費用なので、営業CFには影響していません。</p>
+
+<h3>5年間で現金はどこへ行ったか</h3>
+<p>キャッシュフロー計算書を5年分足すと、経営者の資本配分の実績が見えます（<a href="#ch10-5">第10章 10-5</a>）。</p>
+<div class="waterfall" data-title="ミナモ精機：5年間（22/3〜26/3期）の現金の出入り" data-fmt="oku1"
+  data-steps='[{"label":"営業CF（5年累計）","value":258.1},{"label":"設備投資","value":-117.0},{"label":"投資有価証券の売却","value":7.5},{"label":"配当","value":-56.9},{"label":"自社株買い","value":-25.0},{"label":"有利子負債の純減","value":-5.0},{"label":"現金の増加","total":true}]'
+  data-caption="現金は21/3期末の60.0億円から26/3期末の121.7億円へ61.7億円増え、ほぼ倍増した"></div>
+<p>営業CF258.1億円のうち45%（117.0億円）を設備投資に、32%（81.9億円）を株主還元に回し、残りは現金として積み上がりました。設備投資が減価償却費（5年累計90.0億円）を上回り続けているので、成長のための投資は止めていません。それでも現金が倍増したことが、後で見る「ROEがROICより低い」理由になります。</p>
+
+<div class="box warn"><span class="box-label">落とし穴</span><p>1株指標を計算するときは、分母の株式数に注意します。発行済株式数は50.00百万株のままですが、自己株式約1.48百万株は消却されていません。EPSは期中平均（26/3期48.94百万株）、BPSと1株価値は期末の自己株式を除く株式数（48.52百万株）で計算するのが本書の約束です。</p></div>
+
+<h2 id="ws1-3">演1-3　第2段階：財務分析と同業比較</h2>
+<p>次に、4つの視点（<a href="#ch07-1">第7章 7-1</a>）で比率を計算し、好調の26/3期と不調の24/3期を並べます。不調の年の数字は「この会社の下限」を教えてくれます。</p>
+
+<div class="tbl"><table>
+<caption>4つの視点で見たミナモ精機（期末残高ベース。ROEのみ期中平均）</caption>
+<tr><th>視点</th><th>指標</th><th class="r">24/3期</th><th class="r">26/3期</th></tr>
+<tr><td>収益性</td><td>売上総利益率／営業利益率</td><td class="r">31.0%／10.0%</td><td class="r">34.5%／14.5%</td></tr>
+<tr><td>収益性</td><td>ROE（期中平均）</td><td class="r">7.6%</td><td class="r">14.1%</td></tr>
+<tr><td>効率性</td><td>棚卸資産回転日数／CCC</td><td class="r">92日／122日</td><td class="r">78日／108日</td></tr>
+<tr><td>効率性</td><td>総資産回転率</td><td class="r">0.83回</td><td class="r">0.93回</td></tr>
+<tr><td>安全性</td><td>自己資本比率</td><td class="r">66.3%</td><td class="r">70.1%</td></tr>
+<tr><td>安全性</td><td>純有利子負債</td><td class="r neg">-16.9</td><td class="r neg">-46.7</td></tr>
+<tr><td>成長性</td><td>4年CAGR（22/3→26/3期）</td><td colspan="2" class="r">売上5.1%・営業利益9.1%・EPS 10.5%</td></tr>
+</table></div>
+
+<p>26/3期のROEを3段階のデュポン分析（<a href="#ch07-6">第7章 7-6</a>）で分けると、売上高純利益率10.4% × 総資産回転率0.93回 × 財務レバレッジ1.43倍 ＝ 13.7%（期末ベース）です。借入に頼らず、利益率で稼いだROEです。</p>
+
+<h3>費用構造：どこまで売上が落ちても黒字か</h3>
+<p><a href="#ch03-3">第3章 3-3</a>で設定した費用構造は、変動費率45%、26/3期の固定費197.6億円でした。損益分岐点売上高は 197.6 ÷ 0.55 ＝ 359.3億円、安全余裕率は (488.0 − 359.3) ÷ 488.0 ＝ 26.4% です。営業レバレッジ（限界利益 ÷ 営業利益）は 488.0 × 0.55 ÷ 70.8 ＝ 3.8倍で、売上が1%動くと営業利益は約3.8%動きます。</p>
+
+<h3>同業3社と比べる</h3>
+<p><a href="#ch07-7">第7章 7-7</a>の架空の同業3社と並べます。</p>
+<div class="tbl"><table>
+<caption>同業比較（架空の同業3社、直近期・期末残高ベース。第7章の表から抜粋）</caption>
+<tr><th>項目</th><th class="r">ミナモ精機</th><th class="r">A社</th><th class="r">B社</th><th class="r">C社</th></tr>
+<tr><td>特徴</td><td class="r">中堅・高付加価値</td><td class="r">業界最大手</td><td class="r">汎用品・量産</td><td class="r">新興・急成長</td></tr>
+<tr><td>売上高（億円）</td><td class="r">488</td><td class="r">1,200</td><td class="r">350</td><td class="r">180</td></tr>
+<tr><td>営業利益率</td><td class="r">14.5%</td><td class="r">18.0%</td><td class="r">7.0%</td><td class="r">11.0%</td></tr>
+<tr><td>ROE</td><td class="r">13.7%</td><td class="r">13.1%</td><td class="r">12.4%</td><td class="r">15.0%</td></tr>
+<tr><td>財務レバレッジ</td><td class="r">1.43倍</td><td class="r">1.30倍</td><td class="r">2.50倍</td><td class="r">1.60倍</td></tr>
+<tr><td>CCC</td><td class="r">108日</td><td class="r">135日</td><td class="r">80日</td><td class="r">150日</td></tr>
+<tr><td>純有利子負債／EBITDA</td><td class="r">-0.51倍</td><td class="r">-1.00倍</td><td class="r">2.20倍</td><td class="r">0.50倍</td></tr>
+<tr><td>売上高CAGR（4年）</td><td class="r">5.1%</td><td class="r">4.0%</td><td class="r">6.5%</td><td class="r">12.0%</td></tr>
+</table></div>
+
+<div class="box tip"><span class="box-label">読者への問い 2</span><p>(1) 4社のROEは12〜15%に収まっています。ミナモ精機のROEの「質」をB社と比べて評価してください。(2) 業界最大手のA社に比べたミナモ精機の弱みを1つ挙げ、それを確かめるために次に見る情報を答えてください。</p></div>
+<details class="deep"><summary>解答例：ROEの質と弱み</summary><div>
+<p>(1) B社は営業利益率7.0%と低く、財務レバレッジ2.50倍・純有利子負債がEBITDAの2.2年分という借入でROE12.4%を確保しています。不況で利益率が下がると、利息の負担が残るためROEは大きく落ちます。ミナモ精機は実質無借金で、ROEは利益率と回転率から来ています。24/3期の不況でもROEは7.6%、営業利益率は10.0%にとどまりました。同じROEでも、ミナモ精機の方が景気の谷に強い「質の高いROE」です。</p>
+<p>(2) 営業利益率がA社より3.5ポイント低く、規模も4割程度です。差の理由が製品構成なのか、規模の効率なのか、価格決定力なのかを確かめるには、セグメント別の利益率（<a href="#ch11-3">第11章 11-3</a>）、粗利率の安定性、大口顧客への依存度を見ます。次の演1-5で扱う「買い手の強さ」がその候補です。</p>
+</div></details>
+
+<div class="box tip"><span class="box-label">読者への問い 3</span><p>変動費率45%・固定費197.6億円が変わらないとして、売上高が26/3期より10%減ったら営業利益はいくらになりますか。</p></div>
+<details class="deep"><summary>解答例：10%減収の影響</summary><div>
+<p>売上高は 488.0 × 0.9 ＝ 439.2億円、営業利益は 439.2 × 0.55 − 197.6 ＝ 44.0億円で、37.9%の減益です。営業レバレッジ3.8倍 × 10% とほぼ一致します。実際の24/3期は売上5.1%減で営業利益29.7%減と、この比例計算より大きく落ちました。在庫調整で工場の稼働が落ち、粗利率が下がった分が上乗せされたためです。景気の谷では「固定費の重さ」と「稼働率の低下」の両方が効く、と覚えておきます。</p>
+</div></details>
+
+<h2 id="ws1-4">演1-4　第3段階：利益の質と財務の健全性</h2>
+<p>利益が現金に裏付けられているか、粉飾や財務危機の兆候がないかを、機械的な点検表で確かめます。ここで問題が見つかれば、価値評価の前に分析を止めるべきです。</p>
+
+<div class="tbl"><table>
+<caption>利益の質と健全性の点検（各章で計算済みの値）</caption>
+<tr><th>指標</th><th class="r">値</th><th>読み方</th></tr>
+<tr><td>営業CF ÷ 当期純利益（22/3〜26/3期）</td><td class="r">1.35・1.11・1.84・1.36・1.23倍</td><td>5期とも1倍超。5年累計で1.33倍（<a href="#ch21-2">第21章 21-2</a>）</td></tr>
+<tr><td>アクルーアル比率（23/3〜26/3期）</td><td class="r">−1.0%〜−4.2%</td><td>減価償却費の分だけ一貫してマイナス</td></tr>
+<tr><td>Beneish M-Score（26/3期）</td><td class="r">−2.56</td><td>閾値−1.78を大きく下回る（<a href="#ch21-4">第21章 21-4</a>）</td></tr>
+<tr><td>Piotroski Fスコア（24/3・25/3・26/3期）</td><td class="r">6・9・8点</td><td>26/3期は流動比率のわずかな低下で1点を失った（<a href="#ch20-4">第20章 20-4</a>）</td></tr>
+<tr><td>Altman Zスコア（26/3期）</td><td class="r">6.13</td><td>安全圏の目安2.99を大きく上回る（<a href="#ch22-2">第22章 22-2</a>）</td></tr>
+<tr><td>インタレスト・カバレッジ（26/3期）</td><td class="r">78.7倍</td><td>営業利益70.8 ÷ 支払利息0.9</td></tr>
+</table></div>
+
+<div class="box tip"><span class="box-label">読者への問い 4</span><p>不況の24/3期のFスコアは6点でした。この6点を「まずまず」と読んでよいでしょうか。得点した項目の中身から考えてください。</p></div>
+<details class="deep"><summary>解答例：点数の中身を読む</summary><div>
+<p>そのまま読むのは危険です。24/3期は、長期負債の比率の低下（項目5）と流動比率の上昇（項目6）で加点されています。しかし借入は90億円のまま変わっておらず、比率が改善したのは在庫が63.0億円から71.3億円に膨らみ、総資産と流動資産が増えたためでした。悪い出来事（在庫の積み上がり）が「改善」と採点されています。点検表は「点数」ではなく「点の理由」を読む道具です。同じように、26/3期のM-ScoreでAQIが0.842と低いのは、投資有価証券の売却で資産の構成が変わったためで、利益の質の改善を意味するわけではありません。</p>
+</div></details>
+
+<p>点検の結論は「利益の質と財務の健全性に問題はない」です。むしろ論点は逆で、自己資本比率70.1%・現金121.7億円は事業に必要な水準を超えている可能性があります。安全性と資本効率はトレードオフです（<a href="#ch24-1">第24章 24-1</a>）。この「安全すぎる」バランスシートは、投資メモでカタリストと論点の両方として扱います。</p>
+
+<h2 id="ws1-5">演1-5　第4段階：競争優位と資本効率</h2>
+<p>高い利益率が「なぜ」生まれ、「いつまで」続くか。これが価値評価で最も重い前提です。定性的な仮説（モート）を、ROICという数字で裏付けます。</p>
+
+<h3>ROICは資本コストを上回り続けたか</h3>
+<div class="linechart" data-title="ミナモ精機の簡易ROICとWACC" data-x="22/3期,23/3期,24/3期,25/3期,26/3期" data-yfmt="pct" data-ymin="0"
+  data-series='[{"name":"簡易ROIC（NOPAT ÷ 期末投下資本）","values":[0.137,0.148,0.102,0.150,0.166],"labels":true}]'
+  data-hlines='[{"y":0.081,"label":"WACC 8.1%"}]'
+  data-caption="簡易ROIC（第8章）：NOPAT＝営業利益×0.7、投下資本＝売掛金＋棚卸資産−買掛金＋有形・無形固定資産。不況の24/3期でも10.2%"></div>
+<p>簡易ROIC（<a href="#ch08-4">第8章 8-4</a>）は5期平均14.1%、最低でも24/3期の10.2%で、WACC8.1%を一度も下回っていません。厳密な定義（<a href="#ch23-1">第23章 23-1</a>）で税金の配分・平均残高・事業用現金・研究開発費の資本化を検討しても、26/3期のROICは14.2〜17.2%の範囲に収まり、結論は変わりません。EVAは26/3期で約26.3億円、24/3期でも約6.4億円とプラスでした。増分の投資の利回り（利益率を一定とした規模の拡大分のインクリメンタルROIC）は17.7%で、新しい投資も既存事業並みの利回りを上げています（<a href="#ch23-5">第23章 23-5</a>）。</p>
+
+<h3>モートの仮説と弱点</h3>
+<div class="barchart" data-title="セグメント別の営業利益率（26/3期）" data-labels="半導体・電子,産業機械,医療,全社" data-yfmt="pct"
+  data-series='[{"values":[0.163,0.114,0.175,0.145]}]' data-highlight="3"
+  data-caption="売上は半導体・電子270・産業機械145・医療73億円。半導体・電子がセグメント利益の60%を占める"></div>
+<p><a href="#ch08">第8章</a>の架空の設定では、ミナモ精機の優位は「装置の設計段階から部品が組み込まれ、精度の実績があるため顧客が部品を変えにくい」というスイッチングコストと、精密加工の技術にあります。一方、5フォース分析（<a href="#ch08-3">第8章 8-3</a>）で見つかった最大の弱点は買い手の強さでした。売上の55%を占める半導体・電子の顧客は大手装置メーカーで、値下げを求める力が強いからです。</p>
+
+<div class="box tip"><span class="box-label">読者への問い 5</span><p>モートの仮説を「検証できる形」に書き直してください。(1) 仮説、(2) それを支える財務の証拠、(3) 仮説が崩れたと判断する条件、(4) 決算ごとに追うKPI、の4つを1行ずつ書きます。</p></div>
+<details class="deep"><summary>解答例：検証できるモートの仮説</summary><div>
+<div class="tbl"><table>
+<caption>ミナモ精機のモート仮説（解答例）</caption>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>(1) 仮説</td><td>装置への設計段階からの組み込みと精度の実績により、顧客の切り替えコストが高く、価格を守れる</td></tr>
+<tr><td>(2) 証拠</td><td>ROICが5期とも10%超、不況期の営業利益率10.0%、売上総利益率が回復期に22/3期を上回る34.5%まで上昇</td></tr>
+<tr><td>(3) 崩れる条件</td><td>大口顧客の内製化や代替方式への切り替え、半導体・電子の利益率が数量の回復局面でも戻らない</td></tr>
+<tr><td>(4) 追うKPI</td><td>セグメント利益率、上位顧客の売上比率、新しい装置世代での採用状況、受注高・受注残、在庫日数</td></tr>
+</table></div>
+<p>(3) の「崩れる条件」を先に書いておくことが大切です。決算で悪い数字が出たとき、それが景気（数量）の問題なのか、モート（価格）の問題なのかを分けて判断できるからです（<a href="#ch08-6">第8章 8-6</a>）。</p>
+</div></details>
+
+<div class="box tip"><span class="box-label">読者への問い 6</span><p>26/3期の簡易ROICは16.6%ですが、ROE（期末ベース）は13.7%です。無借金の会社なのに、なぜROEがROICより低いのでしょうか。</p></div>
+<details class="deep"><summary>解答例：ROEとROICの差</summary><div>
+<p>ROEの分母（自己資本369.8億円）には、事業に使っていない現金121.7億円と投資有価証券24.0億円（合計1株約300円）が含まれ、これらの利回りはほとんどゼロに近いからです。事業の投下資本299.1億円は16.6%で回っていますが、低利回りの非事業資産が全体を薄めています（<a href="#ch23-3">第23章 23-3</a>）。裏返すと、現金を事業投資か株主還元に回せば、事業の力を変えずにROEを上げる余地がある、ということです。</p>
+</div></details>
+
+<h3>景気循環をならす</h3>
+<p>半導体向けの比率が高いミナモ精機は景気敏感株です（<a href="#ch09-4">第9章 9-4</a>）。26/3期は5期で最も高い利益率の年なので、その利益を「普通の年」とみなすと価値を過大に見積もるおそれがあります。<a href="#ch26-3">第26章 26-3</a>の正常化では、5期平均の営業利益率12.82%を26/3期の売上に掛け、正常化EPS 89.9円、株価1,800円に対する正常化PER 20.0倍を得ました。実績PER17.3倍より高く、「今期は循環の高めの位置にある」と読めます。ただし5期には谷が1回しか含まれず、売上総利益率が上がってきた構造変化も考えると、正常化利益は下限寄りの見方です。</p>
+
+<h2 id="ws1-6">演1-6　第5段階：業績予想を3年分組み立てる</h2>
+<p><a href="#ch16">第16章</a>では、セグメント別の売上と変動費・固定費から3表連動モデルを作りました。ここではその結果を使い、会社予想・コンセンサスと比べて「自分の予想はどこが違うか」を確かめます。</p>
+
+<div class="tbl"><table>
+<caption>基本シナリオの要約（第16章。単位：億円、EPS・DPSは円）</caption>
+<tr><th>項目</th><th class="r">26/3期 実績</th><th class="r">27/3期</th><th class="r">28/3期</th><th class="r">29/3期</th></tr>
+<tr><td>売上高</td><td class="r">488.0</td><td class="r">520.0</td><td class="r">551.3</td><td class="r">579.1</td></tr>
+<tr><td class="ind">うち半導体・電子／産業機械／医療</td><td class="r">270／145／73</td><td class="r">292／148／80</td><td class="r">312.4／152.4／86.4</td><td class="r">331.2／155.5／92.4</td></tr>
+<tr><td>営業利益（営業利益率）</td><td class="r">70.8（14.5%）</td><td class="r">76.0（14.6%）</td><td class="r">84.0（15.2%）</td><td class="r">90.5（15.6%）</td></tr>
+<tr><td>当期純利益</td><td class="r">50.8</td><td class="r">53.3</td><td class="r">58.9</td><td class="r">63.5</td></tr>
+<tr><td>EPS／DPS</td><td class="r">103.8／30</td><td class="r">109.9／34</td><td class="r">121.5／38</td><td class="r">130.8／41</td></tr>
+<tr><td>設備投資／減価償却費</td><td class="r">25.0／20.0</td><td class="r">34.0／20.5</td><td class="r">30.0／22.1</td><td class="r">28.0／23.1</td></tr>
+<tr><td>FCF</td><td class="r">37.7</td><td class="r">31.0</td><td class="r">42.5</td><td class="r">50.9</td></tr>
+<tr><td>現金及び預金</td><td class="r">121.7</td><td class="r">136.2</td><td class="r">160.2</td><td class="r">191.2</td></tr>
+<tr class="sum"><td>ROE（期中平均）</td><td class="r">14.1%</td><td class="r">13.7%</td><td class="r">13.8%</td><td class="r">13.5%</td></tr>
+</table></div>
+<p>前提は、変動費率45%、減価償却費以外の固定費が27/3期に新ラインの立ち上げ費用を含めて210.0億円（減価償却費込み）、その後は年4%増、減価償却費は期首の有形固定資産 × 12%、回転日数は26/3期のまま、配当は34円の後に配当性向31%前後、有利子負債75億円据え置き、自社株買いなしです（<a href="#ch16-3">第16章 16-3</a>〜<a href="#ch16-5">16-5</a>）。</p>
+
+<div class="linechart" data-title="営業利益：実績と3つのシナリオ" data-x="22/3期,23/3期,24/3期,25/3期,26/3期,27/3期,28/3期,29/3期" data-yfmt="oku"
+  data-series='[{"name":"実績","values":[50,58.3,41,61.5,70.8,null,null,null],"color":"fg"},{"name":"基本","values":[null,null,null,null,70.8,76,84,90.5],"color":"accent"},{"name":"強気","values":[null,null,null,null,70.8,86.1,104.3,112],"color":"gain","dash":true},{"name":"弱気","values":[null,null,null,null,70.8,65.7,38.2,45],"color":"loss","dash":true}]'
+  data-vlines='[{"at":4,"label":"実績｜予想"}]'
+  data-caption="第16章のシナリオ。弱気は28/3期に半導体の在庫調整が再来する物語で、営業利益は24/3期並みに落ちる"></div>
+
+<div class="tbl"><table>
+<caption>2027年3月期の予想の比較（単位：億円、EPSは円。コンセンサスは架空）</caption>
+<tr><th>予想</th><th class="r">売上高</th><th class="r">営業利益</th><th class="r">当期純利益</th><th class="r">EPS</th></tr>
+<tr><td>会社予想</td><td class="r">520.0</td><td class="r">76.0</td><td class="r">54.0</td><td class="r">111.3</td></tr>
+<tr><td>コンセンサス（架空）</td><td class="r">528.0</td><td class="r">80.0</td><td class="r">56.0</td><td class="r">115.4</td></tr>
+<tr><td>自分の基本シナリオ</td><td class="r">520.0</td><td class="r">76.0</td><td class="r">53.3</td><td class="r">109.9</td></tr>
+<tr><td>強気／弱気</td><td class="r">533.5／501.2</td><td class="r">86.1／65.7</td><td class="r">60.4／46.1</td><td class="r">124.5／95.0</td></tr>
+</table></div>
+
+<div class="box tip"><span class="box-label">読者への問い 7</span><p>コンセンサスの営業利益80億円と自分の基本シナリオ76億円の差4億円は、売上・変動費率・固定費のどこから来ていますか。変動費率45%で逆算してください。</p></div>
+<details class="deep"><summary>解答例：差の原因を特定する</summary><div>
+<p>コンセンサスの固定費は 528 × 0.55 − 80 ＝ 210.4億円で、自分の210.0億円とほぼ同じです。差の大部分は売上の8億円で、限界利益に直すと 8 × 0.55 ＝ 4.4億円です。つまり論点は「半導体向けの回復がどれだけ強いか」に絞られます（<a href="#ch16-7">第16章 16-7</a>）。株価がコンセンサスを織り込んでいるなら、自分の基本シナリオどおりの決算は「期待に届かない」結果として受け取られるかもしれません。決算では、半導体・電子セグメントの受注と売上を真っ先に確かめることになります（<a href="#ch31">第31章</a>）。</p>
+</div></details>
+
+<div class="box tip"><span class="box-label">読者への問い 8</span><p>基本シナリオでは営業利益率が15.6%まで上がるのに、ROEは13%台で横ばいです。なぜでしょうか。また、この予想から生まれる「次に確かめるべき問い」は何ですか。</p></div>
+<details class="deep"><summary>解答例：積み上がる現金</summary><div>
+<p>配当を払っても現金が3年で約70億円増え、191.2億円まで積み上がるからです。利益率の改善がROEに届く前に、低利回りの現金が自己資本を膨らませます。次に確かめるべき問いは資本配分です。追加の成長投資の機会があるのか、増配や自社株買いに回すのか、消却していない自己株式をどうするのか（<a href="#ch10-5">第10章 10-5</a>、<a href="#ch24-3">第24章 24-3</a>）。中期経営計画や決算説明会で、経営者が現金の使い道をどう語っているかを確かめます。</p>
+</div></details>
+
+<h2 id="ws1-7">演1-7　第6段階：DCFで価値を測る（2つの予想をどう扱うか）</h2>
+<p>本書には、ミナモ精機のDCFの土台になる予想が2つあります。<a href="#ch14">第14章</a>のDCFは、DCFの仕組みを見せるために2年目以降を単純化しました。<a href="#ch16">第16章</a>の予想は、セグメントと費用構造から3年分を積み上げました。どちらも本書の数字で、矛盾ではなく「前提の違い」です。ここでは差を分解し、どちらを使うかを読者が選べるようにします。</p>
+
+<h3>第14章のDCF（単純化した前提）</h3>
+<p>27/3期は会社予想（売上520億円、営業利益76億円）、28/3〜31/3期は売上が年4.0%成長・営業利益率15.0%で横ばいとし、再投資は「投下資本 ÷ 売上 ＝ 0.613倍」を保つように置きました。FCFFは33.6・44.0・45.8・47.6・49.5億円、ターミナルバリュー（TV）の現在価値580.0億円（事業価値の77.0%）、事業価値753.4億円、純金融資産70.7億円を足した株主価値824.1億円、<strong>1株1,699円</strong>です（<a href="#ch14-5">第14章 14-5</a>）。</p>
+
+<div class="tbl"><table>
+<caption>2つの予想の違い（単位：億円）</caption>
+<tr><th>項目</th><th class="r">27/3期</th><th class="r">28/3期</th><th class="r">29/3期</th><th>違いの理由</th></tr>
+<tr><td>売上高（第14章／第16章）</td><td class="r">520.0／520.0</td><td class="r">540.8／551.3</td><td class="r">562.4／579.1</td><td>第16章はセグメント別。半導体・電子7%・6%、医療8%・7%の成長</td></tr>
+<tr><td>営業利益率（第14章／第16章）</td><td class="r">14.6%／14.6%</td><td class="r">15.0%／15.2%</td><td class="r">15.0%／15.6%</td><td>第16章は固定費の伸び4%が売上の伸びより小さく、営業レバレッジが効く</td></tr>
+<tr><td>設備投資（第14章／第16章）</td><td class="r">33.3／34.0</td><td class="r">30.0／30.0</td><td class="r">31.2／28.0</td><td>第14章は売上比、第16章は維持＋新ラインの積み上げ</td></tr>
+<tr><td>運転資本の増加（第14章／第16章）</td><td class="r">7.6／8.9</td><td class="r">4.9／8.6</td><td class="r">5.1／7.7</td><td>第14章は売上比0.238倍、第16章は回転日数で計算</td></tr>
+<tr class="sum"><td>FCFF（第14章／第16章）</td><td class="r">33.6／30.8</td><td class="r">44.0／42.3</td><td class="r">45.8／50.8</td><td>第16章のFCFは支払利息・受取配当を含むため、税引後0.1億円を除いてFCFFにした</td></tr>
+</table></div>
+
+<h3>第16章の予想をDCFに接続する</h3>
+<p>第16章の3年分を使い、その後をつなぐDCFを作ります。新たな仮定として、30/3・31/3期は売上が年4.0%成長、営業利益率は29/3期の15.6%を維持するとします。第16章では2年目以降、減価償却費以外の固定費が年4%で増えるので、売上も4%で伸びるなら利益率は横ばいになる、という整合を取った前提です。再投資は第14章と同じく「売上の増加 × 0.613倍」、32/3期以降の永久成長率は1.0%です。</p>
+
+<div class="tbl"><table>
+<caption>第16章接続版のDCF（割引率8.1%、永久成長率1.0%。単位：億円）</caption>
+<tr><th>項目</th><th class="r">27/3期</th><th class="r">28/3期</th><th class="r">29/3期</th><th class="r">30/3期</th><th class="r">31/3期</th><th class="r">32/3期</th></tr>
+<tr><td>売上高</td><td class="r">520.0</td><td class="r">551.3</td><td class="r">579.1</td><td class="r">602.3</td><td class="r">626.4</td><td class="r">632.6</td></tr>
+<tr><td>営業利益（利益率）</td><td class="r">76.0（14.6%）</td><td class="r">84.0（15.2%）</td><td class="r">90.5（15.6%）</td><td class="r">94.0（15.6%）</td><td class="r">97.7（15.6%）</td><td class="r">98.7（15.6%）</td></tr>
+<tr><td>NOPAT（×0.7）</td><td class="r">53.2</td><td class="r">58.8</td><td class="r">63.4</td><td class="r">65.8</td><td class="r">68.4</td><td class="r">69.1</td></tr>
+<tr><td>FCFF</td><td class="r">30.8</td><td class="r">42.3</td><td class="r">50.8</td><td class="r">51.6</td><td class="r">53.6</td><td class="r">65.2</td></tr>
+<tr><td>割引係数</td><td class="r">0.9251</td><td class="r">0.8558</td><td class="r">0.7916</td><td class="r">0.7323</td><td class="r">0.6774</td><td class="r">—</td></tr>
+<tr class="sum"><td>FCFFの現在価値</td><td class="r">28.5</td><td class="r">36.2</td><td class="r">40.2</td><td class="r">37.8</td><td class="r">36.3</td><td class="r">—</td></tr>
+</table></div>
+<p>5年分の現在価値は179.0億円です。TVは 65.2 ÷ (0.081 − 0.010) ＝ 918.9億円、その現在価値は 918.9 × 0.6774 ＝ 622.5億円（事業価値の77.7%）です。</p>
+<div class="waterfall" data-title="第16章接続版：FCFFの現在価値から株主価値へ" data-fmt="oku1"
+  data-steps='[{"label":"予測期間FCFFの現在価値","value":179.0},{"label":"TVの現在価値","value":622.5},{"label":"事業価値","total":true},{"label":"現金及び預金","value":121.7},{"label":"投資有価証券","value":24.0},{"label":"有利子負債","value":-75.0},{"label":"株主価値","total":true}]'
+  data-caption="事業価値801.5億円、株主価値872.2億円。48.52百万株で割ると1株1,798円"></div>
+<p>1株価値は<strong>1,798円</strong>で、第14章の1,699円より99円高く、株価1,800円とほぼ同じになります。差は2段階に分けられます。</p>
+<ol>
+<li><strong>最初の3年を第16章の予想に置き換える：＋39円</strong>（1,699円→1,738円）。売上の伸びが大きく、利益率も15.2%・15.6%に上がる効果が、設備投資と運転資本の増加をやや上回ります。</li>
+<li><strong>4年目以降の営業利益率を15.0%から15.6%にする：＋60円</strong>（1,738円→1,798円）。差の大部分は、予測期間ではなく「長期の利益率」から来ています。</li>
+</ol>
+
+<div class="box tip"><span class="box-label">読者への問い 9</span><p>あなたは第14章版（1,699円）と第16章接続版（1,798円）のどちらを基本ケースにしますか。理由を、演1-5の競争優位と景気循環の議論を使って書いてください。</p></div>
+<details class="deep"><summary>解答例：どちらを選ぶか</summary><div>
+<p>どちらも筋の通る選択です。決め手は「15.6%の利益率が長期に続くか」です。</p>
+<div class="compare">
+<div><h4>第14章版を選ぶ理由</h4><p>26/3期の14.5%は5期で最も高い利益率で、5期平均は12.82%です。景気の山に近い年の改善を永久に延ばすのは楽観的です。また買い手（大手装置メーカー）の値下げ圧力を考えると、営業レバレッジで上がった利益率の一部は、いずれ価格で顧客に返すことになります。</p></div>
+<div><h4>第16章接続版を選ぶ理由</h4><p>売上総利益率が上がってきたこと、ROICが5期とも資本コストを大きく上回ることは、モートの存在と矛盾しません。固定費の伸びと売上の伸びが同じなら利益率は横ばいになる、という内部の整合も取れています。セグメント別に積み上げた予想の方が、決算で検証しやすいという利点もあります。</p></div>
+</div>
+<p>本書の解答例では、片方に決めずに両方を価値の幅に入れ、中心値には2つの平均（約1,750円）を使います。重要なのは、どちらを選んだかをメモに書き、決算で「長期の利益率」の前提を検証し続けることです。</p>
+</div></details>
+
+<p>次の試算ツールで、第16章接続版の前提を動かしてください。最初の3年（FCFF 30.8・42.3・50.8億円）は固定です。</p>
+<div class="calc" data-title="ミナモ精機のDCF（第16章接続版）" data-caption="27/3〜29/3期は第16章の基本シナリオで固定。30/3期以降の再投資は売上の増加×0.613倍、税率30%、純金融資産70.7億円、株式数48.52百万株"
+  data-inputs='[{"id":"mg","label":"30/3期以降の営業利益率","min":0.12,"max":0.19,"step":0.002,"value":0.156,"fmt":"pct"},{"id":"gr","label":"30/3・31/3期の売上成長率","min":0,"max":0.08,"step":0.005,"value":0.04,"fmt":"pct"},{"id":"dr","label":"割引率（WACC）","min":0.06,"max":0.11,"step":0.001,"value":0.081,"fmt":"pct"},{"id":"tg","label":"永久成長率","min":0,"max":0.025,"step":0.0025,"value":0.01,"fmt":"pct2"}]'
+  data-vars='{"k":0.6129,"nc":70.7,"sh":48.52}'
+  data-outputs='[{"label":"事業価値","expr":"30.8/(1+dr)+42.3/Math.pow(1+dr,2)+50.75/Math.pow(1+dr,3)+(579.1*(1+gr)*mg*0.7-k*579.1*gr)/Math.pow(1+dr,4)+(579.1*Math.pow(1+gr,2)*mg*0.7-k*579.1*(1+gr)*gr)/Math.pow(1+dr,5)+(579.1*Math.pow(1+gr,2)*(1+tg)*mg*0.7-k*579.1*Math.pow(1+gr,2)*tg)/(dr-tg)/Math.pow(1+dr,5)","fmt":"oku1"},{"label":"1株価値","expr":"(30.8/(1+dr)+42.3/Math.pow(1+dr,2)+50.75/Math.pow(1+dr,3)+(579.1*(1+gr)*mg*0.7-k*579.1*gr)/Math.pow(1+dr,4)+(579.1*Math.pow(1+gr,2)*mg*0.7-k*579.1*(1+gr)*gr)/Math.pow(1+dr,5)+(579.1*Math.pow(1+gr,2)*(1+tg)*mg*0.7-k*579.1*Math.pow(1+gr,2)*tg)/(dr-tg)/Math.pow(1+dr,5)+nc)*100/sh","fmt":"yen","hl":true},{"label":"株価1,800円との差","expr":"(30.8/(1+dr)+42.3/Math.pow(1+dr,2)+50.75/Math.pow(1+dr,3)+(579.1*(1+gr)*mg*0.7-k*579.1*gr)/Math.pow(1+dr,4)+(579.1*Math.pow(1+gr,2)*mg*0.7-k*579.1*(1+gr)*gr)/Math.pow(1+dr,5)+(579.1*Math.pow(1+gr,2)*(1+tg)*mg*0.7-k*579.1*Math.pow(1+gr,2)*tg)/(dr-tg)/Math.pow(1+dr,5)+nc)*100/sh/1800-1","fmt":"pct"},{"label":"新規投資の利回り（RONIC）","expr":"mg*0.7/k","fmt":"pct"}]'></div>
+
+<div class="sens" data-title="第16章接続版の1株価値：割引率 × 長期の営業利益率" data-rowvar="dr" data-rows="0.071,0.076,0.081,0.086,0.091" data-colvar="mg" data-cols="0.13,0.14,0.15,0.156,0.17"
+  data-vars='{"k":0.6129,"nc":70.7,"sh":48.52,"gr":0.04,"tg":0.01}'
+  data-expr="(30.8/(1+dr)+42.3/Math.pow(1+dr,2)+50.75/Math.pow(1+dr,3)+(579.1*(1+gr)*mg*0.7-k*579.1*gr)/Math.pow(1+dr,4)+(579.1*Math.pow(1+gr,2)*mg*0.7-k*579.1*(1+gr)*gr)/Math.pow(1+dr,5)+(579.1*Math.pow(1+gr,2)*(1+tg)*mg*0.7-k*579.1*Math.pow(1+gr,2)*tg)/(dr-tg)/Math.pow(1+dr,5)+nc)*100/sh"
+  data-fmt="yen" data-rowfmt="pct" data-colfmt="pct" data-base="0.081,0.156" data-compare="1800"
+  data-rowlabel="割引率" data-collabel="30/3期以降の営業利益率" data-caption="永久成長率1.0%、30/3・31/3期の売上成長率4.0%。株価1,800円より高いか低いかで色分け"></div>
+<p>割引率8.1%のまま長期の利益率を13%に下げると1,539円、17%に上げると1,937円です。利益率1ポイントで1株価値は約100円動きます。第14章でも、利益率が価値を最も大きく動かす前提でした（<a href="#ch14-6">第14章 14-6</a>）。</p>
+
+<h3>株価は何を織り込んでいるか</h3>
+<p>逆算すると、株価1,800円は次のどれとも整合します。第14章の枠組みでは「割引率8.1%なら永久成長率約1.8%」「永久成長率1.0%なら割引率約7.7%」「割引率8.1%・成長率1.0%なら長期の営業利益率約15.9%」。第16章接続版では「基本シナリオそのもの」です。つまり市場は、第16章の基本シナリオ程度の業績と、その利益率の持続を織り込んでいる、と読めます。株価が価値の中心にあるとき、投資の成否は「その前提より良くなるか」で決まります（<a href="#ch29">第29章</a>のリバースDCF）。</p>
+
+<h3>シナリオを価値に直す</h3>
+<p>第16章の強気・弱気シナリオもDCFに接続します。新たな仮定として、30/3期以降の前提を次のように置きました。弱気シナリオの長期利益率12.8%は、5期平均（<a href="#ch26-3">第26章 26-3</a>）に戻るという意味です。</p>
+<div class="tbl"><table>
+<caption>シナリオ別のDCF（割引率8.1%、永久成長率1.0%、再投資は売上の増加×0.613倍）</caption>
+<tr><th>前提・結果</th><th class="r">弱気</th><th class="r">基本</th><th class="r">強気</th></tr>
+<tr><td>27/3〜29/3期のFCFF（億円）</td><td class="r">28.7・23.7・33.3</td><td class="r">30.8・42.3・50.8</td><td class="r">34.4・51.2・52.7</td></tr>
+<tr><td>29/3期の売上高・営業利益率</td><td class="r">485.2・9.3%</td><td class="r">579.1・15.6%</td><td class="r">623.4・18.0%</td></tr>
+<tr><td>30/3・31/3期の売上成長率（新たな仮定）</td><td class="r">3%</td><td class="r">4%</td><td class="r">5%</td></tr>
+<tr><td>30/3期以降の営業利益率（新たな仮定）</td><td class="r">12.8%</td><td class="r">15.6%</td><td class="r">17.0%</td></tr>
+<tr><td>新規投資の利回り（RONIC）</td><td class="r">14.6%</td><td class="r">17.8%</td><td class="r">19.4%</td></tr>
+<tr class="sum"><td>1株価値</td><td class="r">1,256円</td><td class="r">1,798円</td><td class="r">2,104円</td></tr>
+</table></div>
+<p>強気25%・基本50%・弱気25%で加重すると、期待値は 0.25 × 2,104 ＋ 0.5 × 1,798 ＋ 0.25 × 1,256 ＝ 1,739円です。基本シナリオより59円低いのは、弱気の下げ幅（−542円）が強気の上げ幅（＋306円）より大きいからです。景気循環株では、価値の分布が下に長い「非対称」になりやすいことを示しています（<a href="#ch16-6">第16章 16-6</a>）。</p>
+<div class="calc" data-title="シナリオ加重の1株価値" data-caption="シナリオ別の1株価値は強気2,104円・基本1,798円・弱気1,256円（第16章接続版）。基本の確率＝1−強気−弱気"
+  data-inputs='[{"id":"wb","label":"強気の確率","min":0,"max":0.5,"step":0.05,"value":0.25,"fmt":"pct0"},{"id":"wr","label":"弱気の確率","min":0,"max":0.5,"step":0.05,"value":0.25,"fmt":"pct0"}]'
+  data-vars='{"vb":2103.9,"vm":1797.6,"vr":1256.0}'
+  data-outputs='[{"label":"基本の確率","expr":"1-wb-wr","fmt":"pct0"},{"label":"期待値","expr":"wb*vb+(1-wb-wr)*vm+wr*vr","fmt":"yen","hl":true},{"label":"株価1,800円との差","expr":"(wb*vb+(1-wb-wr)*vm+wr*vr)/1800-1","fmt":"pct"}]'></div>
+
+<h2 id="ws1-8">演1-8　第7段階：マルチプル・残余利益・その他の手法で検証する</h2>
+<p>DCFの答えを、考え方の違う手法で点検します。手法ごとに値が違うのは当然で、大切なのは「なぜ違うか」を説明できることです。</p>
+
+<h3>類似会社比較</h3>
+<p><a href="#ch13-3">第13章 13-3</a>の架空の同業4社（D〜G社）の中央値をミナモ精機に当てはめると、1株価値は次のように分布しました。</p>
+<div class="barchart" data-title="同業中央値から求めた1株価値（第13章）" data-labels="PER実績,PER予想,PBR,EV/EBITDA,EV/EBIT,EV/売上,FCF利回り" data-yfmt="yen"
+  data-series='[{"values":[1830,1763,1606,1809,1856,1879,1689]}]' data-highlight="2"
+  data-caption="7指標の範囲は1,606〜1,879円、中央値は1,809円。PBRだけが低いのは、ミナモ精機のROE13.7%が同業中央値11.5%より高いことを反映しないため"></div>
+<p>収益性の違いを回帰で補正すると、PBRとROEの関係からは1,935円、EV/売上と営業利益率の関係からは1,878円になりました。ただし4社の回帰は頼りない推定で、点検の補助にとどめます。同業比較で見る限り、株価1,800円は大きく割安でも割高でもありません。</p>
+<p>景気循環を考えて、正常化EPS 89.9円（演1-5）に同業4社の実績PER（14.6〜19.7倍、中央値17.5倍）を掛けると、1,313〜1,771円、中央値で1,571円です。今期の利益を「山」とみなす人にとっては、この低めの値が現実的な物差しになります（<a href="#ch26-2">第26章 26-2</a>）。</p>
+
+<h3>残余利益モデル・配当割引モデル</h3>
+<p><a href="#ch15-3">第15章 15-3</a>の残余利益モデルは、5年予測で株主価値757.6億円、<strong>1株1,561円</strong>（理論PBR2.05倍）でした。ROE14.1%・成長率1.0%の定常状態の式では理論PBR1.85倍、1株1,406円です。DCFの1,699円との差66.5億円のほとんどは、純金融資産70.7億円の扱いで説明できます。DCFはこれを額面で足しますが、残余利益モデルの前提では、その現金がほとんど稼がないまま社内に残るからです。</p>
+<p>2段階の配当割引モデル（<a href="#ch15-2">第15章 15-2</a>）は<strong>1,346円</strong>です。配当として株主に渡る分だけを数えるので、社内に貯まる現金の価値をさらに低く見ます。配当性向30%のまま永久に変わらないとすると528円まで下がり、配当性向の前提にきわめて敏感です。</p>
+
+<h3>バリュードライバー式</h3>
+<p><a href="#ch23-3">第23章 23-3</a>の式「事業価値 ＝ NOPAT × (1 − g ÷ RONIC) ÷ (WACC − g)」では、RONIC16.6%・永久成長率3%で<strong>1株約1,907円</strong>、RONICがWACCと等しい（成長が価値を生まない）ときは1,499円です。株価1,800円は、RONIC12%なら成長率約3.3%に相当します。また第23章では、株価1,800円を「年5%成長が約11年続き、その間は高いROICで投資できる」という競争優位期間で説明しました。株価の期待を「年数」に直すと、演1-5のモートの議論と直接つながります。</p>
+
+<h3>資産からの床と、金利上昇の場合</h3>
+<p>正味流動資産（NCAV）は162.8億円、<strong>1株335.5円</strong>です（<a href="#ch17-3">第17章 17-3</a>）。株価の約19%で、資産バリューの物差しで割安を測る会社ではありません。グレアムの防御的投資家の基準（過去3年平均利益の15倍以下、PBR1.5倍以下）も、過去3年平均EPS 79.6円に対するPER22.6倍・PBR2.4倍で満たしません（<a href="#ch17-3">第17章 17-3</a>）。</p>
+<p>リスクフリーレートを実勢に近い3%にすると、株主資本コストは9.6%です。他の前提を変えずに割引率だけを9.6%にすると、第14章版は1,410円、第16章接続版は1,488円になります。金利の前提だけで300円前後動くことは、<a href="#ch12-6">第12章 12-6</a>の「割引率1%の重み」の実例です。ただし<a href="#ch14-6">第14章 14-6</a>で注意したとおり、金利が上がる局面では名目の成長率も上がることがあり、割引率だけを動かすのは保守的な見方です。</p>
+
+<div class="box tip"><span class="box-label">読者への問い 10</span><p>DDMの1,346円、残余利益モデルの1,561円、DCFの1,699円・1,798円、類似会社比較の1,809円（中央値）。値の違いを「何を数えているか」「長期の前提」「相対か絶対か」の3つの理由に分類してください。</p></div>
+<details class="deep"><summary>解答例：値が違う3つの理由</summary><div>
+<ol>
+<li><strong>何を数えているか</strong>：DDMは配当だけ、残余利益モデルは自己資本と超過利益（低利回りの現金はほぼ額面以下）、DCFは事業のFCFと純金融資産の額面を数えます。DDM＜残余利益＜DCFの順になるのは、社内に残る現金の評価の違いです（<a href="#ch15-6">第15章 15-6</a>）。経営者が現金を有効に使う（または返す）と信じるほど、DCFの数え方が正しくなります。</li>
+<li><strong>長期の前提</strong>：第14章版と第16章接続版の差99円は、ほとんどが長期の利益率（15.0%か15.6%か）です。バリュードライバー式の幅（1,499〜1,907円）も、RONICと成長率の前提の幅です。</li>
+<li><strong>相対か絶対か</strong>：類似会社比較は「同業の今の評価が正しい」ことを前提にした相対評価です。同業全体が割高なら、ミナモ精機の価値も高く出ます。DCFや残余利益モデルの絶対評価と並べることで、相対評価の循環を避けます（<a href="#ch13-1">第13章 13-1</a>、<a href="#ch14-4">第14章 14-4</a>）。</li>
+</ol>
+</div></details>
+
+<h2 id="ws1-9">演1-9　価値の幅：フットボールフィールド</h2>
+<p>すべての手法の結果を1枚に並べた図を、その形からフットボールフィールドと呼びます。各手法の価値の幅を横棒で、株価を縦の線で示します（<a href="#ch30">第30章</a>の「価値の幅」）。</p>
+
+<figure class="fig"><div class="fig-svg">
+<svg viewBox="0 0 600 462" role="img" aria-label="ミナモ精機の1株価値の幅（フットボールフィールド）">
+<rect x="244.0" y="22" width="168.0" height="384" fill="var(--accent)" fill-opacity="0.08"/>
+<text x="328.0" y="18" font-size="12" text-anchor="middle" fill="var(--muted)">中心帯 1,600〜1,900円</text>
+<text x="20" y="38" font-size="12" fill="var(--fg)">類似会社比較（同業中央値・7指標）</text>
+<rect x="247.4" y="44" width="152.9" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="243.4" y="54" font-size="12" text-anchor="end" fill="var(--muted)">1,606</text>
+<text x="404.2" y="54" font-size="12" fill="var(--muted)">1,879</text>
+<circle cx="353.0" cy="50" r="3.5" fill="var(--fg)"/>
+<text x="20" y="76" font-size="12" fill="var(--fg)">収益性で補正した回帰（PBR・EV/売上）</text>
+<rect x="399.7" y="82" width="31.9" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="395.7" y="92" font-size="12" text-anchor="end" fill="var(--muted)">1,878</text>
+<text x="435.6" y="92" font-size="12" fill="var(--muted)">1,935</text>
+<text x="20" y="114" font-size="12" fill="var(--fg)">正常化EPS × 同業PER（最小〜最大）</text>
+<rect x="83.3" y="120" width="256.5" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="79.3" y="130" font-size="12" text-anchor="end" fill="var(--muted)">1,313</text>
+<text x="343.8" y="130" font-size="12" fill="var(--muted)">1,771</text>
+<circle cx="219.8" cy="126" r="3.5" fill="var(--fg)"/>
+<text x="20" y="152" font-size="12" fill="var(--fg)">DCF 第14章（割引率7.6〜8.6%）</text>
+<rect x="241.8" y="158" width="131.6" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="237.8" y="168" font-size="12" text-anchor="end" fill="var(--muted)">1,589</text>
+<text x="377.4" y="168" font-size="12" fill="var(--muted)">1,824</text>
+<circle cx="299.4" cy="164" r="3.5" fill="var(--fg)"/>
+<text x="20" y="190" font-size="12" fill="var(--fg)">DCF 第16章接続（割引率7.6〜8.6%）</text>
+<rect x="289.4" y="196" width="140.6" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="285.4" y="206" font-size="12" text-anchor="end" fill="var(--muted)">1,681</text>
+<text x="434.0" y="206" font-size="12" fill="var(--muted)">1,932</text>
+<circle cx="354.9" cy="202" r="3.5" fill="var(--fg)"/>
+<text x="20" y="228" font-size="12" fill="var(--fg)">シナリオDCF（弱気〜強気、●は期待値）</text>
+<rect x="51.4" y="234" width="474.9" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="47.4" y="244" font-size="12" text-anchor="end" fill="var(--muted)">1,256</text>
+<text x="530.2" y="244" font-size="12" fill="var(--muted)">2,104</text>
+<circle cx="321.8" cy="240" r="3.5" fill="var(--fg)"/>
+<text x="20" y="266" font-size="12" fill="var(--fg)">残余利益モデル（定常式〜5年予測）</text>
+<rect x="135.4" y="272" width="86.8" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="131.4" y="282" font-size="12" text-anchor="end" fill="var(--muted)">1,406</text>
+<text x="226.2" y="282" font-size="12" fill="var(--muted)">1,561</text>
+<circle cx="222.2" cy="278" r="3.5" fill="var(--fg)"/>
+<text x="20" y="304" font-size="12" fill="var(--fg)">バリュードライバー（RONIC 8.1〜16.6%）</text>
+<rect x="187.4" y="310" width="228.5" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="183.4" y="320" font-size="12" text-anchor="end" fill="var(--muted)">1,499</text>
+<text x="419.9" y="320" font-size="12" fill="var(--muted)">1,907</text>
+<text x="20" y="342" font-size="12" fill="var(--fg)">2段階DDM（配当だけを数える）</text>
+<circle cx="105.8" cy="354" r="5" fill="var(--accent)"/>
+<text x="115.8" y="358" font-size="12" fill="var(--muted)">1,346</text>
+<text x="20" y="380" font-size="12" fill="var(--fg)">株主資本コスト9.6%（実勢金利に近い前提）</text>
+<rect x="137.6" y="386" width="43.7" height="12" rx="2" fill="var(--accent)" fill-opacity="0.75"/>
+<text x="133.6" y="396" font-size="12" text-anchor="end" fill="var(--muted)">1,410</text>
+<text x="185.3" y="396" font-size="12" fill="var(--muted)">1,488</text>
+<line x1="20" x2="580" y1="416" y2="416" stroke="var(--line)"/>
+<line x1="20.0" x2="20.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="20.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">1,200</text>
+<line x1="132.0" x2="132.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="132.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">1,400</text>
+<line x1="244.0" x2="244.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="244.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">1,600</text>
+<line x1="356.0" x2="356.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="356.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">1,800</text>
+<line x1="468.0" x2="468.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="468.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">2,000</text>
+<line x1="580.0" x2="580.0" y1="416" y2="421" stroke="var(--muted)"/>
+<text x="580.0" y="435" font-size="12" text-anchor="middle" fill="var(--muted)">2,200</text>
+<line x1="356.0" x2="356.0" y1="24" y2="416" stroke="var(--loss)" stroke-width="1.6" stroke-dasharray="5 4"/>
+<text x="360.0" y="452" font-size="12" fill="var(--loss)">株価1,800円（単位：円／株）</text>
+</svg></div>
+<figcaption>横棒は各手法の価値の幅、●は中心値。縦の破線は2026年3月末の株価1,800円、薄い帯は中心帯（1,600〜1,900円）。NCAV（1株335.5円）は図の範囲外</figcaption></figure>
+
+<div class="tbl"><table>
+<caption>手法別の1株価値のまとめ（円）</caption>
+<tr><th>手法</th><th class="r">低</th><th class="r">中心</th><th class="r">高</th><th>主な前提・章</th></tr>
+<tr><td>類似会社比較</td><td class="r">1,606</td><td class="r">1,809</td><td class="r">1,879</td><td>同業4社の中央値（<a href="#ch13-3">第13章</a>）</td></tr>
+<tr><td>正常化EPS × 同業PER</td><td class="r">1,313</td><td class="r">1,571</td><td class="r">1,771</td><td>5期平均の利益率（<a href="#ch26-3">第26章</a>）</td></tr>
+<tr><td>DCF 第14章</td><td class="r">1,589</td><td class="r">1,699</td><td class="r">1,824</td><td>2年目以降 成長4%・利益率15.0%（<a href="#ch14-5">第14章</a>）</td></tr>
+<tr><td>DCF 第16章接続</td><td class="r">1,681</td><td class="r">1,798</td><td class="r">1,932</td><td>3年積み上げ＋利益率15.6%維持（演1-7）</td></tr>
+<tr><td>シナリオDCF</td><td class="r">1,256</td><td class="r">1,739</td><td class="r">2,104</td><td>強気25%・基本50%・弱気25%（演1-7）</td></tr>
+<tr><td>残余利益モデル</td><td class="r">1,406</td><td class="r">1,561</td><td class="r">1,561</td><td>現金はほぼ稼がない前提（<a href="#ch15-3">第15章</a>）</td></tr>
+<tr><td>バリュードライバー式</td><td class="r">1,499</td><td class="r">—</td><td class="r">1,907</td><td>RONIC＝WACC〜16.6%（<a href="#ch23-3">第23章</a>）</td></tr>
+<tr><td>2段階DDM</td><td class="r">—</td><td class="r">1,346</td><td class="r">—</td><td>配当だけを数える（<a href="#ch15-2">第15章</a>）</td></tr>
+<tr><td>株主資本コスト9.6%</td><td class="r">1,410</td><td class="r">—</td><td class="r">1,488</td><td>DCF2種の割引率だけを変更（演1-8）</td></tr>
+<tr><td>NCAV（資産の床）</td><td class="r">—</td><td class="r">336</td><td class="r">—</td><td>固定資産をゼロとみなす（<a href="#ch17-3">第17章</a>）</td></tr>
+</table></div>
+
+<h3>図の読み方</h3>
+<ul>
+<li><strong>中心帯は1,600〜1,900円</strong>：基本の前提を使った手法（類似会社比較、2つのDCF、シナリオ期待値）は、この帯に集まります。株価1,800円はその上寄りにあります。</li>
+<li><strong>下側の値は「別の問い」への答え</strong>：DDM・残余利益モデル・正常化PERの低い値は、「現金が株主に返らない」「今期が景気の山」という悲観的な見方の価値です。株価が1,300〜1,500円まで下がれば、そうした悲観をかなり織り込んだ水準と言えます。</li>
+<li><strong>上側には条件が要る</strong>：2,000円を超える値は、長期の利益率17%前後か、RONIC16%以上での3%成長のように、今の最高水準の収益性がさらに続く前提を必要とします。</li>
+<li><strong>手法を平均しない</strong>：すべての値の平均をとると、NCAVやDDMのような「問いの違う手法」が結論をゆがめます。中心値は、自分が最も妥当と考える前提の手法から選びます。</li>
+</ul>
+
+<div class="box tip"><span class="box-label">読者への問い 11</span><p>あなたの「中心値」をいくらに置きますか。また、何%の安全域（<a href="#ch17-2">第17章 17-2</a>）を求めるなら、どの価格で「検討の対象」になりますか。</p></div>
+<details class="deep"><summary>解答例：中心値と安全域</summary><div>
+<p>解答例では、2つのDCFの平均 (1,699 ＋ 1,798) ÷ 2 ≒ 1,750円と、シナリオ期待値1,739円がほぼ一致するので、<strong>中心値を約1,750円</strong>と置きます。株価1,800円は中心値を約3%上回り、安全域はありません。価格が価値と等しければ、期待リターンはおおむね資本コスト（8.1%）程度です。株価が中心値を上回る分だけ、期待リターンはそれをやや下回ります。</p>
+<p>安全域20%を求めるなら 1,750 × 0.8 ＝ 1,400円、30%なら1,225円が検討を始める価格の目安です。1,400円は、金利上昇ケース（1,410〜1,488円）とほぼ同じ水準です。つまり「実勢金利で割り引いても価値を下回らない価格」とも読めます。逆に、中心値を第16章接続版の1,798円に置く人にとっては、株価1,800円は「適正」です。どちらの結論も、自分が置いた前提から出てきたものだと明記することが大切です。</p>
+</div></details>
+
+<h2 id="ws1-10">演1-10　投資メモ（1ページ）と判断の型</h2>
+<p>分析の結論を、1ページの投資メモにまとめます（<a href="#ch37">第37章</a>）。メモの目的は、買うか売るかを決めることではなく、「何を信じて、何が起きたら考えを変えるか」を、未来の自分が読み返せる形で残すことです。以下は解答例で、推奨ではありません。</p>
+
+<div class="box example"><span class="box-label">投資メモ：ミナモ精機（架空）　評価日2026年3月末・株価1,800円</span>
+<div class="tbl"><table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>事業の要約</td><td>半導体製造装置・工作機械・医療機器向けの精密直動部品メーカー。売上488億円、営業利益率14.5%、実質無借金（ネットキャッシュ46.7億円）。売上の55%・セグメント利益の60%が半導体・電子</td></tr>
+<tr><td>投資仮説（3つ）</td><td>(1) 設計段階からの組み込みによるスイッチングコストで、ROIC14〜17%を保てる (2) 医療の成長で景気循環の振れが少しずつ小さくなる (3) 積み上がる現金（基本シナリオで3年後に約191億円）の還元で、ROEが13%台から上がる余地がある</td></tr>
+<tr><td>価値の幅</td><td>中心帯1,600〜1,900円、中心値約1,750円（DCF2種の平均・シナリオ期待値）。悲観ケース1,256〜1,500円、強気ケース約2,100円</td></tr>
+<tr><td>株価が織り込む前提</td><td>第16章の基本シナリオ（29/3期 営業利益90.5億円）と、営業利益率約15.6%の持続。割引率8.1%なら永久成長率約1.8%に相当（第14章の枠組み）</td></tr>
+<tr><td>判断の型</td><td>この前提なら、1,800円は価値の中心帯の上寄りで、安全域はほぼない。安全域20%を求めるなら1,400円前後、30%なら1,200円台前半が検討の目安。長期の利益率16%以上を信じるなら1,800円は適正〜やや割安</td></tr>
+<tr><td>主なリスク</td><td>半導体の在庫調整の再来（弱気シナリオで28/3期の営業利益38.2億円）、大口顧客の値下げ要求・内製化、現金の低収益な使い道（高値の買収など）、金利上昇による資本コストの上昇</td></tr>
+<tr><td>考えを変える条件</td><td>半導体・電子の利益率が数量の回復局面でも13%を下回る／売上が減る中で在庫日数が90日を超える／設備投資を増やしても売上が伸びず、ROICが2期続けて12%を下回る</td></tr>
+<tr><td>追跡するKPI</td><td>セグメント別の売上・利益率、受注高・受注残、在庫日数、固定費の伸び、設備投資と減価償却費の比率、自社株買い・配当方針の変更</td></tr>
+<tr><td>カタリスト</td><td>中期経営計画での資本配分方針（総還元性向・自己株式の消却）、医療向け量産の立ち上がり、会社予想とコンセンサス（営業利益80億円）の差が決算で解消されること</td></tr>
+</table></div></div>
+
+<div class="box tip"><span class="box-label">読者への問い 12</span><p>プレモーテム（<a href="#ch37">第37章</a>）をしてください。「3年後、この会社への投資が大きな失敗に終わっていた」と仮定して、その理由として最もありそうなものを2つ挙げ、それぞれを今のうちに確かめる方法を書きます。</p></div>
+<details class="deep"><summary>解答例：プレモーテム</summary><div>
+<ol>
+<li><strong>景気の山で買っていた</strong>：26/3期の利益率14.5%は5期で最高でした。在庫調整が来て28/3期の営業利益が弱気シナリオ（38.2億円）並みに落ち、市場がPERを下げれば、株価は弱気シナリオのDCF（1,256円）に向かいます。確かめる方法は、装置メーカーの受注動向と自社の受注残、在庫日数を決算ごとに追うこと（<a href="#ch26-4">第26章 26-4</a>）。</li>
+<li><strong>利益率が構造的に下がった</strong>：大口顧客の値下げ要求や内製化で、半導体・電子の利益率が数量の回復局面でも戻らなかった。長期の利益率が15.6%から13%になれば、DCFは約1,540円です。確かめる方法は、売上総利益率の変化を「数量（稼働率）」と「価格」に分けて見ること（<a href="#ch08-5">第8章 8-5</a>）と、上位顧客の売上比率の開示を確かめること。</li>
+</ol>
+<p>どちらも、投資メモの「考えを変える条件」に対応しています。プレモーテムで挙がった理由が条件に入っていなければ、メモを書き直します。</p>
+</div></details>
+
+<div class="box key"><span class="box-label">ポイント</span><p>投資メモの結論は「買い」「売り」ではなく、「この前提なら価値はこの帯、株価はその中のこの位置、前提が崩れる条件はこれ」という形にします。結論を前提とセットで書いておけば、株価が動いたときに「前提が変わったのか、価格が変わっただけか」を区別できます。ポジションの大きさは別の問題で、価値の幅の広さと下振れの大きさから<a href="#ch38">第38章</a>の考え方で決めます。自分の分析への過信を防ぐ仕組みは<a href="#ch39">第39章</a>で扱います。次の<a href="#ws2">演習2</a>では、まったく性格の違う低PBR企業で同じ手順を踏みます。</p></div>
+
+<h2 id="ws1-sum">まとめ</h2>
+<ul class="summary-list">
+<li>5期の決算書から、24/3期の在庫調整（売上−5.1%・営業利益−29.7%）、25/3〜26/3期の最高益、自社株買いと借入返済への資本配分の転換、という3つの物語が読める。</li>
+<li>ROEは13.7%（期末）で、借入に頼らず利益率で稼いでいる。損益分岐点は359.3億円、安全余裕率26.4%、営業レバレッジ3.8倍。</li>
+<li>利益の質（営業CF÷純利益1.33倍、M-Score−2.56）と健全性（Zスコア6.13）に問題はない。論点はむしろ、現金を抱えすぎた「安全すぎる」バランスシート。</li>
+<li>簡易ROICは5期とも資本コスト8.1%を上回り、厳密な定義でも14.2〜17.2%。モートの仮説は、崩れる条件とKPIを添えて検証できる形で書く。</li>
+<li>第14章のDCF（1,699円）と第16章接続版（1,798円）の差99円は、＋39円が予測期間、＋60円が長期の利益率（15.0%か15.6%か）から来る。株価1,800円は第16章の基本シナリオ程度を織り込んでいる。</li>
+<li>手法の結果を並べたフットボールフィールドでは、中心帯は1,600〜1,900円、中心値は約1,750円。悲観的な前提では1,250〜1,500円、強気の前提では約2,100円。</li>
+<li>投資メモは推奨ではなく、「この前提ならこの価格帯」と、考えを変える条件・追うKPIをセットで書く。</li>
+</ul>
+
+<div class="quiz"><p class="quiz-title">確認クイズ</p>
+  <div class="q"><p>問1　ミナモ精機の変動費率45%・固定費197.6億円が一定のとき、売上高が488億円から10%減ると、営業利益はおよそいくらになりますか。</p>
+    <ol class="choices"><li>63.7億円</li><li>54.1億円</li><li>44.0億円</li><li>26.8億円</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(C)　439.2 × 0.55 − 197.6 ＝ 44.0億円で、37.9%の減益です。営業レバレッジ3.8倍 × 10% とほぼ一致します。(A) は利益が売上と同率で減ると考えた誤りです（演1-3、<a href="#ch03-4">第3章 3-4</a>）。</p></div></details>
+  </div>
+  <div class="q"><p>問2　24/3期のFスコアで「長期負債比率の低下」と「流動比率の上昇」に加点された主な理由はどれですか。</p>
+    <ol class="choices"><li>借入を返済したから</li><li>在庫が膨らみ、総資産と流動資産が増えたから</li><li>増資をしたから</li><li>現金が減ったから</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(B)　借入は90億円のまま変わっていません。在庫の積み上がりという悪い出来事が、比率の上では「改善」と採点されました。点数ではなく点の理由を読みます（演1-4、<a href="#ch20-4">第20章 20-4</a>）。</p></div></details>
+  </div>
+  <div class="q"><p>問3　ミナモ精機の26/3期のROE（期末13.7%）が簡易ROIC（16.6%）より低い主な理由はどれですか。</p>
+    <ol class="choices"><li>有利子負債が多く、支払利息が重いから</li><li>特別損失があったから</li><li>利回りの低い現金・投資有価証券を多く抱えているから</li><li>税率がROICの計算より高いから</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(C)　自己資本には現金121.7億円と投資有価証券24.0億円が含まれ、その利回りが全体を薄めています。支払利息は0.9億円と小さく、26/3期の特別損益はむしろ利益でした（演1-5、<a href="#ch23-3">第23章 23-3</a>）。</p></div></details>
+  </div>
+  <div class="q"><p>問4　第14章のDCF（1,699円）と第16章接続版（1,798円）の差99円のうち、最も大きな要因はどれですか。</p>
+    <ol class="choices"><li>割引率の違い</li><li>永久成長率の違い</li><li>4年目以降の営業利益率（15.0%と15.6%）の違い</li><li>純金融資産の扱いの違い</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(C)　割引率8.1%・永久成長率1.0%・純金融資産70.7億円は両者で共通です。差のうち約60円が長期の利益率、約39円が最初の3年の予想の違いから来ます（演1-7）。</p></div></details>
+  </div>
+  <div class="q"><p>問5　シナリオ別の1株価値が強気2,104円・基本1,798円・弱気1,256円のとき、強気20%・基本50%・弱気30%で加重した期待値に最も近いものはどれですか。</p>
+    <ol class="choices"><li>1,620円</li><li>1,696円</li><li>1,739円</li><li>1,798円</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(B)　0.2 × 2,104 ＋ 0.5 × 1,798 ＋ 0.3 × 1,256 ＝ 420.8 ＋ 899.0 ＋ 376.8 ＝ 1,696.6円。強気を5ポイント下げて弱気を5ポイント上げるだけで、期待値は25/50/25の1,739円から約42円下がります（演1-7）。</p></div></details>
+  </div>
+  <div class="q"><p>問6　中心値を1,750円と置いた投資家が、30%の安全域を求めるとき、検討を始める価格の目安はどれですか。</p>
+    <ol class="choices"><li>1,225円</li><li>1,400円</li><li>1,575円</li><li>2,275円</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(A)　1,750 × (1 − 0.3) ＝ 1,225円。20%なら1,400円です。安全域は、価値の見積もりが外れても損をしにくくするための余裕です（演1-9、<a href="#ch17-2">第17章 17-2</a>）。</p></div></details>
+  </div>
+  <div class="q"><p>問7　フットボールフィールドの読み方として、最も適切なものはどれですか。</p>
+    <ol class="choices"><li>すべての手法の中心値を単純平均して、それを価値とする</li><li>最も高い手法の値を目標株価とする</li><li>手法ごとの前提の違いを確かめ、自分が妥当と考える前提の帯から中心値を選ぶ</li><li>NCAVが株価を下回るので、株価は割高と判断する</li></ol>
+    <details><summary>答えと解説</summary><div><p>正解：(C)　DDMやNCAVのように問いの違う手法を平均すると、結論がゆがみます。ミナモ精機は収益力で評価される会社なので、NCAVが株価を下回ることは割高の根拠になりません（演1-9）。</p></div></details>
+  </div>
+</div>
