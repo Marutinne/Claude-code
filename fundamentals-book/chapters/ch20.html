@@ -22,7 +22,7 @@
 <text x="57" y="55" text-anchor="middle" font-size="13" fill="var(--fg)">母集団</text>
 <text x="57" y="74" text-anchor="middle" font-size="12" fill="var(--muted)">数千社</text>
 <rect x="125" y="30" width="95" height="56" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>
-<text x="172" y="55" text-anchor="middle" font-size="13" fill="var(--accent)">スクリーニング</text>
+<text x="172" y="55" text-anchor="middle" font-size="12" fill="var(--accent)">スクリーニング</text>
 <text x="172" y="74" text-anchor="middle" font-size="12" fill="var(--muted)">数十〜百社</text>
 <rect x="240" y="30" width="95" height="56" fill="var(--surface)" stroke="var(--line)"/>
 <text x="287" y="55" text-anchor="middle" font-size="13" fill="var(--fg)">一次チェック</text>
@@ -168,7 +168,7 @@
 <p>情報サイトのスクリーニング機能で魔法の公式に近い条件を作る場合、益回りの代わりにEV/EBIT倍率（益回りの逆数）、ROCの代わりにROEやROAを使うことになりがちです。それでも傾向はつかめますが、ROEは借入や現金の多さで大きく変わるので、上位の会社については自分で上の定義に直して計算し直します。</p>
 <div class="calc" data-title="益回りと資本収益率を計算する" data-caption="初期値はミナモ精機の2026年3月期。純有利子負債がマイナス（純現金）だとEVが小さくなり、益回りが上がる"
   data-inputs='[{"id":"ebit","label":"EBIT（億円）","min":0,"max":200,"step":0.1,"value":70.8,"fmt":"oku1"},
-                {"id":"mcap","label":"時価総額（億円）","min":50,"max":2000,"step":1,"value":873.4,"fmt":"oku1"},
+                {"id":"mcap","label":"時価総額（億円）","min":50,"max":2000,"step":0.1,"value":873.4,"fmt":"oku1"},
                 {"id":"nd","label":"純有利子負債（億円）","min":-300,"max":300,"step":0.1,"value":-46.7,"fmt":"oku1"},
                 {"id":"nwc","label":"正味運転資本（億円）","min":0,"max":400,"step":0.1,"value":116.1,"fmt":"oku1"},
                 {"id":"nfa","label":"純有形固定資産（億円）","min":0,"max":600,"step":1,"value":171,"fmt":"oku1"}]'
