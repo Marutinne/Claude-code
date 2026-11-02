@@ -90,7 +90,7 @@
     ]}
   ];
   // Chapters whose files are published. Kept as one list so a release is a one-line change.
-  var READY = "ch00 ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13".split(" ");
+  var READY = "ch00 ch01 ch02 ch03 ch04 ch05 ch06 ch07 ch08 ch09 ch10 ch11 ch12 ch13 ch14 ch15 ch16 ch17 ch18 ch19 ch20 ch21 ch22 ch23 ch24 ch25 ch26 ch27 ch28 ch29 ch30 ch31 ch32 ch33 ch34 ch35 ch36 ch37 ch38 ch39 ws1 ws2 ex1 ex2 ex3 ex4 hist legends qa glossary formulas checklist kpi refs".split(" ");
 
   var FLAT = [];
   PARTS.forEach(function (p) { p.ch.forEach(function (c) { c.partRef = p; c.ready = READY.indexOf(c.id) >= 0; FLAT.push(c); }); });
