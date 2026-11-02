@@ -1,0 +1,14 @@
+<header class="chapter-head"><p class="eyebrow">テスト</p><h1>部品テスト</h1></header>
+<h2 id="ch99-1">折れ線</h2>
+<div class="linechart" data-title="ミナモ精機 売上高と営業利益" data-x="22/3期,23/3期,24/3期,25/3期,26/3期" data-yfmt="oku" data-series='[{"name":"売上高","values":[400,432,410,452,488],"labels":true},{"name":"営業利益","values":[50,58.3,41,61.5,70.8],"color":"accent","labels":true}]' data-caption="単位：億円"></div>
+<div class="linechart" data-title="理論PER" data-xrange="0,0.07" data-xfmt="pct" data-xlabel="成長率 g" data-yfmt="x" data-vars='{"r":0.08}' data-series='[{"name":"ROE 15%","expr":"per(0.15,r,x)"},{"name":"ROE 8%","expr":"per(0.08,r,x)","dash":true}]' data-hlines='[{"y":12.5,"label":"1/r"}]'></div>
+<h2 id="ch99-2">棒・滝</h2>
+<div class="barchart" data-title="営業利益率の比較" data-labels="ミナモ精機,同業A社,同業B社,同業C社" data-yfmt="pct" data-series='[{"values":[0.145,0.11,0.08,-0.02]}]' data-highlight="0"></div>
+<div class="barchart" data-title="積み上げ" data-labels="販売費及び一般管理費,研究開発費,広告宣伝費" data-stacked="1" data-series='[{"name":"国内","values":[30,20,10]},{"name":"海外","values":[25,10,5]}]'></div>
+<div class="waterfall" data-title="売上高から営業利益へ" data-fmt="oku1" data-steps='[{"label":"売上高","value":488,"total":true},{"label":"売上原価","value":-319.6},{"label":"売上総利益","total":true},{"label":"販売費及び一般管理費","value":-97.6},{"label":"営業利益","total":true}]'></div>
+<h2 id="ch99-3">散布・感度・試算</h2>
+<div class="scatter" data-title="ROEとPBR" data-xfmt="pct" data-yfmt="x" data-xlabel="ROE" data-ylabel="PBR" data-fit="1" data-points='[{"x":0.05,"y":0.7,"label":"A"},{"x":0.08,"y":1.0},{"x":0.1,"y":1.3,"label":"C"},{"x":0.14,"y":2.4,"label":"ミナモ","color":"orange"},{"x":0.18,"y":3.0}]'></div>
+<div class="sens" data-title="DCF感度（1株価値）" data-rowvar="r" data-rows="0.07,0.075,0.08,0.085,0.09" data-colvar="g" data-cols="0.005,0.01,0.015,0.02" data-vars='{"fcf":37.7,"net":-46.7,"sh":48.52}' data-expr="(dcf(fcf,0.05,5,g,r)-net)*100/sh" data-fmt="yen" data-base="0.08,0.01" data-rowlabel="割引率" data-collabel="永久成長率"></div>
+<div class="calc" data-title="理論PBR" data-inputs='[{"id":"roe","label":"ROE","min":0,"max":0.25,"step":0.005,"value":0.12,"fmt":"pct"},{"id":"r","label":"株主資本コスト","min":0.04,"max":0.12,"step":0.0025,"value":0.08,"fmt":"pct2"},{"id":"g","label":"成長率","min":0,"max":0.04,"step":0.0025,"value":0.02,"fmt":"pct2"}]' data-outputs='[{"label":"理論PBR","expr":"pbr(roe,r,g)","fmt":"x2","hl":true},{"label":"理論PER","expr":"per(roe,r,g)","fmt":"x1"}]' data-caption="g < r の範囲で計算"></div>
+<div class="box formula"><span class="box-label">公式</span><p class="eq">PBR ＝ (ROE − g) ÷ (r − g)</p></div>
+<div class="quiz"><p class="quiz-title">確認クイズ</p><div class="q"><p>テスト？</p><ol class="choices"><li>A</li><li>B</li></ol><details><summary>答え</summary><div>A</div></details></div></div>
